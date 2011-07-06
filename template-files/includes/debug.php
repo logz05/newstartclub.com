@@ -1,0 +1,1 @@
+{!-- uncomment to activate--}{!--{exp:cartthrob:debug_info}--}		
