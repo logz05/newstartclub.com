@@ -1,0 +1,65 @@
+{if embed:standalone == ""}
+<footer>
+	<p>A FREE community service of <a href="http://www.weimar.org/">Weimar Center of Health and Education</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
+	<p><a href="/about/privacy-policy/">Privacy Policy</a> | <a href="/about/terms-of-use/">Terms of Use</a></p>
+</footer>
+<div id="shadow-left"></div>
+<div id="shadow-right"></div>
+{/if}
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+{if logged_out}<script src="/assets/js/jquery.reveal.js"></script>{/if}
+<script src="/assets/js/common.js"></script>
+{if "{embed:script_add}" != ""}
+<?php $splitcontents = explode('|', '{embed:script_add}');
+foreach($splitcontents as $file) {
+ echo '<script src="/assets/js/'.$file.'.js"></script>'."\n";
+} ?>
+{/if}
+{!-- BEGIN Resource Sidebar Javascript --}
+{if segment_1 == "resources"}
+	{if segment_2 == "" || (segment_2 <= "P9999" && segment_2 >= "P0")}
+		<script type="text/javascript">
+		$(document).ready(function(){
+			//Toggle list
+			$(".sidebar h2").click(function(){
+				$(this).next("ul").slideToggle(400)
+				$(this).children(".arrow").toggle()
+				return false;
+			});
+		});
+		</script>
+	{if:else}
+		<script type="text/javascript">
+		$(document).ready(function(){
+			
+			//Hide all lists except the one for the current section
+			$(".sidebar h2").children(".arrow").toggle();
+			$(".sidebar ul.filter-list").not(".filter-list.{segment_2}").hide();
+			$(".sidebar h2.{segment_2}").children(".arrow").toggle();
+			
+			//Toggle lists
+			$(".sidebar h2").click(function(){
+				$(this).next("ul").slideToggle(400)
+				$(this).children(".arrow").toggle()
+				return false;
+			});
+		
+		});
+		</script>
+	{/if}
+{/if}
+{if segment_2 == "request-sent"}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('.vimeoBadge a').attr('rel', 'prettyPhoto');
+		$(".vimeoBadge a[rel^='prettyPhoto']")
+		.prettyPhoto({
+			theme:'dark_rounded',
+			animationSpeed: 'slow'
+		});
+	});
+</script>
+{/if}
+</body>
+</html>
