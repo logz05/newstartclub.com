@@ -1,1 +1,0 @@
-http://sponsors.newstartclub.com
