@@ -127,9 +127,9 @@ function memberAges($rangeLow, $rangeHigh)
 			<?php memberAges(91, 100) ?>
 		</ul>
 	
-		<h2><strong>Sponsors - {exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query}</strong></h2>
+		<h2><strong>Locations - {exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query}</strong></h2>
 		<p>
-			{exp:weblog:entries weblog="sponsors" sort="asc"}
+			{exp:weblog:entries weblog="locations" sort="asc"}
 				{exp:query
 					sql="
 						SELECT count(member_id) AS total FROM (
@@ -163,7 +163,7 @@ function memberAges($rangeLow, $rangeHigh)
 									FROM exp_member_data
 										WHERE m_field_id_7 = {sponsor_zip}
 						) a" limit="1"}
-				<strong>{categories}{category_id}{/categories}</strong> - <a href="{url_title_path='sponsors/detail'}">{title}</a> (&nbsp;{total}&nbsp;)<br />
+				<strong>{categories}{category_id}{/categories}</strong> - <a href="{url_title_path='locations/detail'}">{title}</a> (&nbsp;{total}&nbsp;)<br />
 				{/exp:query}
 			{/exp:weblog:entries}
 		</p>
@@ -206,7 +206,7 @@ function memberAges($rangeLow, $rangeHigh)
 		<div class="bar">{section}</div>
 		<h2>Interests</h2>
 			<ul><?php $interests = array(); ?>
-			{exp:weblog:categories weblog="sponsor_admin" style="linear" category_group="14|15"}
+			{exp:weblog:categories weblog="sponsors" style="linear" category_group="14|15"}
 				{exp:query 
 				sql="SELECT COUNT(*) AS total
 						FROM exp_members
@@ -233,7 +233,7 @@ function memberAges($rangeLow, $rangeHigh)
 			</ul>
 			<h2>More Info</h2>
 			<ul><?php $more_info = array(); ?>
-			{exp:weblog:categories weblog="sponsor_admin" style="linear" category_group="16"}
+			{exp:weblog:categories weblog="sponsors" style="linear" category_group="16"}
 				{exp:query 
 					sql="SELECT COUNT(*) AS total
 					FROM exp_members, exp_user_category_posts, exp_member_data 

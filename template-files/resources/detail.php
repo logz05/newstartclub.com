@@ -9,7 +9,10 @@
 {assign_variable:channel="resources"}
 {assign_variable:section="Resources"}
 <div id="{channel}" class="body">
-{embed="includes/_breadcrumbs" channel="{channel}" section="{section}"}
+  <ul id="trail">
+    <li><a href="/">Home</a></li>
+    <li><a href="/{channel}/">{section}</a></li>
+  </ul>
 	<div class="heading clearafter">
 		{exp:weblog:entries weblog="{channel}" limit="1" url_title="{segment_3}"}<h1>{title}</h1>{/exp:weblog:entries}
 	</div>

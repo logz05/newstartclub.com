@@ -1,1 +1,0 @@
-{exp:cartthrob:delete_from_cart row_id="{segment_3}" return="cart/index"}

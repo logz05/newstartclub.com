@@ -10,7 +10,7 @@
 <body>
 <pre>
 Number	Name	Address
-{exp:weblog:entries weblog="sponsors" order_by="category_id" sort="asc" status="open|closed"}{categories}{category_id}{/categories}	{title}	{sponsor_address}, {sponsor_city}, {sponsor_state} {sponsor_zip}
+{exp:weblog:entries weblog="locations" order_by="category_id" sort="asc" status="open|closed"}{categories}{category_id}{/categories}	{title}	{sponsor_address}, {sponsor_city}, {sponsor_state} {sponsor_zip}
 {/exp:weblog:entries}
 </pre>
 </body>

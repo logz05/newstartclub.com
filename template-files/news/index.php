@@ -19,7 +19,7 @@ require_once ( 'utilities.php' );
 	<div class="grid23 clearafter">
 		<div class="list left">
 			<ul>
-			{exp:weblog:entries weblog="resources|events|partners|sponsors|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off"}
+			{exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off"}
 				<li class="article {weblog_short_name}">
 					<h1>
 						<a href="{path='{weblog_short_name}/detail/{url_title}'}">

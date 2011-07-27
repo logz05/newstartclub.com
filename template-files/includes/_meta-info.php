@@ -1,3 +1,0 @@
-	<meta name="description" content="{exp:weblog:entries weblog='resources' url_title='{segment_3}'}{exp:html_strip}{exp:char_limit total='200'}{resource_description}{/exp:char_limit}{/exp:html_strip}{/exp:weblog:entries} " />
-	<link rel="image_src" href="{exp:weblog:entries weblog='resources' limit='1' url_title='{segment_3}'}{resource_thumb}{/exp:weblog:entries}" />
-	<meta name="title" content="{exp:weblog:entries weblog='resources' url_title='{segment_3}'}{title}{/exp:weblog:entries} - {site_name}" />

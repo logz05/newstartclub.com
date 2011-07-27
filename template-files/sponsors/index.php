@@ -1,95 +1,99 @@
 {embed="includes/_doc-top" 
-	channel="{channel}"
-	section="{section}"
-	title="
-				{if segment_2 == "" || (segment_2 <= "P9999" && segment_2 >= "P0") }
-					{section}
-				{if:else}
-					{section} in {exp:weblog:entries weblog="{channel}" limit="1" search:sponsor_state="={segment_3}" dynamic="off"}{sponsor_state:label}{/exp:weblog:entries}
-				{/if}"
-}
+  channel="{channel}"
+  title="{title}"}
 {assign_variable:channel="sponsors"}
-{assign_variable:section="Sponsors"}
+{assign_variable:title="Sponsorship Program
+{if segment_2 == 'events' && segment_3 == 'add'} | Create a new event{/if}
+{if segment_2 == 'events' && segment_3 == 'edit'} | Edit Events{/if}
+{if segment_2 == 'invite-members'} | Invite Members{/if}
+{if segment_2 == 'email-members' || segment_3 == 'email'} | Email Members{/if}
+{if segment_2 == 'resources'} | Resources{/if}
+"}
 <div class="body">
-	{if segment_2 == "state"}{embed="includes/_breadcrumbs" channel="{channel}" section="{section}"}{/if}
-	<div class="heading clearafter">
-		{if segment_2 == "" || (segment_2 <= "P9999" && segment_2 >= "P0") }
-		<div class="icon"></div>
-		<h1>{section}</h1>
-		{if:else}
-		<h1>{exp:weblog:entries weblog="{channel}" limit="1" search:sponsor_state="={segment_3}" dynamic="off"}{sponsor_state:label}{/exp:weblog:entries}</h1>
-		{/if}
-	</div>		
-	<div class="grid23 clearafter">
-		<div class="list left">
-		<ul>
-			{if segment_2 == "state" && segment_3}
-				{exp:weblog:entries weblog="{channel}" orderby="sponsor_city" sort="asc" search:sponsor_state="={segment_3}" limit="9" paginate="bottom" disable="member_data" dynamic="off"}
-					<li class="sponsor clearafter">
-						<a href="{url_title_path='{channel}/detail'}"><div class="sponsor-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={sponsor_address}+{sponsor_city}+{sponsor_state}&zoom=7&markers=size:med%7C{sponsor_address}+{sponsor_city}+{sponsor_state}&size=90x110&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});">
-						</div></a>
-						<h1><a href="{url_title_path='{channel}/detail'}">{title}</a></h1>
-						<h2>{sponsor_address}<br />{sponsor_city}, {sponsor_state}</h2>
-					</li>
-					{paginate}
-						{if "{total_pages}" > 1}
-							<li class="pagination">
-								<p>{pagination_links}</p>
-							</li>
-						{/if}
-					{/paginate}
-				{/exp:weblog:entries}
-			{if:else}
-				{exp:weblog:entries weblog="{channel}" orderby="sponsor_city" sort="asc" limit="9" paginate="bottom" disable="member_data" dynamic="off"}
-					<li class="sponsor clearafter">
-						<a href="{url_title_path='{channel}/detail'}"><div class="sponsor-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={sponsor_address}+{sponsor_city}+{sponsor_state}&zoom=7&markers=size:med%7C{sponsor_address}+{sponsor_city}+{sponsor_state}&size=90x110&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});">
-						</div></a>
-						<h1><a href="{url_title_path='{channel}/detail'}">{title}</a></h1>
-						<h2>{sponsor_address}<br />{sponsor_city}, {sponsor_state}</h2>
-					</li>
-					{paginate}
-						{if "{total_pages}" > 1}
-							<li class="pagination">
-								<p>{pagination_links}</p>
-							</li>
-						{/if}
-					{/paginate}
-				{/exp:weblog:entries}
-			{/if}
-		</ul>
-		</div><!--/.list-->
-		<div class="sidebar right">
-			<div class="bar">{section}</div>
-			<p>Our sponsors share our interest in helping you achieve true wellness. They provide locations, facilities, and services for locally organized club events such as: 
-				<ul class="bullets">
-					<li>Vegetarian cooking classes</li>
-					<li>Natural remedies classes</li>
-					<li>Depression recovery programs</li>
-					<li>Coronary health improvement programs</li>
-					<li>Reversing diabetes and obesity seminars</li>
-					<li>Health expos</li>
-					<li>Personal and group support</li>
-				</ul></p>
-			<p>If your organization is interested in sponsoring a local {site_name}, click&nbsp;<a href="{path='sponsor_admin'}">here</a>.</p>
-				<div class="bar">Filter</div>
-				<h2>State</h2>
-				<ul>
-	<?php
-	
-		$state_list = array(
-			{exp:weblog:entries weblog="{channel}" sort="asc" dynamic="off" orderby="sponsor_state" backspace="1"}
-				"{sponsor_state}" => "{sponsor_state:label}", 
-			{/exp:weblog:entries}
-			);
-	
-		foreach ($state_list as $key => $state) {
-			print('<li><a href="{path="{channel}/state/'. $key . '"}">'. $state .'</a></li>');
-		}
-	
-	
-	?>
-				</ul>
-		</div><!--/.sidebar-->
-	</div><!--/.grid23-->
+{if logged_out || (member_group != 1 && member_group != 13)}
+  <div class="heading clearafter">
+    <h1>Sponsorship Program</h1>
+  </div>
+      <div class="grid23 clearafter">
+        <div class="single left">
+          <iframe src="http://player.vimeo.com/video/17569582" width="490" height="276" frameborder="0"></iframe>
+          {exp:weblog:entries weblog="{channel}" entry_id="477" limit="1"}
+            {body}
+          {/exp:weblog:entries}
+        </div><!--/.single-->
+        <div class="sidebar right">
+          <div class="bar">Become a Sponsor</div>
+            {exp:weblog:entries weblog="{channel}" entry_id="478" limit="1"}
+              {body}
+            {/exp:weblog:entries}
+          <p class="button-wrap"><a href="{path='sponsors/register'}" class="super giant green button"><span>Get Started</span></a></p>
+          <div class="quotes">
+            <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has made a huge difference in my health outreach.&rdquo;</blockquote>
+            <cite>&mdash;Todd D. Armstrong, <br><span>Speaker/Director, Family Health &amp; Education Services</span></cite>
+            <blockquote>&ldquo;This is the best thing I&rsquo;ve seen in a long, long time.&rdquo;</blockquote>
+            <cite>&mdash;James Redfield, <br><span>Pastor, Colfax SDA Church</span></cite>
+            <blockquote>&ldquo;This is JUST what we have needed to make it easy to network with the people who come to our health programs and to easily get others to join.&rdquo;</blockquote>
+            <cite>&mdash;Debbie Cox, <br><span>Health Ministries Leader, Buskirk SDA Church</span></cite>
+            <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has added a whole new dimension to our approach in regards to outreach. Utilizing the club will be a permanent addition to our ministry.&rdquo;</blockquote>
+            <cite>&mdash;Mike Mudd, <br><span>Evangelism Coordinator, ASI Youth For Jesus</span></cite>
+          </div>
+          <a href="http://www.nadhealthministries.org/article.php?id=75" title="NAD Adventist Health Ministries Official Resource" target="_blank"><img class="logo" src="/assets/images/sponsor_admin/NAD_choose_full_life_logo.png" width="170" /></a>
+          <p id="NAD-Logo-text">NAD Adventist Health Ministries Official Resource</p>
+        </div>
+      </div>
+    {/if}
+{if logged_in && (group_id == '1' || group_id == '13')}
+  {assign_variable:sponsor_zipcode="{exp:user:stats dynamic='off'}{exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1'}{sponsor_zip}{/exp:weblog:entries}{/exp:user:stats}"}
+
+  {if segment_2 == ''}
+    {embed="{channel}/_landing-page" channel="{channel}"}
+  {/if}
+  
+  {if segment_2 == "events" && segment_3 == "add"}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_add-event" channel="{channel}" return="/{channel}/{segment_2}/edit/" categories="{sponsor_number}" sponsor_zip="{sponsor_zipcode}"}
+    {/exp:user:stats}
+  {/if}
+  
+  {if segment_2 == "events" && segment_3 == "edit"}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_edit-event" channel="{channel}" sponsor_number="{sponsor_number}" categories="{sponsor_number}"}
+    {/exp:user:stats}
+  {/if}
+  
+  {if segment_2 == "invite-members"}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_invite-members" sponsor_number="{sponsor_number}" channel="{channel}"}
+    {/exp:user:stats}
+  {/if}
+  
+  {if segment_2 == "email-members"}
+      {if segment_3 != ""}
+        <ul id="trail">
+          <li><a href="{site_url}">Home</a></li>
+          <li><a href="{path='{channel}/email-members'}">Member List</a></li>
+        </ul>
+      {/if}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_email-members" sponsor_number="{sponsor_number}" channel="{channel}" sponsor_zipcode="{sponsor_zipcode}"}
+    {/exp:user:stats}
+  {/if}
+  
+  {if segment_2 == "email"}
+    {!--<h2>This page is under construction. Sorry for the inconvenience.</h2>
+    {if member_id == 1}--}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_email" sponsor_number="{sponsor_number}" sponsor_zipcode="{sponsor_zipcode}" channel="{channel}"}
+    {/exp:user:stats}
+    {!--{/if}--}
+  {/if}
+  
+  {if segment_2 == "resources"}
+    {exp:user:stats dynamic="off"}
+      {embed="{channel}/_resources" sponsor_number="{sponsor_number}" channel="{channel}"}
+    {/exp:user:stats}
+  {/if}
+  
+{/if}
 </div><!-- /.body -->
-{embed="includes/_doc_bottom"}
+{embed="includes/_doc_bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|jquery.prettyPhoto_3.0|sponsor-admin"}
