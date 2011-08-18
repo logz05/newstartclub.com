@@ -154,7 +154,7 @@ function fileModTime($filename) {
             {if logged_in}<a href="{path=logout}">Sign Out</a>{/if}
           </li>
           <li>
-            {if logged_out}<a href="/{if segment_1 == 'sponsors'}sponsors/{/if}register/">Register</a>{/if}
+            {if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply/{if:else}/register/{/if}">{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
             {if logged_in}<a href="/settings/">Settings</a>{/if}
           </li>
         </ul>

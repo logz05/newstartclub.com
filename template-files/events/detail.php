@@ -31,7 +31,33 @@
           <dt>Date</dt>
           <dd>
             <p>
-              {if event_start_time != ""}
+              {!-- Check if event is only on one date and time is set --}
+              {if event_start_date == event_end_date && event_start_time !=""}
+                <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> to 
+                <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+              {/if}
+              
+              {!-- Check if event is only on one date and time is NOT set --}
+              {if event_start_date == event_end_date && event_start_time ==""}
+                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+              {/if}
+              
+              {!-- Check to see if repeating event --}
+              {if (event_start_date != event_end_date)}
+                <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>,
+                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
+                <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+                <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
+                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+              {/if}
+              {!--{if event_start_time != ""}
                 <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> - 
                 <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
                 <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
@@ -48,7 +74,7 @@
                 <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
                 <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
                 <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-              {/if}
+              {/if}--}
             </p>
           </dd>
           <dt>Sponsored by</dt>

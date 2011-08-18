@@ -1,4 +1,4 @@
-{exp:rss:feed weblog="{master_weblog_name}"}{assign_variable:master_weblog_name="resources|locations|events|partners|questions"}
+{exp:rss:feed weblog="events"}
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -9,7 +9,7 @@
 
     <channel>
     
-    <title>{exp:xml_encode}{site_name} News{/exp:xml_encode}</title>
+    <title>{exp:xml_encode}{site_name} Events{/exp:xml_encode}</title>
     <link>{weblog_url}</link>
     <description>The latest updates from the {site_name}</description>
     <dc:language>{weblog_language}</dc:language>
@@ -18,12 +18,12 @@
     <dc:date>{gmt_date format="%D, %d %M %Y %H:%i:%s %T"}</dc:date>
     <admin:generatorAgent rdf:resource="http://expressionengine.com/" />
     
-{exp:weblog:entries weblog="{master_weblog_name}" limit="50" rdf="off" dynamic_start="on" disable="member_data|trackbacks" status="open"}
+{exp:weblog:entries weblog="events" limit="50" rdf="off" dynamic_start="on" disable="member_data|trackbacks" status="open"}
     <item>
-      <title>{if weblog_short_name == 'questions'}{exp:xml_encode protect_entities="yes"}{qa_question}{/exp:xml_encode}{if:else}{exp:xml_encode protect_entities="yes"}{title}{/exp:xml_encode}{/if}</title>
+      <title>{exp:xml_encode protect_entities="yes"}{title}{/exp:xml_encode}</title>
       <link>{path='{weblog_short_name}/detail/{url_title}'}</link>
       <guid isPermaLink="false">{title_permalink="site/index"}#id:{entry_id}#date:{gmt_entry_date format="%H:%i"}</guid>
-      <description>{exp:xml_encode}{exp:char_limit total="100"}{resource_description}{event_description}{partner_bio}{qa_answer}{sponsor_info}{/exp:char_limit}{/exp:xml_encode}</description>
+      <description>{exp:xml_encode}{exp:char_limit total="100"}{event_description}{/exp:char_limit}{/exp:xml_encode}</description>
       {categories}<category>{exp:xml_encode protect_entities="yes"}{category_name}{/exp:xml_encode}</category>
       {/categories}
       <dc:date>{gmt_entry_date format="%D, %d %M %Y %H:%i %T"}</dc:date>

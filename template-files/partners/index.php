@@ -18,7 +18,7 @@
 			<ul>
 				{exp:weblog:entries weblog="{channel}" sort="asc" limit="9" orderby="partner_last_name" paginate="bottom" disable="member_data|trackbacks" dynamic="off"}
 				<li class="partner clearafter">
-					<a href="{url_title_path='{channel}/detail'}">
+					<a href="{url_title_path='{channel}/detail'}" class="image">
 						{exp:ce_img:single src="{partner_photo}" max_width="100" max_height="100" crop="yes" attributes='alt="{title}" title="{title}"'}
 					</a>
 					<div class="info">

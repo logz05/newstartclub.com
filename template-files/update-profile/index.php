@@ -10,7 +10,7 @@
 	<div class="grid23 clearafter">
 		<div class="left">
 	
-			<h2>To better serve your health needs, please take a moment to indicate the areas you're interested in.</h2>
+			<h2>To better serve your health needs, please take a moment to indicate the areas you&rsquo;re interested in.</h2>
 			
 		{exp:user:edit return="{path='my_health'}" form:class="clearfix"}
 			<h1>Check the subjects you are interested in</h1>

@@ -93,7 +93,22 @@ require_once ( 'utilities.php' );
             <span class="day">{exp:nice_date date="{event_start_date}" format="%d"}</span>
             <span class="month">{exp:nice_date date="{event_start_date}" format="%M"}</span>
             <span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span>
-            <span class="event-time">{if event_start_time != ""}{exp:nice_date date="{event_start_time}" format="%g:%i %a"} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}{if:elseif "{e_start_date}" == "{e_end_date}"}{exp:nice_date date="{event_start_date}" format="%F %j"} - {exp:nice_date date="{event_end_date}" format="%j"}{if:elseif "{e_start_date}" != "{e_end_date}"}{exp:nice_date date="{event_start_date}" format="%F %j"} - {exp:nice_date date="{event_end_date}" format="%F %j"}{/if}</span>
+            <span class="event-time">
+              {!-- Check if event is only on one date and time is set --}
+              {if event_start_date == event_end_date && event_start_time !=""}
+                {exp:nice_date date="{event_start_time}" format="%g:%i %a"} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}
+              {/if}
+              
+              {!-- Check if event is only on one date and time is NOT set --}
+              {if event_start_date == event_end_date && event_start_time == ""}
+                All Day
+              {/if}
+              
+              {!-- Check to see if repeating event --}
+              {if (event_start_date != event_end_date)}
+                {exp:nice_date date="{event_start_date}" format="%M %j"} - {exp:nice_date date="{event_end_date}" format="%M %j"}
+              {/if}
+            </span>
           </div>
           <h2 class="title"><a href="{url_title_path='events/detail'}">{title}</a></h2>
           <div class="event-data">

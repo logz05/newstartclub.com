@@ -22,7 +22,7 @@
 						<p class="button-wrap">
 							<button type="submit" class="super green button"><span>Sign In</span></button>
 						</p>
-						<a href="{path='members/forgot-password'}">Forgot your password?</a>
+						<a href="/forgot-password/">Forgot your password?</a>
 					</td>
 				</tr>
 			</table>
@@ -39,7 +39,7 @@
 				<li>FREE membership</li>
 			</ul>
 			<p class="button-wrap">
-				<a href="{path='members/register'}" class="super red button"><span>Register</span></a>
+				<a href="/register/" class="super red button"><span>Register</span></a>
 			</p>
 		</div>
 	</div>

@@ -26,19 +26,19 @@
             {exp:weblog:entries weblog="{channel}" entry_id="478" limit="1"}
               {body}
             {/exp:weblog:entries}
-          <p class="button-wrap"><a href="{path='sponsors/register'}" class="super giant green button"><span>Get Started</span></a></p>
+          <p class="button-wrap"><a href="/sponsors/apply/" class="super giant green button"><span>Get Started</span></a></p>
           <div class="quotes">
             <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has made a huge difference in my health outreach.&rdquo;</blockquote>
-            <cite>&mdash;Todd D. Armstrong, <br><span>Speaker/Director, Family Health &amp; Education Services</span></cite>
+            <cite>&mdash;Todd D. Armstrong<br><a href="http://www.fhes.net/" target="_blank">Speaker/Director, Family Health &amp; Education Services</a></cite>
             <blockquote>&ldquo;This is the best thing I&rsquo;ve seen in a long, long time.&rdquo;</blockquote>
-            <cite>&mdash;James Redfield, <br><span>Pastor, Colfax SDA Church</span></cite>
+            <cite>&mdash;James Redfield<br><a href="http://colfaxcares.org" target="_blank">Pastor, Colfax SDA Church</a></cite>
             <blockquote>&ldquo;This is JUST what we have needed to make it easy to network with the people who come to our health programs and to easily get others to join.&rdquo;</blockquote>
-            <cite>&mdash;Debbie Cox, <br><span>Health Ministries Leader, Buskirk SDA Church</span></cite>
+            <cite>&mdash;Debbie Cox<br><a href="/locations/detail/buskirk-newstart-club/" target="_blank">Health Ministries Leader, Buskirk SDA Church</a></cite>
             <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has added a whole new dimension to our approach in regards to outreach. Utilizing the club will be a permanent addition to our ministry.&rdquo;</blockquote>
-            <cite>&mdash;Mike Mudd, <br><span>Evangelism Coordinator, ASI Youth For Jesus</span></cite>
+            <cite>&mdash;Mike Mudd<br><a href="http://yfj.netasi.org/" target="_blank">Evangelism Coordinator, ASI Youth For Jesus</a></cite>
+            <blockquote>&ldquo;I highly recommend this resource.&rdquo;</blockquote>
+            <cite>&mdash;Katia Reinert<br><a href="http://www.nadhealthministries.org" target="_blank">Director, NAD Adventist Health Ministries</a></cite>
           </div>
-          <a href="http://www.nadhealthministries.org/article.php?id=75" title="NAD Adventist Health Ministries Official Resource" target="_blank"><img class="logo" src="/assets/images/sponsor_admin/NAD_choose_full_life_logo.png" width="170" /></a>
-          <p id="NAD-Logo-text">NAD Adventist Health Ministries Official Resource</p>
         </div>
       </div>
     {/if}

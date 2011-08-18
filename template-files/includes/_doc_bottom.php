@@ -6,11 +6,11 @@
 	<table>
 		<tr>
 			<th scope="row"><label for="email">Email</label></th>
-			<td><input type="email" class="input" id="email" name="username" value="" size="28" autocapitalize="off" /></td>
+			<td><input type="email" class="input" id="email" name="username" value="" size="20" autocapitalize="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="password">Password</label></th>
-			<td><input type="password" class="input" id="password" name="password" size="28" /></td>
+			<td><input type="password" class="input" id="password" name="password" size="20" /></td>
 		</tr>
 		{if auto_login}<tr>
 			<th></th>
@@ -20,7 +20,7 @@
 			<th scope="row">&nbsp;</th>
 			<td>
 				<button type="submit" class="super green button"><span>Sign In</span></button>
-				<a class="forgot-pass" href="/members/forgot-password/">Forgot your password?</a>
+				<a class="forgot-pass" href="/forgot-password/">Forgot your password?</a>
 			</td>
 		</tr>
 	</table>
@@ -30,7 +30,7 @@
 {/if}
 {if embed:standalone == ""}
 <footer>
-  <p>A FREE community service of <a href="http://www.weimar.org/">Weimar Center of Health and Education</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
+  <p>A FREE community service of the <a href="http://newstart.com/">NEWSTART&reg; Lifestyle Program</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
   <p><a href="/about/privacy-policy/">Privacy Policy</a> | <a href="/about/terms-of-use/">Terms of Use</a></p>
 </footer>
 <div id="shadow-left"></div>
@@ -38,7 +38,7 @@
 {/if}
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
-{if logged_out}<script src="/assets/js/jquery.reveal.js"></script>{/if}
+<script src="/assets/js/jquery.reveal.js"></script>
 <script src="/assets/js/common.js"></script>
 {if "{embed:script_add}" != ""}
 <?php $splitcontents = explode('|', '{embed:script_add}');

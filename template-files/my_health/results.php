@@ -184,15 +184,9 @@ function resultsPieChart($low, $high) {
         </ul>
         
         {if memberSleep != "11" || memberExercise != "13" || memberSmoking != "11" || memberAlcohol != "11" || memberBreakfast != "10" || memberSnacking != "11" || memberEmotional != "11"}
-        
-        <form method="post" action="/{channel}/request-more-info/">
-        {exp:user:stats}
-          <input type="hidden" name="memberAge" value="{memberAge}" />
-        {/exp:user:stats}
           <p class="button-wrap">
-            <button type="submit" class="super green button"><span>Tell me more</span></button>
+            <a href="/my_health/request-more-info/" class="super green button"><span>Tell me more</span></a>
           </p>
-        </form>
       {/if}
       {if memberSleep == "11" AND memberExercise == "13" AND memberSmoking == "11" AND memberAlcohol == "11" AND memberBreakfast == "10" AND memberSnacking == "11" AND memberEmotional == "11"}
       <?php if ( $hsWeight < $hsHealthyWeightHigh && $hsWeight > $hsHealthyWeightLow ) { ?>

@@ -8,7 +8,7 @@
 {exp:user:stats}
   <?php
   
-  if (isset($_POST['location']))
+  if (isset($_POST['name']))
   {
   $memberName = $_POST['name']; 
   $memberAge = "{memberAge}"; 
@@ -18,27 +18,29 @@
   $memberHS = "{memberScoreTotal}"; 
   $customMessage = $_POST['custom-message'];
   
-  $location = $_POST['location'];
-  
   $todayis = date("l, F j, Y, g:i a") ;
   
-  $subject = "Tell me more about your NEWSTART Lifestyle Program";
+  $subject = "Tell me more about your NEWSTART® Lifestyle Program";
   
   $message = "
-Name: $memberName\n
-Age: $memberAge\n
-Address: $memberAddress\n
-Phone: $memberPhone\n
-Email: $memberEmail\n
-My Health Score: $memberHS\n
-Message: $customMessage
+<p><strong>Name</strong>: $memberName</p>
+<p><strong>Age</strong>: $memberAge</p>
+<p><strong>Address</strong>: $memberAddress</p>
+<p><strong>Phone</strong>: $memberPhone</p>
+<p><strong>Email</strong>: $memberEmail</p>
+<p><strong>My Health Score</strong>: $memberHS</p>
+<p><strong>Message</strong>: $customMessage</p>
 
----------------------------
-Sent from www.newstartclub.com";
+--------------------------- <br />
+Sent from <a href='www.newstartclub.com'>www.newstartclub.com</a>";
   
-  $from = "From: {username}\r\n";
+  // To send HTML mail, the Content-type header must be set
+	$headers  = 'MIME-Version: 1.0' . "\n";
+	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
+	$headers .= 'From: {firstName} {lastName} <{username}>' . "\r\n";
+	$headers .= 'Bcc: ron.giannoni@newstart.com, ddennis@weimar.org, tbaril@weimar.org, development@weimar.org, info@wildwoodhealth.org, lifestylecenter@ucheepines.org, lifestyle@eden-valley.org, health@bhhec.org, reservations@livingspringsretreat.com' . "\r\n";
   
-  mail("club@newstart.com, $location", $subject, $message, $from);
+  mail("club@newstart.com", $subject, stripslashes($message), $headers);
   }
   
   ?>
@@ -60,24 +62,10 @@ Sent from www.newstartclub.com";
       <p><a href="{path='{channel}/results/'}">&laquo; Back to my results</a></p>
     </div><!--/.list-->
     <div class="sidebar right">
-      <div class="bar">Locations</div>
-      <p><strong>Weimar Center of Health &amp; Education</strong><br />20601 West Paoli Lane<br />Weimar, CA 95736</p>
+      <div class="bar">Contact Us</div>
+      <img src="/assets/images/my_health/NEWSTART-lifestyle-program.jpg" width="190" />
+      <p><strong>Corporate Headquarters</strong><br />20601 West Paoli Lane<br />Weimar, CA 95736</p>
       <p>(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>
-      
-      <p><strong>Wildwood Lifestyle Center &amp; Hospital</strong><br />435 Lifestyle Ln<br />Wildwood, GA 30757</p>
-      <p>(800) 634-9355<br /><a href="http://www.wildwoodhealth.org/" title="Wildwood Lifestyle Center &amp; Hospital">www.wildwoodhealth.org</a></p>
-      
-      <p><strong>Uchee Pines Institute</strong><br />30 Uchee Pines Road<br />Seale, AL 36875</p>
-      <p>(877) 824-3374<br /><a href="http://www.ucheepines.org/" title="Uchee Pines Institute">www.ucheepines.org</a></p>
-      
-      <p><strong>Eden Valley Institute</strong><br />6263 North County Road 29<br />Loveland, CO 80538</p>
-      <p>(800) 637-9355<br /><a href="http://www.eden-valley.org/" title="Eden Valley Institute">www.eden-valley.org</a></p>
-      
-      <p><strong>Black Hills Health &amp; Education Center</strong><br />3815 Battle Creek Road<br />Hermosa, SD 57744</p>
-      <p>(800) 658-5433<br /><a href="http://www.bhhec.org/" title="Black Hills Health &amp; Education Center">www.bhhec.org</a></p>
-      
-      <p><strong>Living Springs Retreat</strong><br />1768 County Road 628<br />Roanoke, AL 36274</p>
-      <p>(256) 449-2628<br /><a href="http://www.livingspringsretreat.com/" title="Living Springs Retreat">www.livingspringsretreat.com</a></p>
     </div><!--/.sidebar-->
   </div><!--/.grid23-->
 </div><!-- /.body -->

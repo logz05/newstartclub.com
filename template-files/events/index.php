@@ -12,7 +12,7 @@
 {assign_variable:channel="events"}
 {assign_variable:section="Events"}
 <div class="body">
-  {if segment_3 != ""}
+  {if (segment_2 && segment_3 == '' || (segment_3 <= 'P9999' && segment_3 >= 'P0')) || (segment_2 && segment_3 && segment_4 == '' || (segment_4 <= 'P9999' && segment_4 >= 'P0'))}
   <ul id="trail">
     <li><a href="/">Home</a></li>
     <li><a href="/{channel}/">{section}</a></li>
@@ -44,7 +44,7 @@
       <div class="bar">RSVP List</div>
       {embed="{channel}/_rsvp-list"}
       <div class="bar">Filter</div>
-      <h2>Location</h2>
+      <h2>Locations</h2>
       <ul>
   <?php
     $location_list = array(
@@ -54,7 +54,21 @@
       );
   
     foreach ($location_list as $key => $location) {
-      print('<li><a href="{path="{channel}'. $key . '"}">'. $location .'</a></li>');
+      print('<li><a href="{path="{channel}'. $key .'"}">'. $location .'</a></li>');
+    }
+  ?>
+      </ul>
+      <h2>Sponsors</h2>
+      <ul>
+  <?php 
+    $sponsor_list = array(
+      {exp:weblog:entries weblog="events" dynamic="off"}
+        {categories} "{category_url_title}" => "{category_name}", {/categories}
+      {/exp:weblog:entries}
+    );
+    
+    foreach ($sponsor_list as $key => $sponsor) {
+      print('<li><a href="/events/'. $key .'">'. $sponsor .'</a></li>');
     }
   ?>
       </ul>

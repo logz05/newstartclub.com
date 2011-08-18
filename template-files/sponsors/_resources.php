@@ -75,17 +75,11 @@
       {/exp:weblog:entries}
     </div>
     <div class="right sidebar">
-      <div class="bar">Resources</div>
-      <p>To request additional resources or to receive up to a 40% discount on bulk orders of NEWSTART books and DVDs, email <a href="mailto:club@newstart.com">club@newstart.com</a></p>
+      <div class="bar">Additional Resources</div>
+      <p>To receive up to a 40% discount on bulk orders of NEWSTART&reg; books and DVDs, download the <a href="http://weimarmedia.com/catalog/Weimar-Media-Catalog.pdf" title="Weimar Media catalog">Weimar Media catalog</a>. Then email <a href="mailto:media@weimar.org">media@weimar.org</a> with your order.</p>
       <div class="bar">Need Help?</div>
-      <p>Trained medical missionaries are available for approximately 3 weeks at a time during the following months to help you get started with your health outreach events:</p>
-      <ul class="bullets">
-        <li>March</li>
-        <li>May</li>
-        <li>October</li>
-        <li>December</li>
-      </ul>
-      <p>To make a request, please call 530-422-7923 or email <a href="mailto:pac@weimar.edu">pac@weimar.edu</a></p>
+      <p>NEWSTART® Global provides trained medical missionaries to help you get started with your health outreach.</p>
+      <p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 800-525-9192.</p>
 </p>
     </div>
   </div>

@@ -18,7 +18,7 @@
 	</div>
 	<div class="grid23 clearafter">
 		<div class="single left">{exp:weblog:entries weblog="resources" limit="1" url_title="{segment_3}"}
-			<div class="content {resource_display_style}">
+			<div class="content {resource_display_style} clearafter">
 			{if resource_display_style == "recipe"}
 				{exp:ce_img:single src="{resource_thumb}" max_width="200" max_height="150" crop="yes" attributes='alt="{title}" title="{title}"'}
 				<div class="description">{resource_description}</div>
@@ -37,22 +37,22 @@
 				{/if}
 				{resource_description}
 			{/if}
+			{if resource_dvd_url != ""}
 				<div class="button-wrap clearafter">
-					{if resource_buy_url != ""}
-						<a href="http://www.weimarmarket.com/catalog/{resource_buy_url}" class="super green button left"><span>Buy the DVD</span></a>
-					{/if}
-					{!--{exp:cartthrob:add_to_cart_form entry_id="{entry_id}" return="cart/index" id="add-to-cart" class="hide"}
-						<label for="quantity">Qty:</label> <input name="quantity" class="input" type="text" value="1" size="2" />
-						<button type="submit" class="super blue button left"><span>Add to cart</span></button>
-						<span class="price">${resource_price}</span>
-					{/exp:cartthrob:add_to_cart_form}--}
+					<a href="{exp:html_strip}{resource_dvd_url}{/exp:html_strip}" target="_blank" class="super green button left"><span>Buy the DVD</span></a>
 				</div>
-				<ul class="tags">
-					<li><span>Tags:</span></li>
-					{categories show_group="not 22"}<li><a href="{site_url}{channel}/{partners_path}{living_better_path}{recipe_path}{media_path}{language_path}{series_path}{condition_path}/{category_url_title}/">{category_name}</a></li>
-					{/categories}
-				</ul>
+			{/if}
+			{if resource_book_url != ""}
+				<div class="button-wrap clearafter">
+					<a href="{exp:html_strip}{resource_book_url}{/exp:html_strip}" target="_blank" class="super green button left"><span>Buy the Book</span></a>
+				</div>
+			{/if}
 			</div>
+			<ul class="tags">
+				<li><span>Tags:</span></li>
+				{categories show_group="not 22"}<li><a href="{site_url}{channel}/{partners_path}{living_better_path}{recipe_path}{media_path}{language_path}{series_path}{condition_path}/{category_url_title}/">{category_name}</a></li>
+				{/categories}
+			</ul>
 			{/exp:weblog:entries}
 			{exp:weblog:entries weblog="{channel}" limit="1" url_title="{segment_3}"}
 			{if resource_related_entry1}
@@ -67,7 +67,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{if resource_related_entry2}
 				{related_entries id="resource_related_entry2"}
@@ -78,7 +78,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry3}
 				{related_entries id="resource_related_entry3"}
@@ -89,7 +89,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry4}
 				{related_entries id="resource_related_entry4"}
@@ -100,7 +100,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}
 				{if resource_related_entry5}
@@ -114,7 +114,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry6}
 				{related_entries id="resource_related_entry6"}
@@ -125,7 +125,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry7}
 				{related_entries id="resource_related_entry7"}
@@ -136,7 +136,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry8}
 				{related_entries id="resource_related_entry8"}
@@ -147,7 +147,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry9}
 				{related_entries id="resource_related_entry9"}
@@ -158,7 +158,7 @@
 								<img src="{made}" alt="{title}" width="{width}" height="{height}" />
 							{/exp:ce_img:pair}
 						</a>
-						<h1><a href="{path='{channel}/detail/{url_title}'}">{title}</a></h1>
+						<span><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
 					</li>
 				{/related_entries}{/if}{if resource_related_entry1}</ul>
 			</div>{/if}
