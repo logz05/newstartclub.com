@@ -1,0 +1,35 @@
+{exp:rss:feed weblog="{segment_1}"}
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+    xmlns:admin="http://webns.net/mvcb/"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/">
+
+    <channel>
+
+    <title>{exp:xml_encode}{site_name} Resources{if segment_4} | {segment_4_category_name}{/if}{/exp:xml_encode}</title>
+    <link>{weblog_url}</link>
+    <description>The latest resources from the {site_name}</description>
+    <dc:language>{weblog_language}</dc:language>
+    <dc:creator>club@newstart.com</dc:creator>
+    <dc:rights>Copyright {gmt_date format="%Y"}</dc:rights>
+    <dc:date>{gmt_date format="%D, %d %M %Y %H:%i:%s %T"}</dc:date>
+    <admin:generatorAgent rdf:resource="http://expressionengine.com/" />
+    
+{exp:weblog:entries weblog="{segment_1}" limit="50" rdf="off" dynamic_start="on" disable="member_data|trackbacks" status="open" {if segment_4}category="{segment_4_category_id}"{/if}}
+    <item>
+      <title>{exp:xml_encode protect_entities="yes"}{title}{/exp:xml_encode}</title>
+      <link>{path='{segment_1}/detail/{url_title}'}</link>
+      <guid isPermaLink="false">{title_permalink="site/index"}#id:{entry_id}#date:{gmt_entry_date format="%H:%i"}</guid>
+      <description>{exp:xml_encode}{resource_description}{/exp:xml_encode}</description>
+      {categories}<category>{exp:xml_encode protect_entities="yes"}{category_name}{/exp:xml_encode}</category>
+      {/categories}
+      <dc:date>{gmt_entry_date format="%D, %d %M %Y %H:%i %T"}</dc:date>
+    </item>
+{/exp:weblog:entries}
+
+    </channel>
+</rss>
+{/exp:rss:feed}
