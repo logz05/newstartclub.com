@@ -1,1 +1,1 @@
-{redirect="sponsors/{segment_2}/{segment_3}"}
+{redirect="404"}

@@ -11,7 +11,7 @@
 <div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/{channel}">{section}</a></li>
   </ul>
   <div class="heading clearafter">
     <h1>{exp:weblog:entries weblog="{channel}" limit="1"}{title}{/exp:weblog:entries}</h1>
@@ -29,23 +29,23 @@
         </dl>
         <p class="button-wrap directions">
           {if logged_out}
-            <a href="/members/signin/" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
+            <a href="/signin" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
           {if:else}
             <a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
           {/if}
         </p>
       {/exp:weblog:entries}
       {if logged_out}
-        <p>Directions are based on your <a href="/members/signin/" data-reveal-id="signin-modal">member profile</a>.</p>
+        <p>Directions are based on your <a href="/signin" data-reveal-id="signin-modal">member profile</a>.</p>
       {if:else}
-        <p>Directions are based on your <a href="/members/settings/">member profile</a>.</p>
+        <p>Directions are based on your <a href="/settings">member profile</a>.</p>
       {/if}
     </div>
     <div class="sidebar right">
       <div class="bar">Contact Person</div>
       {if logged_out}
         <p class="button-wrap">
-          <a href="/members/signin/" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
+          <a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
         </p>
       {/if}
       {if logged_in}
@@ -61,12 +61,12 @@
         {/exp:weblog:entries}
       {/if}
       <div class="bar">Upcoming Events</div>
-      {exp:weblog:entries weblog="events" dynamic="off" limit="1" category="{segment_3_category_id}"}
+      {exp:weblog:entries weblog="events" dynamic="off" limit="1" category="{segment_3_category_id}" show_future_entries="yes"}
         {if no_results}
           <p><em>No upcoming events.</em></p>
         {/if}
         <p class="button-wrap">
-          <a href="/events/{segment_3}/" class="super small secondary button"><span>View Events</span></a>
+          <a href="/events/sponsors/{segment_3}" class="super small secondary button"><span>View Events</span></a>
         </p>
       {/exp:weblog:entries}
     </div>

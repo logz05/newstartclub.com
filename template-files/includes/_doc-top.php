@@ -17,18 +17,10 @@
   
   <meta name="author" content="{site_name}">
   {if segment_1 == ""}<meta name="description" content="Based on the world-famous NEWSTART® principles that have helped millions live well naturally without the use of drugs, the NEWSTART® Lifestyle Club features streaming video, expert health advice, wellness tips, tools and more. " />{/if}
-{!--{if embed:meta=="yes"}
-  {embed="includes/_meta-info"}
-{/if}
-{if segment_1 == "events" && segment_2 == "detail"}
-  <meta name="description" content="{exp:weblog:entries weblog='events' url_title='{segment_3}'}{exp:char_limit total='100'}{exp:html_strip}{event_description}{/exp:html_strip}{/exp:char_limit}{/exp:weblog:entries} " />
-  <meta name="title" content="{exp:weblog:entries weblog='events' url_title='{segment_3}'}{title}{/exp:weblog:entries} - {site_name}" />
-{/if}
-{if segment_1 == "questions" && segment_2 == "detail"}
-  <meta name="description" content="{exp:weblog:entries weblog='questions' url_title='{segment_3}'}{exp:char_limit total='100'}{exp:html_strip}{qa_answer}{/exp:html_strip}{/exp:char_limit}{/exp:weblog:entries} " />
-  <meta name="title" content="{exp:weblog:entries weblog='questions' url_title='{segment_3}'}{exp:char_limit total='100'}{exp:html_strip}{qa_question}{/exp:html_strip}{/exp:char_limit}{/exp:weblog:entries} - {site_name}" />
-{/if}--}
-{if segment_1 == "news"}<link rel="alternate" type="application/rss+xml" title="{site_name} News" href="/news/rss/" />{/if}
+{if segment_1 == "news"}<link rel="alternate" type="application/rss+xml" title="{site_name} News" href="/news/rss" />{/if}
+{if segment_1 == "questions" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} News" href="/questions/rss" />{/if}
+{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="/resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
+{if segment_1 == "events" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Events" href="/events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
 
 <?php
 
@@ -150,12 +142,12 @@ function fileModTime($filename) {
           {if logged_in}<li><h5>Hi, <strong>{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{firstName} {lastName}")); ?>{/exp:user:stats}</strong></h5></li>{/if}
           {if member_id == "1"}<li><a href="http://admin.newstartclub.com" target="_blank">Control Panel</a></li>{/if}
           <li>
-            {if logged_out}<a href="/{if segment_1 == 'sponsors'}sponsors/{/if}signin/" data-reveal-id="signin-modal-mini">Sign In</a>{/if}
+            {if logged_out}<a href="/{if segment_1 == 'sponsors'}sponsors/{/if}signin" data-reveal-id="signin-modal-mini" id="sign-in">Sign In</a>{/if}
             {if logged_in}<a href="{path=logout}">Sign Out</a>{/if}
           </li>
           <li>
-            {if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply/{if:else}/register/{/if}">{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
-            {if logged_in}<a href="/settings/">Settings</a>{/if}
+            {if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply{if:else}/register{/if}">{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
+            {if logged_in}<a href="/settings">Settings</a>{/if}
           </li>
         </ul>
       </nav>
@@ -163,28 +155,28 @@ function fileModTime($filename) {
     {if embed:header == ""}
       {if logged_out}
         <div id="free-mem-ribbon">
-          <a href="{path='register'}"></a>
+          <a href="/register"></a>
         </div>
       {/if}
       <div id="masthead"></div>
       <nav id="nav">
         <ul>
-        {if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)}
-          <li{if embed:channel == "sponsors" && segment_2 == ""} class="current"{/if}><a href="/sponsors/">Home</a><span></span></li>
-          <li{if segment_2 == "events" && segment_3 == "add"} class="current"{/if}><a href="/sponsors/events/add/">Add Events</a><span></span></li>
-          <li{if segment_2 == "events" && segment_3 == "edit"} class="current"{/if}><a href="/sponsors/events/edit/">Edit Events</a><span></span></li>
-          <li{if segment_2 == "invite-members"} class="current"{/if}><a href="/sponsors/invite-members/">Invite Members</a><span></span></li>
-          <li{if segment_2 == "email-members" || segment_2 == "email"} class="current"{/if}><a href="/sponsors/email-members/">Email Members</a><span></span></li>
-          <li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources/">Resources</a><span></span></li>
+        {if embed:channel == "sponsors" && (member_group == 1 || member_group == 13)}
+          <li{if embed:channel == "sponsors" && segment_2 == ""} class="current"{/if}><a href="/sponsors">Home</a><span></span></li>
+          <li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><span></span></li>
+          <li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><span></span></li>
+          <li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><span></span></li>
+          <li{if segment_2 == "email-members" || segment_2 == "email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><span></span></li>
+          <li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><span></span></li>
         {if:else}
           <li{if embed:channel=="home"} class="current"{/if}><a href="/">Home</a><span></span></li>
-          <li{if embed:channel=="my_health"} class="current"{/if}><a href="/my_health/">My Health</a><span></span></li>
-          <li{if embed:channel=="resources"} class="current"{/if}><a href="/resources/">Resources</a><span></span></li>
-          <li{if embed:channel=="partners"} class="current"{/if}><a href="/partners/">Partners</a><span></span></li>
-          <li{if embed:channel=="events"} class="current"{/if}><a href="/events/">Events</a><span></span></li>
-          <li{if embed:channel=="locations"} class="current"{/if}><a href="/locations/">Locations</a><span></span></li>
-          <li{if embed:channel=="questions"} class="current"{/if}><a href="/questions/">Q&amp;A</a><span></span></li>
-          <li{if embed:channel=="news"} class="current"{/if}><a href="/news/">News</a><span></span></li>
+          <li{if embed:channel=="my_health"} class="current"{/if}><a href="/my_health">My Health</a><span></span></li>
+          <li{if embed:channel=="resources"} class="current"{/if}><a href="/resources">Resources</a><span></span></li>
+          <li{if embed:channel=="partners"} class="current"{/if}><a href="/partners">Partners</a><span></span></li>
+          <li{if embed:channel=="events"} class="current"{/if}><a href="/events">Events</a><span></span></li>
+          <li{if embed:channel=="locations"} class="current"{/if}><a href="/locations">Locations</a><span></span></li>
+          <li{if embed:channel=="questions"} class="current"{/if}><a href="/questions">Q&amp;A</a><span></span></li>
+          <li{if embed:channel=="news"} class="current"{/if}><a href="/news">News</a><span></span></li>
         {/if}
         </ul>
       </nav>

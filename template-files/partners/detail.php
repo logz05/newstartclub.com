@@ -11,7 +11,7 @@
 <div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/{channel}">{section}</a></li>
   </ul>
   <div class="heading clearafter">
     <h1>
@@ -33,14 +33,14 @@
         <div class="bio">
           {partner_bio}
         </div>
-      </div><!--/.partner-->
+      </div>
       {/exp:weblog:entries}
-    </div><!--/.single-->
+    </div>
     <div class="sidebar right">
       <div class="bar">Contact Information</div>
       {if logged_out}
         <p class="button-wrap">
-          <a href="/members/signin/" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
+          <a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
         </p>
       {/if}
       {if logged_in}
@@ -64,11 +64,11 @@
       {/if}
       {exp:weblog:entries weblog="{channel}" sort="asc" url_title="{segment_3}" limit="1"}
         <p>
-          <a href="/resources/partner/{url_title}/">View Resources by {title}</a>
+          <a href="/resources/partners/{url_title}">View Resources by {title}</a>
         </p>
       {/exp:weblog:entries}
-    </div><!--/.sidebar-->
-  </div><!--/.grid23-->
-</div><!-- /.body -->
+    </div>
+  </div>
+</div>
 {embed="includes/_signin-modal modal-role="contact" modal-msg="You must be signed in to view contact information."}
 {embed="includes/_doc_bottom"}

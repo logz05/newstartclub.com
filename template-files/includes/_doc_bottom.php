@@ -5,8 +5,8 @@
 	{exp:member:login_form error_page="members/error" return="/{segment_1}/{segment_2}/{segment_3}/{segment_4}/{segment_5}/{segment_6}/{segment_7}"}
 	<table>
 		<tr>
-			<th scope="row"><label for="email">Email</label></th>
-			<td><input type="email" class="input" id="email" name="username" value="" size="20" autocapitalize="off" /></td>
+			<th scope="row"><label for="email-mini">Email</label></th>
+			<td><input type="email" class="input" id="email-mini" name="username" value="" size="20" autocapitalize="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="password">Password</label></th>
@@ -20,7 +20,7 @@
 			<th scope="row">&nbsp;</th>
 			<td>
 				<button type="submit" class="super green button"><span>Sign In</span></button>
-				<a class="forgot-pass" href="/forgot-password/">Forgot your password?</a>
+				<a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
 			</td>
 		</tr>
 	</table>
@@ -30,7 +30,7 @@
 {/if}
 {if embed:standalone == ""}
 <footer>
-  <p>A FREE community service of the <a href="http://newstart.com/">NEWSTART&reg; Lifestyle Program</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
+  <p>A FREE community service of <a href="http://newstart.com/">NEWSTART&reg;</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
   <p><a href="/about/privacy-policy/">Privacy Policy</a> | <a href="/about/terms-of-use/">Terms of Use</a></p>
 </footer>
 <div id="shadow-left"></div>
