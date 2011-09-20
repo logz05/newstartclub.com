@@ -122,7 +122,7 @@ require_once ( 'utilities.php' );
 
       <div id="news" class="bar"><a href="/news/">Latest Updates</a></div>
       <ul class="news_listing">
-        {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="5" orderby="date" sort="desc" dynamic="off"}
+        {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="5" orderby="date" sort="desc" dynamic="off" show_future_entries="yes"}
         <li class="article {weblog_short_name}">
           <h1>
             <a href="/{weblog_short_name}/detail/{url_title}/">
@@ -134,7 +134,7 @@ require_once ( 'utilities.php' );
             </a>
           </h1>
           <div class="date">
-            <span class="timeago"><?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?></span>
+            <span class="timeago">{if entry_date > current_time}Upcoming{if:else}<?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?>{/if}</span>
             <span class="entry-date">{entry_date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
           </div>
         </li>

@@ -19,7 +19,7 @@ require_once ( 'utilities.php' );
 	<div class="grid23 clearafter">
 		<div class="list left">
 			<ul>
-			{exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off"}
+			{exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_future_entries="yes"}
 				<li class="article {weblog_short_name}">
 					<h1>
 						<a href="{path='{weblog_short_name}/detail/{url_title}'}">
@@ -31,7 +31,7 @@ require_once ( 'utilities.php' );
 						</a>
 					</h1>
 					<div class="date">
-						<span class="timeago"><?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?></span>
+						<span class="timeago">{if entry_date > current_time}Upcoming{if:else}<?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?>{/if}</span>
 						<span class="entry-date">{entry_date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
 					</div>
 				</li>

@@ -179,7 +179,7 @@ function memberAges($rangeLow, $rangeHigh)
 			{/exp:query}
 		</p>
 		<p><strong>Future Events</strong><br />
-		{exp:weblog:entries weblog="events" show_expired="no"}
+		{exp:weblog:entries weblog="events" show_expired="no" show_future_entries="yes"}
 				{entry_id} - <a href="{url_title_path='events/detail'}">{title}</a>
 			{exp:query sql="
 				SELECT count(*) AS total
