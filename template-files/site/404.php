@@ -61,7 +61,15 @@
 		<p>We could not find the page you requested.</p>
 		{if segment_1 == "sponsor_admin"}
 			<p>Perhaps you were looking for this page:</p>
+			<a href="/sponsors/{if segment_2}{segment_2}/{/if}">{site_url}sponsors/{if segment_2}{segment_2}/{/if}</a>
+		{/if}
+		{if segment_1 =="sponsors" && segment_2 == "tour"}
+			<p>Perhaps you were looking for this page:</p>
 			<a href="/sponsors/">{site_url}sponsors/</a>
+		{/if}
+		{if segment_1 =="members"}
+			<p>Perhaps you were looking for this page:</p>
+			<a href="/{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}">{site_url}{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}</a>
 		{/if}
 	</div>
 </div>
