@@ -2,7 +2,7 @@
   channel="{channel}"
   section="{section}"
   title="
-    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}"}
+    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
       {if no_results}Event Not Found{/if}
       &ldquo;{title}&rdquo; in {event_city}, {event_state}
     {/exp:weblog:entries}
@@ -15,11 +15,11 @@
     <li><a href="/{channel}/">{section}</a></li>
   </ul>
   <div class="heading clearafter">
-    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}"}{if no_results}<h1>We could not find this event</h1>{/if}<h1>{title}</h1>{/exp:weblog:entries}
+    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}{if no_results}<h1>We could not find this event</h1>{/if}<h1>{title}</h1>{/exp:weblog:entries}
   </div>
   <div class="grid23 clearafter">
     <div class="single left">
-    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}"}
+    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
       {if no_results}
         <p>Sorry, we could not find this event. Either this event has not been created or has already passed. Click <strong><a href="{path='{channel}'}">here</a></strong> to see a list of upcoming events.</p>
       {/if}
@@ -28,6 +28,12 @@
         {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
         {exp:textile}{event_description}{/exp:textile}
         <dl>
+          <dt>Sponsored by</dt>
+          <dd>
+            {categories show_group="24"}
+              <a href="{site_url}locations/detail/{category_url_title}/" title="{cateogry_name}">{category_name}</a>
+            {/categories}
+          </dd>
           <dt>Date</dt>
           <dd>
             <p>
@@ -48,7 +54,7 @@
               {/if}
               
               {!-- Check to see if repeating event --}
-              {if (event_start_date != event_end_date)}
+              {if (event_start_date != event_end_date) && event_start_time !=""}
                 <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>,
                 <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
                 <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
@@ -57,31 +63,16 @@
                 <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
                 <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
               {/if}
-              {!--{if event_start_time != ""}
-                <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> - 
-                <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+              
+              {!-- Check to see if repeating event and time is NOT set --}
+              {if (event_start_date != event_end_date) && event_start_time == ""}
                 <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-              {if:elseif "{e_start_date}" == "{e_end_date}"}
-                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> - 
-                <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-              {if:elseif "{e_start_date}" != "{e_end_date}"}
-                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> - 
+                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
                 <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
                 <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
                 <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-              {/if}--}
+              {/if}
             </p>
-          </dd>
-          <dt>Sponsored by</dt>
-          <dd>
-            {categories show_group="24"}
-              <a href="{site_url}locations/detail/{category_url_title}/" title="{cateogry_name}">{category_name}</a>
-            {/categories}
           </dd>
           <dt>Location</dt>
           <dd>
@@ -115,7 +106,7 @@
       <span>loading map&hellip;</span>
     </div>
     <div id="directions"></div>
-    {exp:weblog:entries weblog="{channel}" limit="1" require_entry="yes" limit="1" url_title="{segment_3}"}
+    {exp:weblog:entries weblog="{channel}" limit="1" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
     <input id="map-end" value="{event_address} {event_city}, {event_state} {event_zip}" />{/exp:weblog:entries}
     {exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
   </div>

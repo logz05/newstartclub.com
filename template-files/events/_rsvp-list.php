@@ -53,7 +53,7 @@ elseif (isset($_POST['delete_rsvp']))
 </ul>
 {if segment_2 == "detail"}
 	{if logged_in}
-		{exp:weblog:entries weblog="events" require_entry="yes" limit="1" url_title="{segment_3}"}
+		{exp:weblog:entries weblog="events" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
 			{exp:query}{if no_results} {/if}{/exp:query}
 			{exp:query sql="SELECT member_relations.member_id, member_relations.related_id FROM member_relations WHERE member_id = '<?php echo $member; ?>' AND related_id = '{entry_id}' AND relation_type = 'rsvp' "}
 			{if no_results}
