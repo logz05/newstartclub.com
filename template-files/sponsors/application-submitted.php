@@ -13,7 +13,8 @@ $sponsorEmail = $_POST['sponsorEmail'];
 $sponsorFax = $_POST['sponsorFax'];
 $sponsorWebsite = $_POST['sponsorWebsite'];
 $sponsorRegAff = $_POST['sponsorRegAff'];
-$sponsorDescription = $_POST['sponsorDescription'];
+$sponsorHealthEvents = $_POST['sponsorHealthEvents'];
+$sponsorNeedHelp = $_POST['sponsorNeedHelp'];
 
 $contactName = $_POST['contactName'];
 $contactAddress = $_POST['contactAddress'];
@@ -38,7 +39,8 @@ Sponsor Email: $sponsorEmail \n
 Sponsor Fax: $sponsorFax \n
 Sponsor Website: $sponsorWebsite \n
 Sponsor Religious Affiliation: $sponsorRegAff \n
-Sponsor Description: $sponsorDescription \n\n
+Sponsor Health Events: $sponsorHealthEvents \n
+Sponsor Need Help: $sponsorNeedHelp \n\n
 
 Contact Name: $contactName \n
 Contact Address: $contactAddress, $contactCity, $contactState, $contactZipCode, $contactCountry \n
@@ -49,27 +51,7 @@ Contact Desired Password: $contactPassword \n
 
 $from = "From: $contactEmail\r\n";
 
-mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
-}
-
-if (isset($_POST['sponsorName2']))
-{
-$file = $_FILES['sponsorLogo'];
-$file_name = $file['name'];
-
-$sponsorName2 = $_POST['sponsorName2'];
-$contactName2 = $_POST['contactName2'];
-$contactEmail2 = $_POST['contactEmail2'];
-$todayis = date("l, F j, Y, g:i a");
-
-$subject = "Sponsor Application Image Uploaded";
-$from = "From: $contactEmail2\r\n";
-$message = " $todayis [EST] \n
-Sponsor Logo Filename: $file_name \n
-Sponsor Name: $sponsorName2 \n
-Contact Name: $contactName2 \n
-";
-mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
+mail("club@newstart.com, cblood@weimar.org, ddennis@weimar.org, ppigman@weimar.org", $subject, $message, $from);
 }
 
 ?>
@@ -87,7 +69,7 @@ mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
 
   <!-- Facebook Meta Tags -->
   <meta property="fb:page_id" content="122876001070562" />
-  <title>Sponsor Application | {site_name}</title>
+  <title>Application Sent | {site_name}</title>
   
   <meta name="author" content="{site_name}">
 
@@ -110,24 +92,21 @@ mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
 </head>
 <body id="{channel}" class="standalone">
   <div class="container">
-
-{assign_variable:channel="sponsors"}
-{assign_variable:section="Become a Sponsor"}
-<div class="body">
-  <?php if (isset($_POST['sponsorName'])) { ?>
-    <h1>Application Sent</h1> 
-    <p>A {site_name} representative will contact you shortly.</p>
-    <p class="button-wrap">
-      <a href="/" class="super green button"><span>Home</span></a>
-    </p>
-  <?php } else { ?>
-    <h1>Your application is empty!</h1> 
-    <p>It appears that you've reached this page without submitting the Sponsor Application.</p>
-    <p class="button-wrap">
-      <a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
-    </p>
-  <?php } ?>
-</div><!--/.body-->
-</div><!--/.container-->
+    <div class="body">
+      <?php if (isset($_POST['sponsorName'])) { ?>
+        <h1>Application Sent</h1> 
+        <p>A {site_name} representative will contact you shortly.</p>
+        <p class="button-wrap">
+          <a href="/" class="super green button"><span>Home</span></a>
+        </p>
+      <?php } else { ?>
+        <h1>Your application is empty!</h1> 
+        <p>It appears that you've reached this page without submitting the Sponsor Application.</p>
+        <p class="button-wrap">
+          <a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
+        </p>
+      <?php } ?>
+    </div><!--/.body-->
+  </div><!--/.container-->
 </body>
 </html>

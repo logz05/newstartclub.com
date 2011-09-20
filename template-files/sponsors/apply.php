@@ -14,7 +14,7 @@
 			{exp:weblog:entries weblog="{channel}" entry_id="479" limit="1"}
 				{body}
 			{/exp:weblog:entries}
-	<form action="{path='{channel}/application_submitted'}" method="post" id="sponsor_register" enctype="multipart/form-data">
+	<form action="{path='{channel}/application-submitted'}" method="post" id="sponsor_register" enctype="multipart/form-data">
 	
 		<h1>Sponsor Information</h1>
 		<noscript>
@@ -130,10 +130,17 @@
 				<td><input type="text" class="input" id="sponsorRegAff" name="sponsorRegAff" value="" size="32" autocomplete="off" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="sponsorDescription" class="req"><span class="req">* </span>Description</label></th>
+				<th scope="row"><label for="sponsorHealthEvents" class="req"><span class="req">* </span>Health Events</label></th>
 				<td>
-					<textarea class="input" id="sponsorDescription" name="sponsorDescription" rows="5" cols="32" autocomplete="off"></textarea>
-					<p class="instructions">Describe your organization and what health related events you could offer your&nbsp;community. (50 words or less)</p>
+					<textarea class="input" id="sponsorHealthEvents" name="sponsorHealthEvents" rows="5" cols="32" autocomplete="off"></textarea>
+					<p class="instructions">Please list the type of community health events your organization would like to sponsor.</p>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"><label for="sponsorNeedHelp" class="req"><span class="req">* </span>Need Help?</label></th>
+				<td>
+					<textarea class="input" id="sponsorNeedHelp" name="sponsorNeedHelp" rows="5" cols="32" autocomplete="off"></textarea>
+					<p class="instructions"><a href="http://newstartglobal.com" target="_blank">NEWSTART&reg; Global</a> medical missionary teams are available to help you get started with your health outreach. Please indicate the dates that work best for your organization.</p>
 				</td>
 			</tr>
 		</table>
