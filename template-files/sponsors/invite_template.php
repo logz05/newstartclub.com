@@ -47,7 +47,7 @@
 						</tr>
 						<tr>
 							<td style="background-color:#4DA6EC;text-align:center;" valign="top">
-								<span style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">A free community service of <a href="http://www.weimar.org/" style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">Weimar Center of Health and Education</a>. &copy; 2011. All Rights Reserved
+								<span style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">A FREE community service of <a href="http://newstart.com/" style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">NEWSTART&reg;</a>. &copy; 2011. All Rights Reserved
 								</span>
 							</td>
 						</tr>
