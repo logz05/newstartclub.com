@@ -13,7 +13,7 @@ $sponsorEmail = $_POST['sponsorEmail'];
 $sponsorFax = $_POST['sponsorFax'];
 $sponsorWebsite = $_POST['sponsorWebsite'];
 $sponsorRegAff = $_POST['sponsorRegAff'];
-$sponsorHealthEvents = $_POST['sponsorHealthEvents'];
+$sponsorHealthEvents = stripslashes($_POST['sponsorHealthEvents']);
 $sponsorNeedHelp = $_POST['sponsorNeedHelp'];
 
 $contactName = $_POST['contactName'];
@@ -32,7 +32,6 @@ $subject = "Sponsor Application";
 
 $message = " $todayis [EST] \n
 Sponsor Name: $sponsorName \n
-Sponsor Logo Filename: $file_name \n
 Sponsor Address: $sponsorAddress, $sponsorCity, $sponsorState, $sponsorZipCode, $sponsorCountry \n
 Sponsor Phone: $sponsorPhone \n
 Sponsor Email: $sponsorEmail \n
@@ -90,7 +89,7 @@ mail("club@newstart.com, cblood@weimar.org, ddennis@weimar.org, ppigman@weimar.o
     })();
   </script>
 </head>
-<body id="{channel}" class="standalone">
+<body id="sponsors" class="standalone">
   <div class="container">
     <div class="body">
       <?php if (isset($_POST['sponsorName'])) { ?>
