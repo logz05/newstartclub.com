@@ -83,8 +83,8 @@
       <div class="bar">Additional Resources</div>
       <p>To receive up to a 40% discount on bulk orders of NEWSTART&reg; books and DVDs, download the <a href="http://weimarmedia.com/catalog/Weimar-Media-Catalog.pdf" title="Weimar Media catalog">Weimar Media catalog</a>. Then email <a href="mailto:media@weimar.org">media@weimar.org</a> with your order.</p>
       <div class="bar">Need Help?</div>
-      <p>NEWSTART&reg; Global provides trained medical missionaries to help you get started with your health outreach.</p>
-      <p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 800-525-9192.</p>
+      <p>NEWSTART&reg; Global medical missionary teams are available to help you get started with your health outreach.</p>
+      <p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 530-422-7988.</p>
 </p>
     </div>
     {/exp:user:stats}

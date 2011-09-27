@@ -54,7 +54,7 @@
               <th scope="row">&nbsp;</th>
               <td>
                 <button type="submit" class="super green button"><span>Sign In</span></button>
-                <a class="forgot-pass" href="/members/forgot-password/">Forgot your password?</a>
+                <a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
               </td>
             </tr>
           </table>
@@ -70,7 +70,7 @@
             <li>Discounts on NEWSTART&reg; books and DVDs</li>
           </ul>
           <p class="button-wrap">
-            <a href="/members/register/" class="super red button"><span>Apply</span></a>
+            <a href="/sponsors/apply" class="super red button"><span>Apply</span></a>
           </p>
         </div>
       </div>

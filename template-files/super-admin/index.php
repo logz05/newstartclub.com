@@ -270,7 +270,7 @@ function memberAges($rangeLow, $rangeHigh)
 					
 					LIMIT 10 
 				" limit="10"}
-					<li><a href="http://www.google.com/search?q={m_field_id_7}" title="Google search {m_field_id_7}">{m_field_id_7}</a> (&nbsp;{total}&nbsp;)</li>
+					<li><a href="http://www.google.com/search?q={m_field_id_7}" title="Google search {m_field_id_7}">{m_field_id_7} (&nbsp;{total}&nbsp;)</a></li>
 				{/exp:query}
 			</ul>
 			
