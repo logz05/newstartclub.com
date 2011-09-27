@@ -74,7 +74,7 @@
         <th scope="row"><label for="password_confirm" class="req"><span class="req">* </span>Password, Again</label></th>
         <td>
           <input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" />
-          {if segment_2}<input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_3}" autocomplete="off" />{/if}
+          {if segment_2}<input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_2}" autocomplete="off" />{/if}
         </td>
       </tr>
       {if segment_2 == ""}
@@ -157,7 +157,7 @@
         <th scope="row">&nbsp;</th>
         <td>
           <input type="hidden" name="key" value="{key}" />
-          <input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_4}" autocomplete="off" />
+          <input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_3}" autocomplete="off" />
           <div class="button-wrap">
             <button type="submit" class="super green button"><span>Submit</span></button>
             <button type="reset" class="super secondary button"><span>Reset</span></button>
