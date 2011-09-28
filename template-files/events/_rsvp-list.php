@@ -47,7 +47,7 @@ elseif (isset($_POST['delete_rsvp']))
 		</form>
 		{/if}
 			<h1>{exp:nice_date date="{field_id_25}" format="%F %j"}</h1>
-			<h2><a href="/events/detail/{url_title}/">{exp:html_strip}{exp:textile}{title}{/exp:textile}{/exp:html_strip}</a></h2>
+			<h2><a href="/events/detail/{url_title}">{exp:html_strip}{exp:textile}{title}{/exp:textile}{/exp:html_strip}</a></h2>
 	</li>
 {/exp:query}
 </ul>
@@ -60,14 +60,14 @@ elseif (isset($_POST['delete_rsvp']))
 			<div class="button-wrap">
 				<form id="rsvp" action="" method="post">
 					<input type="hidden" id="process_rsvp" name="process_rsvp" value="{entry_id}" />
-					<button type="submit" id="submit" class="super small secondary button"><span>Add Event</span></button>
+					<button type="submit" id="rsvp-submit" class="super small secondary button"><span>Add Event</span></button>
 				</form>
 			</div>{/if}
 			{/exp:query}
 		{/exp:weblog:entries}
 	{if:elseif logged_out}
 	<div class="button-wrap">
-		<a href="/members/signin/" class="super small secondary button" data-reveal-id="signin-modal-rsvp"><span>Add Event</span></a>
+		<a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-rsvp"><span>Add Event</span></a>
 	</div>
 	{/if}
 {/if}
