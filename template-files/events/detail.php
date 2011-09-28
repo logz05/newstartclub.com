@@ -12,7 +12,7 @@
 <div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/events">{section}</a></li>
   </ul>
   <div class="heading clearafter">
     {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}{if no_results}<h1>We could not find this event</h1>{/if}<h1>{title}</h1>{/exp:weblog:entries}
@@ -26,7 +26,10 @@
       <div class="event">
         {assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
         {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
+        {assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
+        {assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
         {exp:textile}{event_description}{/exp:textile}
+        <p><em>Add this event to your RSVP list to attend!</em></p>
         <dl>
           <dt>Sponsored by</dt>
           <dd>
@@ -65,9 +68,20 @@
               {/if}
               
               {!-- Check to see if repeating event and time is NOT set --}
-              {if (event_start_date != event_end_date) && event_start_time == ""}
+              {if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' == 'year_end_date')}
                 <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
                 <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
+                <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
+                <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+                <!-- Year Start Date: {year_start_date} Year End Date: {year_end_date} -->
+              {/if}
+              
+              {!-- Check to see if repeating event, time is NOT set, and event spans years --}
+              {if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' != 'year_end_date')}
+                <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+                <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+                <span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span> to 
                 <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
                 <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
                 <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
@@ -84,12 +98,12 @@
         </dl>
         <div class="button-wrap clearafter">
           {if logged_out}
-            <a href="{path='members/signin'}" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
+            <a href="/signin" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
           {if:else}
             <a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
           {/if}
         </div>
-        <p>Directions are based on your <a href="{path='members/settings'}">member profile</a>.</p>
+        <p>Directions are based on your <a href="/settings">member profile</a>.</p>
         
       </div><!--/.event-->
       {/exp:weblog:entries}
