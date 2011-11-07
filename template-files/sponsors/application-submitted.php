@@ -50,10 +50,11 @@ Contact Desired Password: $contactPassword \n
 
 $from = "From: $contactEmail\r\n";
 
-mail("club@newstart.com, cblood@weimar.org, ddennis@weimar.org, ppigman@weimar.org", $subject, $message, $from);
+mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
 }
 
 ?>
+
 <!doctype html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -65,47 +66,41 @@ mail("club@newstart.com, cblood@weimar.org, ddennis@weimar.org, ppigman@weimar.o
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=860;" />
+ 
+  <title>Sponsorship Application Sent | {site_name}</title>
+<?php
 
-  <!-- Facebook Meta Tags -->
-  <meta property="fb:page_id" content="122876001070562" />
-  <title>Application Sent | {site_name}</title>
+function fileModTime($filename) {
+
+  $file = '/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content' . $filename;
   
-  <meta name="author" content="{site_name}">
+  if (file_exists($file)) {
+    echo "?v=" . date("YmdHis", filemtime($file));
+  }
 
+}
 
-  <link rel="stylesheet" href="/assets/css/nsc.css" type="text/css" />
+?>
 
-  <script src="/assets/js/libs/modernizr-1.6.min.js"></script>
-  <!--Google Analytics-->
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-12179773-3']);
-    _gaq.push(['_trackPageview']);
-  
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+  <link rel="stylesheet" href="/assets/css/standalone.css<?php fileModTime('/assets/css/standalone.css'); ?>" type="text/css" />
 </head>
-<body id="sponsors" class="standalone">
-  <div class="container">
-    <div class="body">
-      <?php if (isset($_POST['sponsorName'])) { ?>
-        <h1>Application Sent</h1> 
-        <p>A {site_name} representative will contact you shortly.</p>
-        <p class="button-wrap">
-          <a href="/" class="super green button"><span>Home</span></a>
-        </p>
-      <?php } else { ?>
-        <h1>Your application is empty!</h1> 
-        <p>It appears that you've reached this page without submitting the Sponsor Application.</p>
-        <p class="button-wrap">
-          <a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
-        </p>
-      <?php } ?>
-    </div><!--/.body-->
-  </div><!--/.container-->
+<body>
+<div class="container">
+  <div class="body">
+    <?php if (isset($_POST['sponsorName'])) { ?>
+      <h1>Application Sent</h1> 
+      <p>A {site_name} representative will contact you shortly.</p>
+      <p class="button-wrap">
+        <a href="/" class="super green button"><span>Home</span></a>
+      </p>
+    <?php } else { ?>
+      <h1>Your application is empty!</h1> 
+      <p>It appears that you've reached this page without submitting the Sponsor Application.</p>
+      <p class="button-wrap">
+        <a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
+      </p>
+    <?php } ?>
+  </div>
+</div>
 </body>
 </html>
