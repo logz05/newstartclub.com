@@ -48,7 +48,7 @@ Sent from <a href='www.newstartclub.com'>www.newstartclub.com</a>";
 <div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/my_health">{section}</a></li>
   </ul>
   <div class="heading clearafter">
     <h1>Congratulations!</h1>
@@ -59,7 +59,7 @@ Sent from <a href='www.newstartclub.com'>www.newstartclub.com</a>";
       <div class="vimeoBadge">
         <script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
       </div>
-      <p><a href="{path='{channel}/results/'}">&laquo; Back to my results</a></p>
+      <p><a href="/my_health/results">&laquo; Back to my results</a></p>
     </div><!--/.list-->
     <div class="sidebar right">
       <div class="bar">Contact Us</div>

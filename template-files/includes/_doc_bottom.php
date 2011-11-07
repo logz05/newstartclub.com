@@ -31,7 +31,7 @@
 {if embed:standalone == ""}
 <footer>
   <p>A FREE community service of <a href="http://newstart.com/">NEWSTART&reg;</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
-  <p><a href="/about/privacy-policy/">Privacy Policy</a> | <a href="/about/terms-of-use/">Terms of Use</a></p>
+  <p><a href="/about/privacy-policy">Privacy Policy</a> | <a href="/about/terms-of-use">Terms of Use</a></p>
 </footer>
 <div id="shadow-left"></div>
 <div id="shadow-right"></div>

@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td><a href="/members/forgot-password/">Forgot your password?</a></td>
+				<td><a href="/forgot-password">Forgot your password?</a></td>
 			</tr>
 		</table>		
 		{/exp:member:login_form}
@@ -51,7 +51,7 @@
 				<li>FREE membership</li>
 			</ul>
 			<div class="button-wrap">
-				<a href="/members/register/" class="super red button"><span>Register</span></a>
+				<a href="/register" class="super red button"><span>Register</span></a>
 			</div>
 		</div>
 	</div>{/if}
@@ -60,7 +60,7 @@
 	<p>Click the link below to view your member settings or you can go to the home page.</p>
 	<p class="button-wrap">
 		<a class="super green button" href="/"><span>Home</span></a>
-		<a class="super secondary button" href="/members/settings/"><span>Member Settings</span></a>
+		<a class="super secondary button" href="/settings"><span>Member Settings</span></a>
 	</p>
 {/if}
 </div><!-- /.body -->

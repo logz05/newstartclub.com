@@ -66,9 +66,9 @@
 			<p>Have a health concern? Ask one of our {site_name} <a href="/partners/">partners</a>.</p>
 			<p class="button-wrap">
 				{if logged_out}
-					<a href="/members/signin/" class="super secondary button" data-reveal-id="signin-modal-question"><span>Start Here</span></a>
+					<a href="/signin" class="super secondary button" data-reveal-id="signin-modal-question"><span>Start Here</span></a>
 				{if:else}
-					<a href="/questions/ask/" class="super secondary button"><span>Start Here</span></a>
+					<a href="/questions/ask" class="super secondary button"><span>Start Here</span></a>
 				{/if}
 			</p>
 		</div>

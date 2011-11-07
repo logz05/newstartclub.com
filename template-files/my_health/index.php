@@ -17,12 +17,12 @@
 		<div class="sidebar right">
 			{if logged_out}
 				<div class="bar">The HealthGauge<sup>&trade;</sup></div>
-				<a href="/members/signin/" data-reveal-id="signin-modal-health-gauge">
+				<a href="/signin" data-reveal-id="signin-modal-health-gauge">
 					<div id="my_health_gauge"></div>
 				</a>
 				<p>This health score calculator will evaluate your health by comparing your personal health practices with modern scientific information.</p>
 				<p class="button-wrap">
-					<a href="/members/signin/" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
+					<a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
 				</p>
 			{/if}
 			{exp:user:stats}

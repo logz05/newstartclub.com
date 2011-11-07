@@ -20,11 +20,12 @@
           <ul>
             <li><a href="/downloads/sponsor-resources/common-files/Door-Survey.pdf">Door Survey Canvass</a></li>
             <li><a href="/downloads/sponsor-resources/common-files/Interest-Form-2UP.pdf">Door Survey Interest Form</a></li>
-            <li><a href="/downloads/sponsor-resources/common-files/a_BusinessCard.pdf">Business Card (Front)</a></li>
-            <li><a href="/downloads/sponsor-resources/{sponsor_number}/b_BusinessCard-{sponsor_number}.pdf">Business Card (Back)</a></li>
-            <li><a href="/downloads/sponsor-resources/common-files/a_DoorHanger.pdf">Door Hanger (Front)</a></li>
-            <li><a href="/downloads/sponsor-resources/{sponsor_number}/b_DoorHanger-{sponsor_number}.pdf">Door Hanger (Back)</a></li>
-            <li><a href="/downloads/sponsor-resources/{sponsor_number}/PostCard-{sponsor_number}.pdf">Postcard (6&rdquo; x 4.25&rdquo;)</a></li>
+            <li><a href="/downloads/sponsor-resources/common-files/BusinessCard-Front.pdf">Business Card - Front</a></li>
+            <li><a href="/downloads/sponsor-resources/{sponsor_number}/BusinessCard-Back-{sponsor_number}.pdf">Business Card - Back</a></li>
+            <li><a href="/downloads/sponsor-resources/common-files/DoorHanger-Front.pdf">Door Hanger - Front (4&rdquo; x 11&rdquo;)</a></li>
+            <li><a href="/downloads/sponsor-resources/{sponsor_number}/DoorHanger-Back-{sponsor_number}.pdf">Door Hanger - Back (4&rdquo; x 11&rdquo;)</a></li>
+            <li><a href="/downloads/sponsor-resources/common-files/PostCard-Front.pdf">Postcard - Front (6&rdquo; x 4&rdquo;)</a></li>
+            <li><a href="/downloads/sponsor-resources/{sponsor_number}/PostCard-Back-{sponsor_number}.pdf">Postcard - Back (6&rdquo; x 4&rdquo;)</a></li>
             <li><a href="/downloads/sponsor-resources/{sponsor_number}/Flyer-1UP-{sponsor_number}.pdf">Flyer (5.5&rdquo; x 8.5&rdquo;) 1 UP</a></li>
             <li><a href="/downloads/sponsor-resources/{sponsor_number}/Flyer-2UP-{sponsor_number}.pdf">Flyer (5.5&rdquo; x 8.5&rdquo;) 2 UP</a></li>
             <li><a href="/downloads/sponsor-resources/{sponsor_number}/Poster-{sponsor_number}.pdf">Poster (8.5&rdquo; x 11&rdquo;)</a></li>
@@ -55,22 +56,23 @@
           <ul>
             <li>Brochure (Coming Soon)</li>
             <li><a href="/downloads/sponsor-resources/expo-files/Invitation-Flyer.zip">Invitation Flyer</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/Banner4x3_PRINT.pdf">Banner (4&rdquo; x 3&rdquo;)</a></li>
           </ul>
         </li>
         <li><h2>Booth Forms, Instructions, Signs and Handouts</h2>
           <ul>
             <li>My Personal Health Record (<a href="/downloads/sponsor-resources/expo-files/PersonalHealthRecord_Inside.pdf">Inside</a> / <a href="/downloads/sponsor-resources/{sponsor_number}/PersonalHealthRecord_Outside-{sponsor_number}.pdf">Outside</a>)</li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Welcome.zip">Welcome</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Sunlight.zip">Sunlight</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Nutrition.zip">Nutrition</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Air.zip">Air</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Exercise.zip">Exercise</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Water.zip">Water</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Rest.zip">Rest</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Temperance.zip">Temperance</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/HealthGauge.zip">The HealthGauge&trade;</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Trust.zip">Trust</a></li>
-            <li><a href="/downloads/sponsor-resources/expo-files/Resources.zip">Resources</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/01-Welcome.zip">Welcome</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/02-Sunlight.zip">Sunlight</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/03-Nutrition.zip">Nutrition</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/04-Air.zip">Air</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/05-Exercise.zip">Exercise</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/06-Water.zip">Water</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/07-Rest.zip">Rest</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/08-Temperance.zip">Temperance</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/09-HealthGauge.zip">The HealthGauge&trade;</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/10-Trust.zip">Trust</a></li>
+            <li><a href="/downloads/sponsor-resources/expo-files/11-Resources.zip">Resources</a></li>
           </ul>
         </li>
       </ul>
@@ -84,7 +86,7 @@
       <p>To receive up to a 40% discount on bulk orders of NEWSTART&reg; books and DVDs, download the <a href="http://weimarmedia.com/catalog/Weimar-Media-Catalog.pdf" title="Weimar Media catalog">Weimar Media catalog</a>. Then email <a href="mailto:media@weimar.org">media@weimar.org</a> with your order.</p>
       <div class="bar">Need Help?</div>
       <p>NEWSTART&reg; Global medical missionary teams are available to help you get started with your health outreach.</p>
-      <p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 530-422-7988.</p>
+      <p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 530-422-7999.</p>
 </p>
     </div>
     {/exp:user:stats}

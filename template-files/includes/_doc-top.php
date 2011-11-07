@@ -166,7 +166,7 @@ function fileModTime($filename) {
           <li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><span></span></li>
           <li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><span></span></li>
           <li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><span></span></li>
-          <li{if segment_2 == "email-members" || segment_2 == "email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><span></span></li>
+          <li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><span></span></li>
           <li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><span></span></li>
         {if:else}
           <li{if embed:channel=="home"} class="current"{/if}><a href="/">Home</a><span></span></li>

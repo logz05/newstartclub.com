@@ -8,7 +8,7 @@
 {assign_variable:section="Delete Account"}
 <div class="body">
 	<h1>Delete My Account</h1>
-	{exp:user:delete_form return="members/delete-confirmation" form:class="clearfix" form:id="delete-account"} 
+	{exp:user:delete_form return="delete-confirmation" form:class="clearfix" form:id="delete-account"} 
 		<h2>Delete account: {email}</h2>  
 		<table>
 			<tr>
@@ -19,7 +19,7 @@
 		<p>This will delete all entries, posts, comments, and other content associated with your account.</p>
 		<p>WARNING: THIS ACTION CANNOT BE UNDONE!</p>
 		<p class="button-wrap clearafter">
-			<a href="{path='members/settings/'}" class="super green button"><span>&laquo; Back</span></a>
+			<a href="{path='settings'}" class="super green button"><span>&laquo; Back</span></a>
 			<button type="submit" class="super red right button"><span>Delete Account</span></button>
 		</p>
 	{/exp:user:delete_form}

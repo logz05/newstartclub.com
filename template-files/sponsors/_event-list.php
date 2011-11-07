@@ -57,13 +57,13 @@
         <dd>{exp:textile}{event_description}{/exp:textile}</dd>
       </dl>
     </div>
-    <form id="entryform_{entry_id}" method="post" action="{path='{channel}/{segment_2}/{segment_3}'}"  >
+    <form id="entryform_{entry_id}" method="post" action="/sponsors/edit-event"  >
       <div class='hiddenFields'>
         <input type="hidden" name="ACT" value="18" />
-        <input type="hidden" name="RET" value="{path='{channel}/{segment_2}/{segment_3}'}" />
+        <input type="hidden" name="RET" value="/sponsors/edit-event" />
         <input type="hidden" name="PRV" value="" />
-        <input type="hidden" name="URI" value="{path='{channel}/{segment_2}/{segment_3}'}" />
-        <input type="hidden" name="return_url" value="{path='{channel}/{segment_2}/{segment_3}'}" />
+        <input type="hidden" name="URI" value="/sponsors/edit-event" />
+        <input type="hidden" name="return_url" value="/sponsors/edit-event" />
         <input type="hidden" name="author_id" value="{author_id}" />
         <input type="hidden" name="weblog_id" value="28" />
         <input type="hidden" name="status" value="closed" />

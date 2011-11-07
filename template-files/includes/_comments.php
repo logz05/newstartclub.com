@@ -8,7 +8,7 @@
 			{if logged_in}
 				<a href="#comment-form">Leave a Comment</a>
 			{if:else}
-				<a href="/members/signin/" data-reveal-id="signin-modal-comments">Leave a Comment</a>
+				<a href="/signin" data-reveal-id="signin-modal-comments">Leave a Comment</a>
 			{/if}
 		</span>
 	</div>
