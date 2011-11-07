@@ -5,72 +5,43 @@ ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstart
 
 require_once('utilities.php');
 require_once('dbconnect.php');
-
-//All Members
+  
+//Event Members
 $db = new DBconnect();
-$queryAll = '
-  SELECT 
+$queryEvent = '
+SELECT 
     exp_member_data.member_id,
     exp_members.username,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name
     
-    FROM exp_member_data
+  FROM exp_members
+    INNER JOIN member_relations
+    ON exp_members.member_id = member_relations.member_id
     
-      INNER JOIN exp_category_posts
-      ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
-      
-      JOIN exp_members
-      ON exp_members.member_id = exp_member_data.member_id
+    INNER JOIN exp_member_data
+    ON exp_members.member_id = exp_member_data.member_id
     
-    WHERE exp_member_data.m_field_id_26 = {embed:sponsor_number}
-            
-UNION DISTINCT
-            
-  SELECT
-    member_relations.member_id,
-    exp_members.username,
-    exp_member_data.m_field_id_3 AS first_name,
-    exp_member_data.m_field_id_4 AS last_name
+    INNER JOIN exp_weblog_titles
+    ON member_relations.related_id = exp_weblog_titles.entry_id
     
-    FROM member_relations
-  
-      INNER JOIN exp_category_posts
-      ON exp_category_posts.entry_id = member_relations.related_id
-      
-      JOIN exp_members
-      ON exp_members.member_id = member_relations.member_id
-      
-      JOIN exp_member_data
-      ON exp_member_data.member_id = exp_members.member_id
-  
-    WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-            
-UNION DISTINCT
-            
-  SELECT 
-    exp_member_data.member_id,
-    exp_members.username,
-    exp_member_data.m_field_id_3 AS first_name,
-    exp_member_data.m_field_id_4 AS last_name
+    INNER JOIN exp_category_posts
+    ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
     
-    FROM exp_member_data
-      JOIN exp_members
-      ON exp_members.member_id = exp_member_data.member_id
-      WHERE exp_member_data.m_field_id_7 = {embed:sponsor_zipcode}
-      OR exp_member_data.m_field_id_26 = {embed:sponsor_number}
-      
-  ORDER BY member_id DESC';
+  WHERE member_relations.related_id = {segment_3}
+  AND exp_category_posts.cat_id = {embed:sponsor_number}
+  ORDER BY member_id DESC
+      ';
 
-$queryResultsAll = $db->fetch($queryAll);
-$queryCountAll = count($queryResultsAll);
+$queryResultsEvent = $db->fetch($queryEvent);
+$queryCountEvent = count($queryResultsEvent);
 
 if (isset($_POST['custom_message']))
 {
-  send_emails($queryResultsAll, $_POST['email_subject'], $_POST['custom_message'], $_POST['full_list'], $_POST['full_list_settings']);
-} 
+  send_emails($memberListEvent, $_POST['email_subject'], $_POST['custom_message'], $_POST['event'], $_POST['rsvp_list']);
+}
 
-function send_emails($mailing_list, $subject, $custom_message, $full_list, $full_list_settings)
+function send_emails($mailing_list, $subject, $custom_message, $event, $rsvp_list)
 {
   // To send HTML mail, the Content-type header must be set
   $headers  = 'MIME-Version: 1.0' . "\n";
@@ -124,8 +95,8 @@ for ($i = 0; $i < count($mailing_list); $i++)
                 <tr>
                   <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
                     <span style="font-size:10px;color:#FFFFFF;font-family:verdana;">';
-      $message .= $full_list;
-      $message .= $full_list_settings;
+      $message .= $event;
+      $message .= $rsvp_list;
       $message .= '</span>
                   </td>
                 </tr>
@@ -146,7 +117,7 @@ for ($i = 0; $i < count($mailing_list); $i++)
 function show_form($listTotal)
 {
   print '<div class="heading clearafter">
-            <h1>Member List (&nbsp;'. $listTotal .'&nbsp;)</h1>
+            <h1>{exp:weblog:entries weblog="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;'. $listTotal .'&nbsp;)</h1>
         </div>
         <div class="grid23 clearafter">
           <div class="left">
@@ -163,8 +134,8 @@ function show_form($listTotal)
                 <tr>
                   <th></th>
                   <td>
-                    <input type="hidden" name="full_list" value="You are receiving this e-mail because you are a member of the NEWSTART Lifestyle Club." />
-                    <textarea name="full_list_settings" class="hide"><br />You can update your status <a href="{path=settings}" style="font-size:10px;color:#FFFFFF;font-family:verdana;">here</a>.</textarea>
+                    <input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event &ldquo;{exp:weblog:entries weblog="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries}&rdquo;." />
+                    <textarea name="rsvp_list" class="hide"><br />You can update your RSVP list <a href="{path=events}" style="font-size:10px;color:#FFFFFF;font-family:verdana;">here</a>.</textarea>
                     <p class="button-wrap">
                       <button type="submit" class="super green button"><span>Send Email</span></button>
                     </p>
@@ -209,6 +180,6 @@ function show_done($listRecipients)
         </div><!-- /.grid23 -->';
 }
 
-if (isset($_POST['custom_message'])) { show_done($queryResultsAll); } else { show_form($queryCountAll); } 
+if (isset($_POST['custom_message'])) { show_done($queryResultsEvent); } else { show_form($queryCountEvent); }
 
 ?>
