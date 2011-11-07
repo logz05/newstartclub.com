@@ -45,7 +45,7 @@
       {/if}
       {if logged_in}
         <dl>
-          {exp:weblog:entries weblog="{channel}" sort="asc" url_title="{segment_3}" limit="1"}
+          {exp:weblog:entries weblog="{channel}" sort="asc" limit="1"}
             {if partner_phone != ""}
               <dt>Phone:</dt>
               <dd>{partner_phone}</dd>
@@ -55,18 +55,18 @@
               <dd>{partner_address}<br />
             {partner_city}, {partner_state} {partner_zip}</dd>
             {/if}
-            {if partner_specialty != ""}
               <dt>Specialty:</dt>
-              <dd>{partner_specialty}</dd>
-            {/if}
+              <dd>{categories backspace="1"}<a href="/{channel}/specialty/{category_url_title}/">{category_name}</a>, {/categories}</dd>
           {/exp:weblog:entries}
         </dl>
       {/if}
-      {exp:weblog:entries weblog="{channel}" sort="asc" url_title="{segment_3}" limit="1"}
+      {if segment_3_category_id}
+      {exp:weblog:entries weblog="resources" dynamic="off" limit="1" category="{segment_3_category_id}"}
         <p>
-          <a href="/resources/partners/{url_title}">View Resources by {title}</a>
+          <a href="/resources/partners/{segment_3}">View Resources by {segment_3_category_name}</a>
         </p>
       {/exp:weblog:entries}
+      {/if}
     </div>
   </div>
 </div>
