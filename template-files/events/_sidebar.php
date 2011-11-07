@@ -63,12 +63,17 @@
   }
 ?>
     </ul>
+    <h2>Event Type</h2>
+    <ul>
+      {exp:weblog:categories weblog="events" style="linear" show_empty="no" show_future_entries="yes" category_group="41"}
+        <li><a href="/events/type/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
+    </ul>
     <h2>Sponsors</h2>
     <ul>
 <?php 
   $sponsor_list = array(
     {exp:weblog:entries weblog="events" dynamic="off" show_future_entries="yes"}
-      {categories} "{category_url_title}" => "{category_name}", {/categories}
+      {categories show_group="24"} "{category_url_title}" => "{category_name}", {/categories}
     {/exp:weblog:entries}
   );
   
