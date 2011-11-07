@@ -5,7 +5,7 @@
     xmlns:atom="http://www.w3.org/2005/Atom">
 
     <channel>
-    <title>{exp:xml_encode}{site_name} Events{if segment_3 == "sponsors"} | {segment_4_category_name}{/if}{if segment_3 == "locations"} | {segment_5}, {segment_4}{/if}{/exp:xml_encode}</title>
+    <title>{exp:xml_encode}{site_name} Events{if segment_3 != "locations"} | {segment_4_category_name}{/if}{if segment_3 == "locations"} | {segment_5}, {segment_4}{/if}{/exp:xml_encode}</title>
     <link>{site_url}{exp:xml_encode}?utm_source=Events&utm_medium=RSS&utm_campaign={if segment_3 == "sponsors"}{segment_4_category_url}{if:else}Events{/if}{/exp:xml_encode}</link>
     <description>The latest events from the {site_name}</description>
     <dc:language>{weblog_language}</dc:language>
@@ -22,7 +22,7 @@
     disable="member_data|trackbacks|pagination"
     status="open"
     show_future_entries="yes"
-    {if segment_3 == "sponsors"}category="{segment_4_category_id}"{/if}
+    {if segment_3 != "locations"}category="{segment_4_category_id}"{/if}
     {if segment_3 == "locations"}search:event_state="={segment_4}" search:event_city="={segment_5}"{/if}
 }
     <item>
