@@ -1,1 +1,1 @@
-{embed="resources/_filter-page"}
+{embed="resources/_filter-page" title="Resources in"}
