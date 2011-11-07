@@ -14,7 +14,7 @@
     {if group_id==1}
       <p>You&rsquo;re currently signed in as a Super Admin. To see this form you must log out.</p>
     {/if}
-  {exp:user:register group_id="9" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}
+  {exp:user:register form:name="register-key" form:id="register" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" require_key="yes"}
     <noscript>
       <div class="no-script">
         <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
@@ -49,10 +49,7 @@
       </tr>
       <tr>
         <th scope="row"><label for="zipCode" class="req"><span class="req">* </span>Zip Code</label></th>
-        <td>
-          <input type="text" pattern="[0-9]*" class="input" id="zipCode" name="zipCode" value="" size="7" autocomplete="off" />
-          <p class="instructions">Outside the U.S.? Use <strong>00000</strong></p>
-        </td>
+        <td><input type="text" pattern="[0-9]*" class="input" id="zipCode" name="zipCode" value="" size="7" autocomplete="off" /></td>
       </tr>
       <tr>
         <th scope="row"><label for="phone">Phone</label></th>
@@ -61,8 +58,8 @@
       <tr>
         <th scope="row"><label for="username" class="req"><span class="req">* </span>Email</label></th>
         <td>
-          <input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" autocapitalize="off" />
-          <p class="instructions">Please provide a valid email address to receive your free NEWSTART&reg; Daily Planner.</p>
+          <input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" />
+          <p class="instructions">Please provide a valid email address.</p>
         </td>
       </tr>
       <tr>
@@ -71,20 +68,8 @@
       </tr>
       <tr>
         <th scope="row"><label for="password_confirm" class="req"><span class="req">* </span>Password, Again</label></th>
-        <td>
-          <input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" />
-          {if segment_2}<input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_2}" autocomplete="off" />{/if}
-        </td>
+        <td><input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" /></td>
       </tr>
-      {if segment_2 == ""}
-      <tr>
-        <th scope="row"><label for="sponsor_number_credit">Promo Code</label></th>
-        <td>
-          <input type="text" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" autocomplete="off" />
-          <p class="instructions">If you received a promo code enter it here.</p>
-        </td>
-      </tr>
-      {/if}
       <tr>
         <th scope="row">
         </th>
@@ -100,6 +85,8 @@
       <tr>
         <th scope="row">&nbsp;</th>
         <td>
+          <input type="hidden" name="key" value="{key}" />
+          <input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_3}" autocomplete="off" />
           <div class="button-wrap">
             <button type="submit" class="super green button"><span>Submit</span></button>
             <button type="reset" class="super secondary button"><span>Reset</span></button>
@@ -107,14 +94,11 @@
         </td>
       </tr>
     </table>
-    {select_member_groups} 
-    <input type="checkbox" value="{group_id}" checked="checked" />{group_title}
-    {/select_member_groups}
   {/exp:user:register}
     </div>
     <div class="sidebar right">
       <div class="bar">My Information</div>
-      <p class="fine-print">By providing your information, you will be enrolled as a NEWSTART Lifestyle Club member. With this, you will receive email communications with healthy videos, articles, recipes and tips for improving your life, plus details on members-only events and discounts. Membership is FREE. Your information will never be shared with a third party, and you can opt out at any time.</p>
+      <p class="fine-print">The information provided will be saved electronically and will not be shared with third parties. You will only receive information from us regarding our own or our partners&rsquo; events and materials, according to your interest.</p>
     </div>
 
   </div><!--/.grid23-->
