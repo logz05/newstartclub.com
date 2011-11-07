@@ -27,10 +27,6 @@
         <th scope="row" width="150px"><label for="sponsorName" class="req"><span class="req">* </span>Sponsor Name</label></th>
         <td><input type="text" class="input" name="sponsorName" id="sponsorName" value="" size="25" autocomplete="off" /></td>
       </tr>
-      <tr class="hide">
-        <th scope="row"><label for="sponsorLogo">Sponsor Logo</label><div>Accepted file types: .jpg, .bmp, .tiff, .eps, .png</div></th>
-        <td><input type="file" name="sponsorLogo" id="sponsorLogo" /></td>
-      </tr>
       <tr>
         <th scope="row"><label for="sponsorAddress" class="req"><span class="req">* </span>Physical Address</label></th>
         <td><input type="text" class="input" id="sponsorAddress" name="sponsorAddress" value="" size="32" autocomplete="off" /></td>

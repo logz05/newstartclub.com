@@ -1,14 +1,7 @@
 {embed="includes/_doc-top" 
   channel="{channel}"
-  title="{title}"}
+  title="Sponsorship Program"}
 {assign_variable:channel="sponsors"}
-{assign_variable:title="Sponsorship Program
-{if segment_2 == 'events' && segment_3 == 'add'} | Create a new event{/if}
-{if segment_2 == 'events' && segment_3 == 'edit'} | Edit Events{/if}
-{if segment_2 == 'invite-members'} | Invite Members{/if}
-{if segment_2 == 'email-members' || segment_3 == 'email'} | Email Members{/if}
-{if segment_2 == 'resources'} | Resources{/if}
-"}
 <div class="body">
 {if logged_out || (member_group != 1 && member_group != 13)}
   <div class="heading clearafter">
@@ -55,30 +48,31 @@
       <div class="button-wrap">
         <a href="/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super secondary button"><span>Quick Start Guide &raquo;</span></a>
       </div>
-      {if group_id == "1"}
-      <h2>Super Admin</h2>
-      
-        <label for="sponsor_number">Change Sponsor</label>
-        
         {exp:user:edit form:name="sponsor_id_switch" form:id="sponsor_id_switch" return="sponsors" password_required="n" dynamic="off"}
+        {if sponsor_multiple || group_id == 1}
+        <label for="sponsor_number"><h5>Change Sponsor</h5></label>
           <input type="hidden" name="firstName" value="{firstName}" />
           <input type="hidden" name="lastName" value="{lastName}" />
           <input type="hidden" name="zipCode" value="{zipCode}" />
           <select name="sponsor_number" class="input">
+          {if sponsor_multiple}
+            {exp:weblog:categories category_group="24" weblog="locations" style="linear" show="{sponsor_multiple}"}
+              <option value="{category_id}"{if category_id == sponsor_number} selected="selected"{/if}>{category_name}</option>
+            {/exp:weblog:categories}
+          {if:else}
             {exp:weblog:categories category_group="24" weblog="locations" style="linear"}
               <option value="{category_id}"{if category_id == sponsor_number} selected="selected"{/if}>{category_name}</option>
             {/exp:weblog:categories}
+          {/if}
           </select>
-          <button type="submit" class="super green button"><span>Go</span></button>
+          <button type="submit" class="super small green button"><span>Go</span></button>
           
           {categories}
             {category_selected}<input type="hidden" name="category[]" value="{category_id}" />{/category_selected}
             {category_body}{selected}{/category_body}
           {/categories}
-          
+          {/if}
         {/exp:user:edit}
-      
-      {/if}
     </div>
     <div class="sidebar right">
       <div class="bar">Admin Home</div>

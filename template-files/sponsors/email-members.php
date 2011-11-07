@@ -1,12 +1,12 @@
 {embed="includes/_doc-top" 
   channel="sponsors"
-  title="Sponsorship Program | Email Members"}
-  {assign_variable:sponsor_zipcode="{exp:user:stats dynamic='off'}{exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1' dynamic='off'}{sponsor_zip}{/exp:weblog:entries}{/exp:user:stats}"}
+  title="Email Members"}
+  {assign_variable:sponsor_zipcode="{exp:user:stats dynamic='off'}{exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1' dynamic='off' status='open|closed'}{sponsor_zip}{/exp:weblog:entries}{/exp:user:stats}"}
 <div class="body">
 <!-- {sponsor_zipcode} -->
       {if segment_3 != ""}
         <ul id="trail">
-          <li><a href="/">Home</a></li>
+          <li><a href="/sponsors">Home</a></li>
           <li><a href="/sponsors/email-members">Member List</a></li>
         </ul>
       {/if}
