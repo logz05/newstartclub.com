@@ -69,12 +69,17 @@
       <p>Have a health concern? Ask one of our {site_name} <a href="/partners/">partners</a>.</p>
       <p class="button-wrap">
         {if logged_out}
-          <a href="/members/signin/" class="super secondary button" data-reveal-id="signin-modal-question"><span>Start Here</span></a>
+          <a href="/signin" class="super secondary button" data-reveal-id="signin-modal-question"><span>Start Here</span></a>
         {if:else}
-          <a href="/questions/ask/" class="super secondary button"><span>Start Here</span></a>
+          <a href="/questions/ask" class="super secondary button"><span>Start Here</span></a>
         {/if}
       </p>
     </div>
+  </div>
+  <div id="rss-feed">
+    <a href="/{segment_1}/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" title="RSS Feed">
+      <div class="icon"></div><span>RSS Feed</span>
+    </a>
   </div>
 </div><!-- /.body -->
 {embed="includes/_signin-modal modal-role="comments" modal-msg="You must be signed in to leave a comment."}

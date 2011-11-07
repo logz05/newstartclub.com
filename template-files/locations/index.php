@@ -14,7 +14,7 @@
   {if segment_2 == "state"}
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/{channel}">{section}</a></li>
   </ul>
   {/if}
   <div class="heading clearafter">
@@ -96,5 +96,10 @@
         </ul>
     </div><!--/.sidebar-->
   </div><!--/.grid23-->
+  <div id="rss-feed">
+    <a href="/{segment_1}/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" title="RSS Feed">
+      <div class="icon"></div><span>RSS Feed</span>
+    </a>
+  </div>
 </div><!-- /.body -->
 {embed="includes/_doc_bottom"}
