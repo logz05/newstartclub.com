@@ -23,10 +23,10 @@ require_once ( 'utilities.php' );
   {if logged_out}
     <div id="intro-heading" class="clearafter">
       <p class="button-wrap">
-        <a href="/members/register/" class="giant super green button" data-reveal-id="signin-modal-register"><span>Get Started &raquo;</span></a>
+        <a href="/register" class="giant super green button"><span>Get Started &raquo;</span></a>
       </p>
       <h1>Live Well Naturally.</h1>
-      <h2>Experience the <a href="/resources/detail/what-is-newstart/">NEWSTART&reg;</a> lifestyle&mdash;the most natural way to:</h2>
+      <h2>Experience the <a href="http://www.newstart.com/newstart/what-is-newstart/">NEWSTART&reg;</a> lifestyle&mdash;the most natural way to:</h2>
       <ul class="first">
         <li>Eat well and lose weight</li>
         <li>Reduce your chance of disease</li>
@@ -48,7 +48,7 @@ require_once ( 'utilities.php' );
   <div class="grid23 clearafter">
     <div class="left">
       <div id="featured-resources">
-        <div id="resources" class="bar"><a href="/resources/">Featured Resources</a></div>
+        <div id="resources" class="bar"><a href="/resources">Featured Resources</a></div>
         <h2>Videos</h2>
         <ul class="clearafter">
         {exp:weblog:entries weblog="resources" limit="4" category="146" orderby="random" dynamic="off" disable="member_data|categories"}
@@ -113,7 +113,7 @@ require_once ( 'utilities.php' );
           <h2 class="title"><a href="{url_title_path='events/detail'}">{title}</a></h2>
           <div class="event-data">
             <span class="event-location">
-              <a href="/events/{event_state}/{event_city}/">{event_city}, {event_state}</a>
+              <a href="/events/{event_state}/{event_city}">{event_city}, {event_state}</a>
             </span>&nbsp;
           </div>
         </div><!--/.event-->
@@ -142,44 +142,41 @@ require_once ( 'utilities.php' );
       </ul>
     </div><!--/.left-->
 
-    <div class="right">
+    <div class="right sidebar">
       <div id="my_health">
+        <div class="bar"><a href="/my_health">My Health</a></div>
           {if logged_out}
-          <div id="my_health_heading" class="bar"><a href="/my_health/">The HealthGauge<sup>&trade;</sup></a></div>
-            <a href="/members/signin/" data-reveal-id="signin-modal-health-gauge">
+            <a href="/signin" data-reveal-id="signin-modal-health-gauge">
               <div id="my_health_gauge"></div>
             </a>
             <p>This health score calculator will evaluate your health by comparing your personal health practices with modern scientific information.</p>
             <p class="button-wrap">
-              <a href="/members/signin/" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
+              <a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
             </p>
           {/if}
           {if logged_in}{exp:user:stats}{/if}
           {if logged_in && memberScoreTotal == ""}
-          <div id="my_health_heading" class="bar"><a href="/my_health/">The HealthGauge<sup>&trade;</sup></a></div>
-            <a href="/my_health/calculator/">
+            <a href="/my_health/calculator">
               <div id="my_health_gauge"></div>
             </a>
             <p>This health score calculator will evaluate your health by comparing your personal health practices with modern scientific information.</p>
             <p class="button-wrap">
-              <a href="/my_health/calculator/" class="super small secondary button"><span>Calculate</span></a>
+              <a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
             </p>
           {/if}
           
           {if logged_in && memberScoreTotal != ""}
-          <div id="my_health_heading" class="bar"><a href="/my_health/">Health Score Results</a></div>
+            <h2 class="my_health">Health Score Results</h2>
             <h1 class="total-score">
-              <a href="/my_health/results/">{exp:user:stats dynamic="off"}{memberScoreTotal}{/exp:user:stats}</a>
+              <a href="/my_health/results">{exp:user:stats dynamic="off"}{memberScoreTotal}{/exp:user:stats}</a>
             </h1>
-            <p class="button-wrap">
-              <a href="/my_health/calculator/" class="super small secondary button"><span>Recalculate</span></a>
-            </p>
+            <p class="center"><a href="/my_health/calculator">Recalculate</a></p>
           {/if}
           {if logged_in}{/exp:user:stats}{/if}
       </div>
     {if logged_in}
       <div class="interest-listing">
-        <div id="interests" class="bar"><a href="/members/settings/">My Interests</a></div>
+        <div id="interests" class="bar"><a href="/settings">My Interests</a></div>
           <ul>
             {exp:user:stats}{categories group_id="14|15"}
               {category_body}<li><a href="{path='resources/{reg1_path}{reg2_path}'}">&raquo; {category_description}</a></li>
@@ -187,10 +184,10 @@ require_once ( 'utilities.php' );
             {/exp:user:stats}
           </ul>
           <p class="button-wrap">
-            <a href="/members/settings/" class="super small secondary button"><span>Update my interests</span></a>
+            <a href="/settings" class="super small secondary button"><span>Update my interests</span></a>
           </p>
       </div>
-      <div id="rsvp" class="bar"><a href="/events/">RSVP List</a></div>
+      <div id="rsvp" class="bar"><a href="/events">RSVP List</a></div>
       {embed="events/_rsvp-list"}
     {/if}
     {if logged_out}
@@ -208,7 +205,7 @@ require_once ( 'utilities.php' );
                 echo $categories[$i] . "\n";
               };
             ?>
-          <li class="see-more"><a href="/resources/">See more &raquo;</a></li>
+          <li class="see-more"><a href="/resources">See more &raquo;</a></li>
         </ul>
         <h2 class="living_better">Living Better
         </h2>
@@ -223,7 +220,7 @@ require_once ( 'utilities.php' );
               echo $categories[$i] . "\n";
             };
           ?>
-          <li class="see-more"><a href="/resources/">See more &raquo;</a></li>
+          <li class="see-more"><a href="/resources">See more &raquo;</a></li>
         </ul>
         <h2 class="living_better">Recipes
         </h2>
@@ -238,12 +235,12 @@ require_once ( 'utilities.php' );
               echo $categories[$i] . "\n";
             };
           ?>
-          <li class="see-more"><a href="/resources/">See more &raquo;</a></li>
+          <li class="see-more"><a href="/resources">See more &raquo;</a></li>
         </ul>
       </div>
     {/if}
     {if logged_in}
-    <div id="follow" class="bar"><a href="/news/">Follow Us</a></div>
+    <div id="follow" class="bar"><a href="/news">Follow Us</a></div>
     <a href="http://www.facebook.com/newstartclub/" class="news-follow" title="Facebook">
       <h4 class="icon" id="facebook-icon">Facebook</h4>
     </a>
@@ -258,7 +255,7 @@ require_once ( 'utilities.php' );
       {exp:user:stats dynamic="off"}
         {exp:weblog:entries weblog="locations" search:sponsor_zip="{zipCode}" limit="1"}
           <div class="sponsor-panel">
-            <div id="sponsor-admin" class="bar"><a href="/locations/">Local Sponsor</a></div>
+            <div id="locations" class="bar"><a href="/locations/">Local Sponsor</a></div>
             <a href="/locations/detail/{url_title}" title="{title}">
               <div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={sponsor_address}+{sponsor_city}+{sponsor_state}&zoom=7&markers=size:med%7C{sponsor_address}+{sponsor_city}+{sponsor_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
             </a>
@@ -283,5 +280,4 @@ require_once ( 'utilities.php' );
   </div>
 </div><!-- /.body -->
 {embed="includes/_signin-modal modal-role="health-gauge" modal-msg="You must be signed in to calculate your health score."}
-{embed="includes/_signin-modal modal-role="register" modal-msg="You must be signed in to get started."}
 {embed="includes/_doc_bottom"}
