@@ -1,1 +1,0 @@
-{redirect="register/{segment_3}/{segment_4}/{segment_5}"}
