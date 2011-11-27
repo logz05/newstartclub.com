@@ -23,11 +23,17 @@
     <table>
       <tr>
         <th scope="row"><label for="firstName" class="req"><span class="req">* </span>First Name</label></th>
-        <td><input type="text" class="input" name="firstName" id="firstName" value="" size="25" autocomplete="off" /></td>
+        <td>
+          <input type="text" class="input" name="firstName" id="firstName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+          <input type="text" class="hide" value="" name="jsFirstName" />
+        </td>
       </tr>
       <tr>
         <th scope="row"><label for="lastName" class="req"><span class="req">* </span>Last Name</label></th>
-        <td><input type="text" class="input" name="lastName" id="lastName" value="" size="25" autocomplete="off" /></td>
+        <td>
+          <input type="text" class="input" name="lastName" id="lastName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+          <input type="text" class="hide" value="" name="jsLastName" />
+        </td>
       </tr>
       <tr>
         <th scope="row"><label for="address">Address</label></th>
@@ -61,8 +67,9 @@
       <tr>
         <th scope="row"><label for="username" class="req"><span class="req">* </span>Email</label></th>
         <td>
-          <input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" autocapitalize="off" />
-          <p class="instructions">Please provide a valid email address to receive your free NEWSTART&reg; Daily Planner.</p>
+          <input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" autocapitalize="off" onblur="registration(this.form)" />
+          <input type="text" class="hide" name="jsEmail" />
+          <p class="instructions">Please provide a valid email address to receive your FREE gift.</p>
         </td>
       </tr>
       <tr>
@@ -73,6 +80,7 @@
         <th scope="row"><label for="password_confirm" class="req"><span class="req">* </span>Password, Again</label></th>
         <td>
           <input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" />
+          <input type="hidden" class="hide" id="welcome_email_sent" name="welcome_email_sent" value="0" />
           {if segment_2}<input type="hidden" class="input" id="sponsor_number_credit" name="sponsor_number_credit" size="5" value="{segment_2}" autocomplete="off" />{/if}
         </td>
       </tr>
