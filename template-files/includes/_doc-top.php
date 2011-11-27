@@ -1,19 +1,16 @@
 <!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=860;" />
-
-  <!-- Facebook Meta Tags -->
-  <meta property="fb:page_id" content="122876001070562" />
-
   <title>{if embed:title}{embed:title} | {site_name}{if:else}{site_name}{/if}</title>
+  <![if !IEMobile]>
+  <meta name="viewport" content="width=860;" />
+  <![endif]>
   
   <meta name="author" content="{site_name}">
   {if segment_1 == ""}<meta name="description" content="Based on the world-famous NEWSTART® principles that have helped millions live well naturally without the use of drugs, the NEWSTART® Lifestyle Club features streaming video, expert health advice, wellness tips, tools and more. " />{/if}

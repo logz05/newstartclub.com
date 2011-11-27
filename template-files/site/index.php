@@ -144,8 +144,8 @@ require_once ( 'utilities.php' );
 
     <div class="right sidebar">
       <div id="my_health">
-        <div class="bar"><a href="/my_health">My Health</a></div>
           {if logged_out}
+          <div class="bar"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></div>
             <a href="/signin" data-reveal-id="signin-modal-health-gauge">
               <div id="my_health_gauge"></div>
             </a>
@@ -156,6 +156,7 @@ require_once ( 'utilities.php' );
           {/if}
           {if logged_in}{exp:user:stats}{/if}
           {if logged_in && memberScoreTotal == ""}
+          <div class="bar"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></div>
             <a href="/my_health/calculator">
               <div id="my_health_gauge"></div>
             </a>
@@ -166,11 +167,15 @@ require_once ( 'utilities.php' );
           {/if}
           
           {if logged_in && memberScoreTotal != ""}
+          <div class="bar"><a href="/my_health">My Health</a></div>
             <h2 class="my_health">Health Score Results</h2>
             <h1 class="total-score">
               <a href="/my_health/results">{exp:user:stats dynamic="off"}{memberScoreTotal}{/exp:user:stats}</a>
             </h1>
             <p class="center"><a href="/my_health/calculator">Recalculate</a></p>
+            <p class="button-wrap center">
+              <a href="/my_health/results" class="super small secondary button"><span>View Recommendations</span></a>
+            </p>
           {/if}
           {if logged_in}{/exp:user:stats}{/if}
       </div>
@@ -268,11 +273,11 @@ require_once ( 'utilities.php' );
       <div class="sponsor-panel">
         <div id="sponsor-admin" class="bar"><a href="/sponsors/">Sponsor Admin</a></div>
           <ul>
-            <li><a href="/sponsors/events/add/">&raquo; Add Event</a></li>
-            <li><a href="/sponsors/events/edit/">&raquo; Edit Event</a></li>
-            <li><a href="/sponsors/invite-members/">&raquo; Invite Members</a></li>
-            <li><a href="/sponsors/email-members/">&raquo; Email Members</a></li>
-            <li><a href="/sponsors/resources/">&raquo; Get Resources</a></li>
+            <li><a href="/sponsors/add-event">&raquo; Add Event</a></li>
+            <li><a href="/sponsors/edit-event">&raquo; Edit Event</a></li>
+            <li><a href="/sponsors/invite">&raquo; Invite Members</a></li>
+            <li><a href="/sponsors/email-members">&raquo; Email Members</a></li>
+            <li><a href="/sponsors/resources">&raquo; Get Resources</a></li>
           </ul>
       </div>
     {/if}
