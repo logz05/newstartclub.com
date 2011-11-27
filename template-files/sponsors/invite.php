@@ -25,44 +25,44 @@ $db->query($query);
   <div class="grid23 clearafter">
     {exp:user:stats dynamic="off"}
     <div class="left">
-    {exp:user:key template="sponsors/invite_template" html="yes" return="sponsors/invite"}
-      <h1>Contact Information</h1>
-      <noscript>
-        <div class="no-script">
-          <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-        </div>
-      </noscript>
-      <table>
-        <tr>
-          <th scope="row"><label for="message" class="req"><span class="req">* </span>Name</label></th>
-          <td><input type="text" class="input" id="message" name="message" size="32" autocomplete="off" /></td>
-        </tr>
-        <tr>
-          <th scope="row"><label for="to" class="req"><span class="req">* </span>Email</label></th>
-          <td><input type="text" class="input" id="to" name="to" value="" size="32" autocomplete="off" /></td>
-        </tr>
-        <tr>
-          <th></th>
-          <td>
-            <input type="hidden" class="input" name="from" value="club@newstart.com" />
-            <input type="hidden" class="input" name="name" id="name" value="{site_name}" autocomplete="off" />
-            <input type="hidden" class="input" name="subject" id="subject" value="You're invited to join the {site_name}!" />
-            <input type="hidden" name="group_id" value="{sponsor_number}" />
-            <input type="hidden" id="sponsor_number_credit" name="sponsor_number_credit" value="{sponsor_number}" />
-            <p class="button-wrap">
-              <button type="submit" class="super secondary button"><span>Invite Member</span></button>
-            </p>
-          </td>
-        </tr>
-      </table>
-    {/exp:user:key}
+      {exp:user:key template="sponsors/invite_template" html="yes" return="sponsors/invite"}
+        <h1>Contact Information</h1>
+        <noscript>
+          <div class="no-script">
+            <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
+          </div>
+        </noscript>
+        <table>
+          <tr>
+            <th scope="row"><label for="message" class="req"><span class="req">* </span>Name</label></th>
+            <td><input type="text" class="input" id="message" name="message" size="32" autocomplete="off" /></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="to" class="req"><span class="req">* </span>Email</label></th>
+            <td><input type="text" class="input" id="to" name="to" value="" size="32" autocomplete="off" /></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <input type="hidden" class="input" name="from" value="club@newstart.com" />
+              <input type="hidden" class="input" name="name" id="name" value="{site_name}" autocomplete="off" />
+              <input type="hidden" class="input" name="subject" id="subject" value="You're invited to join the {site_name}!" />
+              <input type="hidden" name="group_id" value="{sponsor_number}" />
+              <input type="hidden" id="sponsor_number_credit" name="sponsor_number_credit" value="{sponsor_number}" />
+              <p class="button-wrap">
+                <button type="submit" class="super secondary button"><span>Invite Member</span></button>
+              </p>
+            </td>
+          </tr>
+        </table>
+      {/exp:user:key}
       <h2>Pending Invitations ( {exp:query sql="SELECT COUNT(*) AS total FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0"}{total}{/exp:query} )</h2>
-      {exp:query limit="20" paginate="both" sql="SELECT date, email FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0 ORDER BY date DESC"}
+      {exp:query limit="20" paginate="both" sql="SELECT date, email AS invite_email FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0 ORDER BY date DESC"}
         {if count==1}
           <ul>
         {/if}
         <li class="row">
-          <h1 class="pending-username">{email}</h1>
+          <h1 class="pending-username">{invite_email}</h1>
           <div class="date">
             <span class="timeago"><?php echo distanceOfTimeInWords('{date}', '{current_time}', true); ?></span>
             <span class="invite-date">{date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
