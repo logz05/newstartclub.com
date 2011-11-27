@@ -15,13 +15,15 @@
     <?php
     
     session_start();
-    if( isset( $_SESSION['firstNameIsSet'] ) && $_SESSION['firstNameIsSet'] == true ) {
+    
+    
+    if( isset( $_SESSION['settingsUpdated'] ) && $_SESSION['settingsUpdated'] == true ) {
       echo '<div id="settings-msg">
           <p>Your settings have been saved!</p>
         </div>';
     }
     //reset this now that we've given our message.
-    $_SESSION['firstNameIsSet'] = false;
+    $_SESSION['settingsUpdated'] = false;
     
     ?>
     
@@ -90,10 +92,6 @@
           <th scope="row"><label for="phone">Phone</label></th>
           <td><input type="text" class="input" id="phone" name="phone" value="{phone}" size="15" /></td>
         </tr>
-        <tr>
-          <th scope="row"><label for="email">Email</label></th>
-          <td><div class="input readonly">{email}</div></td>
-        </tr>
         <tr class="hide">
           <th scope="row"><label>Localization Settings</label></th>
           <td>
@@ -147,6 +145,13 @@
       <h1>Account</h1>
       <table>
         <tr>
+          <th scope="row"><label for="username">Email</label></th>
+          <td>
+            <input class="input" type="text" name="username" id="username" value="{username}" size="32" />
+            <input class="hide" type="hidden" name="email" id="email" value="{username}" />
+          </td>
+        </tr>
+        <tr>
           <th scope="row"><label for="password">New Password</label></th>
           <td><input type="password" class="input" id="password" name="password" size="20" autocomplete="off" /></td>
         </tr>
@@ -161,6 +166,7 @@
         <tr>
           <th></th>
           <td>
+            <input type="hidden" name="update" value="updated" />
             <div class="button-wrap">
               <button type="submit" class="super green button"><span>Update</span></button>
             </div>
@@ -176,7 +182,6 @@
     <div class="sidebar right">
       <div class="bar">{section}</div>
       <p>Please enter your current password to save changes.</p>
-      <p>To change the email associated with your account you will need to open up a new account.</p>
     </div>
   </div><!--/.grid23-->
 </div><!-- /.body -->
