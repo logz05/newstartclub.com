@@ -34,11 +34,62 @@ class Interest
   }
 }
 
+class Chart {
+  
+  function bar($data, $options = null) {
+    
+    if(!isset($options['percentage'])) {
+      $options['percentage'] = false;
+    }
+    
+    $bar = 
+      '<dt style="left:%1$s%%; width: %5$s%%;">%4$s</dt>' .
+      '<dd style="left:%1$s%%; width: %5$s%%; height:%3$s%%;">%2$s</dd>';
+    
+    $wrap = '<dl class=chart>%s</dl>';
+    
+    $output = '';
+    $max = max($data);
+    if($options['percentage'] && $max > 100) {
+      trigger_error("The maximum value for a percentage based chart is 100.");
+    }
+        
+    $i = 0;
+    $total = count($data);
+    
+    foreach($data as $key => $val) {
+      $spacing = $total / ($total ^ 2);
+      $left = $spacing + ((100 / $total) * $i);
+      $height = $options['percentage'] ? $val : (($val / $max) * 100);
+      $width = (100 / $total) - ($spacing * 2);
+      $output .= sprintf($bar, $left, $val, $height, $key, $width);
+      $i ++;
+    }
+    return sprintf($wrap, $output);
+  }
+  
+  
+}
+
 function membersJoined($day)
 {
   $db = new DBconnect();
   
-  if (!isset($day)) {
+  $dayBegin = (strtotime("today -$day days") + 25200);
+  $dayMinus = $day - 1;
+  $dayEnd = (strtotime("today -$dayMinus days") + 25200);
+  
+  $joined = array();
+  
+  for($i = 0; $i <= $day; $i++) {
+    $date = date('M d', strtotime("today -$i days"));
+    $query = 'SELECT * FROM exp_members WHERE join_date > '. $dayBegin .' AND join_date < '. $dayEnd;
+    $members = count($db->fetch($query));
+    array_push($joined, "$date => $members");
+  }
+  
+  /* date('M d', strtotime("today -3 days"))
+if (!isset($day)) {
     $query = 'SELECT * FROM exp_members WHERE join_date > '. (strtotime("today") + 25200);
   } elseif ($day == 1) {
     $query = 'SELECT * FROM exp_members WHERE join_date > '. (strtotime("today -1 day") + 25200) .' AND join_date < '. (strtotime("today") + 25200);
@@ -48,11 +99,11 @@ function membersJoined($day)
     $dayEnd = (strtotime("today -$dayMinus days") + 25200);
     $query = 'SELECT * FROM exp_members WHERE join_date > '. $dayBegin .' AND join_date < '. $dayEnd;
   }
+*/
+
+  count($db->fetch($query));
   
-  $members = $db->fetch($query);
-  $membersCount = count($members);
-  
-  print $membersCount;
+  print $joined;
 }
 
 function memberAges($rangeLow, $rangeHigh)
@@ -77,6 +128,9 @@ function memberAges($rangeLow, $rangeHigh)
         </a>
       </li>';
 }
+
+
+
 
 ?>
 
@@ -104,6 +158,14 @@ function memberAges($rangeLow, $rangeHigh)
       {/exp:query}
     </p>
     
+    <?php
+    echo Chart::bar(array(
+      'Nov 23' => 10,
+      'Nov 22' => 6
+    ));
+
+    ?>
+    {!--
     <ul>
       <li><?php echo date('M d', strtotime("today")) ?><sup><?php echo date('S', strtotime("today")) ?></sup> <strong><?php membersJoined() ?></strong></li>
       <li><?php echo date('M d', strtotime("today -1 day")) ?><sup><?php echo date('S', strtotime("today -1 day")) ?></sup> <strong><?php membersJoined(1) ?></strong></li>
@@ -114,7 +176,7 @@ function memberAges($rangeLow, $rangeHigh)
       <li><?php echo date('M d', strtotime("today -6 days")) ?><sup><?php echo date('S', strtotime("today -6 days")) ?></sup> <strong><?php membersJoined(6) ?></strong></li>
     </ul>
     
-    {!-- <table id="data-table" border="1" cellpadding="10" cellspacing="0" summary="Members Joined to the {site_name} over the past two weeks.">
+     <table id="data-table" border="1" cellpadding="10" cellspacing="0" summary="Members Joined to the {site_name} over the past two weeks.">
        <caption>Members joined</caption>
        <thead>
           <tr>
@@ -209,15 +271,6 @@ function memberAges($rangeLow, $rangeHigh)
     </p>
     
     <h2><strong>Events</strong></h2>
-    <p><strong>Expired Events with RSVPs</strong><br />
-    
-      {exp:query sql="
-        SELECT DISTINCT member_relations.related_id, exp_weblog_titles.title
-          FROM member_relations, exp_weblog_titles
-          WHERE exp_weblog_titles.expiration_date < {current_time}
-          AND member_relations.related_id = exp_weblog_titles.entry_id"}{!--">--}{related_id} - {title}<br />
-      {/exp:query}
-    </p>
     <p><strong>Future Events</strong><br />
     {exp:weblog:entries weblog="events" show_expired="no" show_future_entries="yes"}
         {entry_id} - <a href="{url_title_path='events/detail'}">{title}</a>
@@ -232,14 +285,14 @@ function memberAges($rangeLow, $rangeHigh)
     
     <h2><strong>Comments - {exp:comment:entries weblog="resources|questions" sort="desc" limit="1" dynamic="off"}{total_comments}{/exp:comment:entries}</strong></h2>
     
-    {exp:comment:entries weblog="resources|questions" sort="desc" limit="20" dynamic="off"}
+    {exp:comment:entries weblog="resources|questions" sort="desc" limit="10" dynamic="off"}
     <p><a href="{path='{comment_auto_path}/{url_title}'}#c_{comment_id}">{title}</a> <br />by {firstName} {lastName} on {comment_date format="%M %j, %Y, %g:%i %A %T"}</p>
     {/exp:comment:entries}
     
     <h2><strong>Pages Shared on Facebook</strong></h2>
     
     <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-    <fb:recommendations site="www.newstartclub.com" width="480" height="500" header="true"></fb:recommendations>
+    <fb:recommendations site="www.newstartclub.com" width="480" height="400" header="true"></fb:recommendations>
     
   </div><!--/.single-->
   <div class="sidebar right">
