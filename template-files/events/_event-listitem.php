@@ -5,7 +5,7 @@
   <li class="event" id="{exp:nice_date date='{event_start_date}' format='%Y-%m-%d'}">
     {assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
     {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
-    <h1>
+    <h2>
       <a href="{url_title_path='events/detail'}">{title}</a>
       <div class="date">
         <span class="day">{exp:nice_date date="{event_start_date}" format="%d"}</span>
@@ -28,10 +28,10 @@
           {/if}
         </span>
       </div>
-    </h1>
-    <h2 class="location"><a href="/events/locations/{event_state}/{event_city}">{event_city}, {event_state}</a></h2>
+    </h2>
+    <h3><a href="/events/locations/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
     <div class="details">
-      {exp:trunchtml chars="140" inline="&hellip;" ending="<a class='link-more' href='/events/detail/{url_title}'>more&raquo;</a>"}
+      {exp:trunchtml chars="150" inline="&hellip;<a class='link-more' href='/events/detail/{url_title}'>more&raquo;</a>"}
         {exp:textile}{event_description}{/exp:textile}
       {/exp:trunchtml}
     </div>

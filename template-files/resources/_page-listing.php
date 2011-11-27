@@ -1,11 +1,11 @@
-<ul>
+<ul id="listing">
 {exp:weblog:entries weblog="resources" limit="12" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="off" {if embed:category}category="{segment_3_category_id}"{/if} category_group="17|18|19|20|21|22|39"}
   {if no_results}
     <p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
     <p>Please choose from a category on the right or click <a href="{path='resources'}">here</a> to see our latest resources.</p>
   {/if}
-  <li class="resource {resource_display_style} clearafter">
-    <h1><a href="{url_title_path='resources/detail'}">{title}</a>{embed="includes/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}"}</h1>
+  <li class="resource {resource_display_style} clearfix">
+    <h2><a href="{url_title_path='resources/detail'}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
   {if resource_thumb != ''}
     <a href="{url_title_path='resources/detail'}" class="image">
       {if resource_display_style == "video"}<span class="play"></span>{/if}
