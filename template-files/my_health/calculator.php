@@ -7,7 +7,7 @@
 <div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
-    <li><a href="/{channel}/">{section}</a></li>
+    <li><a href="/{channel}">{section}</a></li>
   </ul>
 <?php
 

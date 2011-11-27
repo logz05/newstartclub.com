@@ -59,7 +59,7 @@
         <th scope="row"><label for="username" class="req"><span class="req">* </span>Email</label></th>
         <td>
           <input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" />
-          <p class="instructions">Please provide a valid email address.</p>
+          <p class="instructions">Please provide a valid email address to receive your FREE gift.</p>
         </td>
       </tr>
       <tr>

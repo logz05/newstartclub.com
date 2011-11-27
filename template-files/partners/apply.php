@@ -24,7 +24,15 @@
               <label for="name">Name</label>
             </th>
             <td>
-              <input type="text" name="name" class="input" id="name" size="25" />
+              <input type="text" name="name" class="input" id="name" size="25" value="{exp:user:stats dynamic='off'}{firstName} {lastName}{/exp:user:stats}" />
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <label for="email">E-mail</label>
+            </th>
+            <td>
+              <input type="text" name="email" class="input" id="email" size="28" value="{exp:user:stats dynamic='off'}{username}{/exp:user:stats}" />
             </td>
           </tr>
           <tr>
@@ -32,7 +40,7 @@
               <label for="credentials">Credentials</label>
             </th>
             <td>
-              <input type="text" name="credentials" class="input" id="credentials" size="8" />
+              <input type="text" name="credentials" class="input" id="credentials" size="8" value="" />
               <p class="instructions">i.e. MD, RN, MPH, etc.</p>
             </td>
           </tr>
@@ -41,7 +49,7 @@
               <label for="address">Business Address</label>
             </th>
             <td>
-              <input type="text" name="address" class="input" id="address" size="32" />
+              <input type="text" name="address" class="input" id="address" size="32" value="" />
             </td>
           </tr>
           <tr>
@@ -49,7 +57,7 @@
               <label for="city">City</label>
             </th>
             <td>
-              <input type="text" name="city" class="input" id="city" value="" size="20" />
+              <input type="text" name="city" class="input" id="city" value="" size="20" value="" />
             </td>
           </tr>
           <tr>
@@ -121,7 +129,7 @@
               <label for="zip">Zip Code</label>
             </th>
             <td>
-              <input type="text" name="zip" class="input" id="zip" value="" size="7"/>
+              <input type="text" name="zip" class="input" id="zip" value="" size="7" value="" />
             </td>
           </tr>
           <tr>
@@ -129,7 +137,7 @@
               <label for="specialty">Specialty</label>
             </th>
             <td>
-              <input type="text" name="specialty" class="input" id="specialty" value="" size="23" />
+              <input type="text" name="specialty" class="input" id="specialty" value="" size="23" value="" />
             </td>
           </tr>
           <tr>
@@ -155,7 +163,7 @@
               <label for="affiliation">Local Church Affiliation</label>
             </th>
             <td>
-              <input type="text" name="affiliation" class="input" id="affiliation" value="" size="20" />
+              <input type="text" name="affiliation" class="input" id="affiliation" size="20" value="" />
             </td>
           </tr>
           <tr>
@@ -176,5 +184,4 @@
     </div>
   </div>
 </div>
-{embed="includes/_signin-modal modal-role="contact" modal-msg="You must be signed in to view contact information."}
 {embed="includes/_doc_bottom"}

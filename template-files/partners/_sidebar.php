@@ -5,7 +5,7 @@
   <li>Lifestyle counseling</li>
   <li>Natural treatments</li>
 </ul> 
-<p>If you are interested in becoming a club partner, email your picture and bio to <a href="mailto:club@newstart.com">club@newstart.com</a></p>
+<p>If you are interested in becoming a club partner, <a href="/partners/apply">apply here</a>.</p>
 <div class="bar">Filter</div>
   <h2>State</h2>
   <ul>
