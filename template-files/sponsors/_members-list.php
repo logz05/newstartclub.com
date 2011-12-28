@@ -246,7 +246,7 @@ $memberListEvent = array();
   }
 
 ?>
-    <div class="heading clearafter"> 
+    <div class="heading clearfix"> 
     {if segment_3 == '' || (segment_3 >= 'P0' && segment_3 <= 'P9999')}
       <h1>Member List (&nbsp;<?php print $queryCountAll; ?>&nbsp;)</h1>
     {if:elseif segment_4 != 'event' AND segment_3 != ''}
@@ -255,8 +255,8 @@ $memberListEvent = array();
       <h1>{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;<?php print $queryCountEvent; ?>&nbsp;)</h1>
     {/if}
   </div>
-  <div class="grid23 clearafter">
-    <div class="left">
+  <div class="grid23 clearfix">
+    <div class="main left">
       <p>Click on a member to see more information about them or click <a href="/sponsors/invite">here</a> to invite new members.</p>
       <p>To email your members, click the button below or choose one of the filters on the right.</p>
       <p class="button-wrap">
@@ -278,19 +278,17 @@ $memberListEvent = array();
        
       </form>
       {/if}
-      <div class="list">
-        <div class="row-header clearafter">
-          <div class="cell-left left"><strong>Username</strong> ( <span class="exp_col exp">show details</span><span class="exp_col col" style="display:none;">hide details</span> )</div>
-          <div class="cell-right right"><strong>Join Date</strong></div>
+        <div class="row-header clearfix">
+          <div class="left"><strong>Username</strong> ( <span class="exp-col exp">show details</span><span class="exp-col col" style="display:none;">hide details</span> )</div>
+          <div class="right"><strong>Join Date</strong></div>
         </div>
-      
+        <ul id="listing">
         {if segment_3 == '' || (segment_3 <= 'P9999' && segment_3 >= 'P0')}{!-- Main Member Listing --}
-          <ul>
           <?php
             for ($i = 0; $i < $queryCountAll; $i++)
             {
-              print '<li class="row">
-                      <h1 class="username">'. $queryResultsAll[$i][9] .'</h1>
+              print '<li>
+                      <h2>'. $queryResultsAll[$i][9] .'</h2>
                       <div class="date">
                         <span class="timeago">'. distanceOfTimeInWords( $queryResultsAll[$i][10] , time(), true) .'</span>
                         <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsAll[$i][10] ) .'</span>
@@ -330,14 +328,12 @@ $memberListEvent = array();
                     </li>';
             }
           ?>
-          </ul>
         {if:elseif segment_3 && segment_4 == ""}{!-- Category Member Listing --}
-          <ul>
           <?php
             for ($i = 0; $i < $queryCountCat; $i++)
             {
-              print '<li class="row">
-                      <h1 class="username">'. $queryResultsCat[$i][9] .'</h1>
+              print '<li>
+                      <h2>'. $queryResultsCat[$i][9] .'</h2>
                       <div class="date">
                         <span class="timeago">'. distanceOfTimeInWords( $queryResultsCat[$i][10] , time(), true) .'</span>
                         <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsCat[$i][10] ) .'</span>
@@ -370,14 +366,12 @@ $memberListEvent = array();
                     </li>';
             }
           ?>
-          </ul>
         {if:elseif segment_3 && segment_4 == 'event'}{!-- Event Member Listing --}
-          <ul>
           <?php
             for ($i = 0; $i < $queryCountEvent; $i++)
             {
-              print '<li class="row">
-                      <h1 class="username">'. $queryResultsEvent[$i][9] .'</h1>
+              print '<li>
+                      <h2>'. $queryResultsEvent[$i][9] .'</h2>
                       <div class="date">
                         <span class="timeago">'. distanceOfTimeInWords( $queryResultsEvent[$i][10] , time(), true) .'</span>
                         <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsEvent[$i][10] ) .'</span>
@@ -410,10 +404,9 @@ $memberListEvent = array();
                     </li>';
             }
           ?>
-          </ul>
         {/if}
-      </div>
-    </div><!-- /.left -->
+        </ul>
+    </div>
     
     <div class="sidebar right">
       <div class="bar">Filter Members</div>
@@ -554,12 +547,5 @@ for ($i = (count($more_info) - 1); $i > -1; $i--)
 }
 ?>
       </ul>
-      {if group_id == '1'}
-        <h2>Admin Information</h2>
-        <p>
-        <strong>Sponsor Number:</strong> {embed:sponsor_number}<br />
-        <strong>Sponsor Zip Code:</strong> {embed:sponsor_zipcode}
-        </p>
-      {/if}
     </div>
-  </div><!-- /.grid23 -->
+  </div>

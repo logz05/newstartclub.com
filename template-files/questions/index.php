@@ -16,11 +16,11 @@
       <li class="question">
         <h2>Q.</h2>
         <h3><a href="{url_title_path='{channel}/detail'}">{qa_question}</a></h3>
-        <div class="answer">
-          {exp:trunchtml chars="120" inline="&hellip;<a class='link-more' href='{channel}/detail/{url_title}'>more&raquo;</a>"}
-            {qa_answer}
+        <p class="answer">
+          {exp:trunchtml chars="120" inline="&hellip; <a class='link-more' href='{channel}/detail/{url_title}'>more&raquo;</a>"}
+            {exp:html_strip}{qa_answer}{/exp:html_strip}
           {/exp:trunchtml}
-        </div>
+        </p>
       </li>
       {paginate}
         {if "{total_pages}" > 1}
@@ -35,11 +35,8 @@
   <div class="sidebar right">
     <div class="bar">Search</div>
     {exp:search:advanced_form result_page="{channel}/search-results" weblog="{channel}" results="9"}
-    <p>
-      <input id="query" name="keywords" type="search" class="input" placeholder="Search Questions" />
-      <input type="hidden" name="search_in" value="everywhere" />
-    </p>
-    
+    <input type="hidden" name="search_in" value="everywhere" />
+    <input id="query" name="keywords" type="search" class="input" placeholder="Search Questions" />
     <p><a href="#" class="advanced-search">Advanced Search</a></p>
 
     <div id="advanced-search">

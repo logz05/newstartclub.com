@@ -8,7 +8,7 @@
     <h2><a href="{url_title_path='resources/detail'}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
   {if resource_thumb != ''}
     <a href="{url_title_path='resources/detail'}" class="image">
-      {if resource_display_style == "video"}<span class="play"></span>{/if}
+      {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
       {exp:ce_img:single src="{resource_thumb}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
     </a>
   {if:else}
@@ -16,9 +16,9 @@
   {/if}
     <div class="details">
       <p class="description">
-        {exp:html_strip}
-          {exp:char_limit total="200"}{resource_description}{/exp:char_limit}
-        {/exp:html_strip}<a class="link-more" href="{url_title_path='resources/detail'}">more&raquo;</a>
+        {exp:trunchtml chars="200" inline="&hellip; <a class='link-more' href='/resources/detail/{url_title}'>more&raquo;</a>"}
+          {exp:html_strip}{resource_description}{/exp:html_strip}
+        {/exp:trunchtml}
       </p>
       <ul class="tags">
         <li><span>Tags:</span></li>

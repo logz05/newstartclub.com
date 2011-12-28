@@ -30,17 +30,17 @@
       </div>
     </h2>
     <h3><a href="/events/locations/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
-    <div class="details">
-      {exp:trunchtml chars="150" inline="&hellip;<a class='link-more' href='/events/detail/{url_title}'>more&raquo;</a>"}
-        {exp:textile}{event_description}{/exp:textile}
+    <p class="details">
+      {exp:trunchtml chars="150" threshold="150" inline="&hellip; <a class='link-more' href='{url_title_path='resources/detail'}'>more&raquo;</a>"}
+        {exp:html_strip}{exp:textile}{event_description}{/exp:textile}{/exp:html_strip}
       {/exp:trunchtml}
-    </div>
+    </p>
   </li>
   {paginate}
     {if "{total_pages}" > 1}
-      <div class="pagination">
+      <li class="pagination">
         <p>{pagination_links}</p>
-      </div>
+      </li>
     {/if}
   {/paginate}
 {/exp:weblog:entries}

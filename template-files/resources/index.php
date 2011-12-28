@@ -13,7 +13,7 @@
   <h1>{section}</h1>
 </div>
 <div class="grid23 clearfix">
-  <div class="list left">
+  <div class="main left">
     {embed="{channel}/_page-listing" orderby="date" sort="desc"}
   </div>
   <div class="sidebar right">

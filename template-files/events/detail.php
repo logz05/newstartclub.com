@@ -28,7 +28,7 @@
       {assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
       {assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
       {exp:textile}{event_description}{/exp:textile}
-      <p><em>Add this event to your RSVP list to attend!</em></p>
+      <p><em>Add this event to your <a href="#rsvp-heading">RSVP list</a> to attend!</em></p>
       <dl>
         <dt>Sponsored by</dt>
         <dd>
@@ -108,9 +108,9 @@
     {/exp:weblog:entries}
   </div><!--/.single-->
   <div class="sidebar right">
-    <div class="bar">RSVP List</div>
+    <div class="bar" id="rsvp-heading">RSVP List</div>
     {embed="{channel}/_rsvp-list"}
-    {embed="includes/_share" channel="{channel}"}
+    {embed="embeds/_share" channel="{channel}"}
     </div><!--/.sidebar-->
 </div><!--/.grid23-->
 

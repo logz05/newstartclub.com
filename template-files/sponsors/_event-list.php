@@ -1,11 +1,11 @@
-<ul>
+<ul id="listing">
 {exp:weblog:entries weblog="events" sort="asc" orderby="date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
   
 {if no_results}<p>You don&rsquo;t have any current events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
 
   {assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
   {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
-  <li class="row">
+  <li>
     <script type="text/javascript">
       function confirmation_{entry_id}() {
         var answer = confirm("Are you sure you want to delete this event?")
@@ -14,13 +14,15 @@
         }
       }
     </script>
-    <h1 class="title">{title}</h1>
-    <p class="button-wrap">
+    <h2>{title}</h2>
+    <div class="button-wrap event-edit">
       <a href="http://admin.newstartclub.com/index.php?C=edit&M=edit_entry&weblog_id={weblog_id}&entry_id={entry_id}" target="_blank" class="super small white button"><span>Edit</span></a>
       <a href="javascript: confirmation_{entry_id}()" class="super small white button"><span>Delete</span></a>
-    </p>
+    </div>
     <div class="details">
       <dl>
+        <dt>Details</dt>
+        <dd>{exp:textile}{event_description}{/exp:textile}</dd>
         <dt>Date</dt>
         <dd>
           <p>
@@ -44,7 +46,6 @@
             {/if}
           </p>
         </dd>
-        
         <dt>Location</dt>
         <dd>
           <p>{if event_location_name}{event_location_name}<br />{/if}
@@ -52,9 +53,6 @@
             {event_city}, {event_state} {event_zip}
           </p>
         </dd>
-        
-        <dt>Details</dt>
-        <dd>{exp:textile}{event_description}{/exp:textile}</dd>
       </dl>
     </div>
     <form id="entryform_{entry_id}" method="post" action="/sponsors/edit-event"  >

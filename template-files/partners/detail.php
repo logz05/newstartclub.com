@@ -26,7 +26,7 @@
       {redirect="404"}
     {/if}
     <div id="entry">
-      {exp:ce_img:single src="{partner_photo}" max_width="200" max_height="200" crop="yes" attributes='alt="{title}" title="{title}"'}
+      {exp:ce_img:single src="{partner_photo}" max_width="200" max_height="200" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
       <div class="bio">
         {partner_bio}
       </div>
