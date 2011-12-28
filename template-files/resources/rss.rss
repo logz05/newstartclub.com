@@ -23,7 +23,11 @@
       <title>{exp:xml_encode protect_entities="yes"}{title}{/exp:xml_encode}</title>
       <link>{path='{segment_1}/detail/{url_title}'}</link>
       <guid isPermaLink="false">{title_permalink="site/index"}#id:{entry_id}#date:{gmt_entry_date format="%H:%i"}</guid>
-      <description>{exp:xml_encode}{resource_description}{/exp:xml_encode}</description>
+      <description>
+        <![CDATA[
+          {resource_description}
+        ]]>
+      </description>
       {categories}<category>{exp:xml_encode protect_entities="yes"}{category_name}{/exp:xml_encode}</category>
       {/categories}
       <dc:date>{gmt_entry_date format="%D, %d %M %Y %H:%i %T"}</dc:date>
