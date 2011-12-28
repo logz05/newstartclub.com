@@ -75,15 +75,15 @@ td { vertical-align: top; }
    Author: Cavell L. Blood | 2011-11-14
 ============================================================================= */
 html {
-  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
-  font-size: 12px;
   text-align: center;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
 }
 body {
   background: url(/assets/css/images/background-gradient-texture.png) repeat-x #A7C7EF;
   color: #222;
+  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
   text-align: left;
   display: inline-block;
   width: 800px;
@@ -114,12 +114,11 @@ a:hover {
 
 /* Header
 ========================================================================== */
-.header {
-  position: relative;
-}
+.header { position: relative; }
 .header a { text-decoration: none; }
 #super-nav a:hover {
   color: #000;
+  text-decoration: underline;
 }
 #super-nav {
   text-align: right;
@@ -129,11 +128,12 @@ a:hover {
 }
 #super-nav a,
 #super-nav h5 {
-  font-size: 12px;
+  font-size: 11px;
   line-height: 14px;
   color: #00385D;
   display: inline-block;
   margin: 0;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 #super-nav ul li {
   display: inline;
@@ -197,7 +197,7 @@ a:hover {
 }
 #main-nav ul li {
   display: inline;
-  margin-left: 23px;
+  margin-left: 24px;
   font-weight: bold;
   font-size: 18px;
   padding: 0 0 20px;
@@ -261,7 +261,7 @@ footer {
   margin: 15px 0 35px 0;
 }
 footer {
-  font-family: Verdana;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
 }
 footer a { 
@@ -284,9 +284,9 @@ footer p { margin-bottom: 6px; }
   position: relative;
   min-height: 300px;
   width: 720px;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
+  -webkit-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
+  -moz-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
 }
 
 /* Typography
@@ -302,7 +302,10 @@ footer p { margin-bottom: 6px; }
 }
 #entry h3 {
   font-size: 17px;
-  margin: 16px 0 0;
+  margin: 16px 0 8px;
+}
+#entry h2 + h3 {
+  margin: 8px 0;
 }
 #entry h4 {
   font-size: 13px;
@@ -312,17 +315,57 @@ footer p { margin-bottom: 6px; }
   margin: 10px 0 0;
   font-size: 15px;
   line-height: 22px;
-  font-family: Helvetica, Arial, sans-serif;
 }
+#entry h2:first-child,
 #entry h2 + p,
+#entry h2 + ul,
+#entry h2 + ol,
 #entry h3 + p,
 #entry h4 + p,
 p:first-child,
 #entry p:first-child,
 #entry img + p,
 #entry-details + p,
+#entry-details + h2,
 #answer div + p { 
   margin-top: 0;
+}
+#entry sup.footnote {
+  margin-right: 3px;
+  font-size: 11px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-weight: normal;
+}
+.ie7 #entry sup.footnote {
+/*   display: block; */
+}
+#entry p.footnote {
+  line-height: 14px;
+  font-size: 10px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  margin-left: 22px;
+  position: relative;
+}
+.ie7 #entry p.footnote {
+  margin-left: 0;
+}
+#entry p.footnote sup {
+  font-size: 10px;
+  font-weight: bold;
+  display: block;
+  top: 7px;
+  left: -28px;
+  text-align: right;
+  width: 20px;
+}
+.ie7 #entry p.footnote sup {
+  display: inline;
+  text-align: left;
+  top: 0;
+  left: 0;
+}
+#entry p.footnote:target {
+  background-color: #eee;
 }
 #entry ul,
 #entry ol {
@@ -331,21 +374,15 @@ p:first-child,
 }
 #entry ul li,
 #entry ol li {
-  margin: 10px 0 0;
+  margin: 4px 0 0;
 }
 #entry ul li:first-child,
 #entry ol li:first-child {
   margin-top: 0;
 }
-#entry ol li ol li {
-  list-style-type: lower-alpha;
-}
-#entry dl {
-  margin-top: 10px;
-}
-#entry dl p:first-child {
-  margin-top: 0;
-}
+#entry ol li ol li { list-style-type: lower-alpha; }
+#entry dl { margin-top: 10px; }
+#entry dl p:first-child { margin-top: 0; }
 #entry dt {
   font-size: 16px;
   font-weight: bold;
@@ -357,27 +394,39 @@ p:first-child,
 }
 .body .sidebar p,
 .body .sidebar dl {
-  font-family: Verdana, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   color: #535353;
   margin-top: 10px;
+  line-height: 16px;
 }
 a.link-more {
   font-variant: small-caps;
   font-weight: bold;
+  font-size: 13px;
+}
+.center { text-align: center; }
+#entry hr + h3 {
+  font-size: 16px;
+  margin: 0 0 4px;
 }
 
 /* Forms
 ========================================================================== */
-label {
-  font-weight: bold
-}
-form .input {
+label { font-weight: bold ;}
+input[type=text],
+input[type=tel],
+input[type=email],
+input[type=password],
+input[type=file],
+input[type=search],
+textarea.input {
   display: inline-block;
-  margin: 0;
+  margin: 8px 0;
   padding: 3px;
-  font-size: 1em;
-  font-family: "Lucida Grande", "Lucida Sans";
+  outline: none;
+  font-size: 16px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   border: 1px solid;
   border-color: #999 #B3B3B3 #CCC;
   border-radius: 2px;
@@ -390,38 +439,55 @@ form .input {
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#E8E8E8), to(#FEFEFE));
   background: -moz-linear-gradient(top, #E8E9EC, #FEFEFE);
 }
-form div.error, form span.error, #my_health .sidebar span.error {
-  font-size: 11px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 5px;
+select.input {
+  font-size: 16px;
+  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+  -moz-transition: -moz-box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  display: inline-block;
+  margin: 8px 0;
+}
+@-moz-document url-prefix() {
+  select.input {
+    font-size: 15px;
+  }
+}
+input[type=text]:focus,
+input[type=tel]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+input[type=file]:focus,
+input[type=search]:focus,
+textarea.input:focus {
+  outline: none;
+  border-color: #8C8C8C #A6A6A6 #BFBFBF;
+  -webkit-box-shadow: 0 0 5px #A7C7EF;
+  -moz-box-shadow: 0 0 5px #A7C7EF;
+  box-shadow: 0 0 5px #A7C7EF;
+  background: #FFF;
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#FFFFFF));
+  background: -moz-linear-gradient(top, #FFFFFF, #FFFFFF);
+}
+form .error, span.error {
+  color: red;
 }
 form .input.error {
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#E8C4B7), to(#FFE4DB));
   background: -moz-linear-gradient(top, #E8C4B7, #FFE4DB);
 }
-form .input:focus {
-  outline: none;
-  border-color: #8C8C8C #A6A6A6 #BFBFBF;
-  background: #FFF;
-  -webkit-box-shadow: 0 0 5px #A7C7EF;
-  -moz-box-shadow: 0 0 5px #A7C7EF;
-  box-shadow: 0 0 5px #A7C7EF
+form input[type=radio].error + span {
+  color: red;
+}
+input.checkbox + span {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
 }
 form .checkbox,
 input[type=checkbox] {
   margin: 0 5px 5px 0;
   padding: 0;
 }
-input[type=text],
-input[type=tel],
-input[type=email],
-input[type=password],
-input[type=file],
-input.text,
-input.title,
-textarea.input,
-select.input { margin: 8px 0; }
 
 /* Table Elements
 ========================================================================== */
@@ -430,39 +496,28 @@ form table {
   border-spacing: 0;
 }
 form table tbody th,
-form table tbody td {
-  border-top: 1px dashed #EEE
-}
+form table tbody td { border-top: 1px dashed #EEE; }
 form table tbody tr:first-child th,
-form table tbody tr:first-child td {
-  border-top: 0;
-}
+form table tbody tr:first-child td { border-top: 0; }
 form table tbody span.req {
   display: inline;
   font-weight: bold;
   color: #F00;
 }
-form table th, table td {
-  padding: 0 5px
-}
+form table th, table td { padding: 0 5px; }
 form table th {
   text-align: right;
   vertical-align: top;
   padding-top: 14px;
 }
 form table th label {
-  font-size: 14px;
   color: #87A621;
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
-form table th div {
-  font-weight: normal
-}
-form table td {
-  text-align: left
-}
-form table td .input {
-  font-size: 16px
-}
+form table th div { font-weight: normal; }
+form table td { text-align: left; }
+form table select.input:first-child { margin: 12px 0 8px; }
 form table td code {
   font-size: 16px;
   font-weight: bold;
@@ -470,7 +525,7 @@ form table td code {
 form table td .instructions {
   font-size: 11px;
   line-height: 16px;
-  font-family: Verdana, Helvetica, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   margin: 0 0 8px;
 }
 
@@ -482,6 +537,9 @@ form table td .instructions {
 .grid23 { width: 509px; border-right: 1px dashed #ddd; }
 .grid23 > .left { width: 490px; margin: 10px 0; }
 .grid23 > .right { margin: 10px -211px 10px 0; width: 190px; }
+.grid12-23 { width: 255px; }
+.grid12-23 > .left { width: 240px; }
+.grid12-23 > .right { margin-right: -254px; width: 240px; }
 
 /* Commong Page Items
 ========================================================================== */
@@ -513,6 +571,7 @@ form table td .instructions {
   -webkit-transition: color 0.15s ease-in-out;
   -moz-transition: color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out;
+  font-weight: bold;
 }
 #rss-feed a {
   display: block;
@@ -532,9 +591,13 @@ form table td .instructions {
   width: 174px;
   padding-left: 8px;
   -webkit-appearance: textfield;
+  font-size: 11px;
+}
+#query + p {
+  margin-top: 0;
 }
 #searchform input + span {
-  font-family: Verdana;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 #searchform th,
 #searchform td {
@@ -561,7 +624,7 @@ form table td .instructions {
 /* Images Styles for main listing and Detail pages
 -------------------------------------------------------------------------- */
 a.image img,
-#entry img {
+#entry img.image {
   padding: 0;
   margin: 0;
   border: 5px solid #fff;
@@ -584,10 +647,10 @@ a.image:active img {
 #listing a.image img {
   border: 5px solid #fff;
 }
-#entry img {
+#entry img.image {
   border: 8px solid #fff;
   float: left;
-  margin: 0 18px 16px 0;
+  margin: 0 18px 15px 0;
   -webkit-box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
   -moz-box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
   box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
@@ -643,6 +706,8 @@ a.image:active img {
   -o-border-radius: 2px;
   border-radius: 2px;
   background-color: #444;
+  background-repeat: no-repeat;
+  background-position-y: 50%;
 }
 .bar:first-child {
   margin-top: 0;
@@ -675,12 +740,12 @@ a.image:active img {
 .sidebar ul {
   margin: 0 0 10px;
   padding: 0;
-  list-style-type: none;
 }
 .sidebar ul li {
-  font-size: 12px;
-  font-weight: 500;
-  margin-left: 20px;
+  font-size: 11px;
+  margin: 0 0 2px 18px;
+  list-style-type: none;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .sidebar ul li a {
   display: block;
@@ -688,18 +753,16 @@ a.image:active img {
 }
 .sidebar ul.bullets {
   margin-top: 10px;
-  font-family: Verdana, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .sidebar ul.bullets li {
   list-style-type: disc;
-  margin-left: 20px;
-  margin-bottom: 2px;
   font-size: 11px;
 }
 .sidebar h2 {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin: 0 0 3px;
   padding: 0;
   color: #535353;
 }
@@ -745,7 +808,7 @@ a.image:active img {
 -------------------------------------------------------------------------- */
 ul.tags {
   font-size: 11px;
-  font-family: Verdana, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   line-height: 20px;
   margin: 10px 0 0;
   padding: 0;
@@ -796,6 +859,7 @@ p.button-wrap a:hover, div.button-wrap a:hover {
   cursor: pointer;
   overflow: visible;
   width: auto;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(75%, transparent), to(rgba(255, 255, 255, 0.3)));
 }
 .button + .button {
   margin-left: 8px;
@@ -875,9 +939,10 @@ button::-moz-focus-inner {
   line-height: 1;
 }
 @-moz-document url-prefix() {
-  .super.button span{
+  .super.button span {
     padding: 5px 15px;
   }
+  
 }
 .giant.super.button {
   font-size: 18px;
@@ -900,6 +965,11 @@ button::-moz-focus-inner {
   -moz-border-radius: 11px;
 }
 .small.white.super.button span { padding: 3px 12px 5px }
+@-moz-document url-prefix() {
+  .small.super.button span {
+    padding: 5px 12px;
+  }
+}
 .large.super.button {
   background-position: left bottom;
   -webkit-border-radius: 18px;
@@ -976,7 +1046,7 @@ button::-moz-focus-inner {
 .reveal-modal input + span {
   font-size: 11px;
   line-height: 16px;
-  font-family: Verdana, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .reveal-modal a.forgot-pass {
   float: right;
@@ -1030,7 +1100,7 @@ button::-moz-focus-inner {
 #listing li p {
   margin: 0 0;
   font-size: 12px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   line-height: 19px;
 }
 #listing li.pagination {
@@ -1090,10 +1160,15 @@ li:hover span.edit-this {
   position: absolute;
   color: #fff;
   right: 30px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   font-weight: normal;
   margin-top: 2px;
+}
+@-moz-document url-prefix() {
+  #the-comments .leave-cmt {
+    margin-top: 0;
+  }
 }
 #the-comments ol,
 #the-comments ol li  { 
@@ -1118,7 +1193,6 @@ li:hover span.edit-this {
 }
 #the-comments > h2 {
   font-weight: 600;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 18px;
   color: #535353;
   margin: 4px 0;
@@ -1145,7 +1219,7 @@ li:hover span.edit-this {
 #comment-preview h3 .date {
   color: #aaa;
   font-size: 11px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   position: absolute;
   top: 10px;
   right: 8px;
@@ -1156,7 +1230,7 @@ li:hover span.edit-this {
 }
 #the-comments ul#allowed-elements li {
   font-size: 11px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   list-style-type: none;
   color: #555;
   font-style: italic;
@@ -1169,7 +1243,7 @@ li:hover span.edit-this {
   border: 0;
 }
 #comment-form p, #comment-list p, #comment-preview p {
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
 }
 
@@ -1178,12 +1252,15 @@ li:hover span.edit-this {
 /* Home | http://newstartclub.com
 -------------------------------------------------------------------------- */
 .home #intro-heading {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
   position: relative;
 }
 .home #intro-heading h1 {
   font-size: 48px;
-  padding-left: 19px;
+  padding-left: 16px;
+  line-height: 44px;
+  margin: 0 0 14px;
+  letter-spacing: normal;
 }
 .home #intro-heading h2 {
   text-align: center;
@@ -1220,6 +1297,322 @@ li:hover span.edit-this {
   float: left;
   margin: 7px 10px 0 0;
 }
+.home .heading h1 {
+  font-size: 40px;
+}
+.home .heading h1 span {
+  font-weight: normal;
+}
+.home .main .resources h2 {
+  font-weight: 600;
+  font-size: 18px;
+  color: #535353;
+  margin: 6px 0 3px;
+}
+.home .main .bar { background-position-x: 464px; }
+.home .sidebar .bar { background-position-x: 164px; }
+.home .resources .bar { background-image: url(/assets/css/images/icon-small-resources.png); }
+.home .events .bar { background-image: url(/assets/css/images/icon-small-events.png); }
+.home .news .bar { background-image: url(/assets/css/images/icon-small-news.png); }
+.home .my_health .bar { background-image: url(/assets/css/images/icon-small-myhealth.png); }
+.home .members .bar { background-image: url(/assets/css/images/icon-small-settings.png); }
+.home .locations .bar { background-image: url(/assets/css/images/icon-small-locations.png); }
+.home .sponsor-admin .bar { background-image: url(/assets/css/images/icon-small-sponsors-settings.png); }
+.home .resources ul {
+  margin: 0;
+  padding: 0;
+}
+.home .resources li.resource:first-child {
+  margin-left: 0px;
+}
+.home .resources li.resource {
+  float: left;
+  width: 110px;
+  margin-left: 16px;
+  list-style-type: none;
+  text-align: center;
+}
+.home .resources a.image {
+  margin: 0 0 4px;
+}
+.home .resources li.resource span.title {
+  font-weight: bold;
+  font-size: 11px;
+  text-align: center;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  line-height: 14px;
+  display: inline-block;
+}
+.home .sidebar .resources {
+  margin: 10px 0 0;
+}
+.home .resources .see-more {
+  margin: 4px 0 7px 18px;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
+  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
+}
+.home .resources .see-more a {
+  color: #5b7316;
+}
+.home .events {
+  margin: 10px 0 0;
+}
+.home .events ul {
+  margin: 0;
+  padding: 0;
+}
+.home .events li:first-child {
+  border-top: none;
+}
+.home .events li {
+  margin: 0;
+  position: relative;
+  padding: 7px 0;
+  border-top: 1px dashed #DDD;
+  list-style-type: none;
+}
+.home .events li.event h3 {
+  padding: 0;
+}
+.home .news {
+  margin: 4px 0 0;
+}
+.home .news h4 {
+  margin: 12px 0;
+}
+.home .my_health .total-score {
+  font-size: 90px;
+  text-align: center;
+  font-weight: bold;
+  border-top: 0;
+  line-height: 70px;
+  margin: 6px 0 0;
+}
+.home .my_health .total-score a {
+  color: #71626a;
+}
+.home .my_health .total-score a:hover {
+  color: #41323b;
+  text-decoration: none;
+}
+.home .my_health h2 {
+  text-align: center;
+}
+.home .members {
+  margin: 10px 0 0;
+}
+.home .members li,
+.home .sponsor-admin li {
+  margin-bottom: 4px;
+}
+.home .location-map {
+  height: 110px;
+  border: 5px solid #fff;
+  margin-top: 8px;
+  background-repeat: no-repeat;
+  -webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
+  -webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+.home .location-map:hover {
+  -webkit-box-shadow: rgba(0,0,0,0.6) 0px 1px 3px;
+  -moz-box-shadow: rgba(0,0,0,0.6) 0px 1px 3px;
+}
+.home .location-map:active {
+  -webkit-transform: translateY(1px);
+  -moz-transform: translateY(1px);
+}
+
+/* My Health | http://newstartclub.com/my_health
+-------------------------------------------------------------------------- */
+.my_health .heading .icon {
+  width: 41px;
+  height: 36px;
+  background: url(/assets/css/images/icon-large-myhealth.png) no-repeat;
+  float: left;
+  margin: 7px 10px 0 0;
+}
+.my_health #gauge {
+  background: url(/assets/css/images/my_health_gauge.png) no-repeat top center;
+  width: 190px;
+  height: 122px;
+  margin-top: 10px;
+  margin-bottom: -20px;
+}
+.my_health #gauge + p {
+  margin: 0 0 10px;
+}
+.my_health #calculator table {
+  width: 245px;
+  float: left;
+  margin: 0 0 12px;
+}
+.my_health #calculator ul {
+  margin: 6px 0 0;
+  padding: 0;
+}
+.my_health #calculator li {
+  margin: 0 0 6px 5px;
+  list-style-type: none;
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+}
+.my_health #calculator .grid12-23 label {
+  font-weight: normal;
+}
+.my_health #calculator h2 {
+  font-size: 20px;
+}
+.my_health #calculator p {
+  font-size: 12px;
+  line-height: 20px;
+  color: #555;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  margin: 0 16px 0 0px;
+}
+.my_health #calculator #calculate {
+  margin: 20px 0 0;
+  font-size: 18px;
+}
+@-moz-document url-prefix() {
+  .my_health #calculator #calculate span {
+    padding: 6px 15px 3px;
+  }
+}
+.my_health #calculator table th,
+.my_health #calculator table td { border: 0; }
+.my_health .right .total-score {
+  font-size: 90px;
+  text-align: center;
+  font-weight: bold;
+  border-top: 0;
+  line-height: 70px;
+  margin-top: 6px;
+}
+@-moz-document url-prefix() {
+  .my_health .right .total-score {
+    line-height: 48px;
+    margin-top: 22px;
+  }
+}
+.my_health .right .total-score a {
+  color: #565656;
+}
+.my_health .right .total-score a:hover {
+  color: #333;
+  text-decoration: none;
+}
+.my_health #total-score {
+  font-size: 108px;
+  text-align: left;
+  font-weight: bold;
+  display: inline-block;
+  border: 4px solid;
+  padding: 0px 40px;
+  margin: 10px 0 0;
+  border-radius: 8px;
+}
+#locations.reveal-modal.my_health  {
+  width: 330px;
+  margin-left: -195px;
+  padding: 30px;
+}
+#locations.reveal-modal.my_health .scroll-box {
+  height: 330px;
+  overflow-y: scroll;
+  box-shadow: 0 -8px 6px -7px rgba(0, 0, 0, .1) inset;
+}
+#locations.reveal-modal.my_health p {
+  font-weight: normal;
+  line-height: 18px;
+}
+#locations.reveal-modal.my_health table {
+  width: 100%;
+}
+#locations.reveal-modal.my_health tr:hover {
+  background-color: #f7eaf4;
+}
+#locations.reveal-modal.my_health tr {
+  border-top: 1px dashed #ddd;
+}
+#locations.reveal-modal.my_health tr:first-child {
+  border-top: none;
+}
+.my_health.reveal-modal h2 {
+  font-size: 18px;
+}
+.my_health.reveal-modal h3 {
+  font-size: 16px;
+}
+.my_health #entry .vimeoBadge img {
+  border: 6px solid #fff;
+  margin: 0;
+}
+.my_health #entry .vimeoBadge .caption {
+  text-align: center;
+}
+
+/* COLORS */
+.my_health .bar,
+.my_health .heading .icon {
+  background-color: #f438a5;
+}
+.my_health a,
+.my_health #entry .vimeoBadge a,
+.my_health table label,
+.my_health.reveal-modal h2 {
+  color: #f438a5;
+}
+.my_health a:hover {
+  color: #c60c78; /* FF35A8 */
+}
+.my_health #total-score.one {
+  background-color: #DDEDCD;
+  border-color: #89B95A;
+  color: #89B95A;
+}
+.my_health #total-score.two {
+  background-color: #CDE0FF;
+  border-color: #5D83DA;
+  color: #5D83DA;
+}
+.my_health #total-score.three {
+  background-color: #FFFFDB;
+  border-color: #ECE90E;
+  color: #ECE90E;
+}
+.my_health #total-score.four {
+  background-color: #FFF5D6;
+  border-color: #F2B32F;
+  color: #F2B32F;
+}
+.my_health #total-score.five {
+  background-color: #FFE3DE;
+  border-color: #D24C4D;
+  color: #D24C4D;
+}
+.my_health #recommendations li {
+  margin: 4px 0 0;
+}
+.my_health #chart-legend li {
+  margin: 0;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+.my_health .bullet {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 23px;
+  display: inline-block;
+  height: 18px;
+}
+.my_health .bullet.one { color: #89B95A; }
+.my_health .bullet.two { color: #5D83DA; }
+.my_health .bullet.three { color: #ECE90E; }
+.my_health .bullet.four { color: #F2B32F; }
+.my_health .bullet.five { color: #D24C4D; }
 
 /* Resources | http://newstartclub.com/resources
 -------------------------------------------------------------------------- */
@@ -1244,6 +1637,36 @@ li:hover span.edit-this {
   width: 100%;
   height: 100%;
   z-index: 1;
+}
+.borderradius .resources a.image .play {
+  background-image: none;
+  border: 3px solid white;
+  border-radius: 25px;
+  width: 34px;
+  height: 34px;
+  box-shadow: 0 0 5px rgba(80, 80, 80, 0.5);
+  left: 35px;
+  top: 22px;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  -moz-transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+.borderradius .resources a.image:hover .play {
+  background-image: none;
+  background-color: rgba(140, 220, 51, 0.6);
+  box-shadow: 0 0 7px rgba(255, 255, 255, 0.7);
+}
+.borderradius .resources a.image .play i {
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid white;
+  left: 12px;
+  position: absolute;
+  top: 10px;
 }
 .resources li.resource h2 {
   font-size: 20px;
@@ -1278,7 +1701,7 @@ li:hover span.edit-this {
 }
 .resources #entry table {
   margin-bottom: 10px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
 }
 .resources #entry th {
@@ -1300,43 +1723,6 @@ li:hover span.edit-this {
 .resources #entry.article #entry-details img {
   float: none;
   margin-bottom: 0;
-}
-.resources #entry sup.footnote {
-/*   display: inline-block; */
-  margin-left: 3px;
-/*   margin-bottom: 5px; */
-  font-size: 11px;
-}
-.ie7 .resources #entry sup.footnote {
-/*   display: block; */
-}
-.resources #entry p.footnote {
-  line-height: 14px;
-  font-size: 10px;
-  font-family: Verdana, Helvetica, Arial, sans-serif;
-  margin-left: 22px;
-  position: relative;
-}
-.ie7 .resources #entry p.footnote {
-  margin-left: 0;
-}
-.resources #entry p.footnote sup {
-  font-size: 10px;
-  font-weight: bold;
-  display: block;
-  top: 7px;
-  left: -28px;
-  text-align: right;
-  width: 20px;
-}
-.ie7 .resources #entry p.footnote sup {
-  display: inline;
-  text-align: left;
-  top: 0;
-  left: 0;
-}
-.resources #entry p.footnote:target {
-  background-color: #eee;
 }
 .resources #video-overlay {
   width:490px;
@@ -1363,6 +1749,9 @@ li:hover span.edit-this {
 }
 .resources .ingredients + ul li {
   padding-bottom: 6px;
+  list-style-type: disc;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
 }
 .resources .ingredients li a {
   display: inline;
@@ -1417,13 +1806,12 @@ li:hover span.edit-this {
   background-color: #f2f5e6;
   border-color: #87a922;
 }
-.body.resources a,
-.home.resources a,
+.resources a,
 .resources #rss-feed a:hover span {
   color: #87a922;
 }
-.body.resources a:hover,
-.home.resources a:hover {
+.resources a:hover,
+.resources a:hover {
   color: #5b7316;
 }
 
@@ -1570,7 +1958,7 @@ li:hover span.edit-this {
 .events li.event h3 {
   font-weight: bold;
   padding-bottom: 8px;
-  margin: 8px 0 8px;
+  margin: 8px 0;
   font-size: 12px;
   line-height: 12px;
 }
@@ -1582,7 +1970,15 @@ li:hover span.edit-this {
 .events li.event ul li,
 .events .main #entry ul li {
   list-style-type: disc;
-  margin-left: 24px;
+}
+.events li.event ul {
+  padding: 0 0 0 24px;
+  margin: 8px 0;
+}
+.events li.event ul li {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  line-height: 18px;
 }
 #rsvp-list li.rsvp {
   margin-left: 0;
@@ -1594,10 +1990,9 @@ li:hover span.edit-this {
 }
 #rsvp-list li.rsvp:first-child {
   border-top: 0;
-  margin-top: 10px;
+  padding: 0 0 6px;
 }
-#rsvp-list li.rsvp span {
-  font-size: 12px;
+#rsvp-list li.rsvp span.date {
   font-weight: bold;
   display: block;
 }
@@ -1610,7 +2005,7 @@ li:hover span.edit-this {
 }
 #rsvp-list li.rsvp form {
   position: absolute;
-  top: 5px;
+  top: 0;
   right: 3px;
 }
 #rsvp-list li.rsvp button {
@@ -1653,6 +2048,8 @@ li:hover span.edit-this {
 #event-calendar td.calendarToday {
   padding: 5px;
   font-weight: 500;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
   color: #777;
 }
 #event-calendar td.calendarCell:hover {
@@ -1669,13 +2066,11 @@ li:hover span.edit-this {
   border: 2px solid #FFB637;
   padding: 3px;
 }
-.events .sidebar .month-links {
-  margin-left: 10px;
-  margin-top: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  display: block;
+.events .sidebar #dates {
+  margin: 0 0 10px;
+}
+.events .sidebar h2.month-heading {
+  margin: 10px 0 0;
 }
 
 /* COLORS */
@@ -1692,12 +2087,11 @@ li:hover span.edit-this {
   border-color: #FFB637;
 }
 .events a,
-.home .event a, #rsvp-list a,
+.rsvp-list a,
 .events #rss-feed a:hover span {
   color: #FFB637;
 }
 .events a:hover,
-.home .event a:hover,
 .rsvp-list a:hover {
   color: #FDA507;
 }
@@ -1769,20 +2163,20 @@ li:hover span.edit-this {
   margin-top: 10px;
 }
 #directions {
-  width: 100%;
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   color: #444;
 }
+#directions table { width: 100%; }
 #directions td { vertical-align: middle; }
 #directions .adp-distance { text-align: right; }
 #map-start, #map-end { display: none; }
 
 /* COLORS */
 .locations .bar,
+.home .sponsor-admin .bar,
 .locations .heading .icon,
-.locations #rss-feed:hover .icon,
-.home #locations.bar {
+.locations #rss-feed:hover .icon {
   background-color: #FF4B28;
 }
 .locations #listing li.pagination a:hover {
@@ -1790,12 +2184,12 @@ li:hover span.edit-this {
   border-color: #FF4B28;
 }
 .locations a,
-.home .sponsor-panel a,
+.home .sponsor-admin a,
 .locations #rss-feed a:hover span {
   color: #FF4B28
 }
 .locations a:hover,
-.home .sponsor-panel a:hover {
+.home .sponsor-admin a:hover {
   color: #CF0B00
 }
 
@@ -1806,9 +2200,6 @@ li:hover span.edit-this {
   height: 36px;
   background-image: url(/assets/css/images/icon-large-qa.png);
   margin: 7px 10px 0 0;
-}
-.questions li.question {
-  position: relative;
 }
 .questions li.question h2 {
   font-size: 24px;
@@ -1899,7 +2290,7 @@ li:hover span.edit-this {
   background: url(/assets/css/images/hover-fade.png);
   background-repeat: repeat-y;
   background-position: left 50%;
-  font-family: Verdana;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
   padding: 9px 9px 9px 55px;
   text-align: right;
@@ -1940,6 +2331,7 @@ li:hover span.edit-this {
   padding-left: 32px;
   background-repeat: no-repeat;
   background-position: center left;
+  font-size: 14px;
 }
 #facebook-icon { background-image: url(/assets/css/images/news-facebook.png); }
 #twitter-icon { background-image: url(/assets/css/images/news-twitter.png); }
@@ -1970,4 +2362,363 @@ li:hover span.edit-this {
 }
 .news a:hover {
   color: #0090D3;
+}
+
+/* Member Styles | Registration, update-profile, and settings pages
+-------------------------------------------------------------------------- */
+.members .heading .icon {
+  width: 36px;
+  height: 36px;
+  background-image: url(/assets/css/images/icon-large-settings.png);
+  margin: 7px 10px 0 0;
+}
+.members label { color: #777; }
+.members label.req { color: #87A621; }
+.members h2 { margin: 18px 0 0; }
+.members h2.first { margin: 0; }
+.members h3 {
+  margin: 0 0 6px;
+  color: #686868;
+}
+.members .grid12-23 { margin-bottom: 12px; }
+.members #register h2 select { margin-top: 2px; }
+.members #register h2 {
+  margin: 6px 0 0;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #777;
+}
+.members #terms-conditions {
+  margin: 10px 0;
+}
+.members .update-profile {
+  width: 186px;
+  height: 216px;
+  background: url(/assets/css/images/update_profile.png) no-repeat;
+  margin-left: -20px;
+  margin-top: 20px;
+}
+.members #settings-msg {
+  background-color: #E7F1C7;
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #91BD09;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  margin-bottom: 10px;
+}
+.members #settings-msg h1 {
+  font-size: 24px;
+}
+.members #settings table th {
+  width: 178px;
+}
+.members form ul {
+  margin: 0;
+  padding: 0;
+}
+.members form li {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  list-style-type: none;
+  margin: 0 0 3px 5px;
+}
+.members form li label {
+  font-weight: normal;
+  color: black;
+}
+
+/* COLORS */
+.members .bar,
+.members .heading .icon {
+  background-color: #A2A2A2
+}
+.members a { color: #777 }
+.members a:hover { color: #333 }
+
+/* Sponsors | http://newstartclub.com/sponsors
+-------------------------------------------------------------------------- */
+#main-nav.sponsors li {
+  margin-left: 20px;
+}
+.sponsors #sponsor-id-switch {
+  margin-top: 15px;
+}
+.sponsors #sponsor-id-switch h5 {
+  border-top: 1px dashed #DDD;
+  margin: 0;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+.sponsors #nav-list {
+  margin: 0;
+  padding: 0;
+}
+.sponsors #nav-list li {
+  font-size: 24px;
+  list-style: none;
+  margin-bottom: 6px;
+}
+.sponsors span.arrow {
+  color: #fff
+}
+.sponsors .quotes {
+  font-style: italic;
+  margin-top: 170px;
+}
+.sponsors .quotes blockquote {
+  font-size: 16px;
+  line-height: 22px;
+  margin: 0 0 10px;
+}
+.sponsors .quotes cite {
+  margin: 0px 0px 70px 20px;
+  text-indent: -11px;
+  display: block;
+}
+.sponsors .quotes cite span {
+  color:#FF4B28;
+}
+.sponsors .events > h2 {
+  margin: 0;
+  color: #444;
+}
+.sponsors .events table th {
+  width: 100px;
+}
+.sponsors .events li h2 {
+  font-size: 14px;
+  width: 375px;
+  padding: 3px 0;
+}
+.sponsors .events li dl {
+  margin: 0;
+}
+.sponsors .events li dd {
+  margin: 0 0 0 10px;
+}
+.sponsors .events li dt {
+  font-weight: bold;
+  margin: 10px 0 0;
+}
+.sponsors .events li dt:first-child {
+  margin: 0;
+}
+.sponsors li .event-edit {
+  margin: 0;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+.sponsors .events li .details {
+  margin: 10px 0 0;
+}
+.sponsors .events li .details ul {
+  margin: 6px 0 6px 20px;
+  padding: 0;
+}
+.sponsors .events li .details li {
+  list-style-type: disc;
+  font-size: 11px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+}
+.sponsors .events #entryform td label {
+  font-weight: normal;
+}
+.sponsors .events #entryform td ul {
+  padding: 0;
+  margin: 0;
+}
+.sponsors .events #entryform td li {
+  list-style-type: none;
+}
+.sponsors .invite h2 {
+  color: #616161;
+  margin: 16px 0 0;
+}
+.sponsors .invite h2:first-child {
+  margin-top: 0;
+}
+.sponsors .row-header {
+  padding: 10px 10px 0;
+}
+.sponsors .row-header span {
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #FF4B28;
+}
+.sponsors #listing > li {
+  position: relative;
+  padding: 6px 10px
+}
+.sponsors #listing li:hover {
+  background-color: #FFF7EE;
+}
+.sponsors #listing li h2 {
+  font-size: 14px;
+  width: 375px;
+  margin: 0;
+  color: #FF4B28;
+}
+.sponsors #listing li h2:hover {
+  cursor: pointer;
+}
+.sponsors li .date {
+  background: url(/assets/css/images/timeago-clock.png) no-repeat right 50%;
+  padding-right: 16px;
+  text-align: right;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  color: #888;
+}
+.sponsors #listing li p {
+  font-size: 11px;
+  margin-top: 4px;
+  line-height: 17px;
+}
+.sponsors #listing li p:first-child {
+  margin-top: 0;
+}
+.sponsors li .invite-date,
+.sponsors li .join-date {
+  display: none;
+}
+.sponsors li .date:hover .timeago {
+  display: none;
+}
+.sponsors li .date:hover .invite-date,
+.sponsors li .date:hover .join-date {
+  display: block;
+}
+.sponsors .resources #entry ul {
+  margin: 0;
+  padding: 0;
+}
+.sponsors .resources #entry ul li {
+  list-style-type: none;
+  margin: 0 0 0 8px;
+}
+.sponsors .resources #entry li {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 11px;
+}
+.sponsors .resources #entry h3 {
+  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
+  margin: 8px 0 2px;
+  color: #555;
+}
+.sponsors .tour #entry h2 {
+  font-size: 24px;
+  font-weight: normal;
+  color: #FF4B28;
+}
+.sponsors .resources #entry textarea {
+  font-family: monospace;
+  margin: 6px 0 0;
+}
+
+/* COLORS */
+.sponsors .bar { background-color: #FF4B28; }
+.sponsors a,
+.sponsors th label { color: #FF4B28; }
+.sponsors a:hover,
+.sponsors a:hover span.arrow { color: #CF0B00; }
+.sponsors .pagination a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+#main-nav.sponsors {
+  background-color: #FF4B28;
+  background-image:-moz-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%); /* FF3.6+ */
+  background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#FF4F2D), color-stop(52%,#FF7155), color-stop(52%,#FF4B28), color-stop(100%,#FF4B28)); /* Chrome,Safari4+ */
+  background-image:-webkit-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%);
+  background-image:-o-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%); /* Opera 11.10+ */
+  background-image:-ms-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%); /* IE10+ */
+  background-image:-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%); /* W3C */
+}
+#main-nav.sponsors a { color: #FFDCD6; }
+#main-nav.sponsors a:hover { color: #FFF; }
+
+/* Super Admin | http://newstartclub.com/super-admin
+-------------------------------------------------------------------------- */
+.super-admin dl.chart{
+  position:relative;
+  height:150px;
+  width: 490px;
+  margin-bottom: 50px;
+}
+.super-admin dl.chart dt,
+.super-admin dl.chart dd{
+  position:absolute;
+  text-align:center;
+}
+.super-admin dl.chart dt{
+  top:100%;
+}
+.super-admin dl.chart dd{
+  bottom:0;
+  color:#fff;
+  background-color:#87A621;
+  font-weight: bold;
+  margin: 0;
+}
+.super-admin iframe {
+  border: 0;
+}
+/* TIMELINE CHARTS */
+.super-admin .timeline {  
+  margin: 0;
+  padding: 0;
+}
+.super-admin .timeline li { 
+  position: relative;
+  list-style-type: none;
+  float: left;
+  width: 100%; 
+  margin: 1px 0;
+  height: 18px; 
+}
+.super-admin .timeline li a { 
+  display: block;
+  height: 100%;
+  text-decoration: none;
+}
+.super-admin .timeline li .label { 
+  display: block; 
+  position: absolute; 
+  left: 4px;
+  width: 100%; 
+  height: 24px; 
+  line-height: 20px;
+  color: #333;
+  z-index: 1;
+  font-weight: bold;
+}
+.super-admin .timeline li a .count { 
+  display: block; 
+  position: absolute; 
+  bottom: 0; 
+  left: 0; 
+  width: 0; 
+  height: 100%; 
+  background: #AAA; 
+  text-indent: -9999px; 
+  overflow: hidden; 
+}
+.super-admin .timeline li:hover { 
+  background: #EFEFEF; 
+}
+.super-admin .timeline li:hover .label { 
+  color: #fff; 
+}
+.super-admin .timeline li a:hover .count { 
+  background: #2D7BB2; 
 }
