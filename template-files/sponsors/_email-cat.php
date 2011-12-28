@@ -68,10 +68,13 @@ function send_emails($mailing_list, $subject, $custom_message, $interest, $inter
   // To send HTML mail, the Content-type header must be set
   $headers  = 'MIME-Version: 1.0' . "\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-  $headers .= 'From: {exp:user:stats dynamic="off"}{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories} <{username}>{/exp:user:stats}' . "\r\n";
+  $headers .= 'From: {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories} <club@newstart.com>' . "\r\n";
+  $headers .= 'Reply-To: {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
+  
+  $clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');
   
   //Add club@newstart.com so that we can see all e-mails sent out.
-  array_push($mailing_list, 'club@newstart.com');
+  array_push($mailing_list, $clubEmail);
   
 for ($i = 0; $i < count($mailing_list); $i++)
   {
@@ -104,11 +107,11 @@ for ($i = 0; $i < count($mailing_list); $i++)
                 <tr>
                   <td bgcolor="#FFFFFF" valign="top" style="font-size:16px;color:#000000;line-height:150%;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; border-bottom-left-radius: 15px; -moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; -khtml-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; -khtml-border-bottom-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); padding:30px;">
         ';
-      $message .= 'Dear '. $mailing_list[$i][2] .' '. $mailing_list[$i][3] .',<br /><br />';
+      $message .= 'Dear '. $mailing_list[$i][2] .',<br /><br />';
       $message .= nl2br($custom_message);
       $message .= '
                     <br /><br />
-                    {exp:user:stats dynamic="off"}{firstName} {lastName}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}{/exp:user:stats}<br />
+                    {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
                     <a href="http://newstartclub.com" style="color:#87A621;">newstartclub.com</a></span>
                   </td>
                 </tr>
@@ -116,7 +119,7 @@ for ($i = 0; $i < count($mailing_list); $i++)
               <table width="550" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
-                    <span style="font-size:10px;color:#FFFFFF;font-family:verdana;">';
+                    <span style="font-size:10px;color:#548DEA;font-family:verdana;">';
       $message .= $interest;
       $message .= $interest_line;
       $message .= '</span>
@@ -138,10 +141,10 @@ for ($i = 0; $i < count($mailing_list); $i++)
 
 function show_form($listTotal)
 {
-  print '<div class="heading clearafter">
+  print '<div class="heading clearfix">
             <h1>{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_3}"}{category_name}{/exp:weblog:categories} (&nbsp;'. $listTotal .'&nbsp;)</h1>
         </div>
-        <div class="grid23 clearafter">
+        <div class="grid23 clearfix">
           <div class="left">
             <form method="post" action="">
               <table>
@@ -151,13 +154,13 @@ function show_form($listTotal)
                 </tr>
                 <tr>
                   <th scope="row"><label for="custom_message">Message</label></th>
-                  <td><textarea class="input" cols="40" rows="10" name="custom_message"></textarea></td>
+                  <td><textarea class="input" cols="38" rows="10" name="custom_message"></textarea></td>
                 </tr>
                 <tr>
                   <th></th>
                   <td>
                     <input type="hidden" name="interest" value="You are receiving this e-mail because you are interested in &ldquo;{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_3}"}{category_name}{/exp:weblog:categories}&rdquo;." />
-                    <textarea name="interest_line" class="hide"><br />You can update your preferences <a href="{path=settings}" style="font-size:10px;color:#FFFFFF;font-family:verdana;">here</a>.</textarea>
+                    <textarea name="interest_line" class="hidden"><br />You can update your preferences <a href="{path=settings}" style="font-size:10px;color:#548DEA;font-family:verdana;">here</a>.</textarea>
                     <p class="button-wrap">
                       <button type="submit" class="super green button"><span>Send Email</span></button>
                     </p>
@@ -179,10 +182,10 @@ function show_form($listTotal)
 function show_done($listRecipients)
 {
 
-  print '<div class="heading clearafter">
+  print '<div class="heading clearfix">
           <h1>Email sent</h1>
         </div>
-        <div class="grid23 clearafter">
+        <div class="grid23 clearfix">
           <div class="left">
             <p>Your email was sent to the following members:</p>
             <ul id="sent-members-list">';
