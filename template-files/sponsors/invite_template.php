@@ -6,21 +6,21 @@
         <td valign="top" align="center">
           <table width="550" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="border-top:0px solid #333333;border-bottom:10px solid #000000;">
-                <center><a href="http://www.newstartclub.com/"><IMG SRC="http://www.newstartclub.com/assets/images/email/invites/header-email.png" BORDER="0" title="NEWSTART&reg; Lifestyle Club"  alt="NEWSTART&reg; Lifestyle Club" align="center" /></a></center>
+              <td style="border-top:0px solid #333333;">
+                <center><a href="http://newstartclub.com/"><IMG SRC="http://newstartclub.com/assets/images/email/invites/header-email.jpg" BORDER="0" title="NEWSTART&reg; Lifestyle Club"  alt="NEWSTART&reg; Lifestyle Club" align="center" style="border-top-left-radius: 15px; -moz-border-radius-topleft: 15px; -webkit-border-top-left-radius: 15px; -khtml-border-top-left-radius: 15px; border-top-right-radius: 15px; -moz-border-radius-topright: 15px; -webkit-border-top-right-radius: 15px; -khtml-border-top-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);" /></a></center>
               </td>
             </tr>
           </table>
           <table width="550" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
             <tr>
-              <td style="background-color:#000000;color:#FFFFFF;border-bottom:10px solid #000000;text-align:right;"><span style="font-size:30px;color:#FFFFFF;font-family:'Helvetica Neue', Arial, Helvetica, sans-serif;line-height:110%;">you&rsquo;re&nbsp;</span><span style="font-size:30px;font-weight:bold;color:#FFFFFF;font-family:'Helvetica Neue', Arial, Helvetica, sans-serif;line-height:110%;padding-right:20px;">Invited</span></td>
+              <td style="background: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png) center center #000000; color:#FFFFFF; height: 60px; text-align:right; padding-right: 30px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);"><span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">you&rsquo;re</span>&nbsp;&nbsp;<span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;font-weight:bold;">Invited</span></td>
             </tr>
           </table>
           <table width="550" cellpadding="10" cellspacing="0">
             <tr>
               <td bgcolor="#FFFFFF" valign="top" style="font-size:16px;color:#000000;line-height:150%;font-family:'Helvetica Neue', Arial, Helvetica, sans-serif; border-bottom-left-radius: 15px; -moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; -khtml-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; -khtml-border-bottom-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); padding:40px;">
                 <p>Hi {message},<br /><br />
-                <span>You&rsquo;re invited to become a member of the <a href="http://www.newstartclub.com/">NEWSTART&reg; Lifestyle Club</a>&mdash;the most natural way to live longer, be energized, lose weight, increase strength, and get healthy.
+                <span>You&rsquo;re invited to become a member of the <a href="http://newstartclub.com/">NEWSTART&reg; Lifestyle Club</a>&mdash;the most natural way to live longer, be energized, lose weight, increase strength, and get healthy.
                 You&rsquo;ll find:</span>
                   <ul>
                     <li>Live streaming videos</li>
@@ -30,16 +30,15 @@
                     <li>FREE membership</li>
                   </ul>
                 To join, simply click the link below:<br/>
-                <a href="http://www.newstartclub.com/register/key/{key}/{selected_group_id}/" style="font-size:14px;">http://www.newstartclub.com/register/key/{key}/{selected_group_id}/</a><br /><br />
-                Enjoy,<br />
+                <a href="http://newstartclub.com/register/key/{key}/{selected_group_id}/" style="font-size:14px;">http://newstartclub.com/register/key/{key}/{selected_group_id}/</a><br /><br />
+                Enjoy,<br /><br />
                 The NEWSTART Lifestyle Club Team<br />
-                <a href="www.newstartclub.com">www.newstartclub.com</a></span></p>
+                <a href="http://newstartclub.com">newstartclub.com</a></span></p>
               </td>
             </tr>
             <tr>
               <td style="background-color:transparent; text-align:center;" valign="top">
-                <span style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">A FREE community service of <a href="http://newstart.com/" style="font-size:10px;color:#FFFFFF;line-height:4em;font-family:verdana;">NEWSTART&reg;</a>. &copy; 2011. All Rights Reserved
-                </span>
+                <span style="font-size:10px;color:#FFFFFF;line-height:18px;font-family:verdana;">A FREE community service sponsored by {from_name}.</span>
               </td>
             </tr>
           </table>
