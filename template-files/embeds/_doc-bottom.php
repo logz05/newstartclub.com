@@ -6,6 +6,7 @@
 <div id="shadow-left"></div>
 <div id="shadow-right"></div>
 {embed="embeds/_signin-mini"}
+{if segment_2 == "request-more-info"}{embed="my_health/_locations-modal"}{/if}
 {if "{embed:sim}"}
   <?php 
   $modal = explode('|', '{embed:sim}');

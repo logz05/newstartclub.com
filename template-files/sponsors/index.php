@@ -1,19 +1,20 @@
-{embed="includes/_doc-top" 
+{embed="embeds/_doc-top" 
   channel="{channel}"
   title="Sponsorship Program"}
 {assign_variable:channel="sponsors"}
-<div class="body">
 {if logged_out || (member_group != 1 && member_group != 13)}
-  <div class="heading clearafter">
+  <div class="heading clearfix">
     <h1>Sponsorship Program</h1>
   </div>
-  <div class="grid23 clearafter">
-    <div class="single left">
-      <iframe src="http://player.vimeo.com/video/17569582" width="490" height="276" frameborder="0"></iframe>
-      {exp:weblog:entries weblog="{channel}" entry_id="477" limit="1"}
-        {body}
-      {/exp:weblog:entries}
-    </div><!--/.single-->
+  <div class="grid23 clearfix">
+    <div class="main {if logged_out}tour {/if}left">
+      <div id="entry">
+        <iframe src="http://player.vimeo.com/video/17569582" width="490" height="276" frameborder="0"></iframe>
+        {exp:weblog:entries weblog="{channel}" entry_id="477" limit="1"}
+          {body}
+        {/exp:weblog:entries}
+      </div>
+    </div>
     <div class="sidebar right">
       <div class="bar">Become a Sponsor</div>
         {exp:weblog:entries weblog="{channel}" entry_id="478" limit="1"}
@@ -35,25 +36,28 @@
     </div>
   </div>
 {if:else}
-  <div class="heading clearafter">
+  <div class="heading clearfix">
     <h1>{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}{/exp:user:stats}</h1>
   </div>
-  <div class="grid23 clearafter">
-    <div class="left">
-      <h2><a href="/sponsors/add-event">Add an event <span class="arrow">&rarr;</span></a></h2>
-      <h2><a href="/sponsors/edit-event">Edit your events <span class="arrow">&rarr;</span></a></h2>
-      <h2><a href="/sponsors/invite">Invite members to be part of the club <span class="arrow">&rarr;</span></a></h2>
-      <h2><a href="/sponsors/email-members">Email your members <span class="arrow">&rarr;</span></a></h2>
-      <h2><a href="/sponsors/resources">Get resources <span class="arrow">&rarr;</span></a></h2>
+  <div class="grid23 clearfix">
+    <div class="main left">
+      <ul id="nav-list">
+        <li><a href="/sponsors/add-event">Add an event <span class="arrow">&rarr;</span></a></li>
+        <li><a href="/sponsors/edit-event">Edit your events <span class="arrow">&rarr;</span></a></li>
+        <li><a href="/sponsors/invite">Invite members to be part of the club <span class="arrow">&rarr;</span></a></li>
+        <li><a href="/sponsors/email-members">Email your members <span class="arrow">&rarr;</span></a></li>
+        <li><a href="/sponsors/resources">Get resources <span class="arrow">&rarr;</span></a></li>
+      </ul>
       <div class="button-wrap">
         <a href="/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super secondary button"><span>Quick Start Guide &raquo;</span></a>
       </div>
-        {exp:user:edit form:name="sponsor_id_switch" form:id="sponsor_id_switch" return="sponsors" password_required="n" dynamic="off"}
+        {exp:user:edit form:name="sponsor-id-switch" form:id="sponsor-id-switch" return="sponsors" password_required="n" dynamic="off"}
         {if sponsor_multiple || group_id == 1}
         <label for="sponsor_number"><h5>Change Sponsor</h5></label>
           <input type="hidden" name="firstName" value="{firstName}" />
           <input type="hidden" name="lastName" value="{lastName}" />
           <input type="hidden" name="zipCode" value="{zipCode}" />
+          <input type="hidden" name="terms_and_conditions" value="on" />
           <select name="sponsor_number" class="input">
           {if sponsor_multiple}
             {exp:weblog:categories category_group="24" weblog="locations" style="linear" show="{sponsor_multiple}"}
@@ -80,8 +84,7 @@
       <div class="button-wrap">
         <a href="/" class="super red button"><span>Club Home</span></a>
       </div>
-    </div><!--/.right-->
+    </div>
   </div>  
 {/if}
-</div><!-- /.body -->
-{embed="includes/_doc_bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|sponsor-admin"}
+{embed="embeds/_doc-bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|sponsor-admin"}

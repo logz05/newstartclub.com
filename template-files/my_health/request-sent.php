@@ -1,10 +1,3 @@
-{embed="includes/_doc-top" 
-  channel="{channel}"
-  section="{section}"
-  title="Your request has been sent!"
-  add="pp/prettyPhoto|vimeo"}
-{assign_variable:channel="my_health"}
-{assign_variable:section="My Health"}
 {exp:user:stats}
   <?php
   
@@ -86,22 +79,30 @@
   
   ?>
 {/exp:user:stats}
-<div class="body">
+{embed="embeds/_doc-top" 
+  channel="{channel}"
+  section="{section}"
+  title="Your request has been sent!"
+  add="pp/prettyPhoto|vimeo"}
+{assign_variable:channel="my_health"}
+{assign_variable:section="My Health"}
   <ul id="trail">
     <li><a href="/">Home</a></li>
     <li><a href="/my_health">{section}</a></li>
   </ul>
-  <div class="heading clearafter">
+  <div class="heading clearfix">
     <h1>Congratulations!</h1>
   </div>
-  <div class="grid23 clearafter">
-    <div class="list left">
-      <p>You have taken an important first step to improving your health naturally. A NEWSTART&reg; representative will contact you shortly. In the meantime, check out the following videos to find out how the NEWSTART&reg; Lifestyle Program has helped others get well or visit <a href="http://www.newstart.com/" title="www.newstart.com">www.newstart.com</a> to learn more.</p>
-      <div class="vimeoBadge">
-        <script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
+  <div class="grid23 clearfix">
+    <div class="main left">
+      <div id="entry">
+        <p>You have taken an important first step to improving your health naturally. A NEWSTART&reg; representative will contact you shortly. In the meantime, check out the following videos to find out how the NEWSTART&reg; Lifestyle Program has helped others get well or visit <a href="http://www.newstart.com/" title="www.newstart.com">www.newstart.com</a> to learn more.</p>
+        <div class="vimeoBadge">
+          <script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
+        </div>
+        <p><a href="/my_health/results">&laquo; Back to my results</a></p>
       </div>
-      <p><a href="/my_health/results">&laquo; Back to my results</a></p>
-    </div><!--/.list-->
+    </div>
     <div class="sidebar right">
       <div class="bar">Contact Us</div>
       <img src="/assets/images/my_health/NEWSTART-lifestyle-program.jpg" width="190" />
@@ -109,7 +110,6 @@
       <p>(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>
     </div><!--/.sidebar-->
   </div><!--/.grid23-->
-</div><!-- /.body -->
 <script type="text/javascript">
   $(document).ready(function(){
     $('.vimeoBadge .clip > a').attr('rel', 'prettyPhoto');
@@ -126,4 +126,4 @@
     });
   });
 </script>
-{embed="includes/_doc_bottom" script_add="jquery.prettyPhoto_3.0"}
+{embed="embeds/_doc-bottom" script_add="jquery.prettyPhoto_3.0"}

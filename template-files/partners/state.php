@@ -20,4 +20,4 @@
     {embed="partners/_sidebar"}
   </div><!--/.sidebar-->
 </div><!--/.grid23-->
-{embed="includes/_doc-bottom"}
+{embed="embeds/_doc-bottom"}

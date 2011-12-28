@@ -27,7 +27,7 @@
         </div>
       {/exp:weblog:entries}
     </div>
-    {embed="includes/_comments" channel="{channel}"}
+    {embed="embeds/_comments" channel="{channel}"}
   </div>
   <div class="sidebar right">
     {exp:weblog:entries weblog="{channel}" limit="1" url_title="{segment_3}"}
@@ -36,7 +36,7 @@
       <p>{partner_bio}</p>
       {/related_entries}
     {/exp:weblog:entries}
-    {embed="includes/_share" channel="{channel}"}
+    {embed="embeds/_share" channel="{channel}"}
   </div>
 </div><!--/.grid23-->
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>

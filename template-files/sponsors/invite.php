@@ -14,19 +14,19 @@ $query = "DELETE FROM exp_user_keys WHERE date < $min_time";
 $db->query($query);
 
 ?>
-{embed="includes/_doc-top" 
+{embed="embeds/_doc-top" 
   channel="sponsors"
   title="Sponsorship Program | Invite Members"
 }
-<div class="body">
-  <div class="heading clearafter">
+{assign_variable:sponsor_title="{exp:user:stats dynamic='off'}{exp:weblog:categories show='{sponsor_number}' weblog='locations' style='linear'}{category_name}{/exp:weblog:categories}{/exp:user:stats}"}
+  <div class="heading clearfix">
     <h1>Invite Members</h1>
   </div>
-  <div class="grid23 clearafter">
-    {exp:user:stats dynamic="off"}
-    <div class="left">
+  <div class="grid23 clearfix">
+    
+    <div class="main invite left">
+      <h2>Contact Information</h2>
       {exp:user:key template="sponsors/invite_template" html="yes" return="sponsors/invite"}
-        <h1>Contact Information</h1>
         <noscript>
           <div class="no-script">
             <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
@@ -39,16 +39,17 @@ $db->query($query);
           </tr>
           <tr>
             <th scope="row"><label for="to" class="req"><span class="req">* </span>Email</label></th>
-            <td><input type="text" class="input" id="to" name="to" value="" size="32" autocomplete="off" /></td>
+            <td><input type="text" class="input" id="to" name="recipient_email" value="" size="32" autocomplete="off" /></td>
           </tr>
           <tr>
             <th></th>
             <td>
-              <input type="hidden" class="input" name="from" value="club@newstart.com" />
-              <input type="hidden" class="input" name="name" id="name" value="{site_name}" autocomplete="off" />
-              <input type="hidden" class="input" name="subject" id="subject" value="You're invited to join the {site_name}!" />
-              <input type="hidden" name="group_id" value="{sponsor_number}" />
-              <input type="hidden" id="sponsor_number_credit" name="sponsor_number_credit" value="{sponsor_number}" />
+            <input type="hidden" name="sender_name" id="sender_name" value="{sponsor_title}" />
+          {exp:user:stats dynamic="off"}
+            <input type="hidden" class="input" name="sender_email" value="club@newstart.com" />
+            <input type="hidden" class="input" name="subject" id="subject" value="You're invited to join the {site_name}!" />
+            <input type="hidden" name="group_id" value="{sponsor_number}" />
+          {/exp:user:stats}
               <p class="button-wrap">
                 <button type="submit" class="super secondary button"><span>Invite Member</span></button>
               </p>
@@ -56,13 +57,14 @@ $db->query($query);
           </tr>
         </table>
       {/exp:user:key}
+      {exp:user:stats dynamic="off"}
       <h2>Pending Invitations ( {exp:query sql="SELECT COUNT(*) AS total FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0"}{total}{/exp:query} )</h2>
-      {exp:query limit="20" paginate="both" sql="SELECT date, email AS invite_email FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0 ORDER BY date DESC"}
+      {exp:query limit="50" paginate="both" sql="SELECT date, email AS invite_email FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0 ORDER BY date DESC"}
         {if count==1}
-          <ul>
+          <ul id="listing">
         {/if}
-        <li class="row">
-          <h1 class="pending-username">{invite_email}</h1>
+        <li>
+          <h2>{invite_email}</h2>
           <div class="date">
             <span class="timeago"><?php echo distanceOfTimeInWords('{date}', '{current_time}', true); ?></span>
             <span class="invite-date">{date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
@@ -89,5 +91,4 @@ $db->query($query);
     </div>
     {/exp:user:stats}
   </div><!-- /.grid23 -->
-</div><!-- /.body -->
-{embed="includes/_doc_bottom" script_add="sponsors"}
+{embed="embeds/_doc-bottom" script_add="sponsors"}

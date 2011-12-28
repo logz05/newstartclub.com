@@ -1,4 +1,4 @@
-{embed="includes/_doc-top" 
+{embed="embeds/_doc-top" 
   channel="my_health"
   title="NEWSTART Plan - Dashboard"}
 {assign_variable:channel="my_health"}
@@ -62,15 +62,14 @@ ul .lesson {
 
 }
 </style>
-<div class="body">
   <ul id="trail">
     <li><a href="/">Home</a></li>
     <li><a href="/{channel}/">{section}</a></li>
   </ul>
-  <div class="heading clearafter">
+  <div class="heading clearfix">
     <h1>Dashboard</h1>
   </div>
-  <div class="grid23 clearafter">
+  <div class="grid23 clearfix">
     <div class="single left">
       <ul class='lessons'>
 <li class='lesson not_started published'>
@@ -187,5 +186,4 @@ ul .lesson {
       </p>
     </div><!--/.sidebar-->
   </div><!--/.grid23-->
-</div><!-- /.body -->
-{embed="includes/_doc_bottom"}
+{embed="embeds/_doc-bottom"}
