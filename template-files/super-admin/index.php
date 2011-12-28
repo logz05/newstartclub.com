@@ -71,39 +71,36 @@ class Chart {
   
 }
 
-function membersJoined($day)
+function membership($days)
 {
   $db = new DBconnect();
   
-  $dayBegin = (strtotime("today -$day days") + 25200);
-  $dayMinus = $day - 1;
-  $dayEnd = (strtotime("today -$dayMinus days") + 25200);
+  $history = array();
   
-  $joined = array();
-  
-  for($i = 0; $i <= $day; $i++) {
+  for($i = $days; $i >= 0; $i--) {
+    
+    $dayMinus = $i - 1;
+    
+    if($i == 0){
+      $microDayBegin = (strtotime("today") + 25200);
+    } elseif($i == 1) {
+      $microDayBegin = (strtotime("today -$i day") + 25200);
+    } else {
+      $microDayBegin = (strtotime("today -$i days") + 25200);
+    }
+    
+    $microDayEnd = (strtotime("today -$dayMinus days") + 25200);
     $date = date('M d', strtotime("today -$i days"));
-    $query = 'SELECT * FROM exp_members WHERE join_date > '. $dayBegin .' AND join_date < '. $dayEnd;
-    $members = count($db->fetch($query));
-    array_push($joined, "$date => $members");
+    
+    $query = 'SELECT member_id FROM exp_members WHERE join_date > '. $microDayBegin .' AND join_date < '. $microDayEnd;
+    $queryTotal = count($db->fetch($query));
+    
+    $history[$date] = $queryTotal;
+  
   }
   
-  /* date('M d', strtotime("today -3 days"))
-if (!isset($day)) {
-    $query = 'SELECT * FROM exp_members WHERE join_date > '. (strtotime("today") + 25200);
-  } elseif ($day == 1) {
-    $query = 'SELECT * FROM exp_members WHERE join_date > '. (strtotime("today -1 day") + 25200) .' AND join_date < '. (strtotime("today") + 25200);
-  } else {
-    $dayBegin = (strtotime("today -$day days") + 25200);
-    $dayMinus = $day - 1;
-    $dayEnd = (strtotime("today -$dayMinus days") + 25200);
-    $query = 'SELECT * FROM exp_members WHERE join_date > '. $dayBegin .' AND join_date < '. $dayEnd;
-  }
-*/
-
-  count($db->fetch($query));
+  return($history);
   
-  print $joined;
 }
 
 function memberAges($rangeLow, $rangeHigh)
@@ -134,89 +131,34 @@ function memberAges($rangeLow, $rangeHigh)
 
 ?>
 
-{embed="includes/_doc-top" 
+{embed="embeds/_doc-top" 
   title="{section}"
   section="{section}"
   channel="{channel}"
 }
 {assign_variable:channel="super-admin"}
 {assign_variable:section="Super Admin"}
-<div class="body">
-<div class="heading clearafter">
+<div class="heading clearfix">
   <h1>{section}</h1>
 </div>
-<div class="grid23 clearafter">
-  <div class="single left">
+<div class="grid23 clearfix">
+  <div class="main left">
   
     <iframe width="490px" height="300px" scrolling="no" src="{path='{channel}/member-map'}"></iframe>
     <p>Map last updated on June 28<sup>th</sup>, 2011</p>
   
-    <h2><strong>Member Statistics</strong></h2>
+    <h2>Member Statistics</h2>
     <p>
-      {exp:query sql="SELECT COUNT(*) AS total FROM exp_members WHERE group_id = '9'"}
+      {exp:query sql="SELECT COUNT(member_id) AS total FROM exp_members WHERE group_id = '9'"}
         Total Lifestyle Club Members: <strong>{total}</strong><br />
       {/exp:query}
     </p>
     
     <?php
-    echo Chart::bar(array(
-      'Nov 23' => 10,
-      'Nov 22' => 6
-    ));
-
+      echo Chart::bar(membership(14));
     ?>
-    {!--
-    <ul>
-      <li><?php echo date('M d', strtotime("today")) ?><sup><?php echo date('S', strtotime("today")) ?></sup> <strong><?php membersJoined() ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -1 day")) ?><sup><?php echo date('S', strtotime("today -1 day")) ?></sup> <strong><?php membersJoined(1) ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -2 days")) ?><sup><?php echo date('S', strtotime("today -2 days")) ?></sup> <strong><?php membersJoined(2) ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -3 days")) ?><sup><?php echo date('S', strtotime("today -3 days")) ?></sup> <strong><?php membersJoined(3) ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -4 days")) ?><sup><?php echo date('S', strtotime("today -4 days")) ?></sup> <strong><?php membersJoined(4) ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -5 days")) ?><sup><?php echo date('S', strtotime("today -5 days")) ?></sup> <strong><?php membersJoined(5) ?></strong></li>
-      <li><?php echo date('M d', strtotime("today -6 days")) ?><sup><?php echo date('S', strtotime("today -6 days")) ?></sup> <strong><?php membersJoined(6) ?></strong></li>
-    </ul>
     
-     <table id="data-table" border="1" cellpadding="10" cellspacing="0" summary="Members Joined to the {site_name} over the past two weeks.">
-       <caption>Members joined</caption>
-       <thead>
-          <tr>
-             <th scope="col"><?php echo date('M d', strtotime("today")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -1 day")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -2 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -3 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -4 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -5 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -6 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -7 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -8 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -9 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -10 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -11 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -12 days")) ?></th>
-             <th scope="col"><?php echo date('M d', strtotime("today -13 days")) ?></th>
-          </tr>
-       </thead>
-       <tbody>
-          <tr>
-             <td><?php membersJoined() ?></td>
-             <td><?php membersJoined(1) ?></td>
-             <td><?php membersJoined(2) ?></td>
-             <td><?php membersJoined(3) ?></td>
-             <td><?php membersJoined(4) ?></td>
-             <td><?php membersJoined(5) ?></td>
-             <td><?php membersJoined(6) ?></td>
-             <td><?php membersJoined(7) ?></td>
-             <td><?php membersJoined(8) ?></td>
-             <td><?php membersJoined(9) ?></td>
-             <td><?php membersJoined(10) ?></td>
-             <td><?php membersJoined(11) ?></td>
-             <td><?php membersJoined(12) ?></td>
-             <td><?php membersJoined(13) ?></td>
-          </tr>
-       </tbody>
-    </table> --}
-    
-    <p><strong>Age Ranges</strong></p>
+    <h2>Age Ranges</h2>
     <ul class="timeline clearafter">
       <?php memberAges(13, 20) ?>
       <?php memberAges(21, 30) ?>
@@ -230,7 +172,7 @@ function memberAges($rangeLow, $rangeHigh)
     </ul>
   
     <h2><strong>Locations - {exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query}</strong></h2>
-    <p>
+    <ul>
       {exp:weblog:entries weblog="locations" sort="asc"}
         {exp:query
           sql="
@@ -265,31 +207,31 @@ function memberAges($rangeLow, $rangeHigh)
                   FROM exp_member_data
                     WHERE m_field_id_7 = {sponsor_zip}
             ) a" limit="1"}
-        <strong>{categories}{category_id}{/categories}</strong> - <a href="{url_title_path='locations/detail'}">{title}</a> (&nbsp;{total}&nbsp;)<br />
+        <li><strong>{categories}{category_id}{/categories}</strong> - <a href="{url_title_path='locations/detail'}">{title}</a> (&nbsp;{total}&nbsp;)</li>
         {/exp:query}
       {/exp:weblog:entries}
-    </p>
+    </ul>
     
-    <h2><strong>Events</strong></h2>
-    <p><strong>Future Events</strong><br />
+    <h2>Events</h2>
+    <ul>
     {exp:weblog:entries weblog="events" show_expired="no" show_future_entries="yes"}
-        {entry_id} - <a href="{url_title_path='events/detail'}">{title}</a>
+        <li>{entry_id} - <a href="{url_title_path='events/detail'}">{title}</a>
       {exp:query sql="
         SELECT count(*) AS total
           FROM member_relations
           WHERE member_relations.related_id = {entry_id} ORDER BY related_id asc"}
-          (&nbsp;{total}&nbsp;)<br />
+          (&nbsp;{total}&nbsp;)</li>
       {/exp:query}
     {/exp:weblog:entries}
-    </p>
+    </ul>
     
-    <h2><strong>Comments - {exp:comment:entries weblog="resources|questions" sort="desc" limit="1" dynamic="off"}{total_comments}{/exp:comment:entries}</strong></h2>
+    <h2>Comments - {exp:comment:entries weblog="resources|questions" sort="desc" limit="1" dynamic="off"}{total_comments}{/exp:comment:entries}</h2>
     
     {exp:comment:entries weblog="resources|questions" sort="desc" limit="10" dynamic="off"}
     <p><a href="{path='{comment_auto_path}/{url_title}'}#c_{comment_id}">{title}</a> <br />by {firstName} {lastName} on {comment_date format="%M %j, %Y, %g:%i %A %T"}</p>
     {/exp:comment:entries}
     
-    <h2><strong>Pages Shared on Facebook</strong></h2>
+    <h2>Pages Shared on Facebook</h2>
     
     <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
     <fb:recommendations site="www.newstartclub.com" width="480" height="400" header="true"></fb:recommendations>
@@ -366,6 +308,23 @@ function memberAges($rangeLow, $rangeHigh)
           <li><a href="http://www.google.com/search?q={m_field_id_7}" title="Google search {m_field_id_7}">{m_field_id_7} (&nbsp;{total}&nbsp;)</a></li>
         {/exp:query}
       </ul>
+      <h2>Referral</h2>
+      <ul>
+        {exp:query sql="
+          SELECT m_field_id_31 AS referral, COUNT(*) AS total FROM exp_member_data
+            WHERE m_field_id_31 != ''
+            AND m_field_id_31 != 'Select One'
+            
+            GROUP BY referral 
+            ORDER BY total DESC, referral ASC"}
+            <li>{referral} (&nbsp;{total}&nbsp;)</li>
+        {/exp:query}
+      </ul>
+      
+      <h2>Newsletter</h2>
+      <ul>
+        <li><a href="http://newsletter.foxepractice.com/reports/wv/r/C1DEF0ABEB2C3FD3">Fall 2011</a></li>
+      </ul>
       
       <h2>Site Time</h2>
         <ul>
@@ -383,5 +342,4 @@ function memberAges($rangeLow, $rangeHigh)
         </ul>
   </div><!--/.sidebar-->
 </div><!--/.grid23-->
-</div><!-- /.body -->
-{embed="includes/_doc_bottom"}
+{embed="embeds/_doc-bottom"}
