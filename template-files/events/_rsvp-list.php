@@ -46,8 +46,8 @@ elseif (isset($_POST['delete_rsvp']))
       <button type="submit" name="submit" title="Remove this event from your RSVP list.">&times;</button>
     </form>
     {/if}
-      <span>{exp:nice_date date="{field_id_25}" format="%F %j"}</span>
-      <span><a href="/events/detail/{url_title}">{exp:html_strip}{exp:textile}{title}{/exp:textile}{/exp:html_strip}</a></span>
+      <span class="date">{exp:nice_date date="{field_id_25}" format="%F %j"}</span>
+      <span class="title"><a href="/events/detail/{url_title}">{exp:html_strip}{exp:textile}{title}{/exp:textile}{/exp:html_strip}</a></span>
   </li>
 {/exp:query}
 </ul>
