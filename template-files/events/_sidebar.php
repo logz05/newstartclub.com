@@ -38,17 +38,18 @@
     {/calendar_rows}
   </table>
 {/exp:weblog:calendar}
-<div id="dates">
-{exp:weblog:month_links weblog="events" limit="50" show_expired="no" show_future_entries="yes" sort="asc"}
+  <div id="dates">
+    <ul>
+      {exp:weblog:month_links weblog="events" limit="50" show_expired="no" show_future_entries="yes" sort="asc"}
+      
+      {year_heading}
+      <h2 class="month-heading">{year}</h2>
+      {/year_heading}
+      <li><a href="/events/date/{year}/{month_num}" title="View events in {month} {year}">{month}</a></li>
+      {/exp:weblog:month_links}
+    </ul>
+  </div>
 
-{year_heading}
-<h2>{year}</h2>
-{/year_heading}
-
-<a href="/events/date/{year}/{month_num}" class="month-links" title="View events in {month} {year}">{month}</a>
-
-{/exp:weblog:month_links}
-</div>
     <h2>Locations</h2>
     <ul>
 <?php
