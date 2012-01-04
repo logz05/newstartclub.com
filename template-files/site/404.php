@@ -1,77 +1,35 @@
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-	<meta charset="utf-8">	
-	<title>404 | {site_name}</title>
-	<style type="text/css">
-	
-	body {
-		background: url(/assets/css/images/html_bkg.png) repeat-x #A7C7EF;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		color: #222;
-		margin: 0;
-		padding: 0;
-		font-size: 75%;
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizelegibility;
-	}
-	
-	.container {
-		margin: 0 auto;
-		margin-top: 100px;
-		width: 500px;
-		position: relative;
-	}
-	
-	.body {
-		background: url(/assets/css/images/site-offline.png) no-repeat 65px 40px white;
-		border-radius: 15px;
-		-webkit-border-radius: 15px;
-		-moz-border-radius: 15px;
-		padding: 160px 40px 40px;
-		text-align: center;
-		position: relative;
-		box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.35);
-		-webkit-box-shadow: 0 1px 8px rgba(0,0,0,0.35);
-		-moz-box-shadow: 0 1px 8px rgba(0,0,0,0.25);
-	}
-	
-	h1 {
-		font-size: 32px;
-		color: #87A621;
-		border-top: 1px dashed #ddd;
-		font-weight: bold;
-		padding-top: 16px;
-		margin-bottom: 8px;
-	}
-	
-	p {
-		font-size: 16px;
-		color: #333;
-		line-height: 22px;
-		margin: 6px 0;
-	}
-	
-	</style>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=860;" />
+
+  <title>404 | {site_name}</title>
+  
+  <meta name="author" content="{site_name}">
+
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
-<body>
-<div class="container">
-	<div class="body">
-		<h1>404</h1>
-		<p>We could not find the page you requested.</p>
-		{if segment_1 == "sponsor_admin"}
-			<p>Perhaps you were looking for this page:</p>
-			<a href="/sponsors/{if segment_2}{segment_2}/{/if}">{site_url}sponsors/{if segment_2}{segment_2}/{/if}</a>
-		{/if}
-		{if segment_1 =="sponsors" && segment_2 == "tour"}
-			<p>Perhaps you were looking for this page:</p>
-			<a href="/sponsors/">{site_url}sponsors/</a>
-		{/if}
-		{if segment_1 =="members"}
-			<p>Perhaps you were looking for this page:</p>
-			<a href="/{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}">{site_url}{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}</a>
-		{/if}
-	</div>
+<body class="small">
+  <div class="body">
+    <h1>404</h1>
+    <p>We could not find the page you requested.</p>
+    {if segment_1 == "sponsor_admin"}
+      <p>Perhaps you were looking for this page:</p>
+      <a href="/sponsors/{if segment_2}{segment_2}{/if}">{site_url}sponsors/{if segment_2}{segment_2}{/if}</a>
+    {/if}
+    {if segment_1 =="sponsors" && segment_2 == "tour"}
+      <p>Perhaps you were looking for this page:</p>
+      <a href="/sponsors">{site_url}sponsors</a>
+    {/if}
+    {if segment_1 =="members"}
+      <p>Perhaps you were looking for this page:</p>
+      <a href="/{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}">{site_url}{segment_2}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}</a>
+    {/if}
+  </div>
 </div>
 </body>
 </html>

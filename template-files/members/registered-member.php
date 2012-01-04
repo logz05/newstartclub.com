@@ -11,24 +11,11 @@
   <meta name="viewport" content="width=860;" />
  
   <title>You're currently a member! | {site_name}</title>
-<?php
 
-function fileModTime($filename) {
-
-  $file = '/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content' . $filename;
-  
-  if (file_exists($file)) {
-    echo "?v=" . date("YmdHis", filemtime($file));
-  }
-
-}
-
-?>
-
-  <link rel="stylesheet" href="/assets/css/standalone.css<?php fileModTime('/assets/css/standalone.css'); ?>" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
-<body>
-<div class="container">
+<body class="small">
   <div class="body">
     <h1>You are already a member!</h1>
     <p>You have already completed the registration process.</p>
@@ -37,6 +24,5 @@ function fileModTime($filename) {
       <a href="/settings/" class="super secondary button"><span>Settings</span></a>
     </p>
   </div>
-</div>
 </body>
 </html>

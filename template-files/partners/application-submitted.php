@@ -174,8 +174,8 @@ function fileModTime($filename) {
 }
 
 ?>
-
-  <link rel="stylesheet" href="/assets/css/standalone.css<?php fileModTime('/assets/css/standalone.css'); ?>" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
 <body>
 <div class="container">

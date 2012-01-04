@@ -1,9 +1,5 @@
 <!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -14,8 +10,8 @@
   
   <meta name="author" content="{site_name}">
 
-  <link rel="stylesheet" href="/assets/css/nsc.css" type="text/css" />
-  <script src="/assets/js/libs/modernizr-1.6.min.js"></script>
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+  <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
   <!--Google Analytics-->
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -29,52 +25,54 @@
     })();
   </script>
 </head>
-<body class="standalone logged-out">
-  <div class="container">
-    <div class="body">
-      <div class="grid12 clearafter">
-        <div class="left">
-          <h1>Sign In</h1>
-          <p>You must be signed in with a sponsor account to see this page.</p>
-          {exp:member:login_form error_page="members/error" return="/{segment_1}/{segment_2}/{segment_3}/{segment_4}/{segment_5}/{segment_6}/{segment_7}"}
-          <table>
-            <tr>
-              <th scope="row"><label for="email">Email</label></th>
-              <td><input type="email" class="input" id="email" name="username" value="" size="23" autocapitalize="off" /></td>
-            </tr>
-            <tr>
-              <th scope="row"><label for="password">Password</label></th>
-              <td><input type="password" class="input" id="password" name="password" size="23" /></td>
-            </tr>
-            {if auto_login}<tr>
-              <th></th>
-              <td><input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span></td>
-            </tr>{/if}
-            <tr>
-              <th scope="row">&nbsp;</th>
-              <td>
+<body>
+  <div class="body">
+    <div class="modal grid12 clearfix">
+      <div class="left">
+        <h2>Sign In</h2>
+        <h3>You must be signed in with a sponsor account to see this page.</h3>
+        {exp:member:login_form error_page="members/error" return="/{segment_1}/{segment_2}/{segment_3}/{segment_4}/{segment_5}/{segment_6}/{segment_7}"}
+        <table>
+          <tr>
+            <th scope="row"><label for="email">Email</label></th>
+            <td><input type="email" class="input" id="email" name="username" value="" size="23" autocapitalize="off" /></td>
+          </tr>
+          <tr>
+            <th scope="row"><label for="password">Password</label></th>
+            <td><input type="password" class="input" id="password" name="password" size="23" /></td>
+          </tr>
+          {if auto_login}<tr>
+            <th></th>
+            <td>
+              <p><input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span></p>
+            </td>
+          </tr>{/if}
+          <tr>
+            <th scope="row">&nbsp;</th>
+            <td>
+              <div class="button-wrap">
                 <button type="submit" class="super green button"><span>Sign In</span></button>
                 <a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
-              </td>
-            </tr>
-          </table>
-          {/exp:member:login_form}
-        </div><!--/.left-->
-        <div class="right">
-          <h1>Not a Sponsor?</h1>
-          <p>Here&rsquo;s some of the benefits:</p>
-          <ul>
-            <li>Health seminar service and support</li>
-            <li>Health survey and event promotional tools</li>
-            <li>Online contact management system</li>
-            <li>Discounts on NEWSTART&reg; books and DVDs</li>
-          </ul>
-          <p class="button-wrap">
-            <a href="/sponsors/apply" class="super red button"><span>Apply</span></a>
-          </p>
-        </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+        {/exp:member:login_form}
+      </div>
+      <div class="right">
+        <h2>Not a Sponsor?</h2>
+        <h3>Here&rsquo;s some of the benefits:</h3>
+        <ul>
+          <li>Health seminar service and support</li>
+          <li>Health survey and event promotional tools</li>
+          <li>Online contact management system</li>
+          <li>Discounts on NEWSTART&reg; books and DVDs</li>
+        </ul>
+        <p class="button-wrap">
+          <a href="/sponsors/apply" class="super red button"><span>Apply</span></a>
+        </p>
       </div>
     </div>
-  </div><!-- /.container -->
+  </div>
 </body>
 </html>
