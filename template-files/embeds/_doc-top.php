@@ -19,6 +19,7 @@
 {if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="/resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
 {if segment_1 == "events" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Events" href="/events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
 
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
   <link rel="stylesheet" href="{stylesheet='site/default'}" type="text/css" />
 {if embed:add}
   <?php 
@@ -106,7 +107,7 @@
   
   </script>
 {/if}
-  <script src="/assets/js/libs/modernizr-1.6.min.js"></script>
+  <script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
   <!--Google Analytics-->
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -151,24 +152,26 @@
       <nav id="main-nav"{if embed:channel == "sponsors" && (member_group == 1 || member_group == 13)} class="sponsors"{/if}>
         <ul>
         {if embed:channel == "sponsors" && (member_group == 1 || member_group == 13)}
-          <li{if embed:channel == "sponsors" && segment_2 == ""} class="current"{/if}><a href="/sponsors">Home</a><span></span></li>
-          <li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><span></span></li>
-          <li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><span></span></li>
-          <li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><span></span></li>
-          <li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><span></span></li>
-          <li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><span></span></li>
+          <li{if embed:channel == "sponsors" && segment_2 == ""} class="current"{/if}><a href="/sponsors">Home</a><i></i></li>
+          <li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><i></i></li>
+          <li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><i></i></li>
+          <li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><i></i></li>
+          <li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><i></i></li>
+          <li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><i></i></li>
         {if:else}
-          <li{if embed:channel=="home"} class="current"{/if}><a href="/">Home</a><span></span></li>
-          <li{if embed:channel=="my_health"} class="current"{/if}><a href="/my_health">My Health</a><span></span></li>
-          <li{if embed:channel=="resources"} class="current"{/if}><a href="/resources">Resources</a><span></span></li>
-          <li{if embed:channel=="partners"} class="current"{/if}><a href="/partners">Partners</a><span></span></li>
-          <li{if embed:channel=="events"} class="current"{/if}><a href="/events">Events</a><span></span></li>
-          <li{if embed:channel=="locations"} class="current"{/if}><a href="/locations">Locations</a><span></span></li>
-          <li{if embed:channel=="questions"} class="current"{/if}><a href="/questions">Q&amp;A</a><span></span></li>
-          <li{if embed:channel=="news"} class="current"{/if}><a href="/news">News</a><span></span></li>
+          <li{if embed:channel=="home"} class="current"{/if}><a href="/">Home</a><i></i></li>
+          <li{if embed:channel=="my_health"} class="current"{/if}><a href="/my_health">My Health</a><i></i></li>
+          <li{if embed:channel=="resources"} class="current"{/if}><a href="/resources">Resources</a><i></i></li>
+          <li{if embed:channel=="partners"} class="current"{/if}><a href="/partners">Partners</a><i></i></li>
+          <li{if embed:channel=="events"} class="current"{/if}><a href="/events">Events</a><i></i></li>
+          <li{if embed:channel=="locations"} class="current"{/if}><a href="/locations">Locations</a><i></i></li>
+          <li{if embed:channel=="questions"} class="current"{/if}><a href="/questions">Q&amp;A</a><i></i></li>
+          <li{if embed:channel=="news"} class="current"{/if}><a href="/news">News</a><i></i></li>
         {/if}
         </ul>
       </nav>
     {/if}
+      <div id="shadow-left"></div>
+      <div id="shadow-right"></div>
     </header>
-    <div class="body{if embed:channel} {embed:channel}{/if}">
+    <div class="body{if embed:channel} {embed:channel}{/if}{if segment_2 == 'detail'} detail{/if}">
