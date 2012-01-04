@@ -112,8 +112,9 @@
   </div><!--/.grid23-->
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.vimeoBadge .clip > a').attr('rel', 'prettyPhoto');
+    $('.vimeoBadge .clip a').attr('rel', 'prettyPhoto');
     $('.vimeoBadge a img').attr('alt', 'NEWSTART Now');
+    $('.vimeoBadge a img').attr('class', 'image');
     $(".clip").each(function(){
           alt = $(this).find("img").attr("alt");
           title = $(this).find(".caption a").text();
