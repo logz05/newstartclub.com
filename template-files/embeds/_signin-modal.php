@@ -24,9 +24,6 @@
       {if embed:modal-role == "rsvp"}
         <h3>You must be signed in to RSVP to this event.</h3>
       {/if}
-      {if embed:modal-role == "health-gauge"}
-        <h3>You must be signed in to calculate your health score.</h3>
-      {/if}
       {exp:member:login_form error_page="members/error" return="/{segment_1}{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}{if segment_6}/{segment_6}{/if}{if segment_7}/{segment_7}{/if}"}
       <table>
         <tr>
@@ -56,10 +53,10 @@
         </tr>
       </table>
       {/exp:member:login_form}
-    </div><!--/.left-->
+    </div>
     <div class="right">
       <h2>Not a Member?</h2>
-      <h3>Here's some of the benefits:</h3>
+      <h3>Here&rsquo;s some of the benefits:</h3>
       <ul>
         <li>Live streaming videos</li>
         <li>Local seminars &amp; events</li>

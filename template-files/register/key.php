@@ -14,7 +14,7 @@
   {/if}
 {exp:user:register form:name="register-key" form:id="register" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" require_key="yes"}
   <noscript>
-    <div class="no-script">
+    <div class="alert-box warning">
       <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
     </div>
   </noscript>

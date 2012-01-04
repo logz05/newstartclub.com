@@ -28,7 +28,7 @@ $db->query($query);
       <h2>Contact Information</h2>
       {exp:user:key template="sponsors/invite_template" html="yes" return="sponsors/invite"}
         <noscript>
-          <div class="no-script">
+          <div class="alert-box warning">
             <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
           </div>
         </noscript>

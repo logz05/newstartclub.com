@@ -2,7 +2,7 @@
     {embed="events/_rsvp-list"}
     <div class="bar">Filter</div>
 {exp:weblog:calendar weblog="events" show_future_entries="yes" switch="calendarToday|calendarCell"}
-  <table class="calendar-month" border="0" cellpadding="6" cellspacing="1" id="event-calendar" width="100%">
+  <table class="calendar-month" id="event-calendar">
     <tr class="calendarHeader">
       <th></th>
       <th colspan="5">{date format="%F %Y"}</th>
@@ -17,7 +17,7 @@
       {row_start}<tr>{/row_start}
     
       {if entries}
-        <td class="{switch} filled" rel="hasEntry" align="center">
+        <td class="{switch} filled">
           {if segment_2 == 'date' && segment_4}
             <a href="#{exp:nice_date date='{segment_3}-{segment_4}-{day_number}' format='%Y-%m-%d'}">{day_number}</a>
           {if:else}
@@ -27,7 +27,7 @@
       {/if}
     
       {if not_entries}
-        <td class="{switch}" align="center">{day_number}</td>
+        <td class="{switch}">{day_number}</td>
       {/if}
     
       {if blank}
@@ -55,7 +55,7 @@
 <?php
   $location_list = array(
     {exp:weblog:entries weblog="events" sort="asc|asc" dynamic="off" orderby="event_state|event_city" backspace="1" show_future_entries="yes"}
-      "{event_state}/{event_city}" => "{event_city}, {event_state}", 
+      "{event_state}/{event_city}" => "{event_city}, {exp:xml_encode}{event_state}{/exp:xml_encode}", 
     {/exp:weblog:entries}
     );
 
