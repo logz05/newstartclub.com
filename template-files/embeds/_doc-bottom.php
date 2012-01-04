@@ -1,11 +1,12 @@
 </div><!-- /.body -->
-<footer>
+<footer class="footer">
   <p>A FREE community service of <a href="http://newstart.com/">NEWSTART&reg;</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
   <p><a href="/about/privacy-policy">Privacy Policy</a> | <a href="/about/terms-of-use">Terms of Use</a></p>
 </footer>
-<div id="shadow-left"></div>
-<div id="shadow-right"></div>
 {embed="embeds/_signin-mini"}
+{if "{embed:sponsor-apply}"}
+  {embed="sponsors/_apply-modal"}
+{/if}
 {if segment_2 == "request-more-info"}{embed="my_health/_locations-modal"}{/if}
 {if "{embed:sim}"}
   <?php 
