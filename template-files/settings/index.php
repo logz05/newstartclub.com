@@ -17,9 +17,8 @@
   
   
   if( isset( $_SESSION['settingsUpdated'] ) && $_SESSION['settingsUpdated'] == true ) {
-    echo '<div id="settings-msg">
-        <p>Your settings have been saved!</p>
-      </div>';
+    echo '<div class="alert-box success">
+          <p><i></i>Your settings have been saved!</p></div>';
   }
   //reset this now that we've given our message.
   $_SESSION['settingsUpdated'] = false;
@@ -27,7 +26,7 @@
   ?>
   
   <noscript>
-    <div class="no-script">
+    <div class="alert-box warning">
       <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
     </div>
   </noscript>
@@ -62,15 +61,15 @@
     <table>
       <tr>
         <th scope="row" width="178"><label for="firstName">First Name</label></th>
-        <td><input type="text" class="input" name="firstName" id="firstName" value="{firstName}" size="25" /></td>
+        <td><input type="text" class="input" name="firstName" id="firstName" value="{firstName}" size="20" /></td>
       </tr>
       <tr>
         <th scope="row"><label for="lastName">Last Name</label></th>
-        <td><input type="text" class="input" name="lastName" id="lastName" value="{lastName}" size="25" /></td>
+        <td><input type="text" class="input" name="lastName" id="lastName" value="{lastName}" size="20" /></td>
       </tr>
       <tr>
         <th scope="row"><label for="address">Address</label></th>
-        <td><input type="text" class="input" id="address" name="address" value="{address}" size="28" /></td>
+        <td><input type="text" class="input" id="address" name="address" value="{address}" size="25" /></td>
       </tr>
       <tr>
         <th scope="row"><label for="city">City</label></th>
@@ -149,7 +148,7 @@
       <tr>
         <th scope="row"><label for="username">Email</label></th>
         <td>
-          <input class="input" type="text" name="username" id="username" value="{username}" size="32" />
+          <input class="input" type="text" name="username" id="username" value="{username}" size="25" />
           <input class="hidden" type="hidden" name="email" id="email" value="{username}" />
         </td>
       </tr>
@@ -174,12 +173,13 @@
           <input type="hidden" name="update" value="updated" />
           <div class="button-wrap">
             <button type="submit" class="super green button"><span>Update</span></button>
+            <a id="delete-account" class="right" href="/delete-account/"><span>&times;</span> Delete Account&hellip;</a>
           </div>
         </td>
       </tr>
     </table>
     <p>
-      <a class="right" href="/delete-account/">Delete Account&hellip;</a>
+      
     </p>
     
   </div><!--/.left-->
