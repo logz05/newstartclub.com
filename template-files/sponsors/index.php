@@ -1,3 +1,6 @@
+{if segment_2}
+  {redirect="404"}
+{/if}
 {embed="embeds/_doc-top" 
   channel="{channel}"
   title="Sponsorship Program"}
@@ -20,7 +23,8 @@
         {exp:weblog:entries weblog="{channel}" entry_id="478" limit="1"}
           {body}
         {/exp:weblog:entries}
-      <p class="button-wrap"><a href="/sponsors/apply" class="super giant green button"><span>Get Started</span></a></p>
+      <p class="button-wrap">
+        <a href="/sponsors/apply" class="super giant green button" data-reveal-id="signin-modal-sponsor-apply"><span>Get Started</span></a></p>
       <div class="quotes">
         <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has made a huge difference in my health outreach.&rdquo;</blockquote>
         <cite>&mdash;Todd D. Armstrong<br><a href="http://www.fhes.net/" target="_blank">Speaker/Director, Family Health &amp; Education Services</a></cite>
@@ -85,6 +89,6 @@
         <a href="/" class="super red button"><span>Club Home</span></a>
       </div>
     </div>
-  </div>  
+  </div>
 {/if}
-{embed="embeds/_doc-bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|sponsor-admin"}
+{embed="embeds/_doc-bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|sponsor-admin" sponsor-apply="yes"}
