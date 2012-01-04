@@ -6,12 +6,14 @@ $reason = $_POST['reason'];
 
 $subject = "Account Deleted Feedback";
 
-$message = 'Message: ';
+$message = 'From: '. $_SESSION['delete-account-name'] . "\n";
+$message .= 'Email: '. $_SESSION['delete-account-email'] . "\n";
+$message .= 'Message: ';
 $message .= nl2br($reason);
 
 $headers  = 'MIME-Version: 1.0' . "\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-$headers .= 'From: club@newstart.com' . "\r\n";
+$headers .= 'From: '. $_SESSION['delete-account-name'] .' <'. $_SESSION['delete-account-email'] . '>'. "\r\n";
 
 mail("club@newstart.com", stripslashes($subject), stripslashes($message), $headers);
 }
@@ -30,15 +32,15 @@ mail("club@newstart.com", stripslashes($subject), stripslashes($message), $heade
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=860;" />
  
-  <title>Delete Account | {site_name}</title>
+  <title>Account Deleted | {site_name}</title>
 
+  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
   <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
-<body>
-<div class="container">
+<body class="small">
   <div class="body">
     <?php if (isset($_POST['reason'])) { ?>
-    <h1>Thanks!</h1>
+    <h1>Thank You!</h1>
     <h3>Your feedback is appreciated!</h3>
     <script type="text/javascript">
       setTimeout("location.href = '{site_url}';", 2000);
@@ -48,13 +50,13 @@ mail("club@newstart.com", stripslashes($subject), stripslashes($message), $heade
     <p>Could you let us know what we did wrong?</p>
     <p>Your feedback will really help us improve the {site_name}.</p>
     <form action="" method="post">
-     <textarea name="reason" class="input" cols="50" rows="8"></textarea></td>
+     <textarea name="reason" class="input" rows="8"></textarea></td>
       <div class="button-wrap clearfix">
         <button type="submit" class="super green button"><span>Send</span></button>
+        <a href="/" class="super red button"><span>No Thanks</span></a>
       </div>
     </form>
   <?php } ?>
   </div>
-</div>
 </body>
 </html>
