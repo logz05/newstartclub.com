@@ -12,12 +12,17 @@
   {if group_id==1}
     <p>You&rsquo;re currently signed in as a Super Admin. To see this form you must log out.</p>
   {/if}
-{exp:user:register group_id="9" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}
   <noscript>
-    <div class="no-script">
+    <div class="alert-box warning">
       <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
     </div>
   </noscript>
+  <?php if (isset($_POST['memberAge'])) { ?>
+    <div class="alert-box warning">
+      <p>Please fill out these fields below to save your HealthGauge&trade; results.</p>
+    </div>
+  <?php } ?>
+{exp:user:register group_id="9" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}
   <table>
     <tr>
       <th scope="row" width="140"><label for="firstName" class="req"><span class="req">* </span>First Name</label></th>
@@ -126,11 +131,28 @@
   {select_member_groups} 
   <input type="checkbox" value="{group_id}" checked="checked" />{group_title}
   {/select_member_groups}
+  <?php if (isset($_POST['memberAge'])) { ?>
+    <div class="hidden">
+      <input class="hidden" type="hidden" name="memberAge" value="<?php echo $_POST['memberAge']; ?>" />
+      <input class="hidden" type="hidden" name="memberWeight" value="<?php echo $_POST['memberWeight']; ?>" />
+      <input class="hidden" type="hidden" name="memberHeightFeet" value="<?php echo $_POST['memberHeightFeet']; ?>" />
+      <input class="hidden" type="hidden" name="memberHeightInches" value="<?php echo $_POST['memberHeightInches']; ?>" />
+      <input class="hidden" type="hidden" name="memberWaistSize" value="<?php echo $_POST['memberWaistSize']; ?>" />
+      <input class="hidden" type="hidden" name="memberSleep" value="<?php echo $_POST['memberSleep']; ?>" />
+      <input class="hidden" type="hidden" name="memberExercise" value="<?php echo $_POST['memberExercise']; ?>" />
+      <input class="hidden" type="hidden" name="memberAlcohol" value="<?php echo $_POST['memberAlcohol']; ?>" />
+      <input class="hidden" type="hidden" name="memberSmoking" value="<?php echo $_POST['memberSmoking']; ?>" />
+      <input class="hidden" type="hidden" name="memberBreakfast" value="<?php echo $_POST['memberBreakfast']; ?>" />
+      <input class="hidden" type="hidden" name="memberSnacking" value="<?php echo $_POST['memberSnacking']; ?>" />
+      <input class="hidden" type="hidden" name="memberEmotional" value="<?php echo $_POST['memberEmotional']; ?>" />
+      <input class="hidden" type="hidden" name="memberScoreTotal" value="<?php echo $_POST['memberScoreTotal']; ?>" />
+    </div>
+  <?php } ?>
 {/exp:user:register}
   </div>
   <div class="sidebar right">
     <div class="bar">My Information</div>
-    <p class="fine-print">By providing your information, you will be enrolled as a NEWSTART Lifestyle Club member. With this, you will receive email communications with healthy videos, articles, recipes and tips for improving your life, plus details on members-only events and discounts. Membership is FREE. Your information will never be shared with a third party, and you can opt out at any time.</p>
+    <p class="fine-print">By providing your information, you will be enrolled as a {site_name} member. With this, you will receive email communications with healthy videos, articles, recipes and tips for improving your life, plus details on members-only events and discounts. <strong>Membership is FREE.</strong> Your information will never be shared with a third party, and you can opt out at any time.</p>
   </div>
 
 </div><!--/.grid23-->

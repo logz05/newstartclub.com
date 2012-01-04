@@ -5,7 +5,10 @@ ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstart
 
 require_once 'member_relations.php';
 require_once ( 'utilities.php' );
+?>
 
+{if logged_in}
+<?php
 if (isset($_POST['memberAge']))
 {
   global $SESS;
@@ -89,8 +92,8 @@ if (isset($_POST['memberAge']))
 /* Make sure that code below does not get executed when we redirect. */
 exit;
 }
-
 ?>
+{/if}
 {embed="embeds/_doc-top" 
   channel="{channel}"
   section="{section}"
@@ -106,13 +109,13 @@ exit;
 </div>
 <div class="grid23 clearfix">
   <div class="main left">
+    <noscript>
+      <div class="alert-box warning">
+        <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
+      </div>
+    </noscript>
     <div id="entry">
-      <noscript>
-        <div class="no-script">
-          <p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-        </div>
-      </noscript>
-      <form id="calculator" method="post" action="/my_health/calculator">
+      <form id="calculator" method="post" action="/my_health/{if logged_in}calculator{if:else}results{/if}">
         <div class="hiddenFields">
         <input type="hidden" name="error_page" value="/my_health/calculator-error" />
         </div>
@@ -226,9 +229,8 @@ exit;
               <li><label><input type="radio" name="memberEmotional" class="memberEmotional" value="5" onclick="healthcalc(this.form)" /> <span>Depressed</span></label></li>
             </ul>
             
-            <input type="text" name="memberScoreTotal" class="hidden" value="" />
           </div>
-          
+          <input type="text" name="memberScoreTotal" value="" class="hidden" />
         </div>
         
         <div class="center">

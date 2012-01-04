@@ -146,40 +146,39 @@ require_once ( 'utilities.php' );
 
     <div class="right sidebar">
       <div class="my_health">
-          {if logged_out}
+        {if logged_out}
           <div class="bar"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></div>
-            <a href="/signin" data-reveal-id="signin-modal-health-gauge">
-              <div id="gauge"></div>
-            </a>
-            <p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
-            <p class="button-wrap">
-              <a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
-            </p>
-          {/if}
-          {if logged_in}{exp:user:stats}{/if}
-          {if logged_in && memberScoreTotal == ""}
+          <a href="/my_health/calculator">
+            <div id="gauge"></div>
+          </a>
+          <p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
+          <p class="button-wrap">
+            <a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
+          </p>
+        {/if}
+        
+        {exp:user:stats dynamic="off"}
+        {if memberScoreTotal == ""}
           <div class="bar"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></div>
-            <a href="/my_health/calculator">
-              <div id="gauge"></div>
-            </a>
-            <p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
-            <p class="button-wrap">
-              <a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
-            </p>
-          {/if}
-          
-          {if logged_in && memberScoreTotal != ""}
-          <div class="bar"><a href="/my_health">My Health</a></div>
-            <h2 class="my_health">Health Score Results</h2>
-            <h3 class="total-score">
-              <a href="/my_health/results">{exp:user:stats dynamic="off"}{memberScoreTotal}{/exp:user:stats}</a>
-            </h3>
-            <p class="center"><a href="/my_health/calculator">Recalculate</a></p>
-            <p class="button-wrap center">
-              <a href="/my_health/results" class="super small secondary button"><span>View Recommendations</span></a>
-            </p>
-          {/if}
-          {if logged_in}{/exp:user:stats}{/if}
+          <a href="/my_health/calculator">
+            <div id="gauge"></div>
+          </a>
+          <p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
+          <p class="button-wrap">
+            <a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
+          </p>
+        {if:else}
+        <div class="bar"><a href="/my_health">My Health</a></div>
+          <h2 class="my_health">Health Score Results</h2>
+          <h3 class="total-score">
+            <a href="/my_health/results">{memberScoreTotal}</a>
+          </h3>
+          <p class="center"><a href="/my_health/calculator">Recalculate</a></p>
+          <p class="button-wrap center">
+            <a href="/my_health/results" class="super small secondary button"><span>View Recommendations</span></a>
+          </p>
+        {/if}
+        {/exp:user:stats}
       </div>
     {if logged_in}
       <div class="members">
@@ -287,4 +286,4 @@ require_once ( 'utilities.php' );
     {/if}
     </div>
   </div>
-{embed="embeds/_doc-bottom" sim="health-gauge"}
+{embed="embeds/_doc-bottom"}

@@ -18,12 +18,12 @@
   <div class="sidebar right">
     {if logged_out}
       <div class="bar">The HealthGauge<sup>&trade;</sup></div>
-      <a href="/signin" data-reveal-id="signin-modal-health-gauge">
+      <a href="/my_health/calculator">
         <div id="gauge"></div>
       </a>
       <p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
       <p class="button-wrap">
-        <a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-health-gauge"><span>Calculate</span></a>
+        <a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
       </p>
     {/if}
     {exp:user:stats}
@@ -39,7 +39,7 @@
       {if:else}
         <div class="bar">My Health</div>
         <h2 class="center">Health Score Results</h2>
-        <h1 class="total-score"><a href="/my_health/results" title="Go to my results">{memberScoreTotal}</a></h1>
+        <h3 class="total-score"><a href="/my_health/results" title="Go to my results">{memberScoreTotal}</a></h3>
         <p class="center">
           <a href="/my_health/calculator"><span>Recalculate</span></a>
         </p>
@@ -50,4 +50,4 @@
     {/exp:user:stats}
   </div><!--/.sidebar-->
 </div><!--/.grid23-->
-{embed="embeds/_doc-bottom" sim="health-gauge"}
+{embed="embeds/_doc-bottom"}
