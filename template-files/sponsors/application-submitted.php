@@ -21,37 +21,81 @@ $contactAddress = $_POST['contactAddress'];
 $contactCity = $_POST['contactCity'];
 $contactState = $_POST['contactState'];
 $contactZipCode = $_POST['contactZipCode'];
-$contactCountry = $_POST['contactCountry'];
 $contactPhone = $_POST['contactPhone'];
 $contactEmail = $_POST['contactEmail'];
-$contactPassword = $_POST['contactPassword'];
-
-$todayis = date("l, F j, Y, g:i a");
 
 $subject = "Sponsor Application";
 
-$message = " $todayis [EST] \n
-Sponsor Name: $sponsorName \n
-Sponsor Address: $sponsorAddress, $sponsorCity, $sponsorState, $sponsorZipCode, $sponsorCountry \n
-Sponsor Phone: $sponsorPhone \n
-Sponsor Email: $sponsorEmail \n
-Sponsor Fax: $sponsorFax \n
-Sponsor Website: $sponsorWebsite \n
-Sponsor Religious Affiliation: $sponsorRegAff \n
-Sponsor Health Events: $sponsorHealthEvents \n
-Sponsor Need Help: $sponsorNeedHelp \n\n
+// To send HTML mail, the Content-type header must be set
+  $headers  = 'MIME-Version: 1.0' . "\n";
+  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
+  $headers .= 'From: '. $contactName .' <'. $contactEmail .'>' . "\r\n";
 
-Contact Name: $contactName \n
-Contact Address: $contactAddress, $contactCity, $contactState, $contactZipCode, $contactCountry \n
-Contact Phone: $contactPhone \n
-Contact Email: $contactEmail \n
-Contact Desired Password: $contactPassword \n
-";
-
-$from = "From: $contactEmail\r\n";
-
-mail("club@newstart.com, cblood@weimar.org", $subject, $message, $from);
+    // message
+    $message = '
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=610">
+    <title>Email Members Template</title>
+    </head>
+      <body style="background: url(http://newstartclub.com/assets/css/images/background-gradient-texture.png) #A7C7EF repeat-x;" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="#A7C7EF">
+        <table width="100%" cellpadding="30" cellspacing="0" class="backgroundTable">
+          <tr>
+            <td valign="top" align="center">
+              <table width="550" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="border-top:0px solid #333333;">
+                  <center><a href="http://newstartclub.com/"><IMG SRC="http://newstartclub.com/assets/images/email/invites/header-email.jpg" BORDER="0" title="NEWSTART&reg; Lifestyle Club"  alt="NEWSTART&reg; Lifestyle Club" align="center" style="border-top-left-radius: 15px; -moz-border-radius-topleft: 15px; -webkit-border-top-left-radius: 15px; -khtml-border-top-left-radius: 15px; border-top-right-radius: 15px; -moz-border-radius-topright: 15px; -webkit-border-top-right-radius: 15px; -khtml-border-top-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);" /></a></center>
+                </td>
+                </tr>
+              </table>
+              <table width="550" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                <td style="background: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png) center center #000000; color:#FFFFFF; height: 60px; text-align:right; padding-right: 30px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);">
+                  <span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">Sponsorship Application</span>
+                </td>
+              </table>
+              <table width="550" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td bgcolor="#FFFFFF" valign="top" style="font-size:16px;color:#000000;line-height:150%;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; border-bottom-left-radius: 15px; -moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; -khtml-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; -khtml-border-bottom-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); padding:30px;">';
+                  $message .= "<p>Sponsor Name: $sponsorName</p>
+                  <p>Sponsor Address: $sponsorAddress, $sponsorCity, $sponsorState, $sponsorZipCode, $sponsorCountry</p>
+                  <p>Sponsor Phone: $sponsorPhone </p>
+                  <p>Sponsor Email: $sponsorEmail</p>
+                  <p>Sponsor Fax: $sponsorFax</p>
+                  <p>Sponsor Website: $sponsorWebsite</p>
+                  <p>Sponsor Religious Affiliation: $sponsorRegAff</p>
+                  <p>Sponsor Health Events: $sponsorHealthEvents</p>
+                  <p>Sponsor Need Help: $sponsorNeedHelp</p>
+                  <hr>
+                  <p>Contact Name: $contactName</p>
+                  <p>Contact Address: $contactAddress, $contactCity, $contactState, $contactZipCode</p>
+                  <p>Contact Phone: $contactPhone</p>
+                  <p>Contact Email: $contactEmail</p>";
+                  
+                  $message .= '
+                  </td>
+                </tr>
+              </table>
+              <table width="550" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
+                    <span style="font-size:10px;color:#FFFFFF;font-family:verdana;"></span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+    </html>';
+  
+    // Mail it
+    mail("cblood@weimar.org, club@newstart.com", $subject, stripslashes($message), $headers);
 }
+
+
 
 ?>
 

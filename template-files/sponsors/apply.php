@@ -15,7 +15,7 @@
         {body}
       {/exp:weblog:entries}
     </div>
-<form action="{path='sponsors/application-submitted'}" method="post" id="sponsor_register" enctype="multipart/form-data">
+<form action="/sponsors/application-submitted" method="post" id="sponsor_register" enctype="multipart/form-data">
 
   <h2>Sponsor Information</h2>
   <noscript>
@@ -180,9 +180,6 @@
       <td><input type="text" class="input" id="contactZipCode" name="contactZipCode" value="{zipCode}" size="7" autocomplete="off" /></td>
     </tr>
     <tr>
-      <th scope="row"><label for="contactCountry" class="req"><span class="req">* </span>Country</label></th>
-      <td><input type="text" class="input" id="contactCountry" name="contactCountry" value="{country}" size="32" autocomplete="off" /></td>
-    </tr><tr>
       <th scope="row"><label for="contactPhone"><span class="req">* </span>Phone</label></th>
       <td><input type="tel" class="input" id="contactPhone" name="contactPhone" value="{phone}" size="15" autocomplete="off" /></td>
     </tr>
@@ -191,13 +188,6 @@
       <td><input type="email" class="input" id="contactEmail" name="contactEmail" value="{email}" size="32" autocomplete="off" /></td>
     </tr>
     {/exp:user:stats}
-    <tr>
-      <th scope="row"><label for="contactPassword" class="req"><span class="req">* </span>Desired Password</label></th>
-      <td>
-        <input type="password" class="input" id="contactPassword" name="contactPassword" value="" size="20" autocomplete="off" />
-        <p class="instructions">Please use 6 or more characters. This is used so that we can create your account if approved. You may change it later.</p>
-      </td>
-    </tr>
     <tr>
       <th scope="row">&nbsp;</th>
       <td>
