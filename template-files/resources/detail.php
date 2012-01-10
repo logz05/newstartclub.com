@@ -52,7 +52,7 @@
     </div>
     <ul class="tags">
       <li><span>Tags:</span></li>
-      {categories show_group="not 22"}<li><a href="{site_url}{channel}/{partners_path}{living_better_path}{recipe_path}{media_path}{language_path}{series_path}{condition_path}/{category_url_title}/">{category_name}</a></li>
+      {categories show_group="not 22"}<li><a href="/{channel}/{partners_path}{living_better_path}{recipe_path}{media_path}{language_path}{series_path}{condition_path}/{category_url_title}/">{category_name}</a></li>
       {/categories}
     </ul>
     {/exp:weblog:entries}
@@ -63,46 +63,46 @@
       <ul class="clearfix">{/if}
       {related_entries id="resource_related_entry1"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{if resource_related_entry2}
       {related_entries id="resource_related_entry2"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry3}
       {related_entries id="resource_related_entry3"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry4}
       {related_entries id="resource_related_entry4"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}
       {if resource_related_entry1}</ul>{/if}
@@ -110,46 +110,46 @@
       <ul class="clearfix">
       {related_entries id="resource_related_entry5"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry6}
       {related_entries id="resource_related_entry6"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry7}
       {related_entries id="resource_related_entry7"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry8}
       {related_entries id="resource_related_entry8"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}
       {if resource_related_entry5}</ul>{/if}
@@ -157,46 +157,46 @@
       <ul class="clearfix">
       {related_entries id="resource_related_entry9"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry10}
       {related_entries id="resource_related_entry10"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry11}
       {related_entries id="resource_related_entry11"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}{if resource_related_entry12}
       {related_entries id="resource_related_entry12"}
         <li>
-          <a href="{path='{channel}/detail/{url_title}'}" class="image">
+          <a href="{url_title_path='{channel}/detail'}" class="image">
             {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
             {exp:ce_img:pair src="{resource_thumb}" max_width="100" max_height="75" crop="yes" debug="yes"}
               <img src="{made}" alt="{title}" width="{width}" height="{height}" />
             {/exp:ce_img:pair}
           </a>
-          <span class="title"><a href="{path='{channel}/detail/{url_title}'}">{title}</a></span>
+          <span class="title"><a href="{url_title_path='{channel}/detail'}">{title}</a></span>
         </li>
       {/related_entries}{/if}
       {if resource_related_entry5}</ul>{/if}

@@ -16,6 +16,7 @@
         {exp:weblog:entries weblog="{channel}" entry_id="477" limit="1"}
           {body}
         {/exp:weblog:entries}
+        <p>So what are you waiting for? <a href="http://newstartclub.com/sponsors/apply" {if logged_out}data-reveal-id="signin-modal-sponsor-apply"{/if}>Apply now</a>.</p>
       </div>
     </div>
     <div class="sidebar right">
@@ -24,7 +25,7 @@
           {body}
         {/exp:weblog:entries}
       <p class="button-wrap">
-        <a href="/sponsors/apply" class="super giant green button" data-reveal-id="signin-modal-sponsor-apply"><span>Get Started</span></a></p>
+        <a href="/sponsors/apply" class="super giant green button" {if logged_out}data-reveal-id="signin-modal-sponsor-apply"{/if}><span>Get Started</span></a></p>
       <div class="quotes">
         <blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has made a huge difference in my health outreach.&rdquo;</blockquote>
         <cite>&mdash;Todd D. Armstrong<br><a href="http://www.fhes.net/" target="_blank">Speaker/Director, Family Health &amp; Education Services</a></cite>
@@ -80,6 +81,9 @@
             {category_body}{selected}{/category_body}
           {/categories}
           {/if}
+          <div class="button-wrap">
+            <a href="/sponsors/apply" class="super green button"><span>Add Sponsor</span></a>
+          </div>
         {/exp:user:edit}
     </div>
     <div class="sidebar right">

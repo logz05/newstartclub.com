@@ -23,7 +23,7 @@
   <div class="main left">
     {if segment_3 == '' || segment_3_category_id == ''}
       <p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
-      <p>Please choose from a category on the right or click <a href="{path='{channel}'}">here</a> to see our latest resources.</p>
+      <p>Please choose from a category on the right or click <a href="/{channel}">here</a> to see our latest resources.</p>
     {if:else}
       {embed="{channel}/_page-listing" category="{segment_3_category_id}" orderby="title" sort="asc"}
     {/if}

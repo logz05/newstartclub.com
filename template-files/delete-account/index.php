@@ -33,7 +33,7 @@
       </tr>
     </table>
     <p class="button-wrap">
-      <a href="{path='settings'}" class="super green button"><span>&laquo; Back to Settings</span></a>
+      <a href="/settings" class="super green button"><span>&laquo; Back to Settings</span></a>
       <button type="submit" class="super red button"><span>Delete Account</span></button>
     </p>
   {/exp:user:delete_form}

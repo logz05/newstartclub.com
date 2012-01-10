@@ -11,11 +11,7 @@ ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstart
 require_once 'member_relations.php';
 require_once ( 'utilities.php' );
 ?>
-<div id="rss-feed">
-  <a href="/{segment_1}/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" title="RSS Feed">
-    <div class="icon"></div><span>RSS Feed</span>
-  </a>
-</div>
+{embed="embeds/_rss-feed"}
 <div class="heading clearfix">
   <div class="icon"></div>
   <h1>{section}</h1>
@@ -23,7 +19,7 @@ require_once ( 'utilities.php' );
 <div class="grid23 clearfix">
   <div class="main left">
     <ul id="listing">
-    {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_future_entries="yes" show_expired="yes"}
+    {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_expired="yes"}
       <li class="entry {weblog_short_name}">
         <h2>
           <a href="{path='{weblog_short_name}/detail/{url_title}'}">

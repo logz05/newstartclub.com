@@ -222,6 +222,10 @@ p:first-child,
 #entry-details + p,
 #entry-details + h2,
 #answer div + p { margin-top: 0; }
+.main > p {
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+}
 #entry sup.footnote {
   margin-right: 3px;
   font-size: 11px;
@@ -501,7 +505,7 @@ a.image:active img {
 /* Sidebar
 -------------------------------------------------------------------------- */
 .sidebar { color: #535353; }
-.sidebar .social-links { margin: 12px 0 0; }
+.sidebar .social-links { margin: 10px 0 0; }
 .sidebar .FB_UI_Hidden { width: 50px !important; }
 .sidebar .fb_iframe_widget, .sidebar .twitter-share-button { margin-top: 6px; }
 .sidebar .twitter-share-button {
@@ -891,7 +895,7 @@ li:hover span.edit-this { opacity: 1.0; }
   font-size: 18px;
 }
 .home #intro-heading a.button {
-  margin-top: 20px;
+  margin-top: 8px;
   position: absolute;
   top:0;
   right: 20px;
@@ -905,7 +909,7 @@ li:hover span.edit-this { opacity: 1.0; }
 }
 .home .heading h1 { font-size: 40px; }
 .home .heading h1 span { font-weight: normal; }
-.home .main .resources h2 {
+.home .main div.resources h2 {
   font-weight: 600;
   font-size: 18px;
   color: #535353;
@@ -962,6 +966,12 @@ li:hover span.edit-this { opacity: 1.0; }
   padding: 7px 0;
   border-top: 1px dashed #DDD;
   list-style-type: none;
+}
+.home li.event .details {
+  margin: 0 0;
+  font-size: 12px;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+  line-height: 19px;
 }
 .home .events li.event h3 { padding: 0; }
 .home .news { margin: 4px 0 0; }
@@ -1046,7 +1056,8 @@ li:hover span.edit-this { opacity: 1.0; }
   margin-top: 6px;
 }
 @-moz-document url-prefix() {
-  .my_health .right .total-score {
+  .my_health .sidebar .total-score,
+  .home .my_health h3.total-score {
     line-height: 48px;
     margin-top: 22px;
   }
@@ -1294,7 +1305,7 @@ li:hover span.edit-this { opacity: 1.0; }
 .resources #entry.recipe ol:first-child,
 .resources #entry.recipe ul:first-child { margin: 0; }
 .resources .ingredients + ul {
-  margin: 10px 0 0;
+  margin: 10px 0 10px;
   list-style-type: disc;
 }
 .resources .ingredients + ul li {
@@ -1355,7 +1366,7 @@ li:hover span.edit-this { opacity: 1.0; }
 .resources a,
 .resources > .icon:hover span { color: #87a922; }
 .resources a:hover,
-.resources a:hover { color: #5b7316; }
+.resources li a:hover { color: #5b7316; }
 
 /* Partners | http://newstartclub.com/partners
 -------------------------------------------------------------------------- */
@@ -1488,11 +1499,13 @@ li:hover span.edit-this { opacity: 1.0; }
   font-size: 12px;
   line-height: 12px;
 }
+/*
 .events li.event .details,
 .events .sidebar p {
   margin: 8px 0;
   line-height: 14px;
 }
+*/
 .events li.event ul li,
 .events .main #entry ul li { list-style-type: disc; }
 .events li.event ul {
@@ -1505,16 +1518,18 @@ li:hover span.edit-this { opacity: 1.0; }
   line-height: 18px;
 }
 #rsvp-list li.rsvp {
-  margin-left: 0;
-  padding: 6px 0;
+  margin: 0;
+  padding: 6px 8px;
   text-indent: 0;
   color: #535353;
   position: relative;
   border-top: 1px dashed #eee;
 }
+#rsvp-list li.rsvp:hover {
+  background-color: #fff0d6;
+}
 #rsvp-list li.rsvp:first-child {
   border-top: 0;
-  padding: 0 0 6px;
 }
 #rsvp-list li.rsvp span.date {
   font-weight: bold;
@@ -1527,31 +1542,21 @@ li:hover span.edit-this { opacity: 1.0; }
 #rsvp-list li.rsvp .event-name { margin-top: 3px; }
 #rsvp-list li.rsvp form {
   position: absolute;
-  top: 0;
-  right: 3px;
+  top: 3px;
+  right: 2px;
 }
 #rsvp-list li.rsvp button {
-  display: inline-block;
   color: #bbb;
-  background-color: #fff;
+  background-color: transparent;
   font-size: 12px;
   border: 0;
-  padding: 2px 6px;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  margin-top: -3px;
 }
-#rsvp-list li.rsvp button:hover {
-  background-color: #dedede;
-  color: #999;
-  padding: 2px 5px 1px;
-  border: 1px solid #aaa;
+#rsvp-list li.rsvp:hover button {
+  color: #FFB637;
 }
 #rsvp-list li.rsvp button:active {
   -webkit-transform: translateY(1px);
   -moz-transform: translateY(1px);
-  background-color: #bbb;
   color: #777;
 }
 #event-calendar{
@@ -1596,8 +1601,6 @@ li:hover span.edit-this { opacity: 1.0; }
 .events .bar,
 .events .heading .icon,
 .events > .icon:hover div,
-.home div#events.bar,
-.home div#rsvp.bar,
 .events .pagination a:hover { background-color: #FFB637; }
 .events #listing li.pagination a:hover {
   background-color: #fff7e9;
@@ -1918,9 +1921,11 @@ li:hover span.edit-this { opacity: 1.0; }
 /* Sponsors | http://newstartclub.com/sponsors
 -------------------------------------------------------------------------- */
 #main-nav.sponsors li { margin-left: 20px; }
-.sponsors #sponsor-id-switch { margin-top: 15px; }
-.sponsors #sponsor-id-switch h5 {
+.sponsors #sponsor-id-switch { 
+  margin-top: 15px;
   border-top: 1px dashed #DDD;
+}
+.sponsors #sponsor-id-switch h5 {
   margin: 0;
   padding-top: 10px;
   font-size: 14px;
@@ -2041,19 +2046,19 @@ li:hover span.edit-this { opacity: 1.0; }
 .sponsors li .invite-date, .sponsors li .join-date { display: none; }
 .sponsors li .date:hover .timeago { display: none; }
 .sponsors li .date:hover .invite-date, .sponsors li .date:hover .join-date { display: block; }
-.sponsors .resources #entry ul {
+.sponsors .resource-list #entry ul {
   margin: 0;
   padding: 0;
 }
-.sponsors .resources #entry ul li {
+.sponsors .resource-list #entry ul li {
   list-style-type: none;
   margin: 0 0 0 8px;
 }
-.sponsors .resources #entry li {
+.sponsors .resource-list #entry li {
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
   font-size: 11px;
 }
-.sponsors .resources #entry h3 {
+.sponsors .resource-list #entry h3 {
   font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
   margin: 8px 0 2px;
   color: #555;
@@ -2063,7 +2068,7 @@ li:hover span.edit-this { opacity: 1.0; }
   font-weight: normal;
   color: #FF4B28;
 }
-.sponsors .resources #entry textarea {
+.sponsors .resource-list #entry textarea {
   font-family: monospace;
   margin: 6px 0 0;
 }
@@ -2180,7 +2185,7 @@ li:hover span.edit-this { opacity: 1.0; }
   text-align: right;
   font-weight: bold;
 }
-.super-admin table tr.odd td { background-color: #E8F5FB; }
+.super-admin tbody tr:nth-child(odd) td { background-color: #F4F4F4; }
 
 
 /* ==|== print styles ======================================================= */
@@ -2195,14 +2200,17 @@ li:hover span.edit-this { opacity: 1.0; }
   thead { display: table-header-group; }
   tr, img { page-break-inside: avoid; }
   img { max-width: 100% !important; }
-  @page { margin: 0.375in 0.25in; }
+  @page { margin: 0.375in; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
   
-  body { width: 100% }
+  body, .body { width: 100% }
+  #entry img.image { border: 2px solid #ddd; }
   .header, .footer, .social-links, #trail, #the-comments, .icon { display: none }
-  .body { -webkit-box-shadow: none; }
+  .body, #entry img.image { -webkit-box-shadow: none; -moz-box-shadow: none;  box-shadow: none; }
+  .body { padding: 0; }
   .bar { padding-left: 0; }
+  .bar a { color: black !important;}
   ul.tags span { padding-left: 0; }
   .button { -webkit-box-reflect: none; }
 }

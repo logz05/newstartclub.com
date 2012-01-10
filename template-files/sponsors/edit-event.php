@@ -7,33 +7,10 @@
 <div class="grid23 clearfix">
   {exp:user:stats dynamic="off"}
   <div class="main events left">
-  <form method="post" action="/sponsors/edit-event" class="hidden">
-    <select name="orderby" class="input">
-      <option value="date">Sort By:</option>
-      <option value="event_start_date">Start Date</option>
-      <option value="title">Title</option>
-    </select>
-    
-    <select name="sort" class="input">
-      <option value="asc">Order In:</option>
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
-    </select>
-    
-    <select name="limit" class="input">
-      <option value="10">Result Limit:</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="40">40</option>
-    </select>
-    
-    <button type="submit" class="super small green button"><span>Sort</span></button>
-  
-  </form>
   
   {embed="sponsors/_event-list" sponsor_number="{sponsor_number}"}
   
-  </div><!-- /.left -->
+  </div>
   <div class="right sidebar">
     <div class="bar">Edit Events</div>
     <p>To see more about an event click on the event title.</p>

@@ -3,7 +3,7 @@
   <div class="grid12 clearfix">
     <div class="left">
       <h2>Sign In</h2>
-      <h3>You must be a member to apply for sponsorship.</h3>
+      <h3>You must sign in to apply for sponsorship.</h3>
       {exp:member:login_form error_page="members/error" return="/sponsors/apply"}
       <table>
         <tr>

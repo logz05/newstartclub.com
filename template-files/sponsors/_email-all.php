@@ -119,7 +119,7 @@ for ($i = 0; $i < count($mailing_list); $i++)
       $message .= '
                     <br /><br />
                     {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
-                    <a href="http://newstartclub.com" style="color:#87A621;">newstartclub.com</a></span>
+                    <a href="http://newstartclub.com/location/{embed:sponsor_number}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_number}</a></span>
                   </td>
                 </tr>
               </table>
@@ -181,7 +181,7 @@ function show_form($listTotal)
             <p>The following digital signature will be added to your message:</p>
             <p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
             {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
-            <a href="http://newstartclub.com/">newstartclub.com</a></p>
+            <a href="http://newstartclub.com/location/{embed:sponsor_number}">newstartclub.com/location/{embed:sponsor_number}</a></p>
           </div>
         </div><!-- /.grid23 -->';
 }

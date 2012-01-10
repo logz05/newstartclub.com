@@ -6,7 +6,7 @@
 </div>
 <div class="grid23 clearfix">
 {exp:user:stats dynamic="off"}
-  <div class="main left {segment_2}">
+  <div class="main left resource-list">
     <div id="entry">
       <h2>Press Kit</h2>
       <ul>

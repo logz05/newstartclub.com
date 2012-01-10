@@ -1,7 +1,8 @@
+{exp:weblog:entries weblog="events" sort="asc" orderby="date" limit="1" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
+  {if no_results}<p>You don&rsquo;t have any current events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
+{/exp:weblog:entries}
 <ul id="listing">
 {exp:weblog:entries weblog="events" sort="asc" orderby="date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
-  
-{if no_results}<p>You don&rsquo;t have any current events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
 
   {assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
   {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}

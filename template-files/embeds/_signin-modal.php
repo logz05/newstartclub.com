@@ -4,25 +4,25 @@
     <div class="left">
       <h2>Sign In</h2>
       {if embed:modal-role == "recipe"}
-        <h3>You must be signed in to view the ingredients.</h3>
+        <h3>You must sign in to view the ingredients.</h3>
       {/if}
       {if embed:modal-role == "video"}
-        <h3>You must be signed in to watch &ldquo;{exp:weblog:entries weblog="resources" limit="1" url_title="{segment_3}"}{title}{/exp:weblog:entries}&rdquo;</h3>
+        <h3>You must sign in to watch &ldquo;{exp:weblog:entries weblog="resources" limit="1" url_title="{segment_3}"}{title}{/exp:weblog:entries}&rdquo;</h3>
       {/if}
       {if embed:modal-role == "comments"}
-        <h3>You must be signed in to leave a comment.</h3>
+        <h3>You must sign in to leave a comment.</h3>
       {/if}
       {if embed:modal-role == "question"}
-        <h3>You must be signed in to submit a question.</h3>
+        <h3>You must sign in to submit a question.</h3>
       {/if}
       {if embed:modal-role == "contact"}
-        <h3>You must be signed in to view contact information.</h3>
+        <h3>You must sign in to view contact information.</h3>
       {/if}
       {if embed:modal-role == "directions"}
-        <h3>You must be signed in to get directions.</h3>
+        <h3>You must sign in to get directions.</h3>
       {/if}
       {if embed:modal-role == "rsvp"}
-        <h3>You must be signed in to RSVP to this event.</h3>
+        <h3>You must sign in to RSVP to this event.</h3>
       {/if}
       {exp:member:login_form error_page="members/error" return="/{segment_1}{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}{if segment_6}/{segment_6}{/if}{if segment_7}/{segment_7}{/if}"}
       <table>

@@ -261,8 +261,6 @@ function memberAges($rangeLow, $rangeHigh)
     };
     </script>
     <div id="member-map"></div>
-<!--     <iframe width="490px" height="300px" scrolling="no" src="{path='{channel}/member-map'}"></iframe> -->
-<!--     <p>Map last updated on June 28<sup>th</sup>, 2011</p> -->
   
     <h2 id="total-members">
       {exp:query sql="SELECT COUNT(member_id) AS total FROM exp_members WHERE group_id = '9'"}
@@ -574,58 +572,60 @@ function memberAges($rangeLow, $rangeHigh)
         </div>
       </div>
     </div>
-  
-    <h2><strong>Locations - {exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query}</strong></h2>
-    <table>
-      <thead>
-        <tr>
-          <td>Sponsor #</td>
-          <td>Location Name</td>
-          <td>Total Members</td>
-        </tr>
-      </thead>
-      {exp:weblog:entries weblog="locations" sort="asc"}
-        {exp:query
-          sql="
-            SELECT count(member_id) AS total FROM (
-              SELECT exp_member_data.member_id AS member_id
-                FROM exp_member_data
-              
-                    INNER JOIN exp_category_posts
-                    ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
-              
-                  WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-              
-                UNION DISTINCT
-              
-                  SELECT member_relations.member_id AS member_id
-                  FROM member_relations
-              
-                      LEFT JOIN exp_category_posts
-                      ON exp_category_posts.entry_id = member_relations.related_id
-              
-                    WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-              
-                UNION DISTINCT
-              
-                  SELECT member_id
-                  FROM exp_member_data
-                    WHERE m_field_id_26 = {categories}{category_id}{/categories}
-              
-                UNION DISTINCT
-              
-                  SELECT member_id
-                  FROM exp_member_data
-                    WHERE m_field_id_7 = {sponsor_zip}
-            ) a" limit="1"}
-          <tr class="{switch='odd|even'}">
-            <td>{categories}{category_id}{/categories}</td>
-            <td><a href="{url_title_path='locations/detail'}">{title}</a></td>
-            <td class="total">{total}</td>
+    
+    <div class="locations">
+      <h2><strong>Locations - {exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query}</strong></h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Sponsor #</td>
+            <td>Location Name</td>
+            <td>Total Members</td>
           </tr>
-        {/exp:query}
-      {/exp:weblog:entries}
-    </table>
+        </thead>
+        {exp:weblog:entries weblog="locations" sort="asc"}
+          {exp:query
+            sql="
+              SELECT count(member_id) AS total FROM (
+                SELECT exp_member_data.member_id AS member_id
+                  FROM exp_member_data
+                
+                      INNER JOIN exp_category_posts
+                      ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
+                
+                    WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
+                
+                  UNION DISTINCT
+                
+                    SELECT member_relations.member_id AS member_id
+                    FROM member_relations
+                
+                        LEFT JOIN exp_category_posts
+                        ON exp_category_posts.entry_id = member_relations.related_id
+                
+                      WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
+                
+                  UNION DISTINCT
+                
+                    SELECT member_id
+                    FROM exp_member_data
+                      WHERE m_field_id_26 = {categories}{category_id}{/categories}
+                
+                  UNION DISTINCT
+                
+                    SELECT member_id
+                    FROM exp_member_data
+                      WHERE m_field_id_7 = {sponsor_zip}
+              ) a" limit="1"}
+            <tr class="{switch='odd|even'}">
+              <td>{categories}{category_id}{/categories}</td>
+              <td><a href="{url_title_path='locations/detail'}">{title}</a></td>
+              <td class="total">{total}</td>
+            </tr>
+          {/exp:query}
+        {/exp:weblog:entries}
+      </table>
+    </div>
     
     <h2>Events</h2>
     <ul>

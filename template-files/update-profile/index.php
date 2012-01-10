@@ -69,7 +69,7 @@ function send_emails($fname, $lname, $email)
             <table width="550" cellpadding="0" cellspacing="0">
               <tr>
                 <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
-                  <span style="font-size:10px;color:#FFFFFF;font-family:verdana;">A FREE community service of <a href="http://newstart.com/" style="color:#FFF;">NEWSTART&reg;</a>. &copy;  2011. All Rights Reserved</span>
+                  <span style="font-size:10px;color:#548DEA;font-family:verdana;">A FREE community service of <a href="http://newstart.com/" style="color:#548DEA;text-decoration:underline;">NEWSTART&reg;</a>. &copy;  2011. All Rights Reserved</span>
                 </td>
               </tr>
             </table>
@@ -118,7 +118,7 @@ function send_emails($fname, $lname, $email)
   
       <h2 class="first">To better serve your health needs, please take a moment to indicate the areas you&rsquo;re interested in.</h2>
       
-    {exp:user:edit return="{path='my_health'}" form:class="clearfix" form:id="update-profile"}
+    {exp:user:edit return="/my_health" form:class="clearfix" form:id="update-profile"}
       <h2>Check the subjects you are interested in</h2>
       <div class="grid12-23 clearfix">
         <div class="left">

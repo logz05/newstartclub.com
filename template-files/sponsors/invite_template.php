@@ -38,7 +38,7 @@
             </tr>
             <tr>
               <td style="background-color:transparent; text-align:center;" valign="top">
-                <span style="font-size:10px;color:#FFFFFF;line-height:18px;font-family:verdana;">A FREE community service sponsored by {from_name}.</span>
+                <span style="font-size:10px;color:#548DEA;line-height:18px;font-family:verdana;">A FREE community service sponsored by <a href="http://newstartclub.com/location/{selected_group_id}" style="font-size:10px;color:#548DEA;font-family:verdana;text-decoration:underline;">{from_name}</a>.</span>
               </td>
             </tr>
           </table>

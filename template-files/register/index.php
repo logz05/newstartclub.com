@@ -19,7 +19,7 @@
   </noscript>
   <?php if (isset($_POST['memberAge'])) { ?>
     <div class="alert-box warning">
-      <p>Please fill out these fields below to save your HealthGauge&trade; results.</p>
+      <p>Please fill out the fields below to save your health score results.</p>
     </div>
   <?php } ?>
 {exp:user:register group_id="9" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}

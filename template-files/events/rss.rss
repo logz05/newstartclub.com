@@ -87,10 +87,7 @@
             {/if}
           </p>
           <h3>Location</h3>
-          <p>{if event_location_name}{event_location_name}<br />{/if}
-            {event_address}<br />
-            {event_city}, {event_state} {event_zip}
-          </p>
+          <p>{if event_location_name}{event_location_name}{/if}<br />{event_address}<br />{event_city}, {event_state} {event_zip}</p>
           <hr>
           <p>See Event on <a href="{title_permalink="events/detail"}{exp:xml_encode}?utm_source=Events&utm_medium=RSS&utm_campaign=see+more{/exp:xml_encode}">{site_name}</a>.</p>
         ]]>

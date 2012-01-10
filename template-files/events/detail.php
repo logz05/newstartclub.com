@@ -14,7 +14,7 @@
   <li><a href="/events">{section}</a></li>
 </ul>
 <div class="heading clearfix">
-  {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}{if no_results}<h1>We could not find this event</h1>{/if}<h1>{title}</h1>{/exp:weblog:entries}
+  {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}{if no_results}<h1>We could not find this event</h1>{/if}<h1 id="event-title">{title}</h1>{/exp:weblog:entries}
 </div>
 <div class="grid23 clearfix">
   <div class="main left">
@@ -28,7 +28,7 @@
       {assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
       {assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
       {exp:textile}{event_description}{/exp:textile}
-      <p><em>Add this event to your <a href="#rsvp-heading">RSVP list</a> to attend!</em></p>
+      <p><em>Add this event to your <a href="#event-title">RSVP list</a> to attend!</em></p>
       <dl>
         <dt>Sponsored by</dt>
         <dd>
@@ -108,7 +108,7 @@
     {/exp:weblog:entries}
   </div><!--/.single-->
   <div class="sidebar right">
-    <div class="bar" id="rsvp-heading">RSVP List</div>
+    <div class="bar">RSVP List</div>
     {embed="{channel}/_rsvp-list"}
     {embed="embeds/_share" channel="{channel}"}
     </div><!--/.sidebar-->
