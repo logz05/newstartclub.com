@@ -84,7 +84,7 @@ require_once ( 'utilities.php' );
         </ul>
       </div>
       <div class="events">
-        <div class="bar"><a href="{path='events'}">Upcoming Events</a></div>
+        <div class="bar"><a href="/events">Upcoming Events</a></div>
         <ul>
         {exp:weblog:entries weblog="events" sort="asc" orderby="event_start_date" show_future_entries="yes" show_expired="no" limit="2"}
           <li class="event" id="{exp:nice_date date='{event_start_date}' format='%Y-%m-%d'}">
@@ -115,6 +115,11 @@ require_once ( 'utilities.php' );
               </div>
             </h2>
             <h3><a href="/events/locations/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
+            <p class="details">
+              {exp:trunchtml chars="150" threshold="150" inline="&hellip; <a class='link-more' href='{url_title_path='resources/detail'}'>more&raquo;</a>"}
+                {exp:html_strip}{exp:textile}{event_description}{/exp:textile}{/exp:html_strip}
+              {/exp:trunchtml}
+            </p>
           </li>
         {/exp:weblog:entries}
         </ul>
@@ -123,7 +128,7 @@ require_once ( 'utilities.php' );
       <div class="news">
         <div class="bar"><a href="/news">Latest Updates</a></div>
         <ul id="listing">
-          {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="5" orderby="date" sort="desc" dynamic="off" show_future_entries="yes"}
+          {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="5" orderby="date" sort="desc" dynamic="off" show_expired="yes"}
           <li class="entry {weblog_short_name}">
             <h2>
               <a href="/{weblog_short_name}/detail/{url_title}">
@@ -135,7 +140,7 @@ require_once ( 'utilities.php' );
               </a>
             </h2>
             <div class="date">
-              <span class="timeago">{if entry_date > current_time}Upcoming{if:else}<?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?>{/if}</span>
+              <span class="timeago"><?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?></span>
               <span class="entry-date">{entry_date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
             </div>
           </li>
@@ -259,19 +264,17 @@ require_once ( 'utilities.php' );
       </a>
     </div>
     {/if}
-    {if logged_in}
-      {exp:user:stats dynamic="off"}
-        {exp:weblog:entries weblog="locations" search:sponsor_zip="{zipCode}" limit="1"}
-          <div class="locations">
-            <div class="bar"><a href="/locations/">Featured Location</a></div>
-            <a href="/locations/detail/{url_title}" title="{title}">
-              <div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={sponsor_address}+{sponsor_city}+{sponsor_state}&zoom=7&markers=size:med%7C{sponsor_address}+{sponsor_city}+{sponsor_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
-            </a>
-            <p><a href="/locations/detail/{url_title}" title="{title}">{title}</a></p>
-          </div>
-        {/exp:weblog:entries}
-      {/exp:user:stats}
-    {/if}
+    {exp:user:stats dynamic="off"}
+      {exp:weblog:entries weblog="locations" search:sponsor_zip="{zipCode}" limit="1"}
+        <div class="locations">
+          <div class="bar"><a href="/locations/">Featured Location</a></div>
+          <a href="/locations/detail/{url_title}" title="{title}">
+            <div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={sponsor_address}+{sponsor_city}+{sponsor_state}&zoom=7&markers=size:med%7C{sponsor_address}+{sponsor_city}+{sponsor_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
+          </a>
+          <p><a href="/locations/detail/{url_title}" title="{title}">{title}</a></p>
+        </div>
+      {/exp:weblog:entries}
+    {/exp:user:stats}
     {if member_group == "1" || member_group == "13"}
       <div class="sponsor-admin">
         <div class="bar"><a href="/sponsors/">Sponsor Admin</a></div>
