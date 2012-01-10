@@ -133,6 +133,14 @@
         </tr>
         <tr>
           <th scope="row">
+            <label for="phone">Business Phone</label>
+          </th>
+          <td>
+            <input type="text" name="phone" class="input" id="phone" value="" size="15" value="" />
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
             <label for="specialty">Specialty</label>
           </th>
           <td>

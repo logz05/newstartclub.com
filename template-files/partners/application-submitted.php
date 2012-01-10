@@ -43,7 +43,7 @@ function send_emails($from_name, $from_email, $subject, $custom_message)
               <table width="550" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
-                    <span style="font-size:10px;color:#FFFFFF;font-family:verdana;"></span>
+                    <span style="font-size:10px;color:#548DEA;font-family:verdana;"></span>
                   </td>
                 </tr>
               </table>
@@ -54,7 +54,7 @@ function send_emails($from_name, $from_email, $subject, $custom_message)
     </html>';
   
     // Mail it
-    mail("cavellblood@me.com, club@newstart.com", $subject, stripslashes($message), $headers);
+    mail("club@newstart.com", $subject, stripslashes($message), $headers);
 
 }
 
@@ -90,9 +90,10 @@ if (isset($_POST["name"])) {
   $city = $_POST["city"];
   $state = $_POST["state"];
   $zip = $_POST["zip"];
+  $phone = $_POST["phone"];
   $specialty = $_POST["specialty"];
   $bio = $_POST["bio"];
-  $picture = $_FILES["partnerPicture"]["name"];
+  $picture = $_FILES["picture"]["name"];
   $affiliation = $_POST["affiliation"];
   
   $message = "
@@ -103,6 +104,7 @@ if (isset($_POST["name"])) {
     <p><strong>City:</strong> $city</p>
     <p><strong>State:</strong> $state</p>
     <p><strong>Zip:</strong> $zip</p>
+    <p><strong>Phone:</strong> $phone</p>
     <p><strong>Specialty:</strong> $specialty</p>
     <p><strong>Biography:</strong> $bio</p>
     <p><strong>Picture:</strong> $picture</p>
@@ -111,32 +113,32 @@ if (isset($_POST["name"])) {
   send_emails($name, $email, 'Partnership Application', $message);
 }
 
-if ($_FILES["partnerPicture"]["name"] != "") {
+if ($_FILES["picture"]["name"] != "") {
   if (
       (
-        ($_FILES["partnerPicture"]["type"] == "image/jpeg") ||
-        ($_FILES["partnerPicture"]["type"] == "image/pjpeg") ||
-        ($_FILES["partnerPicture"]["type"] == "image/png") ||
-        ($_FILES["partnerPicture"]["type"] == "image/tiff") ||
-        ($_FILES["partnerPicture"]["type"] == "image/bmp")
+        ($_FILES["picture"]["type"] == "image/jpeg") ||
+        ($_FILES["picture"]["type"] == "image/pjpeg") ||
+        ($_FILES["picture"]["type"] == "image/png") ||
+        ($_FILES["picture"]["type"] == "image/tiff") ||
+        ($_FILES["picture"]["type"] == "image/bmp")
       ) 
-      && ($_FILES["partnerPicture"]["size"] < 2000000)
+      && ($_FILES["picture"]["size"] < 2000000)
     )
     {
-    if ($_FILES["partnerPicture"]["error"] > 0)
+    if ($_FILES["picture"]["error"] > 0)
       {
-      echo "Return Code: " . $_FILES["partnerPicture"]["error"] . "<br />";
+      echo "Return Code: " . $_FILES["picture"]["error"] . "<br />";
       }
     else
       {
-      if (file_exists("partners-upload/" . $_FILES["partnerPicture"]["name"]))
+      if (file_exists("assets/images/partners-upload/" . $_FILES["picture"]["name"]))
         {
-        echo "<!-- ". $_FILES["partnerPicture"]["name"] . " already exists. -->";
+        echo "<!-- ". $_FILES["picture"]["name"] . " already exists. -->";
         }
       else
         {
-        move_uploaded_file($_FILES["partnerPicture"]["tmp_name"],
-        "partners-upload/" . $_FILES["partnerPicture"]["name"]);
+        move_uploaded_file($_FILES["picture"]["tmp_name"],
+        "assets/images/partners-upload/" . $_FILES["picture"]["name"]);
         }
       }
     }
@@ -177,20 +179,19 @@ function fileModTime($filename) {
   <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
   <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
-<body>
-<div class="container">
+<body class="small">
   <div class="body">
     <?php 
       if (isset($_POST['name'])) {
-        if (($_FILES["partnerPicture"]["name"] != "") && 
+        if (($_FILES["picture"]["name"] != "") && 
             (
-              ($_FILES["partnerPicture"]["type"] == "image/jpeg") ||
-              ($_FILES["partnerPicture"]["type"] == "image/pjpeg") ||
-              ($_FILES["partnerPicture"]["type"] == "image/png") ||
-              ($_FILES["partnerPicture"]["type"] == "image/tiff") ||
-              ($_FILES["partnerPicture"]["type"] == "image/bmp")
+              ($_FILES["picture"]["type"] == "image/jpeg") ||
+              ($_FILES["picture"]["type"] == "image/pjpeg") ||
+              ($_FILES["picture"]["type"] == "image/png") ||
+              ($_FILES["picture"]["type"] == "image/tiff") ||
+              ($_FILES["picture"]["type"] == "image/bmp")
             ) 
-            && ($_FILES["partnerPicture"]["size"] < 2000000)
+            && ($_FILES["picture"]["size"] < 2000000)
           )
           {
             show_done();
@@ -202,7 +203,7 @@ function fileModTime($filename) {
               <p>The file you uploaded for your picture could not be recognized or was over 2MB. Please upload one of the following file types: .jpg, .bmp, .tiff, .png.</p>
               <form action="" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="name" class="input" id="name" size="25" value="'. $name .'" />
-                <input type="file" name="partnerPicture" id="partnerPicture" />
+                <input type="file" name="picture" id="picture" />
                 <div class="button-wrap">
                   <button type="submit" class="super green button"><span>Submit</span></button>
                 </div>
