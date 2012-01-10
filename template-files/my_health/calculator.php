@@ -24,8 +24,8 @@ if (isset($_POST['memberAge']))
       "memberExercise" => "m_field_id_18",
       "memberSmoking" => "m_field_id_19",
       "memberAlcohol" => "m_field_id_20",
-      "memberBreakfast" => "m_field_id_21",
-      "memberSnacking" => "m_field_id_22",
+      "memberDiet" => "m_field_id_21",
+      "memberNutrition" => "m_field_id_22",
       "memberWaistSize" => "m_field_id_23",
       "memberScoreTotal" => "m_field_id_24",
       "memberEmotional" => "m_field_id_29"
@@ -50,8 +50,8 @@ if (isset($_POST['memberAge']))
   $hsExercise = $fmvalues["memberExercise"];
   $hsSmoking = $fmvalues["memberSmoking"];
   $hsAlcohol = $fmvalues["memberAlcohol"];
-  $hsBreakfast = $fmvalues["memberBreakfast"];
-  $hsSnacking = $fmvalues["memberSnacking"];
+  $hsDiet = $fmvalues["memberDiet"];
+  $hsNutrition = $fmvalues["memberNutrition"];
   $hsEmotional = $fmvalues["memberEmotional"];
   
   $hsHeightTotal = ($hsHeightFeet*12)+$hsHeightInches;
@@ -63,7 +63,7 @@ if (isset($_POST['memberAge']))
   
   $bmi = ($hsWeight/($hsHeightTotal*$hsHeightTotal))*703;
   $bmiPoints = 11 - abs($bmi - 21.7);
-  $hsTotal = round(($hsSleep + $hsExercise + $hsSmoking + $hsAlcohol + $hsBreakfast + $hsSnacking + $hsEmotional + $bmiPoints + $hsWaistPoints), 1);
+  $hsTotal = round(($hsSleep + $hsExercise + $hsSmoking + $hsAlcohol + $hsDiet + $hsNutrition + $hsEmotional + $bmiPoints + $hsWaistPoints), 1);
 
   // fmvalues['memberScoreTotal']
   $dbvalues["m_field_id_24"] = $hsTotal; // Calculated result
@@ -204,20 +204,20 @@ exit;
               <li><label><input type="radio" name="memberSmoking" class="memberSmoking" value="0" onclick="healthcalc(this.form)" /> <span>I smoke more than 1 pack a day</span></label></li>
             </ul>
           
-            <h2>Breakfast</h2>
-            <p>How often do you eat a good breakfast? (Including fruits, cereals, bread or more.)</p>
+            <h2>Diet</h2>
+            <p>How often do you eat only plant-based foods? (No meat or dairy products.)</p>
             <ul>
-              <li><label><input type="radio" name="memberBreakfast" class="memberBreakfast" value="10" onclick="healthcalc(this.form)" /> <span>Almost Every Day</span></label></li>
-              <li><label><input type="radio" name="memberBreakfast" class="memberBreakfast" value="8" onclick="healthcalc(this.form)" /> <span>Sometimes</span></label></li>
-              <li><label><input type="radio" name="memberBreakfast" class="memberBreakfast" value="6" onclick="healthcalc(this.form)" /> <span>Rarely or never</span></label></li>
+              <li><label><input type="radio" name="memberDiet" class="memberDiet" value="10" onclick="healthcalc(this.form)" /> <span>Almost Every Day</span></label></li>
+              <li><label><input type="radio" name="memberDiet" class="memberDiet" value="8" onclick="healthcalc(this.form)" /> <span>Sometimes</span></label></li>
+              <li><label><input type="radio" name="memberDiet" class="memberDiet" value="6" onclick="healthcalc(this.form)" /> <span>Rarely or never</span></label></li>
             </ul>
           
-            <h2>Snacking</h2>
-            <p>How often do you eat between meals?</p>
+            <h2>Nutrition</h2>
+            <p>How often do you eat foods containing refined sugar or oil?</p>
             <ul>
-              <li><label><input type="radio" name="memberSnacking" class="memberSnacking" value="5" onclick="healthcalc(this.form)" /> <span>Almost every day</span></label></li>
-              <li><label><input type="radio" name="memberSnacking" class="memberSnacking" value="9" onclick="healthcalc(this.form)" /> <span>Once in a while</span></label></li>
-              <li><label><input type="radio" name="memberSnacking" class="memberSnacking" value="11" onclick="healthcalc(this.form)" /> <span>Rarely or never</span></label></li>
+              <li><label><input type="radio" name="memberNutrition" class="memberNutrition" value="5" onclick="healthcalc(this.form)" /> <span>Almost every day</span></label></li>
+              <li><label><input type="radio" name="memberNutrition" class="memberNutrition" value="9" onclick="healthcalc(this.form)" /> <span>Once in a while</span></label></li>
+              <li><label><input type="radio" name="memberNutrition" class="memberNutrition" value="11" onclick="healthcalc(this.form)" /> <span>Rarely or never</span></label></li>
             </ul>
             
             <h2>Emotional Well-being</h2>
@@ -242,8 +242,8 @@ exit;
         <input type="text" name="jsMemberExercise" class="hidden" value="" />
         <input type="text" name="jsMemberSmoking" class="hidden" value="" />
         <input type="text" name="jsMemberAlcohol" class="hidden" value="" />
-        <input type="text" name="jsMemberBreakfast" class="hidden" value="" />
-        <input type="text" name="jsMemberSnacking" class="hidden" value="" />
+        <input type="text" name="jsMemberDiet" class="hidden" value="" />
+        <input type="text" name="jsMemberNutrition" class="hidden" value="" />
         <input type="text" name="jsMemberEmotional" class="hidden" value="" />
         <input type="text" name="jsHeightTotal" class="hidden" value="" />
         <input type="text" name="jsWaistPoints" class="hidden" value="" />
