@@ -128,7 +128,6 @@
         <ul>
           {if logged_in}<li><h5>Hi, <strong>{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{firstName} {lastName}")); ?>{/exp:user:stats}</strong></h5></li>{/if}
           {if group_id == '1' && embed:channel == "sponsors"}<li><h5>{exp:user:stats dynamic="off"}{sponsor_number} | {exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1' dynamic='off' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{sponsor_zip}{/exp:weblog:entries}{/exp:user:stats}</h5></li>{/if}
-          {if member_id == "1"}<li><a href="http://admin.newstartclub.com" target="_blank">Control Panel</a></li>{/if}
           {if embed:channel != "sponsors" && (member_group == 1 || member_group == 13)}<li><a href="/sponsors">Sponsor Admin</a></li>{/if}
           {if embed:channel == "sponsors" && (member_group == 1 || member_group == 13)}<li><a href="/">Main Site</a></li>{/if}
           <li>
@@ -136,7 +135,7 @@
             {if logged_in}<a href="{path=logout}">Sign Out</a>{/if}
           </li>
           <li>
-            {if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply{if:else}/register{/if}">{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
+            {if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply{if:else}/register{/if}" {if segment_1 == "sponsors"}data-reveal-id="signin-modal-sponsor-apply"{/if}>{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
             {if logged_in}<a href="/settings">Settings</a>{/if}
           </li>
         </ul>
