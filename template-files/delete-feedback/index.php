@@ -6,10 +6,9 @@ $reason = $_POST['reason'];
 
 $subject = "Account Deleted Feedback";
 
-$message = 'From: '. $_SESSION['delete-account-name'] . "\n";
-$message .= 'Email: '. $_SESSION['delete-account-email'] . "\n";
-$message .= 'Message: ';
-$message .= nl2br($reason);
+$message = '<p><strong>From:</strong> '. $_SESSION['delete-account-name'] .'</p>';
+$message .= '<p><strong>Email:</strong> '. $_SESSION['delete-account-email'] .'</p>';
+$message .= '<p><strong>Message:</strong> '. nl2br($reason) .'</p>';
 
 $headers  = 'MIME-Version: 1.0' . "\n";
 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";

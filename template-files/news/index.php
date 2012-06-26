@@ -1,63 +1,56 @@
 {embed="embeds/_doc-top" 
-  channel="{channel}"
-  section="{section}"
-  title="{section}"}
-{assign_variable:channel="news"}
-{assign_variable:section="News"}
+	class="news"
+	title="News"
+}
 <?php
 $path = ini_get('include_path');
-ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content/lib');
+ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
 
 require_once 'member_relations.php';
 require_once ( 'utilities.php' );
 ?>
-{embed="embeds/_rss-feed"}
+{embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub"}
 <div class="heading clearfix">
-  <div class="icon"></div>
-  <h1>{section}</h1>
+	<i>8</i>
+	<h1>News</h1>
 </div>
 <div class="grid23 clearfix">
-  <div class="main left">
-    <ul id="listing">
-    {exp:weblog:entries weblog="resources|events|partners|locations|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_expired="yes"}
-      <li class="entry {weblog_short_name}">
-        <h2>
-          <a href="{path='{weblog_short_name}/detail/{url_title}'}">
-            {if weblog_short_name == 'questions'}
-              {exp:char_limit total="48"}{qa_question}{/exp:char_limit}
-            {if:else}
-              {exp:char_limit total="48"}{title}{/exp:char_limit}
-            {/if}
-          </a>
-        </h2>
-        <div class="date">
-          <span class="timeago">{if entry_date > current_time}Upcoming{if:else}<?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?>{/if}</span>
-          <span class="entry-date">{entry_date format="%D, %M %j, %Y  %g:%i%a %T"}</span>
-        </div>
-      </li>
-      {paginate}
-        {if "{total_pages}" > 1}
-          <li class="pagination">
-            <p>{pagination_links}</p>
-          </li>
-        {/if}
-      {/paginate}
-    {/exp:weblog:entries}
-    </ul>
-  </div>
-  <div class="sidebar right">
-    <div class="bar">News</div>
-    <p>Find out what is happening on newstartclub.com. Visit this page to follow the latest updates to our website. You&rsquo;ll find new articles, videos, recipes, events, and more!</p>
-    <p>Follow us on Facebook and Twitter or subscribe to our RSS feed to stay up to date when you are not on our website.</p>
-    <a href="http://www.facebook.com/newstartclub" title="Facebook">
-      <h4 class="icon" id="facebook-icon">Facebook</h4>
-    </a>
-    <a href="http://www.twitter.com/newstartclub" title="Twitter">
-      <h4 class="icon" id="twitter-icon">Twitter</h4>
-    </a>
-    <a href="/news/rss" title="Subscribe">
-      <h4 class="icon" id="rss-icon">Subscribe</h4>
-    </a>
-  </div><!--/.sidebar-->
+	<div class="main left">
+		<ul id="listing">
+		{exp:weblog:entries weblog="resources|events|partners|locations|recipes|questions" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_expired="yes"}
+			<li class="entry {weblog_short_name}">
+				<h2>
+					{if weblog_short_name == "resources"}<i>3</i>{/if}
+					{if weblog_short_name == "partners"}<i>4</i>{/if}
+					{if weblog_short_name == "events"}<i>5</i>{/if}
+					{if weblog_short_name == "locations"}<i>6</i>{/if}
+					{if weblog_short_name == "recipes"}<i>7</i>{/if}
+					{if weblog_short_name == "questions"}<i>9</i>{/if}
+					<a href="{path='{if weblog_short_name == 'questions'}faq{if:else}{weblog_short_name}{/if}/detail/{url_title}'}">
+						{if weblog_short_name == 'questions'}
+							{exp:char_limit total="48"}{qa_question}{/exp:char_limit}
+						{if:else}
+							{exp:char_limit total="48"}{title}{/exp:char_limit}
+						{/if}
+					</a>
+				</h2>
+				<div class="date">
+					<span class="timeago">{if entry_date > current_time}Upcoming{if:else}<?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?>{/if}</span>
+					<span class="entry-date">{entry_date format="%D, %M %j, %Y	%g:%i%a %T"}</span>
+				</div>
+			</li>
+			{paginate}
+				{if "{total_pages}" > 1}
+					<li class="pagination">
+						<p>{pagination_links}</p>
+					</li>
+				{/if}
+			{/paginate}
+		{/exp:weblog:entries}
+		</ul>
+	</div>
+	<div class="sidebar right">
+		{embed="news/_sidebar"}
+	</div><!--/.sidebar-->
 </div><!--/.grid23-->
 {embed="embeds/_doc-bottom"}

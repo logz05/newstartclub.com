@@ -38,7 +38,7 @@
           <th></th>
           <td>
             <p>
-              <input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span>
+              <label><input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span></label>
             </p>
           </td>
         </tr>{/if}

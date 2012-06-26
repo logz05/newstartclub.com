@@ -1,7 +1,7 @@
 <?php
 
 $path = ini_get('include_path');
-ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content/lib');
+ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
 
 require_once('utilities.php');
 require_once('dbconnect.php');
@@ -41,12 +41,13 @@ $queryAll = '
     exp_member_data.member_id,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name,
-    exp_member_data.m_field_id_8,
-    exp_member_data.m_field_id_9,
-    exp_member_data.m_field_id_10,
-    exp_member_data.m_field_id_7,
-    exp_member_data.m_field_id_11,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
     exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
     exp_members.username,
     exp_members.join_date
     
@@ -66,12 +67,13 @@ UNION DISTINCT
     member_relations.member_id,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name,
-    exp_member_data.m_field_id_8,
-    exp_member_data.m_field_id_9,
-    exp_member_data.m_field_id_10,
-    exp_member_data.m_field_id_7,
-    exp_member_data.m_field_id_11,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
     exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
     exp_members.username,
     exp_members.join_date
     
@@ -94,12 +96,13 @@ UNION DISTINCT
     exp_member_data.member_id,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name,
-    exp_member_data.m_field_id_8,
-    exp_member_data.m_field_id_9,
-    exp_member_data.m_field_id_10,
-    exp_member_data.m_field_id_7,
-    exp_member_data.m_field_id_11,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
     exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
     exp_members.username,
     exp_members.join_date
 
@@ -132,12 +135,13 @@ $queryCat = '
     exp_member_data.member_id,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name,
-    exp_member_data.m_field_id_8,
-    exp_member_data.m_field_id_9,
-    exp_member_data.m_field_id_10,
-    exp_member_data.m_field_id_7,
-    exp_member_data.m_field_id_11,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
     exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
     exp_members.username,
     exp_members.join_date
   FROM exp_members
@@ -156,12 +160,13 @@ UNION DISTINCT
   	exp_member_data.member_id,
     exp_member_data.m_field_id_3 AS first_name,
     exp_member_data.m_field_id_4 AS last_name,
-    exp_member_data.m_field_id_8,
-    exp_member_data.m_field_id_9,
-    exp_member_data.m_field_id_10,
-    exp_member_data.m_field_id_7,
-    exp_member_data.m_field_id_11,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
     exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
     exp_members.username,
     exp_members.join_date
     
@@ -204,16 +209,17 @@ $db = new DBconnect();
 $queryEvent = '
 SELECT 
   exp_member_data.member_id,
-  exp_member_data.m_field_id_3 AS first_name,
-  exp_member_data.m_field_id_4 AS last_name,
-  exp_member_data.m_field_id_8,
-  exp_member_data.m_field_id_9,
-  exp_member_data.m_field_id_10,
-  exp_member_data.m_field_id_7,
-  exp_member_data.m_field_id_11,
-  exp_member_data.m_field_id_24 AS health_score,
-  exp_members.username,
-  exp_members.join_date
+    exp_member_data.m_field_id_3 AS first_name,
+    exp_member_data.m_field_id_4 AS last_name,
+    exp_member_data.m_field_id_8 AS address,
+    exp_member_data.m_field_id_9 AS city,
+    exp_member_data.m_field_id_10 AS state,
+    exp_member_data.m_field_id_7 AS zip_code,
+    exp_member_data.m_field_id_11 AS phone_number,
+    exp_member_data.m_field_id_24 AS health_score,
+    exp_member_data.m_field_id_34 AS score_history,
+    exp_members.username,
+    exp_members.join_date
   
 FROM exp_members
   INNER JOIN member_relations
@@ -245,7 +251,82 @@ $memberListEvent = array();
     array_push($memberListEvent, $queryResultsEvent[$i][0]);
   }
 
+  date_default_timezone_set('US/Pacific');
+  
+function listMembers($count, $results) {
+
+  for ($i = 0; $i < $count; $i++)
+  {
+  
+  $scoreHistory = unserialize($results[$i][9]);
+  
+  krsort($scoreHistory);
+  
+    echo '<li>
+            <h2>'. $results[$i][10] .'</h2>
+            <div class="date">
+              <span class="timeago">'. distanceOfTimeInWords( $results[$i][11] , {current_time}, true) .'</span>
+              <span class="join-date">'. date( "D, M j, Y  g:ia T", ( $results[$i][11] - 21600 ) ) .'</span>
+            </div>
+            <div class="details">
+              <p>'. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'<br />';
+              //Street Address
+              if ($results[$i][3])
+              {
+                echo ucwords(strtolower( $results[$i][3] )) .'<br />';
+              }
+              
+              // City
+              if ($results[$i][4])
+              {
+                echo ucwords(strtolower( $results[$i][4] )) .', ';
+              }
+              
+              //State
+              if ($results[$i][5] != "--")
+              {
+                echo $results[$i][5] .' ';
+              }
+              
+              //Zip Code
+              echo $results[$i][6] . '</p>';
+              
+              if ($results[$i][7])
+              { 
+                echo '<p><strong>Phone:</strong> '. $results[$i][7] .'</p>';
+              }
+              if ($results[$i][8])
+              {
+                echo '<p><strong>Health Score:</strong> ';
+                foreach ($scoreHistory as $key => $value)
+                {
+                  $date = explode("-", $key);
+                  echo '<span class="has-tip"><span class="tooltip top"><i class="nub"></i>'. date( "F j, Y", mktime(0, 0, 0, $date[1], $date[2], $date[0]) ) .'</span>'. $value .'</span>';
+                }
+                echo '</p>';
+              }
+            echo '</div>
+          </li>';
+  }
+
+}
+
 ?>
+    <div id="csv-file" class="icon">
+      {if segment_4}
+      <a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={segment_3}&event_name={exp:weblog:entries weblog='events' entry_id='{segment_3}' limit='1' show_future_entries='yes' dynamic='off' status='open|closed'}{url_title}{/exp:weblog:entries}" title="Export CSV file of this list">
+      	<div></div><span>Export CSV</span>
+      </a>
+      {if:elseif segment_3}
+      	<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&catname={exp:weblog:categories weblog='sponsors' style='linear' show='{segment_3}'}{category_url_title}{/exp:weblog:categories}&cat={segment_3}" title="Export CSV file of this list">
+      	<div></div><span>Export CSV</span>
+      </a>
+      {if:else}
+      	<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&all" title="Export CSV file of this list">
+      	<div></div><span>Export CSV</span>
+      </a>
+      {/if}
+    </div>
     <div class="heading clearfix"> 
     {if segment_3 == '' || (segment_3 >= 'P0' && segment_3 <= 'P9999')}
       <h1>Member List (&nbsp;<?php print $queryCountAll; ?>&nbsp;)</h1>
@@ -262,150 +343,19 @@ $memberListEvent = array();
       <p class="button-wrap">
         <a href="/sponsors/send-email{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" class="super secondary button"><span>Email Members</span></a>
       </p>
-      {if segment_3 == '' && (segment_3 >= 'P0' && segment_3 <= 'P9999') && segment_4 != 'event' }<form method="post" action="/sponsors/{segment_2}/{segment_3}/{segment_4}" class="clear">
-       
-      <select name="user_orderby">
-        <option value="username">Username</option>
-        <option value="join_date">Join Date</option>
-      </select>
-       
-      <select name="user_sort">
-        <option value="asc">Ascending</option>
-        <option value="desc">Descending</option>
-      </select>
-       
-      <input type="submit" value="Sort" />
-       
-      </form>
+      <div class="row-header clearfix">
+        <div class="left"><strong>Username</strong> ( <span class="exp-col exp">show details</span><span class="exp-col col" style="display:none;">hide details</span> )</div>
+        <div class="right"><strong>Join Date</strong></div>
+      </div>
+      <ul id="listing">
+      {if segment_3 == '' || (segment_3 <= 'P9999' && segment_3 >= 'P0')}{!-- Main Member Listing --}
+        <?php listMembers($queryCountAll, $queryResultsAll); ?>
+      {if:elseif segment_3 && segment_4 == ""}{!-- Category Member Listing --}
+        <?php listMembers($queryCountCat, $queryResultsCat); ?>
+      {if:elseif segment_3 && segment_4 == 'event'}{!-- Event Member Listing --}
+        <?php listMembers($queryCountEvent, $queryResultsEvent); ?>
       {/if}
-        <div class="row-header clearfix">
-          <div class="left"><strong>Username</strong> ( <span class="exp-col exp">show details</span><span class="exp-col col" style="display:none;">hide details</span> )</div>
-          <div class="right"><strong>Join Date</strong></div>
-        </div>
-        <ul id="listing">
-        {if segment_3 == '' || (segment_3 <= 'P9999' && segment_3 >= 'P0')}{!-- Main Member Listing --}
-          <?php
-            for ($i = 0; $i < $queryCountAll; $i++)
-            {
-              print '<li>
-                      <h2>'. $queryResultsAll[$i][9] .'</h2>
-                      <div class="date">
-                        <span class="timeago">'. distanceOfTimeInWords( $queryResultsAll[$i][10] , time(), true) .'</span>
-                        <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsAll[$i][10] ) .'</span>
-                      </div>
-                      <div class="details">
-                        <p>'. ucwords(strtolower( $queryResultsAll[$i][1] )) .' '. ucwords(strtolower( $queryResultsAll[$i][2] )) .'<br />';
-                        //Street Address
-                        if ($queryResultsAll[$i][3])
-                        {
-                          print ucwords( $queryResultsAll[$i][3] ) .'<br />';
-                        }
-                        
-                        // City
-                        if ($queryResultsAll[$i][4])
-                        {
-                          print ucwords(strtolower( $queryResultsAll[$i][4] )) .', ';
-                        }
-                        
-                        //State
-                        if ($queryResultsAll[$i][5] != "--")
-                        {
-                          print $queryResultsAll[$i][5] .' ';
-                        }
-                        
-                        //Zip Code
-                        print $queryResultsAll[$i][6] . '</p>';
-                        
-                        if ($queryResultsAll[$i][7])
-                        { 
-                          print '<p><strong>Phone:</strong> '. $queryResultsAll[$i][7] .'</p>';
-                        }
-                        if ($queryResultsAll[$i][8])
-                        {
-                          print '<p><strong>Health Score:</strong> '. $queryResultsAll[$i][8] .'</p>';
-                        }
-                      print '</div>
-                    </li>';
-            }
-          ?>
-        {if:elseif segment_3 && segment_4 == ""}{!-- Category Member Listing --}
-          <?php
-            for ($i = 0; $i < $queryCountCat; $i++)
-            {
-              print '<li>
-                      <h2>'. $queryResultsCat[$i][9] .'</h2>
-                      <div class="date">
-                        <span class="timeago">'. distanceOfTimeInWords( $queryResultsCat[$i][10] , time(), true) .'</span>
-                        <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsCat[$i][10] ) .'</span>
-                      </div>
-                      <div class="details">
-                        <p>'. ucwords(strtolower( $queryResultsCat[$i][1] )) .' '. ucwords(strtolower( $queryResultsCat[$i][2] )) .'<br />';
-                        if ($queryResultsCat[$i][3])
-                        {
-                          print ucwords( $queryResultsCat[$i][3] ) .'<br />';
-                        } 
-                        if ($queryResultsCat[$i][4])
-                        {
-                          print ucwords(strtolower( $queryResultsCat[$i][4] )) .', ';
-                        }
-                        if ($queryResultsCat[$i][5] != "--")
-                        {
-                          print $queryResultsCat[$i][5] .' ';
-                        }
-                        print $queryResultsCat[$i][6] . '</p>';
-                        
-                        if ($queryResultsCat[$i][7])
-                        { 
-                          print '<p><strong>Phone:</strong> '. $queryResultsCat[$i][7] .'</p>';
-                        }
-                        if ($queryResultsCat[$i][8])
-                        {
-                          print '<p><strong>Health Score:</strong> '. $queryResultsCat[$i][8] .'</p>';
-                        }
-                      print '</div>
-                    </li>';
-            }
-          ?>
-        {if:elseif segment_3 && segment_4 == 'event'}{!-- Event Member Listing --}
-          <?php
-            for ($i = 0; $i < $queryCountEvent; $i++)
-            {
-              print '<li>
-                      <h2>'. $queryResultsEvent[$i][9] .'</h2>
-                      <div class="date">
-                        <span class="timeago">'. distanceOfTimeInWords( $queryResultsEvent[$i][10] , time(), true) .'</span>
-                        <span class="join-date">'. date( "D, M j, Y  g:ia T", $queryResultsEvent[$i][10] ) .'</span>
-                      </div>
-                      <div class="details">
-                        <p>'. ucwords(strtolower( $queryResultsEvent[$i][1] )) .' '. ucwords(strtolower( $queryResultsEvent[$i][2] )) .'<br />';
-                        if ($queryResultsEvent[$i][3])
-                        {
-                          print ucwords( $queryResultsEvent[$i][3] ) .'<br />';
-                        } 
-                        if ($queryResultsEvent[$i][4])
-                        {
-                          print ucwords(strtolower( $queryResultsEvent[$i][4] )) .', ';
-                        }
-                        if ($queryResultsEvent[$i][5] != "--")
-                        {
-                          print $queryResultsEvent[$i][5] .' ';
-                        }
-                        print $queryResultsEvent[$i][6] . '</p>';
-                        
-                        if ($queryResultsEvent[$i][7])
-                        { 
-                          print '<p><strong>Phone:</strong> '. $queryResultsEvent[$i][7] .'</p>';
-                        }
-                        if ($queryResultsEvent[$i][8])
-                        {
-                          print '<p><strong>Health Score:</strong> '. $queryResultsEvent[$i][8] .'</p>';
-                        }
-                      print '</div>
-                    </li>';
-            }
-          ?>
-        {/if}
-        </ul>
+      </ul>
     </div>
     
     <div class="sidebar right">

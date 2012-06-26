@@ -1,24 +1,23 @@
 {embed="embeds/_doc-top" 
-  channel="{channel}"
-  title="{section} sponsored by {segment_3_category_name}"}
-{assign_variable:channel="events"}
-{assign_variable:section="Events"}
+	class="events"
+	title="Events sponsored by {segment_3_category_name}"
+}
 {embed="embeds/_rss-feed"}
 <ul id="trail">
-  <li><a href="/">Home</a></li>
-  <li><a href="/{channel}">{section}</a></li>
+	<li><a href="/">Home</a></li>
+	<li><a href="/events">Events</a></li>
 </ul>
 <div class="heading clearfix">
-  <h1>{segment_3_category_name}</h1>
+	<h1>{segment_3_category_name}</h1>
 </div>
 <div class="grid23 clearfix">
-  <div class="main left">
-    <ul id="listing">
-  {embed="events/_event-listitem" parameters='category="{segment_3_category_id}"'}
-    </ul>
-  </div>
-  <div class="sidebar right">
-    {embed="events/_sidebar"}
-  </div>
+	<div class="main left">
+		<ul id="listing">
+	{embed="events/_event-listitem" parameters='category="{segment_3_category_id}"'}
+		</ul>
+	</div>
+	<div class="sidebar right">
+		{embed="events/_sidebar"}
+	</div>
 </div><!--/.grid23-->
 {embed="embeds/_doc-bottom"}

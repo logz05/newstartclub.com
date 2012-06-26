@@ -1,1 +1,1 @@
-{if group_id == "1"}<span class="edit-this"><span>✎</span><a href="http://admin.newstartclub.com/index.php?S=0&C=edit&M=edit_entry&weblog_id={embed:weblog_id}&entry_id={embed:entry_id}" title="Edit &ldquo;{embed:title}&rdquo;" target="_blank">Edit This</a></span>{/if}
+{if group_id == "1" || group_id == "15"}<span class="edit-this"><a href="http://newstartclub.com/admin/index.php?S=0&C=edit&M=edit_entry&weblog_id={embed:weblog_id}&entry_id={embed:entry_id}" title="Edit &ldquo;{embed:title}&rdquo;" target="_blank">&#63490;</a></span>{/if}

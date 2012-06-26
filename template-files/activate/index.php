@@ -17,7 +17,7 @@
   <div class="body">
     <h1>Activate Your Account</h1>
     <p>Thanks for registering!</p>
-    <p>In a moment, youâ€™ll receive an email with an activation link. Click on that and youâ€™ll be all set!</p>
+    <p>In a moment, youâ??ll receive an email with an activation link. Click on that and youâ??ll be all set!</p>
   </div>
 </body>
 </html>

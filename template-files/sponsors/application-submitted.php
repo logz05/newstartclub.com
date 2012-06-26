@@ -23,112 +23,212 @@ $contactState = $_POST['contactState'];
 $contactZipCode = $_POST['contactZipCode'];
 $contactPhone = $_POST['contactPhone'];
 $contactEmail = $_POST['contactEmail'];
+$applicantName = $_POST['applicantName'];
+$applicantUsername = $_POST['applicantUsername'];
 
 $subject = "Sponsor Application";
 
 // To send HTML mail, the Content-type header must be set
-  $headers  = 'MIME-Version: 1.0' . "\n";
-  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-  $headers .= 'From: '. $contactName .' <'. $contactEmail .'>' . "\r\n";
+	$headers	= 'MIME-Version: 1.0' . "\n";
+	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
+	$headers .= 'From: '. $applicantName .' <'. $applicantUsername .'>' . "\r\n";
 
-    // message
-    $message = '
-    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-    <html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=610">
-    <title>Email Members Template</title>
-    </head>
-      <body style="background: url(http://newstartclub.com/assets/css/images/background-gradient-texture.png) #A7C7EF repeat-x;" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="#A7C7EF">
-        <table width="100%" cellpadding="30" cellspacing="0" class="backgroundTable">
-          <tr>
-            <td valign="top" align="center">
-              <table width="550" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="border-top:0px solid #333333;">
-                  <center><a href="http://newstartclub.com/"><IMG SRC="http://newstartclub.com/assets/images/email/invites/header-email.jpg" BORDER="0" title="NEWSTART&reg; Lifestyle Club"  alt="NEWSTART&reg; Lifestyle Club" align="center" style="border-top-left-radius: 15px; -moz-border-radius-topleft: 15px; -webkit-border-top-left-radius: 15px; -khtml-border-top-left-radius: 15px; border-top-right-radius: 15px; -moz-border-radius-topright: 15px; -webkit-border-top-right-radius: 15px; -khtml-border-top-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);" /></a></center>
-                </td>
-                </tr>
-              </table>
-              <table width="550" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-                <td style="background: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png) center center #000000; color:#FFFFFF; height: 60px; text-align:right; padding-right: 30px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);">
-                  <span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">Sponsorship Application</span>
-                </td>
-              </table>
-              <table width="550" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td bgcolor="#FFFFFF" valign="top" style="font-size:16px;color:#000000;line-height:150%;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; border-bottom-left-radius: 15px; -moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; -khtml-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; -khtml-border-bottom-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); padding:30px;">';
-                  $message .= "<p>Sponsor Name: $sponsorName</p>
-                  <p>Sponsor Address: $sponsorAddress, $sponsorCity, $sponsorState, $sponsorZipCode, $sponsorCountry</p>
-                  <p>Sponsor Phone: $sponsorPhone </p>
-                  <p>Sponsor Email: $sponsorEmail</p>
-                  <p>Sponsor Fax: $sponsorFax</p>
-                  <p>Sponsor Website: $sponsorWebsite</p>
-                  <p>Sponsor Religious Affiliation: $sponsorRegAff</p>
-                  <p>Sponsor Health Events: $sponsorHealthEvents</p>
-                  <p>Sponsor Need Help: $sponsorNeedHelp</p>
-                  <hr>
-                  <p>Contact Name: $contactName</p>
-                  <p>Contact Address: $contactAddress, $contactCity, $contactState, $contactZipCode</p>
-                  <p>Contact Phone: $contactPhone</p>
-                  <p>Contact Email: $contactEmail</p>";
-                  
-                  $message .= '
-                  </td>
-                </tr>
-              </table>
-              <table width="550" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
-                    <span style="font-size:10px;color:#FFFFFF;font-family:verdana;"></span>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </body>
-    </html>';
-  
-    // Mail it
-    mail("cblood@weimar.org, club@newstart.com", $subject, stripslashes($message), $headers);
+		// message
+		$message = '
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>NEWSTART Lifestyle Club Sponsor Application</title>
+<meta name="viewport" content="width=740">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}
+	
+</style>
+<!--[if gte mso 9]>
+<style type="text/css">
+table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, Lucida Sans Unicode, Lucida Grande sans-serif !important;}
+</style>
+<![endif]-->
+<!--[if lte mso 7]>
+<style type="text/css">
+table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, Lucida Sans Unicode, Lucida Grande sans-serif !important;}
+</style>
+<![endif]-->
+</head>
+<body bgcolor="#509ADE" style="margin:0; padding:0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td style="padding:20px 20px 40px 20px; background-color:#509ADE" bgcolor="#509ADE">
+			
+			<!-- BEGIN MAIN CONTENT -->
+			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+				<tr>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+							<tr>
+								<td width="550" valign="top" colspan="3">
+									<img src="http://newstartclub.com/assets/images/email/newsletter/email-header.jpg" alt="NEWSTART Lifestyle Club" width="550" border="0" style="display:block;margin:0">
+								</td>
+							</tr>
+							<tr>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-left-shadow.jpg);"></td>
+								<td width="550" valign="middle" height="60" align="right" bgcolor="#000000" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png); background-color:#000000">
+									<div style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-size:30px; color:#ffffff; padding: 12px 30px;">
+										<span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">Sponsor Application</span>
+									</div>
+								</td>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-right-shadow.jpg);"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="550" style="background-color:#ffffff" bgcolor="#ffffff">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0">
+							<tr>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-left-shadow.jpg);"></td>
+								<td width="30" bgcolor="#ffffff" valign="top"></td>
+								<td width="486" style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.2; font-size:16px; color:#010101;">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0">
+										<tr>
+											<td height="30"></td>
+										</tr>
+										<tr>
+											<td style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">
+												
+												<div style="font-size:22px; font-weight:bold; padding-bottom: 10px; margin-top: 0; margin-bottom: 10px; border-bottom: 1px solid #ddd; color:#010101;">Sponsor Information</div>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Name:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorName .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.3; font-size:16px;">Address:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.3; font-size:16px; color:#010101;">'. $sponsorAddress .'<br>'. $sponsorCity .', '. $sponsorState .' '. $sponsorZipCode .'<br>'. $sponsorCountry .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Phone:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorPhone .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Email:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorEmail .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Fax:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorFax .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Website:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorWebsite .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Religious Affiliation:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorRegAff .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Health Events:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorHealthEvents .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Need Help:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorNeedHelp .'</td>
+													</tr>
+												</table>
+												<div style="font-size:20px; font-weight:bold; padding-bottom: 10px; margin-top: 20px; margin-bottom: 10px; border-bottom: 1px solid #ddd; color:#010101;">Contact Information</div>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Name:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $contactName .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.3; font-size:16px;">Address:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.3; font-size:16px; color:#010101;">'. $contactAddress .'<br>'. $contactCity .', '. $contactState .' '. $contactZipCode .'<br>'. $contactCountry .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Phone:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $contactPhone .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Email:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $contactEmail .'</td>
+													</tr>
+												</table>
+												<div style="font-size:18px; font-weight:bold; padding-bottom: 10px; margin-top: 26px; margin-bottom: 10px; border-bottom: 1px solid #ddd; color:#010101;">Assign to User</div>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Name:</td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $applicantName .'</td>
+													</tr>
+													<tr>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Username:</td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $applicantUsername .'</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td height="10"></td>
+										</tr>
+									</table>
+								</td>
+								<td width="30" bgcolor="#ffffff" valign="top"></td>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-right-shadow.jpg);"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="550" valign="top" colspan="3">
+						<img src="http://newstartclub.com/assets/images/email/newsletter/email-footer.jpg" alt="footer" width="550" border="0" style="display:block;margin:0">
+					</td>
+				</tr>
+			</table>
+			
+		</td>
+	</tr>
+</table>
+</body>
+</html>';
+	
+		// Mail it
+		mail("cblood@weimar.org, club@newstart.com", $subject, stripslashes($message), $headers);
 }
-
-
 
 ?>
 
 <!doctype html>
 <html lang="en" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=860;" />
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=860;" />
 
-  <title>Sponsorship Application Sent | {site_name}</title>
-  
-  <meta name="author" content="{site_name}">
-  
-  <link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
-  <link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
+	<title>Sponsorship Application Sent | {site_name}</title>
+	
+	<meta name="author" content="{site_name}">
+	
+	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+	<link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />
 </head>
 <body class="small">
-  <div class="body">
-    <?php if (isset($_POST['sponsorName'])) { ?>
-      <h1>Application Sent</h1> 
-      <p>A {site_name} representative will contact you shortly.</p>
-      <p class="button-wrap">
-        <a href="/" class="super green button"><span>Home</span></a>
-      </p>
-    <?php } else { ?>
-      <h1>Your application is empty!</h1> 
-      <p>It appears that you've reached this page without submitting the Sponsor Application.</p>
-      <p class="button-wrap">
-        <a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
-      </p>
-    <?php } ?>
-  </div>
+	<div class="body">
+		<?php if (isset($_POST['sponsorName'])) { ?>
+			<h1>Application Sent</h1> 
+			<p>A {site_name} representative will contact you shortly.</p>
+			<p class="button-wrap">
+				<a href="/" class="super green button"><span>Home</span></a>
+			</p>
+		<?php } else { ?>
+			<h1>Your application is empty!</h1> 
+			<p>It appears that you've reached this page without submitting the Sponsor Application.</p>
+			<p class="button-wrap">
+				<a href="/sponsors/apply" class="super green button"><span>Apply</span></a>
+			</p>
+		<?php } ?>
+	</div>
 </body>
 </html>

@@ -1,1 +1,1 @@
-{embed="resources/_filter-page" title="Resources by"}
+{embed="resources/_filter-page" title="Partners -"}

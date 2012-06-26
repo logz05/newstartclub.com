@@ -1,130 +1,170 @@
 {exp:user:stats}
-  <?php
-  
-  if (isset($_POST['name']))
-  {
-  $memberName = $_POST['name']; 
-  $memberAge = "{memberAge}"; 
-  $memberAddress = "{address}, {city}, {state} {zipCode}"; 
-  $memberPhone = $_POST['phone']; 
-  $memberEmail = "{username}"; 
-  $memberHS = "{memberScoreTotal}"; 
-  $customMessage = $_POST['custom-message'];
-  
-  $todayis = date("l, F j, Y, g:i a") ;
-  
-  $subject = "Tell me more about your NEWSTART® Lifestyle Program";
-  
-  $message = '
-  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-  <html>
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=610">
-  <title>Information Request</title>
-  <style>
-  a {color:#87A621;}
-  </style>
-  </head>
-    <body style="background: url(http://newstartclub.com/assets/css/images/background-gradient-texture.png) #A7C7EF repeat-x;" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" bgcolor="#A7C7EF" >
-      <table width="100%" cellpadding="30" cellspacing="0" class="backgroundTable">
-        <tr>
-          <td valign="top" align="center">
-            <table width="550" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="border-top:0px solid #333333;">
-                <center><a href="http://newstartclub.com/"><IMG SRC="http://newstartclub.com/assets/images/email/invites/header-email.jpg" BORDER="0" title="NEWSTART&reg; Lifestyle Club"  alt="NEWSTART&reg; Lifestyle Club" align="center" style="border-top-left-radius: 15px; -moz-border-radius-topleft: 15px; -webkit-border-top-left-radius: 15px; -khtml-border-top-left-radius: 15px; border-top-right-radius: 15px; -moz-border-radius-topright: 15px; -webkit-border-top-right-radius: 15px; -khtml-border-top-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);" /></a></center>
-              </td>
-              </tr>
-            </table>
-            <table width="550" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-              <td style="background: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png) center center #000000; color:#FFFFFF; height: 60px; text-align:right; padding-right: 30px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);">
-                <span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">Information Request</span>
-              </td>
-            </table>
-            <table width="550" cellpadding="0" cellspacing="0">
-              <tr>
-                <td bgcolor="#FFFFFF" valign="top" style="font-size:16px;color:#000000;line-height:150%;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; border-bottom-left-radius: 15px; -moz-border-radius-bottomleft: 15px; -webkit-border-bottom-left-radius: 15px; -khtml-border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; -moz-border-radius-bottomright: 15px; -webkit-border-bottom-right-radius: 15px; -khtml-border-bottom-right-radius: 15px; -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); padding:30px;">
-                  <p><strong>Name</strong>: '. $memberName .'</p>
-                  <p><strong>Age</strong>: '. $memberAge .'</p>
-                  <p><strong>Address</strong>: '. $memberAddress .'</p>
-                  <p><strong>Phone</strong>: '. $memberPhone .'</p>
-                  <p><strong>Email</strong>: '. $memberEmail .'</p>
-                  <p><strong>My Health Score</strong>: '. $memberHS .'</p>
-                  <p><strong>Message</strong>: '. $customMessage .'</p>
-                </td>
-              </tr>
-            </table>
-            <table width="550" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="background-color:transparent; text-align:center; padding-top:10px;" valign="top">
-                  
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </body>
-  </html>';
-  
-  // To send HTML mail, the Content-type header must be set
-	$headers  = 'MIME-Version: 1.0' . "\n";
+	<?php
+	
+	if (isset($_POST['name']))
+	{
+	$memberName = $_POST['name']; 
+	$memberAge = "{memberAge}"; 
+	$memberAddress = "{address}, {city}, {state} {zipCode}"; 
+	$memberPhone = $_POST['phone']; 
+	$memberEmail = "{username}"; 
+	$memberHS = "{memberScoreTotal}"; 
+	$customMessage = $_POST['custom-message'];
+	
+	$todayis = date("l, F j, Y, g:i a") ;
+	
+	$subject = "Tell me more...";
+	
+	$message = '
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Information Request</title>
+<meta name="viewport" content="width=740">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style type="text/css">
+a {text-decoration: none;}
+a:hover {text-decoration: underline;}
+	
+</style>
+<!--[if gte mso 9]>
+<style type="text/css">
+table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, Lucida Sans Unicode, Lucida Grande sans-serif !important;}
+</style>
+<![endif]-->
+<!--[if lte mso 7]>
+<style type="text/css">
+table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, Lucida Sans Unicode, Lucida Grande sans-serif !important;}
+</style>
+<![endif]-->
+</head>
+<body bgcolor="#509ADE" style="margin:0; padding:0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td style="padding:20px 20px 40px 20px; background-color:#509ADE" bgcolor="#509ADE">
+			
+			<!-- BEGIN MAIN CONTENT -->
+			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto;">
+				<tr>
+					<td>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+							<tr>
+								<td width="550" valign="top" colspan="3">
+									<img src="http://newstartclub.com/assets/images/email/newsletter/email-header.jpg" alt="NEWSTART Lifestyle Club" width="550" border="0" style="display:block;margin:0">
+								</td>
+							</tr>
+							<tr>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-left-shadow.jpg);"></td>
+								<td width="550" valign="middle" height="60" align="right" bgcolor="#000000" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/nav-texture.png); background-color:#000000">
+									<div style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-size:30px; color:#ffffff; padding: 12px 30px;">
+										<span style="font-size:30px;color:#FFFFFF;font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif;">Information Request</span>
+									</div>
+								</td>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-right-shadow.jpg);"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="550" style="background-color:#ffffff" bgcolor="#ffffff">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0">
+							<tr>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-left-shadow.jpg);"></td>
+								<td width="30" bgcolor="#ffffff" valign="top"></td>
+								<td width="486" style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.2; font-size:16px; color:#010101;">
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0">
+										<tr>
+											<td height="30"></td>
+										</tr>
+										<tr>
+											<td style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.5; font-size:16px; color:#010101;">
+												<p><strong>Name</strong>: '. $memberName .'</p>
+												<p><strong>Age</strong>: '. $memberAge .'</p>
+												<p><strong>Address</strong>: '. $memberAddress .'</p>
+												<p><strong>Phone</strong>: '. $memberPhone .'</p>
+												<p><strong>Email</strong>: '. $memberEmail .'</p>
+												<p><strong>My Health Score</strong>: '. $memberHS .'</p>
+												<p><strong>Message</strong>: '. $customMessage .'</p>
+											</td>
+										</tr>
+										<tr>
+											<td height="10"></td>
+										</tr>
+									</table>
+								</td>
+								<td width="30" bgcolor="#ffffff" valign="top"></td>
+								<td width="2" valign="top" style="background-image: url(http://newstartclub.com/assets/images/email/newsletter/email-right-shadow.jpg);"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="550" valign="top" colspan="3">
+						<img src="http://newstartclub.com/assets/images/email/newsletter/email-footer.jpg" alt="footer" width="550" border="0" style="display:block;margin:0">
+					</td>
+				</tr>
+			</table>
+			
+		</td>
+	</tr>
+</table>
+</body>
+</html>';
+	
+	// To send HTML mail, the Content-type header must be set
+	$headers	 = 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
 	$headers .= 'From: {firstName} {lastName} <{username}>' . "\r\n";
-	$headers .= 'Bcc: ron.giannoni@newstart.com, ddennis@weimar.org, tbaril@weimar.org, development@weimar.org, info@wildwoodhealth.org, lifestylecenter@ucheepines.org, lifestyle@eden-valley.org, health@bhhec.org, reservations@livingspringsretreat.com' . "\r\n";
-  
-  mail("club@newstart.com", $subject, stripslashes($message), $headers);
-  }
-  
-  ?>
+	$headers .= 'Bcc: ddennis@weimar.org, tbaril@weimar.org' . "\r\n";
+	
+	mail("club@newstart.com", $subject, stripslashes($message), $headers);
+	}
+	
+	?>
 {/exp:user:stats}
 {embed="embeds/_doc-top" 
-  channel="{channel}"
-  section="{section}"
-  title="Your request has been sent!"
-  add="pp/prettyPhoto|vimeo"}
-{assign_variable:channel="my_health"}
-{assign_variable:section="My Health"}
-  <ul id="trail">
-    <li><a href="/">Home</a></li>
-    <li><a href="/my_health">{section}</a></li>
-  </ul>
-  <div class="heading clearfix">
-    <h1>Congratulations!</h1>
-  </div>
-  <div class="grid23 clearfix">
-    <div class="main left">
-      <div id="entry">
-        <p>You have taken an important first step to improving your health naturally. A NEWSTART&reg; representative will contact you shortly. In the meantime, check out the following videos to find out how the NEWSTART&reg; Lifestyle Program has helped others get well or visit <a href="http://www.newstart.com/" title="www.newstart.com">www.newstart.com</a> to learn more.</p>
-        <div class="vimeoBadge">
-          <script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
-        </div>
-        <p><a href="/my_health/results">&laquo; Back to my results</a></p>
-      </div>
-    </div>
-    <div class="sidebar right">
-      <div class="bar">Contact Us</div>
-      <img src="/assets/images/my_health/NEWSTART-lifestyle-program.jpg" width="190" />
-      <p><strong>Corporate Headquarters</strong><br />20601 West Paoli Lane<br />Weimar, CA 95736</p>
-      <p>(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>
-    </div><!--/.sidebar-->
-  </div><!--/.grid23-->
+	class="my_health"
+	title="Your request has been sent!"
+	add="pp/prettyPhoto|vimeo"}
+	<ul id="trail">
+		<li><a href="/">Home</a></li>
+		<li><a href="/my_health">My Health</a></li>
+	</ul>
+	<div class="heading clearfix">
+		<h1>Congratulations!</h1>
+	</div>
+	<div class="grid23 clearfix">
+		<div class="main left">
+			<div id="entry">
+				<p>You have taken an important first step to improving your health naturally. A NEWSTART&reg; representative will contact you shortly. In the meantime, check out the following videos to find out how NEWSTART&reg; has helped others get well or visit <a href="http://www.newstart.com/" title="www.newstart.com">www.newstart.com</a> to learn more.</p>
+				<div class="vimeoBadge">
+					<script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
+				</div>
+				<p><a href="/my_health/results">&laquo; Back to my results</a></p>
+			</div>
+		</div>
+		<div class="sidebar right">
+			<div class="bar">Contact Us</div>
+			<img src="/assets/images/my_health/NEWSTART.png" width="190" />
+			<p class="center">20601 West Paoli Lane<br />Weimar, CA 95736</p>
+			<p class="center">(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>
+		</div><!--/.sidebar-->
+	</div><!--/.grid23-->
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('.vimeoBadge .clip a').attr('rel', 'prettyPhoto');
-    $('.vimeoBadge a img').attr('alt', 'NEWSTART Now');
-    $('.vimeoBadge a img').attr('class', 'image');
-    $(".clip").each(function(){
-          alt = $(this).find("img").attr("alt");
-          title = $(this).find(".caption a").text();
-          $(this).find("> a").attr("title", title);
-      });
-    $(".vimeoBadge a[rel^='prettyPhoto']")
-    .prettyPhoto({
-      theme:'dark_rounded',
-      animationSpeed: 'slow'
-    });
-  });
+	$(document).ready(function(){
+		$('.vimeoBadge .clip a').attr('rel', 'prettyPhoto');
+		$('.vimeoBadge a img').attr('alt', 'NEWSTART Now');
+		$('.vimeoBadge a img').attr('class', 'image');
+		$(".clip").each(function(){
+					alt = $(this).find("img").attr("alt");
+					title = $(this).find(".caption a").text();
+					$(this).find("> a").attr("title", title);
+			});
+		$(".vimeoBadge a[rel^='prettyPhoto']")
+		.prettyPhoto({
+			theme:'dark_rounded',
+			animationSpeed: 'slow'
+		});
+	});
 </script>
 {embed="embeds/_doc-bottom" script_add="jquery.prettyPhoto_3.0"}

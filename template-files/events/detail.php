@@ -1,127 +1,148 @@
 {embed="embeds/_doc-top" 
-  channel="{channel}"
-  section="{section}"
-  title="
-    {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
-      {if no_results}Event Not Found{/if}
-      &ldquo;{title}&rdquo; in {event_city}, {event_state}
-    {/exp:weblog:entries}
+	class="events"
+	microdata="event"
+	map="yes"
+	title="
+		{exp:weblog:entries weblog="events" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes" show_expired="yes"}
+			&ldquo;{title}&rdquo; in {event_city}, {event_state}
+		{/exp:weblog:entries}
 "}
-{assign_variable:channel="events"}
-{assign_variable:section="Events"}
 <ul id="trail">
-  <li><a href="/">Home</a></li>
-  <li><a href="/events">{section}</a></li>
+	<li><a href="/">Home</a></li>
+	<li><a href="/events">Events</a></li>
 </ul>
+{exp:weblog:entries weblog="events" require_entry="yes" limit="1" show_future_entries="yes" show_expired="yes"}
+{if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
-  {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}{if no_results}<h1>We could not find this event</h1>{/if}<h1 id="event-title">{title}</h1>{/exp:weblog:entries}
+
+{assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
+{assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
+{assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
+{assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
+
+	<h1 id="event-title" itemprop="name">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h2>
+		{!-- Check if event is only on one date and time is set --}
+		{if event_start_date == event_end_date && event_start_time !=""}
+			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> to 
+			<span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+		{/if}
+		
+		{!-- Check if event is only on one date and time is NOT set --}
+		{if event_start_date == event_end_date && event_start_time ==""}
+			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+		{/if}
+		
+		{!-- Check to see if repeating event --}
+		{if (event_start_date != event_end_date) && event_start_time !=""}
+			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>,
+			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
+			<span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+		{/if}
+		
+		{!-- Check to see if repeating event and time is NOT set --}
+		{if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' == 'year_end_date')}
+			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
+			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+			<!-- Year Start Date: {year_start_date} Year End Date: {year_end_date} -->
+		{/if}
+		
+		{!-- Check to see if repeating event, time is NOT set, and event spans years --}
+		{if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' != 'year_end_date')}
+			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span> to 
+			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
+			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
+			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+		{/if}in <?php echo '<a href="/events/locations/' . strtolower("{event_state}/{event_city}") . '">{event_city}, {event_state}</a>'; ?>
+	</h2>
+	<meta itemprop="startDate" content="{event_start_date}{if event_start_time}T{exp:nice_date date='{event_start_time}' format='%H:%i'}{/if}">
+	<a href="http://newstartclub.com" rel="publisher"></a>
 </div>
 <div class="grid23 clearfix">
-  <div class="main left">
-  {exp:weblog:entries weblog="{channel}" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
-    {if no_results}
-      <p>Sorry, we could not find this event. Either this event has not been created or has already passed. Click <strong><a href="{path='{channel}'}">here</a></strong> to see a list of upcoming events.</p>
-    {/if}
-    <div id="entry">
-      {assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
-      {assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
-      {assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
-      {assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
-      {exp:textile}{event_description}{/exp:textile}
-      <p><em>Add this event to your <a href="#event-title">RSVP list</a> to attend!</em></p>
-      <dl>
-        <dt>Sponsored by</dt>
-        <dd>
-          {categories show_group="24"}
-            <a href="{site_url}locations/detail/{category_url_title}/" title="{cateogry_name}">{category_name}</a>
-          {/categories}
-        </dd>
-        <dt>Date</dt>
-        <dd>
-          <p>
-            {!-- Check if event is only on one date and time is set --}
-            {if event_start_date == event_end_date && event_start_time !=""}
-              <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> to 
-              <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
-              <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-            {/if}
-            
-            {!-- Check if event is only on one date and time is NOT set --}
-            {if event_start_date == event_end_date && event_start_time ==""}
-              <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-            {/if}
-            
-            {!-- Check to see if repeating event --}
-            {if (event_start_date != event_end_date) && event_start_time !=""}
-              <span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>,
-              <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
-              <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
-              <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-            {/if}
-            
-            {!-- Check to see if repeating event and time is NOT set --}
-            {if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' == 'year_end_date')}
-              <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
-              <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-              <!-- Year Start Date: {year_start_date} Year End Date: {year_end_date} -->
-            {/if}
-            
-            {!-- Check to see if repeating event, time is NOT set, and event spans years --}
-            {if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' != 'year_end_date')}
-              <span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span> to 
-              <span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-              <span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-              <span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-            {/if}
-          </p>
-        </dd>
-        <dt>Location</dt>
-        <dd>
-          <p>{if event_location_name}{event_location_name}<br />{/if}
-            {event_address}<br />
-            {event_city}, {event_state} {event_zip}
-          </p>
-        </dd>
-      </dl>
-      <div class="button-wrap clearfix">
-        {if logged_out}
-          <a href="/signin" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
-        {if:else}
-          <a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
-        {/if}
-      </div>
-      <p>Directions are based on your <a href="/settings">member profile</a>.</p>
-      
-    </div><!--/#entry-->
-    {/exp:weblog:entries}
-  </div><!--/.single-->
-  <div class="sidebar right">
-    <div class="bar">RSVP List</div>
-    {embed="{channel}/_rsvp-list"}
-    {embed="embeds/_share" channel="{channel}"}
-    </div><!--/.sidebar-->
-</div><!--/.grid23-->
+	<div class="main left">
+		{if expiration_date < current_time }
+			<div class="alert-box warning">
+				<p>This event has already passed. To see a list of upcoming events click <strong><a href="{path='events'}">here</a></strong></p>
+			</div>
+		{/if}
+		<div id="entry">
+			
+			<span itemprop="description">{event_description}</span>
+			{if current_time < expiration_date}<p><em>Add this event to your <a href="#event-title">RSVP list</a> to attend!</em></p>{/if}
+			{if current_time < expiration_date}{embed="events/_add-event-button"}{/if}
+			<dl>
+				<dt>Sponsored by:</dt>
+				<dd>
+					{categories show_group="24"}
+						<a href="{site_url}locations/detail/{category_url_title}/" title="{cateogry_name}">{category_name}</a>
+					{/categories}
+				</dd>
+				<dt>Location:</dt>
+				<dd itemprop="location" itemscope itemtype="http://schema.org/Place">
+					<p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">{if event_location_name}{event_location_name}<br />{/if}
+						<span itemprop="streetAddress">{event_address}</span><br />
+						<span itemprop="addressLocality">{event_city}</span>, <span itemprop="addressRegion">{event_state}</span> <span itemprop="postalCode">{event_zip}</span>
+					</p>
+				</dd>
+			</dl>
+			<div class="button-wrap clearfix">
+				{if logged_out}
+					<a href="/signin" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
+				{if:else}
+					<a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
+				{/if}
+			</div>
+			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
+			
+		</div><!--/#entry-->
+		{/exp:weblog:entries}
+	</div>
+	<div class="sidebar right">
+		<div class="bar">RSVP List</div>
+		{embed="events/_rsvp-list"}
+		{embed="embeds/_share" channel="events"}
+		</div>
+</div>
 
 <div id="map-area">
-  <div id="canvas">
-    <span>loading map&hellip;</span>
-  </div>
-  <div id="directions"></div>
-  {exp:weblog:entries weblog="{channel}" limit="1" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes"}
-  <input id="map-end" value="{event_address} {event_city}, {event_state} {event_zip}" />{/exp:weblog:entries}
-  {exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
+	<div id="canvas"><span id="loading"></span></div>
+	<span class="shadow"></span>
 </div>
+<script type="text/javascript">
+//Spin.js loading indicator
+
+	var opts = {
+		lines: 12,
+		length: 4,
+		width: 2,
+		radius: 6,
+		color: '#9f9e9b',
+		speed: 1.3,
+		trail: 70,
+		shadow: false
+	};
+	var target = document.getElementById('loading');
+	var spinner = new Spinner(opts).spin(target);
+	
+// End Spin.js parameters
+</script>
+<div id="directions"></div>
+{exp:weblog:entries weblog="events" limit="1" require_entry="yes" limit="1" url_title="{segment_3}" show_future_entries="yes" show_expired="yes"}
+<input id="map-end" value="{event_address} {event_city}, {event_state} {event_zip}" />{/exp:weblog:entries}
+{exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
 <script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
 {embed="embeds/_doc-bottom" sim="rsvp|directions"}

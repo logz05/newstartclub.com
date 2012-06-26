@@ -1,4 +1,4 @@
-/* HTML5 ✰ Boilerplate
+/* HTML5 â?° Boilerplate
  * ==|== normalize ==========================================================
  */
 
@@ -54,7 +54,7 @@ input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-b
 input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
 button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
 textarea { overflow: auto; vertical-align: top; resize: vertical; }
-input:valid, textarea:valid {  }
+input:valid, textarea:valid {	 }
 input:invalid, textarea:invalid { background-color: #f0dddd; }
 
 table { border-collapse: collapse; border-spacing: 0; }
@@ -65,6 +65,27 @@ td { vertical-align: top; }
 .visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
 .visuallyhidden.focusable:active, .visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
 .invisible { visibility: hidden; }
+
+/* Toggle hidden elements */
+#toggle-hidden-check,
+#toggle-hidden-label {
+	position: absolute;
+}
+#toggle-hidden-check {
+	display: none;
+	visibility: hidden;
+}
+#toggle-hidden-label {
+	cursor: none;
+}
+#toggle-hidden-check:checked ~ * .hidden {
+	display: block !important;
+	visibility: visible !important;
+}
+#toggle-hidden-check:checked ~ * .toggle-hide {
+	display: none !important;
+	visibility: hidden !important;
+}
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
@@ -72,38 +93,38 @@ td { vertical-align: top; }
 .right, .flushright { float: right; }
 
 /* ==|== primary styles =====================================================
-   Author: Cavell L. Blood | 2011-11-14
+	 Author: Cavell L. Blood | 2011-11-14
 ============================================================================= */
 html { text-align: center; }
 body {
-  color: #222;
-  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  text-rendering: optimizelegibility;
-  -webkit-font-smoothing: antialiased;
-  text-align: left;
-  display: inline-block;
-  width: 800px;
+	color: #222;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 12px;
+	text-rendering: optimizelegibility;
+	-webkit-font-smoothing: antialiased;
+	text-align: left;
+	display: inline-block;
+	width: 800px;
 }
 .ie7 body { margin: 0 auto; }
 /* Links
 ========================================================================== */
 a {
-  color: #00e; /* 87A621 */
-  text-decoration: none;
-  cursor: pointer;
-  -webkit-transition: color 0.1s ease-in-out;
-  -moz-transition: color 0.1s ease-in-out;
-  -o-transition: color 0.1s ease-in-out;
-  transition: color 0.1s ease-in-out;
+	color: #00e; /* 87A621 */
+	text-decoration: none;
+	cursor: pointer;
+	-webkit-transition: color 0.1s ease-in-out;
+	-moz-transition: color 0.1s ease-in-out;
+	-o-transition: color 0.1s ease-in-out;
+	transition: color 0.1s ease-in-out;
 }
 a:hover {
-  color: #06e; /* 5B8311 */
-  text-decoration: underline;
-  -webkit-transition: color 0.1s ease-in-out;
-  -moz-transition: color 0.1s ease-in-out;
-  -o-transition: color 0.1s ease-in-out;
-  transition: color 0.1s ease-in-out;
+	color: #06e; /* 5B8311 */
+	text-decoration: underline;
+	-webkit-transition: color 0.1s ease-in-out;
+	-moz-transition: color 0.1s ease-in-out;
+	-o-transition: color 0.1s ease-in-out;
+	transition: color 0.1s ease-in-out;
 }
 
 /* Grids
@@ -113,57 +134,59 @@ a:hover {
 .grid12 > .right { margin-right: -359px; width: 320px; }
 .grid23 { width: 509px; border-right: 1px dashed #ddd; }
 .grid23 > .left { width: 490px; margin: 10px 0; }
-.grid23 > .right { margin: 10px -211px 10px 0; width: 190px; }
+.grid23 > .right { margin: 10px -211px 10px 20px; width: 190px; }
 .grid12-23 { width: 255px; }
 .grid12-23 > .left { width: 240px; }
 .grid12-23 > .right { margin-right: -254px; width: 240px; }
 
 /* Forms
 ========================================================================== */
-label { font-weight: bold ;}
+label { font-weight: bold; }
+label span { font-weight: normal; }
 input[type=text],
 input[type=tel],
 input[type=email],
 input[type=password],
 input[type=search],
 textarea.input {
-  display: inline-block;
-  margin: 8px 0;
-  padding: 3px;
-  outline: none;
-  font-size: 16px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  border: 1px solid;
-  border-color: #999 #B3B3B3 #CCC;
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
-  -moz-transition: -moz-box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#E8E8E8), to(#FEFEFE));
-  background: -moz-linear-gradient(top, #E8E9EC, #FEFEFE);
+	display: inline-block;
+	margin: 8px 0;
+	padding: 3px;
+	outline: none;
+	font-size: 16px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	border: 1px solid;
+	border-color: #999 #B3B3B3 #CCC;
+	-moz-box-shadow: 0 1px 1px #ccc inset;
+	-webkit-box-shadow: 0 1px 1px #ccc inset;
+	box-shadow: 0 1px 1px #ccc inset;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-transition: -webkit-box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+	-moz-transition: -moz-box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+	transition: box-shadow 0.15s ease-in-out, background 0.15s ease-in-out;
+	background: #F1F1F1;
 }
 input[type=file] {
-  display: inline-block;
-  margin: 8px 0;
-  padding: 3px;
-  outline: none;
-  font-size: 12px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	display: inline-block;
+	margin: 8px 0;
+	padding: 3px;
+	outline: none;
+	font-size: 12px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 select.input {
-  font-size: 16px;
-  -webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
-  -moz-transition: -moz-box-shadow 0.15s ease-in-out;
-  transition: box-shadow 0.15s ease-in-out;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  display: inline-block;
-  margin: 8px 0;
+	font-size: 16px;
+	-webkit-transition: -webkit-box-shadow 0.15s ease-in-out;
+	-moz-transition: -moz-box-shadow 0.15s ease-in-out;
+	transition: box-shadow 0.15s ease-in-out;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	display: inline-block;
+	margin: 8px 0;
 }
 @-moz-document url-prefix() {
-  select.input { font-size: 15px; }
+	select.input { font-size: 15px; }
 }
 input[type=text]:focus,
 input[type=tel]:focus,
@@ -172,33 +195,36 @@ input[type=password]:focus,
 input[type=file]:focus,
 input[type=search]:focus,
 textarea.input:focus {
-  outline: none;
-  border-color: #8C8C8C #A6A6A6 #BFBFBF;
-  -webkit-box-shadow: 0 0 5px #A7C7EF;
-  -moz-box-shadow: 0 0 5px #A7C7EF;
-  box-shadow: 0 0 5px #A7C7EF;
-  background: #FFF;
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#FFFFFF));
-  background: -moz-linear-gradient(top, #FFFFFF, #FFFFFF);
+	outline: none;
+	border-color: #A7C7EF;
+	-webkit-box-shadow: 0 0 5px #A7C7EF, 0 1px 1px #ccc inset;
+	-moz-box-shadow: 0 0 5px #A7C7EF, 0 1px 1px #ccc inset;
+	box-shadow: 0 0 5px #A7C7EF, 0 1px 1px #ccc inset;
+	background: #FFF;
 }
 form div.error, span.error { color: red; font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
 form div.error { font-size: 11px; margin: 0 0 8px; }
 form div.error:before { content: "\00d7\2002"; font-size: 13px; }
 form .input.error {
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#E8C4B7), to(#FFE4DB));
-  background: -moz-linear-gradient(top, #E8C4B7, #FFE4DB);
+	background: #F9DBD1;
+	border: 1px solid #F9A68B;
+}
+form .input.error:focus {
+	-moz-box-shadow: 0 1px 1px #F9A68B inset, 0 0 5px #F9A68B;
+	-webkit-box-shadow: 0 1px 1px #F9A68B inset, 0 0 5px #F9A68B;
+	box-shadow: 0 1px 1px #F9A68B inset, 0 0 5px #F9A68B;
 }
 form input[type=radio].error + span { color: red; }
 form .readonly {
-  background: none;
-  border: 0;
-  margin: 0.5em 0;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  font-size: 18px;
+	background: none;
+	border: 0;
+	margin: 0.5em 0;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 18px;
 }
 input.checkbox + span {
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  font-size: 12px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 12px;
 }
 form .checkbox,
 input[type=checkbox] { margin: 0 5px 5px 0; padding: 0; }
@@ -211,33 +237,33 @@ form table tbody td { border-top: 1px dashed #EEE; }
 form table tbody tr:first-child th,
 form table tbody tr:first-child td { border-top: 0; }
 form table tbody span.req {
-  display: inline;
-  font-weight: bold;
-  color: #F00;
+	display: inline;
+	font-weight: bold;
+	color: #F00;
 }
 form table th, table td { padding: 0 5px; }
 form table th {
-  text-align: right;
-  vertical-align: top;
-  padding-top: 14px;
+	text-align: right;
+	vertical-align: top;
+	padding-top: 14px;
 }
 form table th label {
-  color: #87A621;
-  font-size: 12px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	color: #87A621;
+	font-size: 12px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 form table th div { font-weight: normal; }
 form table td { text-align: left; }
 form table select.input:first-child { margin: 12px 0 8px; }
 form table td code {
-  font-size: 16px;
-  font-weight: bold;
+	font-size: 16px;
+	font-weight: bold;
 }
 form table td .instructions {
-  font-size: 11px;
-  line-height: 16px;
-  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-  margin: 0 0 8px;
+	font-size: 11px;
+	line-height: 16px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	margin: 0 0 8px;
 }
 
 /* Buttons
@@ -245,136 +271,136 @@ form table td .instructions {
 p.button-wrap, div.button-wrap { margin: 10px 0 0; }
 p.button-wrap a:hover, div.button-wrap a:hover { text-decoration: none; }
 .button {
-  background: url(/assets/css/images/button-overlay.png) repeat-x 0 0;
-  background-color: #222;
-  display: inline-block;
-  padding: 5px 15px 6px;
-  color: #fff !important;
-  font-size: 13px;
-  font-weight: bold;
-  font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
-  line-height: 1;
-  text-decoration: none;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-  -webkit-transition: background-color 0.15s ease-in-out;
-  -moz-transition: background-color 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  position: relative;
-  cursor: pointer;
-  overflow: visible;
-  width: auto;
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(75%, transparent), to(rgba(255, 255, 255, 0.3)));
+	background: url(/assets/css/images/button-overlay.png) repeat-x 0 0;
+	background-color: #222;
+	display: inline-block;
+	padding: 5px 15px 6px;
+	color: #fff !important;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	line-height: 1;
+	text-decoration: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	-webkit-transition: background-color 0.15s ease-in-out;
+	-moz-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+	overflow: visible;
+	width: auto;
+	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(75%, transparent), to(rgba(255, 255, 255, 0.3)));
 }
 .button + .button { margin-left: 8px; }
 button::-moz-focus-inner { border: 0; padding: 0; }
 .button:hover {
-  background-color: #111;
-  color: #fff;
-  -webkit-transition: background-color 0.15s ease-in-out;
-  -moz-transition: background-color 0.15s ease-in-out;
-  transition: background-color 0.15s ease-in-out;
+	background-color: #111;
+	color: #fff;
+	-webkit-transition: background-color 0.15s ease-in-out;
+	-moz-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
 }
 .button:active {
-  -webkit-transform: translateY(1px);
-  -moz-transform: translateY(1px);
+	-webkit-transform: translateY(1px);
+	-moz-transform: translateY(1px);
 }
 .small.button { font-size: 11px }
 .large.button {
-  font-size: 14px;
-  padding: 8px 19px 9px;
+	font-size: 14px;
+	padding: 8px 19px 9px;
 }
 .giant.button {
-  font-size: 18px;
-  padding: 8px 19px 9px;
+	font-size: 18px;
+	padding: 8px 19px 9px;
 }
 .green.button { background-color: #91bd09 }
 .green.button:hover, .green.button:focus { background-color: #749a02; outline: none; }
 .red.button { background-color: #e33100 }
 .red.button:hover, .red.button:focus { background-color: #872300; outline: none; }
 .white.button {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  color: #666 !important;
-  font-weight: normal;
-  text-shadow: 0 1px 1px rgba(255,255,255,1);
+	background-color: #fff;
+	border: 1px solid #ccc;
+	color: #666 !important;
+	font-weight: normal;
+	text-shadow: 0 1px 1px rgba(255,255,255,1);
 }
 .white.button:hover, .white.button:focus { background-color: #eee; outline: none; }
 .secondary.button {
-  background: #fff url(/assets/css/images/button-overlay.png) repeat-x 0 0;
-  color: #555 !important;
-  text-shadow: 0 1px 1px rgba(255,255,255,0.5);
-  border: 1px solid #bbb;
-  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	background: #fff url(/assets/css/images/button-overlay.png) repeat-x 0 0;
+	color: #555 !important;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+	border: 1px solid #bbb;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .secondary.button:hover, .secondary.button:focus {
-  background-color: #eee;
-  color: #444 !important;
-  border-color: #999;
-  outline: none;
+	background-color: #eee;
+	color: #444 !important;
+	border-color: #999;
+	outline: none;
 }
 .super.button {
-  background-image: url(/assets/css/images/button-overlay.png);
-  font-size: 13px;
-  padding: 0;
-  border: 1px solid rgba(0,0,0,.25);
-  -webkit-border-radius: 15px;
-  -moz-border-radius: 15px;
+	background-image: url(/assets/css/images/button-overlay.png);
+	font-size: 13px;
+	padding: 0;
+	border: 1px solid rgba(0,0,0,.25);
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
 }
 .super.button span {
-  display: block;
-  padding: 4px 15px 6px;
-  -webkit-border-radius: 14px;
-  -moz-border-radius: 14px;
-  border-top: 1px solid rgba(255,255,255,.2);
-  line-height: 1;
+	display: block;
+	padding: 4px 15px 6px;
+	-webkit-border-radius: 14px;
+	-moz-border-radius: 14px;
+	border-top: 1px solid rgba(255,255,255,.2);
+	line-height: 1;
 }
 @-moz-document url-prefix() {
-  .super.button span { padding: 5px 15px 4px; }
+	.super.button span { padding: 5px 15px 4px; }
 }
 @-moz-document url-prefix() {
-  button.super.button span { padding: 3px 15px 5px; }
+	button.super.button span { padding: 3px 15px 5px; }
 }
 .giant.super.button {
-  font-size: 18px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
+	font-size: 18px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
 }
 .giant.super.button span {
-  padding: 4px 15px 6px;
-  -webkit-border-radius: 19px;
-  -moz-border-radius: 19px;
+	padding: 4px 15px 6px;
+	-webkit-border-radius: 19px;
+	-moz-border-radius: 19px;
 }
 @-moz-document url-prefix() {
-  .giant.super.button span { padding: 7px 15px 3px; } 
+	.giant.super.button span { padding: 7px 15px 3px; } 
 }
 .small.super.button {
-  font-size: 11px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
+	font-size: 11px;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
 }
 .small.super.button span {
-  padding: 4px 12px 6px;
-  -webkit-border-radius: 11px;
-  -moz-border-radius: 11px;
+	padding: 4px 12px 6px;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
 }
 .small.white.super.button span { padding: 3px 12px 5px }
 @-moz-document url-prefix() {
-  .small.super.button span { padding: 5px 12px 3px; }
+	.small.super.button span { padding: 5px 12px 3px; }
 }
 .large.super.button {
-  background-position: left bottom;
-  -webkit-border-radius: 18px;
-  -moz-border-radius: 18px;
+	background-position: left bottom;
+	-webkit-border-radius: 18px;
+	-moz-border-radius: 18px;
 }
 .large.super.button span {
-  font-size: 14px;
-  padding: 7px 20px 9px;
-  -webkit-border-radius: 17px;
-  -moz-border-radius: 17px;
+	font-size: 14px;
+	padding: 7px 20px 9px;
+	-webkit-border-radius: 17px;
+	-moz-border-radius: 17px;
 }

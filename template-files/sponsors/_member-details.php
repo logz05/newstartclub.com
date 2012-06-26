@@ -16,12 +16,12 @@
           <h5>Admin Information</h5>
           <p>
             <strong>Member ID:</strong> {member_id}{if group_id == "1"} <em>Administrator</em>{/if}{if group_id == "13"} <em>Club Sponsor</em>{/if}<br />
-            {if sponsor_number_credit}<strong>Promo Code:</strong> 
-            {exp:weblog:categories category_group="24" weblog="locations" show="{sponsor_number_credit}" style="linear"}
+            {if promo_code}<strong>Promo Code:</strong> 
+            {exp:weblog:categories category_group="24" weblog="locations" show="{promo_code}" style="linear"}
               {category_name}, {category_id}
             {/exp:weblog:categories}<br />{/if}
             <strong>In this list because of:</strong> 
-            {if sponsor_number_credit == '{embed:promo_code}'}Matching Promo Code{/if}
+            {if promo_code == '{embed:promo_code}'}Matching Promo Code{/if}
             {if zipCode == '{embed:sponsor_zip}'}Matching Zip Code{/if}<br />
           </p>
         </div>

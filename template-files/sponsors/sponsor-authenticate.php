@@ -30,7 +30,7 @@
     <div class="modal grid12 clearfix">
       <div class="left">
         <h2>Sign In</h2>
-        <h3>You must be signed in with a sponsor account to see this page.</h3>
+        <h3>You must sign in with a sponsor account to see this page.</h3>
         {exp:member:login_form error_page="members/error" return="/{segment_1}/{segment_2}/{segment_3}/{segment_4}/{segment_5}/{segment_6}/{segment_7}"}
         <table>
           <tr>
@@ -44,7 +44,9 @@
           {if auto_login}<tr>
             <th></th>
             <td>
-              <p><input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span></p>
+              <p>
+                <label><input class="checkbox" type="checkbox" name="auto_login" value="1" /><span>Keep me logged in</span></label>
+              </p>
             </td>
           </tr>{/if}
           <tr>

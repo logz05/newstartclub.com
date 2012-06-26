@@ -1,7 +1,7 @@
 <?php
 
 $path = ini_get('include_path');
-ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content/lib');
+ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
 
 require_once('utilities.php');
 require_once('dbconnect.php');

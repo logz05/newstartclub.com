@@ -1,6 +1,6 @@
 <div class="bar">Search</div>
 
-{exp:search:advanced_form result_page="/resources/search-results" weblog="resources" results="9"}
+{exp:search:advanced_form result_page="/resources/search" weblog="resources" results="9"}
 <input type="hidden" name="search_in" value="everywhere">
 <input id="query" name="keywords" type="search" class="input" placeholder="Search Resources">
 <p><a href="#" class="advanced-search">Advanced Search</a></p>
@@ -33,7 +33,7 @@
 
 {/exp:search:advanced_form}
 
-<div class="bar">Resource Topics</div>
+<div class="bar">Filter</div>
 <h2 class="health-conditions">Health Conditions<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list health-conditions">
 {exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="17"}
@@ -46,11 +46,11 @@
   <li><a href="/resources/living-better/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>
 
-<h2 class="recipes">Recipes<span class="arrow up"></span><span class="arrow down"></span></h2>
+{!--<h2 class="recipes">Recipes<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list recipes">
 {exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="39"}
   <li><a href="/resources/recipes/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
-</ul>
+</ul>--}
 
 <h2 class="media">Media Type<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list media">
