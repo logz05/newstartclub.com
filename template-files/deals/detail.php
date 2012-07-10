@@ -2,47 +2,74 @@
 	class="deals"
 	map="yes"
 	title="
-		{exp:weblog:entries weblog="deals" require_entry="yes" limit="1"}
-			{title}
+		{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
+			{title} Deals
 		{/exp:weblog:entries}
-"}
+	"
+	microdata="organization"
+	meta='
+		{exp:weblog:entries weblog="locations" url_title="{segment_3}"}
+			<meta property="og:title" content="{title}"/>
+			<meta property="og:site_name" content="{site_name}"/>
+			<meta property="og:url" content="{title_permalink='deals/detail'}"/>
+			<meta property="og:type" content="company"/>
+			<meta property="og:image" content="{location_image}"/>
+			<meta property="og:description" content="{exp:trunchtml chars="200"}{exp:html_strip}{location_description}{/exp:html_strip}{/exp:trunchtml}"/>
+			<meta name="description" content="{exp:trunchtml chars="200"}{exp:html_strip}{location_description}{/exp:html_strip}{/exp:trunchtml}"/>
+		{/exp:weblog:entries}
+	'
+}
 <ul id="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/deals">Deals</a></li>
 </ul>
-{exp:weblog:entries weblog="deals" require_entry="yes" limit="1"}
+{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
 {if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
-	<h1 id="event-title">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h1 itemprop="name">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{location_slogan}"}{location_slogan}</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry" class="deal">
+		<div class="post deal">
 			<div class="clearfix">
-				{exp:ce_img:single src="{deal_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
-				{deal_description}
+				{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" title="{location_slogan}" class="image" itemprop="image"'}
+				<span itemprop="description">{location_description}</span>
 			</div>
-			<div class="coupon">
-				<div class="code">{deal_code}</div>
-				{deal_instructions}
-				{deal_terms}
-				<div class="valid">Valid from {deal_begins format="%M %d, %Y"}{if deal_expires} to {deal_expires format="%M %d, %Y"}{/if}</div>
-			</div>
+		</div>
+		{/exp:weblog:entries}
+		<div class="bar" data-icon="n">Active Deals</div>
+		<ul class="listing">
+		{exp:weblog:entries weblog="deals" category="{segment_3_category_id}" dynamic="off" orderby="expiration_date|entry_date" sort="asc|asc"}
+			{if no_results}
+				<div class="post">
+					<p><em>No active deals.</em></p>
+				</div>
+			{/if}
+			<li class="deal clearfix">
+				<div class="details" data-icon="n">
+					<h2>{title}{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
+					{deal_instructions}
+					<p class="expires">{if expiration_date}Expires: {expiration_date format="%m/%d/%y"}{/if}</p>
+					{if logged_out}
+						<a class="show-code" href="/signin" data-reveal-id="signin-modal-coupon"><span>Show coupon code <i>p</i></span></a>
+					{if:else}
+						<a class="show-code" href="{url_title_path='deals/coupon'}" target="_blank"><span>Show coupon code <i>p</i></span></a>
+					{/if}
+				</div>
+			</li>
+		{/exp:weblog:entries}
+		</ul>
+		{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
+		<div class="post">
 			<dl>
-				<dt>Sponsored by:</dt>
-				<dd>
-					{categories show_group="24"}
-						<a href="{site_url}locations/detail/{category_url_title}/" title="{cateogry_name}">{category_name}</a>
-					{/categories}
-				</dd>
 				<dt>Location:</dt>
-				<dd>
-					<p>{if deal_location_name}{deal_location_name}<br />{/if}
-						{deal_address}<br />
-						{deal_city}, {deal_state} {deal_zip}
+				<dd itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+					<p><a href="{url_title_path='locations/detail'}">{title}</a><br />
+						<span itemprop="streetAddress">{location_address}</span><br />
+						<span itemprop="addressLocality">{location_city}</span>, <span itemprop="addressRegion">{location_state}</span> <span itemprop="postalCode">{location_zip}</span>
 					</p>
-					{if deal_phone || deal_website}
-					<p>{if deal_phone}{deal_phone}<br>{/if}{if deal_website}{deal_website}{/if}</p>
+					{if location_phone || location_website}
+					<p>{if location_telephone}<span itemprop="telephone">{location_telephone}</span><br>{/if}{if location_website}<span itemprop="url">{location_website}</span>{/if}</p>
 					{/if}
 				</dd>
 			</dl>
@@ -55,11 +82,10 @@
 			</div>
 			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
 			
-		</div><!--/#entry-->
-		
+		</div><!--/.post-->
 	</div>
 	<div class="sidebar right">
-		{embed="embeds/_share" channel="deals"}
+		{embed="embeds/_share" channel="locations" image="{location_image}"}
 	</div>
 </div>
 {/exp:weblog:entries}
@@ -86,7 +112,7 @@
 // End Spin.js parameters
 </script>
 <div id="directions"></div>
-{exp:weblog:entries weblog="deals" limit="1" require_entry="yes" limit="1" url_title="{segment_3}"}
-<input id="map-end" value="{deal_address} {deal_city}, {deal_state} {deal_zip}" />{/exp:weblog:entries}
+{exp:weblog:entries weblog="locations" limit="1" require_entry="yes" limit="1" url_title="{segment_3}"}
+<input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />{/exp:weblog:entries}
 {exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
-{embed="embeds/_doc-bottom" sim="directions"}
+{embed="embeds/_doc-bottom" sim="coupon|directions"}

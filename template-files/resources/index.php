@@ -6,9 +6,8 @@
 	title="Resources"
 }
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub-resources"}
-<div class="heading clearfix">
-	<i>3</i>
-	<h1>Resources</h1>
+<div class="heading">
+	<h1 data-icon="d">Resources</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">

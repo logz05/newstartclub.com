@@ -22,8 +22,7 @@
 
 	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
 	<link rel="stylesheet" href="{stylesheet='site/default'}" type="text/css" />
-	<link href="//get.pictos.cc/fonts/2140/2" rel="stylesheet" type="text/css">
-	<link href="//get.pictos.cc/fonts/2140/3" rel="stylesheet" type="text/css">
+	<link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
 {if embed:add}
 	<?php 
 		$splitcontents = explode('|', '{embed:add}');
@@ -32,11 +31,8 @@
 		} 
 	?>
 {/if}
-
 	<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	{if logged_out}<script src="/assets/js/jquery.reveal.js"></script>{/if}
-	<script src="/assets/js/common.js"></script>
+
 	{if embed:map}{embed="embeds/_google-maps"}{/if}
 	<!--Google Analytics-->
 	<script type="text/javascript">
@@ -78,12 +74,17 @@
 			</div>
 		{/if}
 		<div class="masthead"></div>
-		<nav class="main-nav{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)} sponsors{/if}">
+		<nav class="main-nav{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)} sponsors{/if}{if embed:sponsor_type} {embed:sponsor_type}{/if}">
 			<ul>
 			{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)}
 				<li class="home{if segment_1 == "sponsors" && segment_2 == ""} current{/if}"><a href="/sponsors">&emsp;</a><i></i></li>
-				<li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><i></i></li>
-				<li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><i></i></li>
+				{if embed:sponsor_type == "profit"}
+					<li{if segment_2 == "add-deal"} class="current"{/if}><a href="/sponsors/add-deal">Add Deals</a><i></i></li>
+					<li{if segment_2 == "edit-deals" || segment_2 == "edit-deal"} class="current"{/if}><a href="/sponsors/edit-deals">Edit Deals</a><i></i></li>
+				{if:else}
+					<li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><i></i></li>
+					<li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><i></i></li>
+				{/if}
 				<li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><i></i></li>
 				<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><i></i></li>
 				<li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><i></i></li>
@@ -92,10 +93,10 @@
 				<li{if segment_1 == "my_health"} class="current"{/if}><a href="/my_health">My Health</a><i></i></li>
 				<li{if segment_1 == "resources"} class="current"{/if}><a href="/resources">Resources</a><i></i></li>
 				<li{if segment_1 == "partners"} class="current"{/if}><a href="/partners">Partners</a><i></i></li>
+				<li{if segment_1 == "recipes"} class="current"{/if}><a href="/recipes">Recipes</a><i></i></li>
 				<li{if segment_1 == "events"} class="current"{/if}><a href="/events">Events</a><i></i></li>
 				<li{if segment_1 == "locations"} class="current"{/if}><a href="/locations">Locations</a><i></i></li>
-				<li{if segment_1 == "recipes"} class="current"{/if}><a href="/recipes">Recipes</a><i></i></li>
-				<li{if segment_1 == "news"} class="current"{/if}><a href="/news">News</a><i></i></li>
+				<li{if segment_1 == "deals"} class="current"{/if}><a href="/deals">Deals</a><i></i></li>
 			{/if}
 			</ul>
 		</nav>

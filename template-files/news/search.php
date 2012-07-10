@@ -13,12 +13,12 @@ require_once ( 'utilities.php' );
 <div class="heading clearfix">
 		<h1>Search Results</h1>
 	</div>
-	<div id="entry">
+	<div class="post">
 		<p>Your search for <strong>&ldquo;{exp:search:keywords}&rdquo;</strong> found {exp:search:total_results}{total_results}{/exp:search:total_results} result{if "{exp:search:total_results}" != 1}s{/if}.</p>
 	</div>
 	<div class="grid23 clearfix">
 		<div class="main left">
-			<ul id="listing">
+			<ul class="listing">
 			{exp:search:search_results}
 				<li class="entry {weblog_short_name}">
 				<h2>

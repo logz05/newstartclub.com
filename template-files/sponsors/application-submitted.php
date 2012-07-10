@@ -13,7 +13,7 @@ $sponsorEmail = $_POST['sponsorEmail'];
 $sponsorFax = $_POST['sponsorFax'];
 $sponsorWebsite = $_POST['sponsorWebsite'];
 $sponsorRegAff = $_POST['sponsorRegAff'];
-$sponsorHealthEvents = stripslashes($_POST['sponsorHealthEvents']);
+$sponsorDescription = stripslashes($_POST['sponsorDescription']);
 $sponsorNeedHelp = $_POST['sponsorNeedHelp'];
 
 $contactName = $_POST['contactName'];
@@ -129,8 +129,8 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorRegAff .'</td>
 													</tr>
 													<tr>
-														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Health Events:</strong></td>
-														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorHealthEvents .'</td>
+														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Description:</strong></td>
+														<td valign="top" style="padding: 0 0 10px 0; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px; color:#010101;">'. $sponsorDescription .'</td>
 													</tr>
 													<tr>
 														<td align="right" width="150" valign="top" style="padding:0 15px 10px 0; color:#777; font-weight: 500; font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1; font-size:16px;">Need Help:</strong></td>

@@ -28,12 +28,12 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry" class="content {resource_display_style} clearfix">
+		<div class="post {resource_display_style} clearfix">
 			{exp:ce_img:single src="{resource_thumb}" max_width="200" attributes='alt="{title}" title="{title}" class="image" itemprop="image"'}
 			<div class="description" itemprop="recipeInstructions">{resource_description}</div>
 		</div>
 		<ul class="tags">
-			<li><span>Tags:</span></li>
+			<li data-icon="r">Tags:</li>
 			{categories show_group="not 22"}
 				{if category_group == "22"}<li><a href="{site_url}resources/language/{category_url_title}/">{category_name}</a></li>{/if}
 				{if category_group == "39"}<li><a href="{site_url}recipes/type/{category_url_title}/" itemprop="recipeCategory">{category_name}</a></li>{/if}
@@ -60,7 +60,7 @@
 						{resource_ingredients}
 					{/if}
 				{/if}
-			{embed="embeds/_share" channel="recipes"}
+			{embed="embeds/_share" channel="recipes" image="{resource_thumb}"}
 		</div>
 	{/exp:weblog:entries}
 </div>

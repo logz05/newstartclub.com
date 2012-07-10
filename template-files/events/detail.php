@@ -24,8 +24,8 @@
 	<h2>
 		{!-- Check if event is only on one date and time is set --}
 		{if event_start_date == event_end_date && event_start_time !=""}
-			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> to 
-			<span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
+			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+			{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
 			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
 			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
@@ -40,10 +40,10 @@
 		
 		{!-- Check to see if repeating event --}
 		{if (event_start_date != event_end_date) && event_start_time !=""}
-			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>,
+			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+			{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
 			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
-			<span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
 			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
 			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
 			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
@@ -79,7 +79,7 @@
 				<p>This event has already passed. To see a list of upcoming events click <strong><a href="{path='events'}">here</a></strong></p>
 			</div>
 		{/if}
-		<div id="entry">
+		<div class="post">
 			
 			<span itemprop="description">{event_description}</span>
 			{if current_time < expiration_date}<p><em>Add this event to your <a href="#event-title">RSVP list</a> to attend!</em></p>{/if}
@@ -109,15 +109,14 @@
 			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
 			
 		</div><!--/#entry-->
-		{/exp:weblog:entries}
 	</div>
 	<div class="sidebar right">
 		<div class="bar">RSVP List</div>
 		{embed="events/_rsvp-list"}
-		{embed="embeds/_share" channel="events"}
+		{embed="embeds/_share" channel="events" image=""}
 		</div>
-</div>
-
+	</div>
+{/exp:weblog:entries}
 <div id="map-area">
 	<div id="canvas"><span id="loading"></span></div>
 	<span class="shadow"></span>

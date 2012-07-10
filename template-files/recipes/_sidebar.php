@@ -35,49 +35,18 @@
 
 <div class="bar">Filter</div>
 
-<h2 class="type">Recipe Type<span class="arrow up"></span><span class="arrow down"></span></h2>
+<h2 class="type filter-heading">Recipe Type<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list type">
 {exp:weblog:categories weblog="recipes" style="linear" show_empty="no" category_group="39"}
 	<li><a href="/recipes/type/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>
-<h2 class="sensitivity">Food Sensitivity<span class="arrow up"></span><span class="arrow down"></span></h2>
+<h2 class="sensitivity filter-heading">Food Sensitivity<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list sensitivity">
 {exp:weblog:categories weblog="recipes" style="linear" show_empty="no" category_group="42"}
 	<li><a href="/recipes/sensitivity/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>
-<h2 class="ethnic">Ethnic<span class="arrow up"></span><span class="arrow down"></span></h2>
+<h2 class="ethnic filter-heading">Ethnic<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list ethnic">
 {exp:weblog:categories weblog="recipes" style="linear" show_empty="no" category_group="43"}
 	<li><a href="/recipes/ethnic/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>
-
-{if segment_2 == "" || (segment_2 <= "P9999" && segment_2 >= "P0")}
-	<script type="text/javascript">
-	$(document).ready(function(){
-		//Toggle list
-		$(".sidebar h2").click(function(){
-			$(this).next("ul").slideToggle(400)
-			$(this).children(".arrow").toggle()
-			return false;
-		});
-	});
-	</script>
-{if:else}
-	<script type="text/javascript">
-	$(document).ready(function(){
-		
-		//Hide all lists except the one for the current section
-		$(".sidebar h2").children(".arrow").toggle();
-		$(".sidebar ul.filter-list").not(".filter-list.{segment_2}").hide();
-		$(".sidebar h2.{segment_2}").children(".arrow").toggle();
-		
-		//Toggle lists
-		$(".sidebar h2").click(function(){
-			$(this).next("ul").slideToggle(400)
-			$(this).children(".arrow").toggle()
-			return false;
-		});
-	
-	});
-	</script>
-{/if}

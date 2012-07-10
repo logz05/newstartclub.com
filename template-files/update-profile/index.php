@@ -96,7 +96,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 									<span>Enjoy,<br />
 									The NEWSTART Lifestyle Club Team<br />
 									<a href="http://newstartclub.com/" style="color:#87A621;">newstartclub.com</a></span><br /><br />
-									<span>P.S. As our way of saying thank you for joining, please click <a href="http://newstartclub.com/downloads/sponsor-resources/common-files/NEWSTART-Planner.pdf" style="color:#87A621;">here</a> to download your free NEWSTART&reg; Daily Planner.</span>
+									<span>P.S. As our way of saying thanks for joining, please click <a href="http://newstartclub.com/downloads/sponsor-resources/common-files/NEWSTART-Planner.pdf" style="color:#87A621;">here</a> to download your free NEWSTART&reg; Daily Planner.</span>
 											</td>
 										</tr>
 										<tr>

@@ -39,32 +39,31 @@ require_once ( 'utilities.php' );
 	<div class="grid23 clearfix">
 		<div class="main left">
 			<div class="resources">
-				<div class="bar">
-					<a href="/resources">Featured Resources</a><i>3</i>
-				</div>
+				<div class="bar" data-icon="d"><a href="/resources">Featured Resources</a></div>
 				{embed="site/featured-resources"}
 			</div>
 			{embed="site/local-events"}
 			
 			<div class="news">
-				<div class="bar"><a href="/news">Latest Updates</a><i>8</i></div>
-				<ul id="listing">
-					{exp:weblog:entries weblog="resources|events|partners|locations|questions|recipes" limit="5" orderby="date" sort="desc" dynamic="off" show_expired="yes"}
+				<div class="bar" data-icon="h"><a href="/news">Latest Updates</a></div>
+				<ul class="listing">
+					{exp:weblog:entries weblog="resources|events|partners|locations|questions|recipes|deals" limit="5" orderby="date" sort="desc" dynamic="off" show_expired="yes"}
 					<li class="entry {weblog_short_name}">
-						<h2>
-							{if weblog_short_name == "resources"}<i>3</i>{/if}
-							{if weblog_short_name == "partners"}<i>4</i>{/if}
-							{if weblog_short_name == "events"}<i>5</i>{/if}
-							{if weblog_short_name == "locations"}<i>6</i>{/if}
-							{if weblog_short_name == "recipes"}<i>7</i>{/if}
-							{if weblog_short_name == "questions"}<i>9</i>{/if}
-							<a href="/{weblog_short_name}/detail/{url_title}">
-								{if weblog_short_name == 'questions'}
-									{exp:char_limit total="35"}{qa_question}{/exp:char_limit}
-								{if:else}
-									{exp:char_limit total="35"}{title}{/exp:char_limit}
-								{/if}
-							</a>
+						{if weblog_short_name == "resources"}<h2 data-icon="d">{/if}
+						{if weblog_short_name == "partners" }<h2 data-icon="a">{/if}
+						{if weblog_short_name == "events"   }<h2 data-icon="e">{/if}
+						{if weblog_short_name == "locations"}<h2 data-icon="f">{/if}
+						{if weblog_short_name == "recipes"  }<h2 data-icon="g">{/if}
+						{if weblog_short_name == "questions"}<h2 data-icon="i">{/if}
+						{if weblog_short_name == "deals"    }<h2 data-icon="n">{/if}
+							
+							{if weblog_short_name == "deals"}
+								<a href="{path='deals/detail/{categories}{category_url_title}{/categories}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
+							{if:elseif weblog_short_name == "questions"}
+								<a href="{path='faq/detail/{url_title}'}">{exp:char_limit total="48"}{qa_question}{/exp:char_limit}</a>
+							{if:else}
+								<a href="{path='{weblog_short_name}/detail/{url_title}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
+							{/if}
 						</h2>
 						<div class="date">
 							<span class="timeago"><?php echo distanceOfTimeInWords('{entry_date}', '{current_time}', true); ?></span>
@@ -114,7 +113,7 @@ require_once ( 'utilities.php' );
 			</div>
 		{if logged_in}
 			<div class="members">
-				<div class="bar"><a href="/settings">My Interests</a><i>0</i></div>
+				<div class="bar" data-icon="j"><a href="/settings">My Interests</a></div>
 					<ul>
 						{exp:user:stats}{categories group_id="14|15"}
 							{category_body}<li><a href="{path='resources/{reg1_path}{reg2_path}'}">&raquo; {category_description}</a></li>
@@ -126,14 +125,14 @@ require_once ( 'utilities.php' );
 					</p>
 			</div>
 			<div class="events">
-				<div class="bar"><a href="/events">RSVP List</a><i>5</i></div>
+				<div class="bar" data-icon="e"><a href="/events">RSVP List</a></div>
 				{embed="events/_rsvp-list"}
 			</div>
 		{/if}
 		
 		{if logged_out}
 			<div class="resources">
-				<div class="bar"><a href="/resources">Resource Topics</a><i>3</i></div>
+				<div class="bar" data-icon="d"><a href="/resources">Resource Topics</a></div>
 				<h2>Health Conditions</h2>
 				<ul>
 					{exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="17"}
@@ -169,7 +168,7 @@ require_once ( 'utilities.php' );
 			
 			{exp:weblog:entries weblog="locations" search:location_zip="{zipCode}" limit="1"}
 				<div class="locations">
-					<div class="bar"><a href="/locations/">Featured Location</a><i>6</i></div>
+					<div class="bar" data-icon="f"><a href="/locations/">Featured Location</a></div>
 					<a href="/locations/detail/{url_title}" title="{title}">
 						<div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
 					</a>
@@ -180,7 +179,7 @@ require_once ( 'utilities.php' );
 		<?php } else if ($promoCode) { ?>
 			{exp:weblog:entries weblog="locations" category="{promo_code}" limit="1"}
 				<div class="locations">
-					<div class="bar"><a href="/locations/">Featured Location</a><i>6</i></div>
+					<div class="bar" data-icon="f"><a href="/locations/">Featured Location</a></div>
 					<a href="/locations/detail/{url_title}" title="{title}">
 						<div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
 					</a>
@@ -189,14 +188,19 @@ require_once ( 'utilities.php' );
 			{/exp:weblog:entries}
 		<?php } ?>
 		
-		{/exp:user:stats}
-		
 		{if member_group == "1" || member_group == "13"}
 			<div class="sponsor-admin">
-				<div class="bar"><a href="/sponsors">Sponsor Admin</a></div>
+				<div class="bar" data-icon="O"><a href="/sponsors">Sponsor Admin</a></div>
 					<ul>
+					{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}
+					{if sponsor_type == "profit"}
+						<li><a href="/sponsors/add-deal">&raquo; Add Deals</a></li>
+						<li><a href="/sponsors/edit-deals">&raquo; Edit Deals</a></li>
+					{if:else}
 						<li><a href="/sponsors/add-event">&raquo; Add Event</a></li>
 						<li><a href="/sponsors/edit-event">&raquo; Edit Events</a></li>
+					{/if}
+					{/exp:weblog:categories}
 						<li><a href="/sponsors/invite">&raquo; Invite Members</a></li>
 						<li><a href="/sponsors/email-members">&raquo; Email Members</a></li>
 						<li><a href="/sponsors/resources">&raquo; Get Resources</a></li>
@@ -204,10 +208,11 @@ require_once ( 'utilities.php' );
 			</div>
 		{/if}
 		
+		{/exp:user:stats}
+		
 		<div class="social-links news">
-			<div class="bar">Share<i>8</i></div>
-			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.facebook.com/newstart" data-via="newstartweimar">Tweet</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			<div class="bar" data-icon="u">Share</div>
+			
 			<div id="fb-root"></div>
 			<script>(function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0];
@@ -216,8 +221,28 @@ require_once ( 'utilities.php' );
 				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
-			<div class="fb-like" data-href="http://www.facebook.com/newstart" data-send="false" data-layout="button_count" data-width="190" data-show-faces="false" data-font="lucida grande"></div>
-			<div class="fb-send" data-font="lucida grande"></div>
+			<div class="fb-like" data-href="http://www.facebook.com/newstart" data-send="true" data-layout="button_count" data-width="190" data-show-faces="false" data-font="lucida grande"></div>
+			
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.facebook.com/newstart" data-via="newstartweimar">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+			
+			<div class="g-plus-button">
+				<!-- Place this tag where you want the +1 button to render. -->
+				<div class="g-plusone" data-size="medium" data-href="http://newstartclub.com"></div>
+				
+				<!-- Place this tag after the last +1 button tag. -->
+				<script type="text/javascript">
+					(function() {
+						var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+						po.src = 'https://apis.google.com/js/plusone.js';
+						var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					})();
+				</script>
+			</div>
+			<div class="pin-it">
+				<a href="http://pinterest.com/pin/create/button/?url=http://newstartclub.com&media=http://newstartclub.com/assets/css/images/header.png" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+				<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+			</div>
 		</div>
 		
 		</div>

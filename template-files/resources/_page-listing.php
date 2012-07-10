@@ -1,4 +1,4 @@
-<ul id="listing">
+<ul class="listing">
 {exp:weblog:entries weblog="resources" limit="12" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="off" {if embed:category}category="{segment_3_category_id}"{/if} category_group="17|18|19|20|21|22|39"}
 	{if no_results}
 		<p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
@@ -21,7 +21,7 @@
 				{/exp:trunchtml}
 			</p>
 			<ul class="tags">
-				<li><span>Tags:</span></li>
+				<li data-icon="r">Tags:</li>
 				{categories show_group="not 22"}
 					{if category_group == "17"}<li><a href="{site_url}resources/health-conditions/{category_url_title}/">{category_name}</a></li>{/if}
 					{if category_group == "18"}<li><a href="{site_url}resources/series/{category_url_title}/">{category_name}</a></li>{/if}

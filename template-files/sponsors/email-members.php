@@ -1,6 +1,8 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title="Email Members"}
+	title="Email Members"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
+}
 {assign_variable:sponsor_zipcode="{exp:user:stats dynamic='off'}{exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1' dynamic='off' status='open|closed'}{location_zip}{/exp:weblog:entries}{/exp:user:stats}"}
 	{if segment_3 != ""}
 		<ul id="trail">

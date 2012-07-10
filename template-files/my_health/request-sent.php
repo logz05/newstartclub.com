@@ -135,7 +135,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	</div>
 	<div class="grid23 clearfix">
 		<div class="main left">
-			<div id="entry">
+			<div class="post">
 				<p>You have taken an important first step to improving your health naturally. A NEWSTART&reg; representative will contact you shortly. In the meantime, check out the following videos to find out how NEWSTART&reg; has helped others get well or visit <a href="http://www.newstart.com/" title="www.newstart.com">www.newstart.com</a> to learn more.</p>
 				<div class="vimeoBadge">
 					<script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>

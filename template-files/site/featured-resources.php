@@ -52,6 +52,7 @@ for ($i = 0; $i <= 4; $i++ ) {
 ?>
 <div id="resource-slider">
 	<div id="slides">
+	<!-- this is a test -->
 	{exp:weblog:entries weblog="resources|recipes" entry_id="<?php echo $videoIDs.$articleIDs.$recipeIDs; ?>" disable="member_data|categories"}
 		<div class="content" data-caption="#{entry_id}">
 			<a href='/{weblog_short_name}/detail/{url_title}'>{exp:ce_img:single src="{resource_thumb}" max_width="490" crop="yes" attributes='alt="{title}" title="{title}"'}</a>

@@ -3,8 +3,7 @@
 	title="Member Settings"}
 {assign_variable:class="members"}
 <div class="heading clearfix">
-	<i>0</i>
-	<h1>Member Settings</h1>
+	<h1 data-icon="j">Member Settings</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">

@@ -220,7 +220,7 @@ function show_done($listRecipients)
 				</div>
 				<div class="grid23 clearfix">
 					<div class="left">
-						<div id="entry">
+						<div class="post">
 						<p>Your email was sent to the following members:</p>
 						<ul id="sent-members-list">';
 						

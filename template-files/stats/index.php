@@ -215,8 +215,8 @@ function memberAges($rangeLow, $rangeHigh)
 	class="stats"
 	title="Site Statistics"
 }
-<div class="heading clearfix">
-	<h1>Site Statistics</h1>
+<div class="heading">
+	<h1 data-icon="w">Site Statistics</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
@@ -225,7 +225,7 @@ function memberAges($rangeLow, $rangeHigh)
 				{total} Total Members
 			{/exp:query}
 		</span>
-		<div id="entry">
+		<div class="post">
 			<p>{exp:query sql="SELECT CONCAT(m_field_id_3, ' ', m_field_id_4) AS full_name, CONCAT(m_field_id_9, ', ', m_field_id_10) AS location FROM exp_member_data
 						
 						INNER JOIN exp_members
@@ -319,7 +319,7 @@ function memberAges($rangeLow, $rangeHigh)
 				width: '530', height: '320',
 				region: 'US', 
 				resolution: 'provinces',
-				colorAxis: {colors: ['#EEEEEE', 'yellow', '#87a922']},
+				colorAxis: {colors: ['#EEEEEE', '#87a922', 'yellow', '#FF4B28']},
 				backgroundColor: 'transparent'
 			};
 	

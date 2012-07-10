@@ -1,4 +1,4 @@
-<ul id="listing">
+<ul class="listing">
   {exp:weblog:entries weblog="partners" sort="asc" limit="9" orderby="partner_last_name" paginate="bottom" disable="member_data|trackbacks" dynamic="off" {embed:parameters}}
   <li class="partner clearfix">
     <a href="{url_title_path='partners/detail'}" class="image">

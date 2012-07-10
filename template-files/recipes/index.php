@@ -4,8 +4,7 @@
 }
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub-recipes"}
 <div class="heading clearfix">
-	<i>7</i>
-	<h1>Recipes</h1>
+	<h1 data-icon="g">Recipes</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">

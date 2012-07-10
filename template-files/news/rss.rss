@@ -32,7 +32,7 @@
 					{if event_description}{exp:textile}{exp:xml_encode protect_entities="yes"}{event_description}{/exp:xml_encode}{/exp:textile}{/if}
 					{partner_bio}
 					{qa_answer}
-					{location_health_events}
+					{location_description}
 				]]>
 			</description>
 			{categories}<category>{exp:xml_encode protect_entities="yes"}{category_name}{/exp:xml_encode}</category>

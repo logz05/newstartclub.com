@@ -25,19 +25,19 @@
 			</td>
 		</tr>
 		<tr>
+			<th scope="row"><label for="field_id_26">* End Date</label></th>
+			<td>
+				<input type="text" dir="ltr" id="field_id_26" class="input" name="field_id_26" value="" maxlength="128" size="25" /><br>
+				<p class="instructions">Format date as YYYY-MM-DD</p>
+			</td>
+		</tr>
+		<tr>
 			<th scope="row"><label for="field_id_33">Start Time</label></th>
 			<td>
 				<input type="text" dir="ltr" id="field_id_33" class="input" name="field_id_33" value="" maxlength="128" size="25" /><br>
 				<p class="instructions">Format time as 24 hour time.<br>
 					12:00am = 00:00, 11:59pm = 23:59<br>
 					<em>If all day event leave this field blank.</em></p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><label for="field_id_26">* End Date</label></th>
-			<td>
-				<input type="text" dir="ltr" id="field_id_26" class="input" name="field_id_26" value="" maxlength="128" size="25" /><br>
-				<p class="instructions">Format date as YYYY-MM-DD</p>
 			</td>
 		</tr>
 		<tr>

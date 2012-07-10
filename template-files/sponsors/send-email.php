@@ -1,6 +1,8 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title="Sponsorship Program | Email{if segment_3} {segment_3_category_name}{/if}"}
+	title="Sponsorship Program | Email{if segment_3} {segment_3_category_name}{/if}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
+}
 <ul id="trail">
 	<li><a href="/sponsors">Home</a></li>
 	<li><a href="/sponsors/email-members">Member List</a></li>

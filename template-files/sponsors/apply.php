@@ -10,7 +10,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 			{exp:weblog:entries weblog="sponsors" entry_id="479" limit="1"}
 				{body}
 			{/exp:weblog:entries}
@@ -405,10 +405,10 @@ function getZIP (form) {
 			<td><input type="text" class="input" id="sponsorRegAff" name="sponsorRegAff" value="" size="32" autocomplete="off" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="sponsorHealthEvents" class="req"><span class="req">* </span>Health Events</label></th>
+			<th scope="row"><label for="sponsorDescription" class="req"><span class="req">* </span>Description</label></th>
 			<td>
-				<textarea class="input" id="sponsorHealthEvents" name="sponsorHealthEvents" rows="5" cols="32" autocomplete="off"></textarea>
-				<p class="instructions">Please list the type of community health events your organization would like to sponsor.</p>
+				<textarea class="input" id="sponsorDescription" name="sponsorDescription" rows="5" cols="32" autocomplete="off"></textarea>
+				<p class="instructions">Describe your organization and what health related events, products or services you offer. (50 words or less)</p>
 			</td>
 		</tr>
 		<tr>

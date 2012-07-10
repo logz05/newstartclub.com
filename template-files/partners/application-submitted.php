@@ -240,7 +240,7 @@ if ($_FILES["picture"]["name"] != "") {
 
 function fileModTime($filename) {
 
-	$file = '/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content' . $filename;
+	$file = '/home/newstartclub/www/www-newstartclub-com/content' . $filename;
 	
 	if (file_exists($file)) {
 		echo "?v=" . date("YmdHis", filemtime($file));

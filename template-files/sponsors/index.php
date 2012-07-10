@@ -4,6 +4,7 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Sponsorship Program"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
 }
 {if logged_out || (member_group != 1 && member_group != 13)}
 	<div class="heading clearfix">
@@ -11,7 +12,7 @@
 	</div>
 	<div class="grid23 clearfix">
 		<div class="main {if logged_out}tour {/if}left">
-			<div id="entry">
+			<div class="post">
 				<iframe src="http://player.vimeo.com/video/17569582" width="490" height="276" frameborder="0"></iframe>
 				{exp:weblog:entries weblog="sponsors" entry_id="477" limit="1"}
 					{body}
@@ -41,18 +42,27 @@
 		</div>
 	</div>
 {if:else}
+	{exp:user:stats dynamic="off"}
+		{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}
 	<div class="heading clearfix">
-		<h1>{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}{/exp:user:stats}</h1>
+		<h1>{category_name}</h1>
 	</div>
 	<div class="grid23 clearfix">
 		<div class="main left">
 			<ul id="nav-list">
-				<li><a href="/sponsors/add-event">Add an event <span class="arrow">&rarr;</span></a></li>
-				<li><a href="/sponsors/edit-event">Edit your events <span class="arrow">&rarr;</span></a></li>
+				{if sponsor_type == "profit"}
+					<li><a href="/sponsors/add-deal">Add a deal <span class="arrow">&rarr;</span></a></li>
+					<li><a href="/sponsors/edit-deals">Edit your deals <span class="arrow">&rarr;</span></a></li>
+				{if:else}
+					<li><a href="/sponsors/add-event">Add an event <span class="arrow">&rarr;</span></a></li>
+					<li><a href="/sponsors/edit-event">Edit your events <span class="arrow">&rarr;</span></a></li>
+				{/if}
 				<li><a href="/sponsors/invite">Invite members to be part of the club <span class="arrow">&rarr;</span></a></li>
 				<li><a href="/sponsors/email-members">Email your members <span class="arrow">&rarr;</span></a></li>
 				<li><a href="/sponsors/resources">Get resources <span class="arrow">&rarr;</span></a></li>
 			</ul>
+			{/exp:weblog:categories}
+		{/exp:user:stats}
 			<div class="button-wrap">
 				<a href="/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super secondary button"><span>Quick Start Guide &raquo;</span></a>
 			</div>

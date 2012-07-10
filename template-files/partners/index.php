@@ -4,8 +4,7 @@
 }
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub-partners"}
 <div class="heading clearfix">
-	<i>4</i>
-	<h1>Partners</h1>
+	<h1 data-icon="a">Partners</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">

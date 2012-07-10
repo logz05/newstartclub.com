@@ -11,7 +11,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 			<h2>What information do we collect?</h2>
 			<p>We collect information from you when you register on our site, subscribe to our newsletter or fill out a form. </p>
 			<p>When subscribing or registering on our site, as appropriate, you may be asked to enter your: name, e-mail address, mailing address, and phone number as well as information about your health habits and height and weight.. You may, however, visit our site anonymously.</p>

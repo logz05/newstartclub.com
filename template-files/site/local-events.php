@@ -48,8 +48,8 @@ $sponsEntries = count($results);
 
 
 <div class="events">
-				<div class="bar"><a href="/events">Upcoming Events</a><i>5</i></div>
-				<ul>
+				<div class="bar" data-icon="e"><a href="/events">Upcoming Events</a></div>
+				<ul class="listing">
 				<?php
 				
 				if($zipEntries > 0){

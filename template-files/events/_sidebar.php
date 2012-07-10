@@ -50,7 +50,7 @@
 		</ul>
 	</div>
 
-		<h2>Locations</h2>
+		<h2 class="filter-heading">Locations<span class="arrow up"></span><span class="arrow down"></span></h2>
 		<ul>
 <?php
 	$location_list = array(
@@ -64,12 +64,12 @@
 	}
 ?>
 		</ul>
-		<h2>Event Type</h2>
+		<h2 class="filter-heading">Event Type<span class="arrow up"></span><span class="arrow down"></span></h2>
 		<ul>
 			{exp:weblog:categories weblog="events" style="linear" show_empty="no" show_future_entries="yes" category_group="41"}
 				<li><a href="/events/type/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 		</ul>
-		<h2>Sponsors</h2>
+		<h2 class="filter-heading">Sponsors<span class="arrow up"></span><span class="arrow down"></span></h2>
 		<ul>
 <?php 
 	$sponsor_list = array(

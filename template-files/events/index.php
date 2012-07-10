@@ -4,12 +4,11 @@
 }
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub-events"}
 <div class="heading clearfix">
-	<i>5</i>
-	<h1>Events</h1>
+	<h1 data-icon="e">Events</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<ul id="listing">
+		<ul class="listing">
 			{embed="events/_event-listitem"}
 		</ul>
 	</div>

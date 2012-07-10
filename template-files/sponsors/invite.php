@@ -16,7 +16,8 @@ $db->query($query);
 ?>
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title="Sponsorship Program | Invite Members"
+	title="Invite Members"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
 }
 {assign_variable:sponsor_title="{exp:user:stats dynamic='off'}{exp:weblog:categories show='{sponsor_number}' weblog='locations' style='linear'}{category_name}{/exp:weblog:categories}{/exp:user:stats}"}
 	<div class="heading clearfix">
@@ -61,7 +62,7 @@ $db->query($query);
 			<h2>Pending Invitations ( {exp:query sql="SELECT COUNT(*) AS total FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0"}{total}{/exp:query} )</h2>
 			{exp:query limit="50" paginate="both" sql="SELECT date, email AS invite_email FROM exp_user_keys WHERE group_id = {sponsor_number} AND member_id = 0 ORDER BY date DESC"}
 				{if count==1}
-					<ul id="listing">
+					<ul class="listing">
 				{/if}
 				<li>
 					<h2>{invite_email}</h2>

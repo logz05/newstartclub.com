@@ -17,7 +17,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 				<dl>
 					{if location_address != ""}<dt>Address:</dt>
 					<dd>{location_address}<br />{if location_address2}{location_address2}<br />{/if}{location_city}, {location_state} {location_zip}</dd>{/if}
@@ -60,14 +60,14 @@
 				</dl>
 			{/exp:weblog:entries}
 		{/if}
-		<div class="bar">Upcoming Events</div>
-		{exp:weblog:entries weblog="events" dynamic="off" limit="1" category="{segment_3_category_id}" show_future_entries="yes"}
-			{if no_results}
-				<p><em>No upcoming events.</em></p>
+		{exp:weblog:entries weblog="locations" limit="1"}
+			{if location_type=="profit"}
+				<div class="bar">Active Deals</div>
+				{embed="locations/_detail-deals"}
+			{if:else}
+				<div class="bar">Upcoming Events</div>
+				{embed="locations/_detail-events"}
 			{/if}
-			<p class="button-wrap">
-				<a href="/events/sponsors/{segment_3}" class="super small secondary button"><span>View Events</span></a>
-			</p>
 		{/exp:weblog:entries}
 	</div>
 </div>

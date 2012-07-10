@@ -7,7 +7,7 @@
 </ul> 
 <p>If you are interested in becoming a club partner, <a href="/partners/apply">apply here</a>.</p>
 <div class="bar">Filter</div>
-  <h2>State</h2>
+  <h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
   <ul>
 <?php
 
@@ -24,7 +24,7 @@
 
 ?>
 </ul>
-<h2>Specialty</h2>
+<h2 class="filter-heading">Specialty<span class="arrow up"></span><span class="arrow down"></span></h2>
 <ul class="filter-list specialty">
 {exp:weblog:categories weblog="partners" style="linear" show_empty="no" category_group="40"}
 	<li><a href="/partners/specialty/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}

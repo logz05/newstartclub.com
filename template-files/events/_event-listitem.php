@@ -14,7 +14,7 @@
 				<span class="time">
 					{!-- Check if event is only on one date and time is set --}
 					{if event_start_date == event_end_date && event_start_time !=""}
-						{exp:nice_date date="{event_start_time}" format="%g:%i %a"} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}
+						{exp:nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
 					{/if}
 					
 					{!-- Check if event is only on one date and time is NOT set --}

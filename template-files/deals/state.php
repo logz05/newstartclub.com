@@ -1,18 +1,18 @@
 {embed="embeds/_doc-top" 
-	class="{class}"
-	title="Deals"
+	class="deals"
+	title="Deals in {exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}"
 "}
-{assign_variable:class="deals"}
-{if segment_3}
-	{redirect="404"}
-{/if}
+<ul id="trail">
+	<li><a href="/">Home</a></li>
+	<li><a href="/deals">Deals</a></li>
+</ul>
 <div class="heading clearfix">
-	<h1 data-icon="n">Deals</h1>
+	<h1>{exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
 		<ul class="listing">
-		{exp:weblog:entries weblog="locations" limit="12" sort="asc" paginate="bottom" dynamic="off" search:location_type="=profit"}
+		{exp:weblog:entries weblog="locations" limit="12" sort="asc" paginate="bottom" dynamic="off" search:location_type="=profit" search:location_state="={segment_3}" search:location_city="={segment_4}"}
 			<li class="business clearfix">
 				<h2><a href="/deals/detail/{url_title}">{location_slogan}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{location_slogan}"}</h2>
 				<a href="{url_title_path='deals/detail'}" class="image">

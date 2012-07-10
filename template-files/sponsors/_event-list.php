@@ -1,7 +1,7 @@
 {exp:weblog:entries weblog="events" sort="asc" orderby="date" limit="1" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
-	{if no_results}<p>You don&rsquo;t have any current events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
+	{if no_results}<p>You don&rsquo;t have any active events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
 {/exp:weblog:entries}
-<ul id="listing">
+<ul class="listing entries">
 {exp:weblog:entries weblog="events" sort="asc" orderby="date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
 
 	{assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
@@ -16,9 +16,9 @@
 			}
 		</script>
 		<h2>{title}</h2>
-		<div class="button-wrap event-edit">
-			<a href="http://admin.newstartclub.com/index.php?C=edit&M=edit_entry&weblog_id={weblog_id}&entry_id={entry_id}" target="_blank" class="super small white button"><span>Edit</span></a>
-			<a href="javascript: confirmation_{entry_id}()" class="super small white button"><span>Delete</span></a>
+		<div class="edit-entry">
+			<a href="http://admin.newstartclub.com/index.php?C=edit&M=edit_entry&weblog_id={weblog_id}&entry_id={entry_id}" target="_blank" title="Edit &ldquo;{title}&rdquo;"><span>&#63490;</span></a>
+			<a href="javascript: confirmation_{entry_id}()" title="Delete&hellip;"><span>&#10006;</span></a>
 		</div>
 		<div class="details">
 			<dl>

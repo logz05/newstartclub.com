@@ -12,7 +12,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<ul id="listing">
+		<ul class="listing">
 			{embed="events/_event-listitem" parameters='category="{segment_3_category_id}"'}
 		</ul>
 	</div>

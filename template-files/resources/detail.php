@@ -15,7 +15,7 @@
 <div class="heading clearfix">
 	<h1>Our recipes have moved!</h1>
 </div>
-<div id="entry" class="content clearfix">
+<div class="post clearfix">
 	<p>It appears that this link is outdated. But no worries! <strong>You can find your recipe at this link:<br></strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}recipes/detail/{segment_3}</a></p>
 </div>
 {/if}
@@ -24,7 +24,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry" class="content {resource_display_style} clearfix">
+		<div class="post {resource_display_style} clearfix">
 		{if resource_display_style == "article"}
 			<div id="entry-details">
 				{exp:ce_img:single src="{resource_thumb}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
@@ -52,7 +52,7 @@
 		{/if}
 		</div>
 		<ul class="tags">
-			<li><span>Tags:</span></li>
+			<li data-icon="r">Tags:</li>
 			{categories show_group="not 22"}
 				{if category_group == "17"}<li><a href="{site_url}resources/health-conditions/{category_url_title}/">{category_name}</a></li>{/if}
 				{if category_group == "18"}<li><a href="{site_url}resources/series/{category_url_title}/">{category_name}</a></li>{/if}
@@ -240,7 +240,7 @@
 					{resource_ingredients}
 				{/if}
 			{/if}
-			{embed="embeds/_share" channel="resources"}
+			{embed="embeds/_share" channel="resources" image="{resource_thumb}"}
 		</div>
 	{/exp:weblog:entries}
 </div>

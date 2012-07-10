@@ -1,6 +1,6 @@
 {embed="embeds/_doc-top"}
 
-<div id="dont-load-it"></div>
+<div id="load-it"></div>
 
 <script src="/assets/js/spin.min.js"></script>
 <script>
@@ -19,24 +19,6 @@ var target = document.getElementById('load-it');
 var spinner = new Spinner(opts).spin(target);
 </script>
 
-{exp:user:stats dynamic="off"}
-    
-<?php
-
-  $zipCode = "{exp:weblog:entries weblog="locations" search:location_zip="{zipCode}" limit="1"}{location_zip}{/exp:weblog:entries}";
-  $promoCode = "{exp:weblog:entries weblog="locations" category="{promo_code}" limit="1"}{url_title}{/exp:weblog:entries}";
-  
-  if ($zipCode) {
-    echo "Zip Code matches a local sponsor.";
-  } else if ($promoCode) {
-    echo "Promo Code matches a local sponsor.";
-  } else {
-    echo "There is no featured sponsor in your area.";
-  }
-  
-  echo "Zip Code: $zipCode, Promo Code: $promoCode";
-
-?>
 
 {exp:weblog:entries weblog="locations" category="{promo_code}" limit="1"}
         <div class="locations">
@@ -47,7 +29,5 @@ var spinner = new Spinner(opts).spin(target);
           <p><a href="/locations/detail/{url_title}" title="{title}">{title}</a></p>
         </div>
       {/exp:weblog:entries}
-
-{/exp:user:stats}
 
 {embed="embeds/_doc-bottom"}

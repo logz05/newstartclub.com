@@ -16,7 +16,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 			{exp:ce_img:single src="{partner_photo}" max_width="200" max_height="200" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
 			<div class="bio">{partner_bio}</div>
 		</div>

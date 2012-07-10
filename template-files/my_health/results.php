@@ -211,7 +211,7 @@ function totalScore($score) {
 					<div id="health-score-history"></div>
 				</li>
 			</ul>
-			<div id="entry">
+			<div class="post">
 			<h3>Summary</h3>
 			<p>According to your health score, you have a	 <?php echo round(100 - {memberScoreTotal}, 1); ?>% risk of developing a lifestyle related disease such as heart disease, cancer, or diabetes.</p>
 				
@@ -262,7 +262,7 @@ function totalScore($score) {
 					<div id="health-score-history"></div>
 				</li>
 			</ul>
-			<div id="entry">
+			<div class="post">
 			<h3>Summary</h3>
 			<p>According to your health score, you have a	 <?php echo round((100 - $hsTotal), 1); ?>% risk of developing a lifestyle related disease such as heart disease, cancer, or diabetes.</p>
 				
@@ -293,7 +293,7 @@ function totalScore($score) {
 			</div>
 				
 		<?php } else { ?>
-			<div id="entry">
+			<div class="post">
 			<h2>Your Health Score is empty!</h2>
 			<p>It appears that you haven&rsquo;t calculated your health score yet. Click the button below to calculate your health score.</p>
 			

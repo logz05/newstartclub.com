@@ -11,7 +11,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 			<p>PLEASE READ THESE TERMS OF USE CAREFULLY BEFORE ACCESSING OR PARTICIPATING IN ANY MAILING LIST, WEBSITE, TRANSACTION OR OTHER ON-LINE FORUM AVAILABLE AT NEWSTARTCLUB.COM OR OTHER NEWSTART&reg; WEBSITE. BY USING AND PARTICIPATING IN THESE SITES, YOU SIGNIFY THAT YOU HAVE READ THESE TERMS AND AGREE TO BE BOUND BY AND COMPLY WITH THEM. IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS, PLEASE PROMPTLY EXIT ALL SITES. NEWSTART&reg; RESERVES THE RIGHT TO MODIFY THESE TERMS AT ANY TIME. BY CONTINUING TO ACCESS A SITE AFTER NOTICE OF SUCH MODIFICATIONS HAS BEEN PUBLISHED, YOU SIGNIFY YOUR AGREEMENT TO BE BOUND BY THEM.</p>
 			<h2>TERMS OF USE</h2>
 			<p>The material in this website is provided for educational and informational purposes only and is not intended as medical advice. It should not be used to diagnose or treat any illness, metabolic disorder, disease or health problem. Always consult your physician or health care provider before beginning any nutrition or exercise program. Use of the programs, advice, and information contained in this website is at the sole choice and risk of the user.</p>

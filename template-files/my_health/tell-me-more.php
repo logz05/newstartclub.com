@@ -12,7 +12,7 @@
 
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div id="entry">
+		<div class="post">
 			{exp:weblog:entries weblog="my_health" entry_id="640" limit="1"}
 				{body}
 			{/exp:weblog:entries}

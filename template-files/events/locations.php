@@ -12,12 +12,12 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<ul id="listing">
+		<ul class="listing">
 	{embed="events/_event-listitem" parameters='search:event_state="={segment_3}" search:event_city="={segment_4}"'}
 		</ul>
 	</div>
 	<div class="sidebar right">
 		{embed="events/_sidebar"}
 	</div>
-</div><!--/.grid23-->
+</div>
 {embed="embeds/_doc-bottom"}

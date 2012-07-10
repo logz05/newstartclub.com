@@ -3,14 +3,13 @@
 	title="FAQ"
 }
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub-faq"}
-<div class="heading clearfix">
-	<i>9</i>
-	<h1>FAQ</h1>
+<div class="heading">
+	<h1 data-icon="i">FAQ</h1>
 </div>
 
 <div class="grid23 clearfix">
 	<div class="main left">
-		<ul id="listing">
+		<ul class="listing">
 		{exp:weblog:entries weblog="questions" limit="9" orderby="date" sort="desc" paginate="bottom" dynamic="off"}
 			<li class="question">
 				<h2>Q.</h2>
