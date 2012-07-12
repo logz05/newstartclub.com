@@ -219,8 +219,8 @@ function totalScore($score) {
 			<ul id="recommendations">
 				{if memberSleep != "11"}<li><a href="/resources/living-better/rest">Get 7-8 hours of sleep nightly</a></li>{/if}
 				{if memberExercise != "13"}<li><a href="/resources/living-better/exercise">Exercise regularly</a></li>{/if}
-				{if memberSmoking != "11"}<li><a href="/resources/health-conditions/addictions">Don&rsquo;t smoke</a></li>{/if}
-				{if memberAlcohol != "11"}<li><a href="/resources/health-conditions/addictions">Don&rsquo;t drink alcohol</a></li>{/if}
+				{if memberSmoking != "11"}<li><a href="/resources/health-condition/addictions">Don&rsquo;t smoke</a></li>{/if}
+				{if memberAlcohol != "11"}<li><a href="/resources/health-condition/addictions">Don&rsquo;t drink alcohol</a></li>{/if}
 				{if memberDiet != "11"}<li><a href="/recipes">Eat whole plant foods every day</a></li>{/if}
 				{if memberNutrition != "10"}<li><a href="/recipes">Avoid refined sugars and oils</a></li>{/if}
 				{if memberEmotional != "11"}<li><a href="/resources/living-better/emotional-wellbeing">Boost your EQ</a></li>{/if}

@@ -136,7 +136,7 @@ require_once ( 'utilities.php' );
 				<h2>Health Conditions</h2>
 				<ul>
 					{exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="17"}
-						<li><a href="{path='resources/health-conditions/{category_url_title}'}">{category_name}</a></li>
+						<li><a href="{path='resources/health-condition/{category_url_title}'}">{category_name}</a></li>
 					{/exp:weblog:categories}
 					<li class="see-more"><a href="/resources">See more &raquo;</a></li>
 				</ul>
@@ -198,7 +198,7 @@ require_once ( 'utilities.php' );
 						<li><a href="/sponsors/edit-deals">&raquo; Edit Deals</a></li>
 					{if:else}
 						<li><a href="/sponsors/add-event">&raquo; Add Event</a></li>
-						<li><a href="/sponsors/edit-event">&raquo; Edit Events</a></li>
+						<li><a href="/sponsors/edit-events">&raquo; Edit Events</a></li>
 					{/if}
 					{/exp:weblog:categories}
 						<li><a href="/sponsors/invite">&raquo; Invite Members</a></li>

@@ -4,13 +4,16 @@
 	<p>To find out how your organization can sponsor local NEWSTART Lifestyle Club deals, <a href="http://newstartclub.com/sponsors">click here</a>.</p>
 	
 	<div class="bar">Filter</div>
-	<h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
-	<ul>
+	<h2 class="filter-heading state">State<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list state">
 <?php
 
 	$state_list = array(
-		{exp:weblog:entries weblog="locations" sort="asc" dynamic="off" orderby="location_state" search:location_type="=profit" backspace="1"}
-			strtolower("{location_state}") => "{location_state:label}", 
+		
+		{exp:weblog:entries weblog="deals" sort="asc" dynamic="off"}
+			{related_entries id="deal_location"}
+				strtolower("{location_state}") => "{location_state:label}",
+			{/related_entries}
 		{/exp:weblog:entries}
 		);
 
@@ -18,7 +21,37 @@
 		print('<li><a href="{path="deals/state/'. $key . '"}">'. $state .'</a></li>');
 	}
 
-
+?>
+	</ul>
+	
+	
+	<h2 class="filter-heading type">Deal Type<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list type">
+<?php 
+	$sponsor_list = array(
+		{exp:weblog:categories weblog="deals" style="linear" show_empty="no" category_group="45"}
+			"{category_url_title}" => "{category_name}",
+		{/exp:weblog:categories}
+	);
+	
+	foreach ($sponsor_list as $key => $sponsor) {
+		print('<li><a href="/deals/type/'. $key .'">'. $sponsor .'</a></li>');
+	}
+?>
+	</ul>
+	
+	<h2 class="filter-heading sponsors">Sponsors<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list sponsor">
+<?php 
+	$sponsor_list = array(
+		{exp:weblog:entries weblog="deals" dynamic="off" show_future_entries="yes"}
+			{categories show_group="24"} "{category_url_title}" => "{category_name}", {/categories}
+		{/exp:weblog:entries}
+	);
+	
+	foreach ($sponsor_list as $key => $sponsor) {
+		print('<li><a href="/deals/sponsor/'. $key .'">'. $sponsor .'</a></li>');
+	}
 ?>
 	</ul>
 </div>

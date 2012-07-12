@@ -9,9 +9,9 @@
 				<li>Health expos</li>
 				<li>Personal and group support</li>
 			</ul></p>
-		<p>To find out how your organization can sponsor local {site_name} events, click&nbsp;<a href="/sponsors">here</a>.</p>
+		<p>To find out how your organization can sponsor local {site_name} events, <a href="/sponsors">click&nbsp;here</a>.</p>
 			<div class="bar">Filter</div>
-			<h2>State</h2>
+			<h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
 			<ul>
 <?php
 

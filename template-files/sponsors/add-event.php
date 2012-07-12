@@ -1,7 +1,8 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Sponsorship Program | Create a new event"
-	add="datePicker"}
+	add="datepicker/datepicker"
+}
 <div class="heading clearfix">
 	<h1>Create a new event</h1>
 </div>
@@ -9,7 +10,7 @@
 	<div class="main events left">
 	<h2>Event Information</h2>
 {exp:user:stats dynamic="off"}
-{exp:weblog:entry_form weblog="events" return="/sponsors/edit-event" category="{sponsor_number}"}
+{exp:weblog:entry_form weblog="events" return="/sponsors/edit-events" category="{sponsor_number}"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
@@ -18,17 +19,15 @@
 		<tr>
 			<th scope="row"><label for="field_id_25">* Start Date</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_25" class="input" name="field_id_25" value="" maxlength="128" size="25" /><br>
-				<p class="instructions">Format date as YYYY-MM-DD</p>
-				<input type="text" class="hidden" id="entry_date" name="entry_date" value="" maxlength="23" size="25" />
-				<input type="text" class="hidden" name="expiration_date" id="expiration_date" value="" maxlength="23" size="25" />
+				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{current_time format='%m/%d/%Y'}" size="20"/>
+				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{current_time format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="field_id_26">* End Date</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_26" class="input" name="field_id_26" value="" maxlength="128" size="25" /><br>
-				<p class="instructions">Format date as YYYY-MM-DD</p>
+				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="" size="20"/>
+				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
@@ -162,12 +161,6 @@
 				</ul>
 			</td>
 		</tr>
-		<tr class="hidden">
-			<td>
-				<input name="start-date" id="start-date" class="date-pick" />
-				<input name="end-date" id="end-date" class="date-pick" />
-			</td>
-		</tr>
 		<tr>
 			<th></th>
 			<td>
@@ -188,4 +181,4 @@
 		<p>Only approved {site_name} events may be added. If your event type does not fit one of the categories below, please email <a href="mailto:club@newstart.com">club@newstart.com</a> or call 530-422-7993 before adding your event. Please note that club events should generally be offered free or at low cost.</p>
 </div>
 </div><!-- /.grid23 -->
-{embed="embeds/_doc-bottom" script_add="jquery.date.min|jquery.datePicker.min|jquery.maskedinput-1.3.min|sponsors-masking|sponsors"}
+{embed="embeds/_doc-bottom" script_add="jquery-ui-1.8.21.custom.min|jquery.maskedinput-1.3.min|sponsors-masking|sponsors"}

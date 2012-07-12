@@ -1,11 +1,8 @@
-{exp:weblog:entries weblog="events" sort="asc" orderby="date" limit="1" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
+{exp:weblog:entries weblog="events" sort="asc" orderby="date" limit="1" dynamic="off" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
 	{if no_results}<p>You don&rsquo;t have any active events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
 {/exp:weblog:entries}
 <ul class="listing entries">
-{exp:weblog:entries weblog="events" sort="asc" orderby="date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
-
-	{assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
-	{assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
+{exp:weblog:entries weblog="events" sort="desc" orderby="edit_date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
 	<li>
 		<script type="text/javascript">
 			function confirmation_{entry_id}() {
@@ -17,7 +14,7 @@
 		</script>
 		<h2>{title}</h2>
 		<div class="edit-entry">
-			<a href="http://admin.newstartclub.com/index.php?C=edit&M=edit_entry&weblog_id={weblog_id}&entry_id={entry_id}" target="_blank" title="Edit &ldquo;{title}&rdquo;"><span>&#63490;</span></a>
+			<a href="/sponsors/edit-event/{entry_id}" title="Edit &ldquo;{title}&rdquo;"><span>&#63490;</span></a>
 			<a href="javascript: confirmation_{entry_id}()" title="Delete&hellip;"><span>&#10006;</span></a>
 		</div>
 		<div class="details">
@@ -27,22 +24,55 @@
 				<dt>Date</dt>
 				<dd>
 					<p>
-						{if event_start_time != ""}
-							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span> - 
-							<span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,
-							<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-							<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-							<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-						{if:elseif "{e_start_date}" == "{e_end_date}"}
-							<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-							<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>-<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-							<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-						{if:elseif "{e_start_date}" != "{e_end_date}"}
-							<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-							<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> - 
-							<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-							<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-							<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+						{!-- Check if event is only on one date and time is set --}
+						{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}"}
+							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{entry_date  format="%j"}</span>,
+							<span class="year">{expiration_date format="%Y"}</span>
+							<!-- 1 -->
+						{/if}
+						
+						{!-- Check if event is only on one date and time is NOT set --}
+						{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}" ==""}
+							<span class="month">{entry_date  format="%F"}</span>
+							<span class="day">{entry_date  format="%j"}</span>,
+							<span class="year">{expiration_date format="%Y"}</span>
+							<!-- 2 -->
+						{/if}
+						
+						{!-- Check to see if repeating event --}
+						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}"}
+							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{entry_date format="%j"}</span> to 
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{expiration_date format="%j"}</span>,
+							<span class="year">{expiration_date format="%Y"}</span>
+							<!-- 3 -->
+						{/if}
+						
+						{!-- Check to see if repeating event and time is NOT set --}
+						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
+							<span class="month">{entry_date  format="%F"}</span>
+							<span class="day">{entry_date  format="%j"}</span> to 
+							<span class="month">{expiration_date format="%F"}</span>
+							<span class="day">{expiration_date format="%j"}</span>,
+							<span class="year">{expiration_date format="%Y"}</span>
+							<!-- 4 -->
+						{/if}
+						
+						{!-- Check to see if repeating event, time is NOT set, and event spans years --}
+						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
+							<span class="month">{entry_date  format="%F"}</span>
+							<span class="day">{entry_date  format="%j"}</span>,
+							<span class="year">{entry_date  format="%Y"}</span> to 
+							<span class="month">{expiration_date format="%F"}</span>
+							<span class="day">{expiration_date format="%j"}</span>,
+							<span class="year">{expiration_date format="%Y"}</span>
+							<!-- 5 -->
 						{/if}
 					</p>
 				</dd>
@@ -59,13 +89,13 @@
 				</dd>
 			</dl>
 		</div>
-		<form id="entryform_{entry_id}" method="post" action="/sponsors/edit-event"	 >
+		<form id="entryform_{entry_id}" method="post" action="/sponsors/edit-events"	 >
 			<div class='hiddenFields'>
 				<input type="hidden" name="ACT" value="18" />
-				<input type="hidden" name="RET" value="/sponsors/edit-event" />
+				<input type="hidden" name="RET" value="/sponsors/edit-events" />
 				<input type="hidden" name="PRV" value="" />
-				<input type="hidden" name="URI" value="/sponsors/edit-event" />
-				<input type="hidden" name="return_url" value="/sponsors/edit-event" />
+				<input type="hidden" name="URI" value="/sponsors/edit-events" />
+				<input type="hidden" name="return_url" value="/sponsors/edit-events" />
 				<input type="hidden" name="author_id" value="{author_id}" />
 				<input type="hidden" name="weblog_id" value="28" />
 				<input type="hidden" name="status" value="closed" />

@@ -2,6 +2,7 @@
 	class="deals"
 	title="Deals in {exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}"
 "}
+{embed="embeds/_rss-feed"}
 <ul id="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/deals">Deals</a></li>
@@ -12,20 +13,26 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 		<ul class="listing">
-		{exp:weblog:entries weblog="locations" limit="12" sort="asc" paginate="bottom" dynamic="off" search:location_type="=profit" search:location_state="={segment_3}" search:location_city="={segment_4}"}
-			<li class="business clearfix">
-				<h2><a href="/deals/detail/{url_title}">{location_slogan}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{location_slogan}"}</h2>
-				<a href="{url_title_path='deals/detail'}" class="image">
-					{exp:ce_img:single src="{location_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+		{exp:weblog:entries weblog="locations" limit="12" sort="desc" paginate="bottom" dynamic="off" search:location_type="=profit" search:location_state="={segment_3}"}
+			{reverse_related_entries orderby="expiration_date" sort="asc"}
+			<li class="deal independant clearfix">
+				<h2><a href="/deals/detail/{categories}{category_url_title}{/categories}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
+				<a href="/deals/detail/{categories}{category_url_title}{/categories}" class="image">
+				{categories}
+					{exp:ce_img:single src="{category_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+				{/categories}
 				</a>
 				<div class="details">
-					<p class="description">
-						{exp:trunchtml chars="200" inline="&hellip; <a class='link-more' href='/deals/detail/{url_title}'>more&raquo;</a>"}
-							{exp:html_strip}{location_description}{/exp:html_strip}
-						{/exp:trunchtml}
-					</p>
+					<p>{exp:html_strip}{deal_instructions}{/exp:html_strip} <a class='link-more' href='/deals/detail/{categories}{category_url_title}{/categories}'>more&raquo;</a><p>
+					<p class="expires">{if expiration_date}Expires: {expiration_date format="%m/%d/%y"}{/if}</p>
+					{if logged_out}
+						<a class="show-code" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
+					{if:else}
+						<a class="show-code" href="{url_title_path='deals/coupon'}" target="_blank"><span data-icon="p">Show coupon code</span></a>
+					{/if}
 				</div>
 			</li>
+			{/reverse_related_entries}
 			{paginate}
 				{if "{total_pages}" > 1}
 					<li class="pagination">

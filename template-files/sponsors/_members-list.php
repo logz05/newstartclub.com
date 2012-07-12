@@ -356,7 +356,7 @@ function listMembers($count, $results) {
 				<h2>Events</h2>
 				<ul>
 			{/exp:weblog:entries}
-			{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="off" orderby="event_start_date" sort="asc" status="open|closed"}
+			{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="off" orderby="date" sort="asc" status="open|closed"}
 				{exp:query sql="
 					SELECT COUNT(*) AS total
 						FROM exp_members

@@ -26,9 +26,9 @@
 							<li><a href="/downloads/sponsor-resources/common-files/Interest-Form-2UP.pdf">Interest Form</a></li>
 							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-business-cards/">Business Cards</a></li>
 							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-door-hangers/">Door Hangers</a></li>
-							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-postcard/">Postcard</a></li>
-							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-flyers/">Flyer</a></li>
-							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-posters/">Poster</a></li>
+							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-postcards/">Postcards</a></li>
+							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-flyers/">Flyers</a></li>
+							<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-posters/">Posters</a></li>
 							<li><a href="/downloads/sponsor-resources/common-files/t-shirt-mockup-white.jpg">T-shirt Template</a></li>
 							<li><a href="http://www.adventising.com/newstart/">Vehicle Window Decal (www.NEWSTARTClub.com)</a></li>
 							<li><a href="/downloads/sponsor-resources/common-files/BannerStand-M2.pdf">Banner (33.65&rdquo; x 94.88&rdquo;)</a></li>
@@ -58,9 +58,8 @@
 				<ul>
 					<li><h3>Promotion</h3>
 						<ul>
-	<!-- 						<li><a href="/downloads/sponsor-resources/expo-files/Brochure.zip">Brochure (8.5&rdquo; x 11&rdquo;)</a></li> -->
-							<li><a href="/downloads/sponsor-resources/expo-files/Invitation-Flyer.zip">Invitation Flyer (5.5&rdquo; x 8.5&rdquo;)</a></li>
-							<li><a href="/downloads/sponsor-resources/expo-files/Banner4x3_PRINT.pdf">Banner (4&rsquo; x 3&rsquo;)</a></li>
+							<li><a href="http://www.newstart.com/store/newstart-health-expo-invitation-flyers/">Invitation Flyer</a></li>
+							<li><a href="http://www.newstart.com/store/newstart-health-expo-invitation-banner/">Invitation Banner</a></li>
 						</ul>
 					</li>
 					<li><h3>Station Banners</h3>
@@ -71,7 +70,7 @@
 					</li>
 					<li><h3>Station Forms, Instructions, Signs and Handouts</h3>
 						<ul>
-							<li>My Personal Health Record (<a href="/downloads/sponsor-resources/expo-files/PersonalHealthRecord_Inside.pdf">Inside</a> / <a href="/downloads/sponsor-resources/{sponsor_number}/PersonalHealthRecord_Outside-{sponsor_number}.pdf">Outside</a>)</li>
+							<li><a href="http://www.newstart.com/store/newstart-health-expo-personal-health-records/">Personal Health Records</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/01-Welcome.zip">Welcome</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/02-Sunlight.zip">Sunlight</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/03-Nutrition.zip">Nutrition</a></li>
@@ -88,7 +87,7 @@
 				</ul>
 			</section>
 			<section class="module">
-				<h2>Links</h2>
+				<h2>Additional Links</h2>
 				{exp:weblog:entries weblog="sponsors" entry_id="557" limit="1"}
 					{body}
 				{/exp:weblog:entries}

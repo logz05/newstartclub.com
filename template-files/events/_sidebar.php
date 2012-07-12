@@ -51,7 +51,7 @@
 	</div>
 
 		<h2 class="filter-heading">Locations<span class="arrow up"></span><span class="arrow down"></span></h2>
-		<ul>
+		<ul class="filter-list location">
 <?php
 	$location_list = array(
 		{exp:weblog:entries weblog="events" sort="asc|asc" dynamic="off" orderby="event_state|event_city" backspace="1" show_future_entries="yes"}
@@ -60,17 +60,18 @@
 		);
 
 	foreach ($location_list as $key => $location) {
-		print('<li><a href="/events/locations/'. $key .'">'. $location .'</a></li>');
+		print('<li><a href="/events/location/'. $key .'">'. $location .'</a></li>');
 	}
 ?>
 		</ul>
 		<h2 class="filter-heading">Event Type<span class="arrow up"></span><span class="arrow down"></span></h2>
-		<ul>
+		<ul class="filter-list type">
 			{exp:weblog:categories weblog="events" style="linear" show_empty="no" show_future_entries="yes" category_group="41"}
 				<li><a href="/events/type/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 		</ul>
+		
 		<h2 class="filter-heading">Sponsors<span class="arrow up"></span><span class="arrow down"></span></h2>
-		<ul>
+		<ul class="filter-list sponsor">
 <?php 
 	$sponsor_list = array(
 		{exp:weblog:entries weblog="events" dynamic="off" show_future_entries="yes"}
@@ -79,7 +80,7 @@
 	);
 	
 	foreach ($sponsor_list as $key => $sponsor) {
-		print('<li><a href="/events/sponsors/'. $key .'">'. $sponsor .'</a></li>');
+		print('<li><a href="/events/sponsor/'. $key .'">'. $sponsor .'</a></li>');
 	}
 ?>
 		</ul>

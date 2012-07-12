@@ -54,44 +54,41 @@ $sponsEntries = count($results);
 				
 				if($zipEntries > 0){
 				 
-					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="event_start_date" search:event_zip="'.$zip.'" show_future_entries="yes" limit="2"}';
+					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" search:event_zip="'.$zip.'" show_future_entries="yes" limit="2"}';
 				
 				} elseif($sponsEntries > 0){
-					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="event_start_date" category="'.$promo.'" show_future_entries="yes" limit="2"}';
+					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" category="'.$promo.'" show_future_entries="yes" limit="2"}';
 				} else {
-					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="event_start_date" show_future_entries="yes" limit="2"}';
+					echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" show_future_entries="yes" limit="2"}';
 				}
 				?>
-				
 
-					<li class="event" id="{exp:nice_date date='{event_start_date}' format='%Y-%m-%d'}">
-						{assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
-						{assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
+					<li class="event" id="{entry_date format='%Y-%m-%d'}">
 						<h2>
 							<a href="{url_title_path='events/detail'}">{title}</a>
-							<div class="date">
-								<span class="day">{exp:nice_date date="{event_start_date}" format="%d"}</span>
-								<span class="month">{exp:nice_date date="{event_start_date}" format="%M"}</span>
-								<span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span>
+							<span class="date">
+								<span class="day">{entry_date format="%d"}</span>
+								<span class="month">{entry_date format="%M"}</span>
+								<span class="year">{entry_date format="%Y"}</span>
 								<span class="time">
 									{!-- Check if event is only on one date and time is set --}
-									{if event_start_date == event_end_date && event_start_time !=""}
-										{exp:nice_date date="{event_start_time}" format="%g:%i %a"} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}
+									{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}"}
+										{exp:nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
 									{/if}
 									
 									{!-- Check if event is only on one date and time is NOT set --}
-									{if event_start_date == event_end_date && event_start_time == ""}
+									{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" == ""}
 										All Day
 									{/if}
 									
 									{!-- Check to see if repeating event --}
-									{if (event_start_date != event_end_date)}
-										{exp:nice_date date="{event_start_date}" format="%M %j"} - {exp:nice_date date="{event_end_date}" format="%M %j"}
+									{if "{entry_date format='%d'}" != "{expiration_date format='%d'}"}
+										{entry_date format="%M %j"} - {expiration_date format="%M %j"}
 									{/if}
 								</span>
-							</div>
+							</span>
 						</h2>
-						<h3><a href="/events/locations/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
+						<h3><a href="/events/location/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
 						<p class="details">
 							{exp:trunchtml chars="150" threshold="150" inline="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
 								{exp:html_strip}{exp:textile}{event_description}{/exp:textile}{/exp:html_strip}

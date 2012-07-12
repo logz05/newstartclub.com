@@ -8,7 +8,7 @@
 <p>If you are interested in becoming a club partner, <a href="/partners/apply">apply here</a>.</p>
 <div class="bar">Filter</div>
   <h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
-  <ul>
+  <ul class="filter-list state">
 <?php
 
   $state_list = array(

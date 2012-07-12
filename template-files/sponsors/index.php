@@ -55,7 +55,7 @@
 					<li><a href="/sponsors/edit-deals">Edit your deals <span class="arrow">&rarr;</span></a></li>
 				{if:else}
 					<li><a href="/sponsors/add-event">Add an event <span class="arrow">&rarr;</span></a></li>
-					<li><a href="/sponsors/edit-event">Edit your events <span class="arrow">&rarr;</span></a></li>
+					<li><a href="/sponsors/edit-events">Edit your events <span class="arrow">&rarr;</span></a></li>
 				{/if}
 				<li><a href="/sponsors/invite">Invite members to be part of the club <span class="arrow">&rarr;</span></a></li>
 				<li><a href="/sponsors/email-members">Email your members <span class="arrow">&rarr;</span></a></li>

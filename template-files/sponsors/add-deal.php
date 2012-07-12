@@ -58,6 +58,21 @@
 			</td>
 		</tr>
 		<tr>
+			<th scope="row">
+				<label>*&nbsp;Categories</label>
+			</th>
+			<td>
+				<br>
+				<p class="instructions"><strong>Please select at least one category for your deal.</strong></p>
+				<ul class="inputs">
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="448" /> <span>In-store</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" /> <span>Online</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" /> <span>Product</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" /> <span>Service</span></label></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<th></th>
 			<td>
 				<div class="button-wrap">

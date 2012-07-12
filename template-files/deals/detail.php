@@ -30,7 +30,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div class="post deal">
+		<div class="post">
 			<div class="clearfix">
 				{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" title="{location_slogan}" class="image" itemprop="image"'}
 				<span itemprop="description">{location_description}</span>
@@ -45,15 +45,15 @@
 					<p><em>No active deals.</em></p>
 				</div>
 			{/if}
-			<li class="deal clearfix">
+			<li class="deal dependant clearfix">
 				<div class="details" data-icon="n">
 					<h2>{title}{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
 					{deal_instructions}
 					<p class="expires">{if expiration_date}Expires: {expiration_date format="%m/%d/%y"}{/if}</p>
 					{if logged_out}
-						<a class="show-code" href="/signin" data-reveal-id="signin-modal-coupon"><span>Show coupon code <i>p</i></span></a>
+						<a class="show-code" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></span></a>
 					{if:else}
-						<a class="show-code" href="{url_title_path='deals/coupon'}" target="_blank"><span>Show coupon code <i>p</i></span></a>
+						<a class="show-code" href="{url_title_path='deals/coupon'}" target="_blank"><span data-icon="p">Show coupon code</span></a>
 					{/if}
 				</div>
 			</li>

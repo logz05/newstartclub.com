@@ -7,9 +7,9 @@ require_once('dbconnect.php');
 
 $db = new DBconnect();
 
-$videoQuery = 'SELECT entry_id FROM exp_category_posts WHERE cat_id = 146 ORDER BY RAND() LIMIT 4';
-$articleQuery = 'SELECT entry_id FROM exp_category_posts WHERE cat_id = 145 ORDER BY RAND() LIMIT 4';
-$recipeQuery = 'SELECT entry_id FROM exp_weblog_titles WHERE weblog_id = 76 ORDER BY RAND() LIMIT 4';
+$videoQuery = 'SELECT exp_category_posts.entry_id FROM exp_category_posts JOIN exp_weblog_titles ON exp_category_posts.entry_id = exp_weblog_titles.entry_id WHERE cat_id = 146 AND status = "open" ORDER BY RAND() LIMIT 4';
+$articleQuery = 'SELECT exp_category_posts.entry_id FROM exp_category_posts JOIN exp_weblog_titles ON exp_category_posts.entry_id = exp_weblog_titles.entry_id WHERE cat_id = 145 AND status = "open" ORDER BY RAND() LIMIT 4';
+$recipeQuery = 'SELECT entry_id FROM exp_weblog_titles WHERE weblog_id = 76 AND status = "open" ORDER BY RAND() LIMIT 4';
 
 $videoResults = $db->fetch($videoQuery);
 $articleResults = $db->fetch($articleQuery);

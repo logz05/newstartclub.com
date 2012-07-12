@@ -13,7 +13,7 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 		<ul class="listing">
-	{embed="events/_event-listitem" parameters='search:event_start_date="{segment_3}-{segment_4}"'}
+	{embed="events/_event-listitem" parameters='year="{segment_3}" month="{segment_4}"'}
 		</ul>
 	</div>
 	<div class="sidebar right">

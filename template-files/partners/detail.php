@@ -49,7 +49,7 @@
 		{if segment_3_category_id}
 		{exp:weblog:entries weblog="resources" dynamic="off" limit="1" category="{segment_3_category_id}"}
 			<p>
-				<a href="/resources/partners/{segment_3}">View Resources by {segment_3_category_name}</a>
+				<a href="/resources/partner/{segment_3}">View Resources by {segment_3_category_name}</a>
 			</p>
 		{/exp:weblog:entries}
 		{/if}

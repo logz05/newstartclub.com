@@ -68,57 +68,17 @@
 			});
 	</script>
 {/if}
-{if segment_2 == "add-event"}
+{if segment_2 == "add-deal" || segment_2 == "add-event" || segment_2 == "edit-deal" || segment_2 == "edit-event"}
 	<script src="/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript">
+			CKEDITOR.replace( 'field_id_375',
+			{
+				customConfig : '/ckeditor-custom/config_custom.js',
+				toolbar: 'SponsorToolbar'
+			});
+	</script>
 	<script type="text/javascript">
 			CKEDITOR.replace( 'field_id_35',
-			{
-				customConfig : '/ckeditor-custom/config_custom.js',
-				toolbar: 'SponsorToolbar'
-			});
-	</script>
-{/if}
-{if segment_2 == "add-deal"}
-	<script src="/ckeditor/ckeditor.js"></script>
-	<script type="text/javascript">
-			CKEDITOR.replace( 'field_id_375',
-			{
-				customConfig : '/ckeditor-custom/config_custom.js',
-				toolbar: 'SponsorToolbar'
-			});
-	</script>
-	<script type="text/javascript">
-		$(function() {
-			$( "#entry_datepicker" ).datepicker({
-				altField: "#entry_date",
-				altFormat: "yy-mm-dd '12:00 AM'",
-				dateFormat: "mm/dd/yy",
-				minDate: -0,
-				numberOfMonths: 1,
-				dayNamesMin: ["S", "M", "T", "W", "T", "F", "S"],
-				onSelect: function( selectedDate ) {
-					$( "#expiration_datepicker" ).datepicker( "option", "minDate", selectedDate );
-				}
-			});
-			
-			$( "#expiration_datepicker" ).datepicker({
-				altField: "#expiration_date",
-				altFormat: "yy-mm-dd '11:59 PM'",
-				dateFormat: "mm/dd/yy",
-				minDate: -0,
-				numberOfMonths: 1,
-				dayNamesMin: ["S", "M", "T", "W", "T", "F", "S"],
-				onSelect: function( selectedDate ) {
-					$( "#entry_datepicker" ).datepicker( "option", "maxDate", selectedDate );
-				}
-			});
-		});
-	</script>
-{/if}
-{if segment_2 == "edit-deal"}
-	<script src="/ckeditor/ckeditor.js"></script>
-	<script type="text/javascript">
-			CKEDITOR.replace( 'field_id_375',
 			{
 				customConfig : '/ckeditor-custom/config_custom.js',
 				toolbar: 'SponsorToolbar'

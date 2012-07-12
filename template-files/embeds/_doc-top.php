@@ -83,7 +83,7 @@
 					<li{if segment_2 == "edit-deals" || segment_2 == "edit-deal"} class="current"{/if}><a href="/sponsors/edit-deals">Edit Deals</a><i></i></li>
 				{if:else}
 					<li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><i></i></li>
-					<li{if segment_2 == "edit-event"} class="current"{/if}><a href="/sponsors/edit-event">Edit Events</a><i></i></li>
+					<li{if segment_2 == "edit-events"} class="current"{/if}><a href="/sponsors/edit-events">Edit Events</a><i></i></li>
 				{/if}
 				<li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><i></i></li>
 				<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><i></i></li>

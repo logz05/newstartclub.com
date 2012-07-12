@@ -1,8 +1,8 @@
-{exp:weblog:entries weblog="deals" sort="asc" orderby="date" limit="1" require_entry="yes" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
+{exp:weblog:entries weblog="deals" sort="asc" orderby="date" dynamic="off" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
 	{if no_results}<p>You don&rsquo;t have any active deals. Click <a href="/sponsors/add-deal">here</a> to add a new deal.</p>{/if}
 {/exp:weblog:entries}
 <ul class="listing entries">
-{exp:weblog:entries weblog="deals" sort="asc" orderby="date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic="off"}
+{exp:weblog:entries weblog="deals" sort="desc" orderby="edit_date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic="off"}
 
 	<li>
 		<script type="text/javascript">

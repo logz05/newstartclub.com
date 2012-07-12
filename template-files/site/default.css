@@ -197,7 +197,8 @@ overflow: hidden;
 	outline: none;
 	text-shadow: rgba(255, 255, 255, 0.5) 0 0 6px;
 }
-.main-nav a:active { text-shadow: rgba(255, 255, 255, 0.9) 0 0 12px; }
+.main-nav a:active,
+.main-nav.sponsors a:active { text-shadow: rgba(255, 255, 255, 1) 0 0 12px; }
 
 .header .sub-nav {
 	position: relative;
@@ -666,7 +667,6 @@ a.image:active img {
 .print-this i,
 .csv-file i,
 li.deal > i,
-li.deal .show-code i,
 .coupon > i,
 .coupon .url i,
 .news li.entry h2 i {
@@ -678,6 +678,7 @@ li.deal .show-code i,
 .link-icon[data-icon]:after,
 .heading h1[data-icon]:before,
 li.deal .details:before,
+li.deal .show-code span:after,
 .tags [data-icon]:before,
 .news li.entry h2:before,
 .bar:after {
@@ -2308,38 +2309,13 @@ span#loading {
 	top: 7px;
 	font-size: 52px;
 }
-li.business h2 {
-	font-size: 20px;
+li.deal h2 {
 	line-height: 1;
-	margin: 0 0 8px;
 	position: relative;
-}
-li.business .image {
-	float: left;
-}
-li.business .details {
-	margin-left: 16px;
-	width: 364px;
-	float: left;
-}
-li.deal .details:before {
-	font-size: 60px;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-li.deal .details {
-	padding-left: 58px;
 }
 li.deal .expires {
 	font-weight: bold;
 	font-style: italic;
-}
-li.deal h2 {
-	font-size: 17px;
-	line-height: 1;
-	margin: 0 0 4px;
-	position: relative;
 }
 li.deal .show-code {
 	background-color: #649C55;
@@ -2354,15 +2330,46 @@ li.deal .show-code {
 	-moz-transition: background-color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out;
 }
+li.deal .show-code span:after {
+	
+}
 li.deal .show-code:hover {
 	color: #fff;
 	background-color: #145C00;
 	text-decoration: none;
 }
 li.deal .show-code span {
-	padding: 1px 8px;
+	padding: 1px 6px;
 	border: 1px dashed #fff;
 	display: block;
+}
+li.deal .show-code span:after {
+	line-height: 1;
+	margin-left: 5px;
+}
+li.deal.independant h2 {
+	margin: 0 0 8px;
+}
+li.deal.independant .image {
+	float: left;
+}
+li.deal.independant .details {
+	margin-left: 16px;
+	width: 364px;
+	float: left;
+}
+li.deal.dependant h2 {
+	font-size: 17px;
+	margin: 0 0 4px;
+}
+li.deal.dependant .details:before {
+	font-size: 60px;
+	position: absolute;
+	left: 0;
+	top: 22px;
+}
+li.deal.dependant .details {
+	padding-left: 58px;
 }
 body.deal {
 	width: 580px;
@@ -2452,6 +2459,7 @@ body.deal {
 	border-color: #1A7D00;
 }
 .deals a,
+.deals .sidebar a,
 .deals .heading h1[data-icon]:before,
 li.deal .details:before,
 .deals > .link-icon:hover,
@@ -2763,17 +2771,48 @@ li.deal .details:before,
 	display: inline-block;
 	margin-right: 10px;
 }
-.sponsors .resource-list .post ul {
+.sponsors .resource-list .module {
+	border-top: 1px dashed #DDD;
+	margin: 10px 0 0;
+	padding: 10px 0 0;
+}
+.sponsors .resource-list .module:first-child {
+	border-top: none;
+	margin-top: 0;
+	padding-top: 0;
+}
+.sponsors .resource-list .module h2 {
+	cursor: pointer;
+	position: relative;
+}
+.sponsors .resource-list .module h2 span {
+	position: absolute;
+	right: 0px;
+	top: 2px;
+	padding: 0px 6px 4px 5px;
+	background-color: #BBB;
+	border-radius: 18px;
+	line-height: 1;
+	color: white;
+	font-size: 18px;
+}
+.sponsors .resource-list .module h2:hover span {
+	background-color: #999;
+}
+.sponsors .resource-list .module ul {
 	margin: 0;
 	padding: 0;
 }
-.sponsors .resource-list .post ul li {
+.sponsors .resource-list .module ul li {
 	list-style-type: none;
 	margin: 0 0 0 8px;
-}
-.sponsors .resource-list .post li {
+	line-height: 1.5;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 11px;
+}
+.sponsors .resource-list .module textarea {
+	font-family: monospace;
+	margin: 6px 0 0;
 }
 .sponsors .resource-list .post h3 {
 	font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
@@ -2784,10 +2823,6 @@ li.deal .details:before,
 	font-size: 24px;
 	font-weight: normal;
 	color: #FF4B28;
-}
-.sponsors .resource-list .post textarea {
-	font-family: monospace;
-	margin: 6px 0 0;
 }
 .sponsors #cke_custom-message,
 .sponsors #cke_field_id_35,

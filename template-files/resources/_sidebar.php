@@ -35,9 +35,9 @@
 
 <div class="bar">Filter</div>
 <h2 class="health-conditions filter-heading">Health Conditions<span class="arrow up"></span><span class="arrow down"></span></h2>
-<ul class="filter-list health-conditions">
+<ul class="filter-list health-condition">
 {exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="17"}
-	<li><a href="/resources/health-conditions/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
+	<li><a href="/resources/health-condition/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>
 
 <h2 class="living-better filter-heading">Living Better<span class="arrow up"></span><span class="arrow down"></span></h2>
@@ -59,7 +59,7 @@
 </ul>
 
 <h2 class="partners filter-heading">Partners<span class="arrow up"></span><span class="arrow down"></span></h2>
-<ul class="filter-list partners">
+<ul class="filter-list partner">
 {exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="21"}
-	<li><a href="/resources/partners/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
+	<li><a href="/resources/partner/{category_url_title}">{category_name}</a></li>{/exp:weblog:categories}
 </ul>

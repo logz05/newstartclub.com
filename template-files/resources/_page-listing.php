@@ -23,11 +23,11 @@
 			<ul class="tags">
 				<li data-icon="r">Tags:</li>
 				{categories show_group="not 22"}
-					{if category_group == "17"}<li><a href="{site_url}resources/health-conditions/{category_url_title}/">{category_name}</a></li>{/if}
+					{if category_group == "17"}<li><a href="{site_url}resources/health-condition/{category_url_title}/">{category_name}</a></li>{/if}
 					{if category_group == "18"}<li><a href="{site_url}resources/series/{category_url_title}/">{category_name}</a></li>{/if}
 					{if category_group == "19"}<li><a href="{site_url}resources/living-better/{category_url_title}/">{category_name}</a></li>{/if}
 					{if category_group == "20"}<li><a href="{site_url}resources/media/{category_url_title}/">{category_name}</a></li>{/if}
-					{if category_group == "21"}<li><a href="{site_url}resources/partners/{category_url_title}/">{category_name}</a></li>{/if}
+					{if category_group == "21"}<li><a href="{site_url}resources/partner/{category_url_title}/">{category_name}</a></li>{/if}
 					{if category_group == "22"}<li><a href="{site_url}resources/language/{category_url_title}/">{category_name}</a></li>{/if}
 				{/categories}
 			</ul>

@@ -10,8 +10,7 @@
 	<li><a href="/sponsors/edit-deals">Edit Deals</a></li>
 </ul>
 
-{exp:user:stats dynamic="off"}
-{exp:weblog:entries weblog="deals" url_title="{segment_3}" limit="1"}
+{exp:weblog:entries weblog="deals" url_title="{segment_3}" limit="1" show_future_entries="yes"}
 <div class="heading clearfix">
 	<h1>Edit &ldquo;{title}&rdquo;</h1>
 </div>
@@ -23,7 +22,7 @@
 		</div>
 	</noscript>
 	<h2>Deal Information</h2>
-{exp:weblog:entry_form weblog="deals" return="/sponsors/edit-deals" entry_id="{entry_id}"}
+{exp:weblog:entry_form weblog="deals" return="/sponsors/edit-deals"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
@@ -49,7 +48,7 @@
 		<tr>
 			<th scope="row"><label for="entry_date">* Beginning Date</label></th>
 			<td>
-				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{current_time format='%m/%d/%Y'}" size="20"/>
+				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{entry_date format='%m/%d/%Y'}" size="20"/>
 				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{entry_date format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
 			</td>
 		</tr>
@@ -69,6 +68,21 @@
 			</td>
 		</tr>
 		<tr>
+			<th scope="row">
+				<label>*&nbsp;Categories</label>
+			</th>
+			<td>
+				<br>
+				<p class="instructions"><strong>Please select at least one category for your deal.</strong></p>
+				<ul class="inputs">
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="448" {categories show="448"} {if category_id=="448"}checked="checked" {/if}{/categories}/> <span>In-store</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" {categories show="449"} {if category_id=="449"}checked="checked" {/if}{/categories}/> <span>Online</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" {categories show="446"} {if category_id=="446"}checked="checked" {/if}{/categories}/> <span>Product</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" {categories show="447"} {if category_id=="447"}checked="checked" {/if}{/categories}/> <span>Service</span></label></li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
 			<th></th>
 			<td>
 				<div class="button-wrap">
@@ -80,7 +94,6 @@
 	</table>
 {/exp:weblog:entry_form}
 {/exp:weblog:entries}
-{/exp:user:stats}
 </div>
 
 <div class="right sidebar">

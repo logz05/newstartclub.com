@@ -15,61 +15,60 @@
 {if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
 
-{assign_variable:e_start_date="{exp:nice_date date='{event_start_date}' format='%m'}"}
-{assign_variable:e_end_date="{exp:nice_date date='{event_end_date}' format='%m'}"}
-{assign_variable:year_start_date="{exp:nice_date date='{event_start_date}' format='%Y'}"}
-{assign_variable:year_end_date="{exp:nice_date date='{event_end_date}' format='%Y'}"}
-
 	<h1 id="event-title" itemprop="name">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 	<h2>
 		{!-- Check if event is only on one date and time is set --}
-		{if event_start_date == event_end_date && event_start_time !=""}
+		{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}"}
 			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
 			{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
-			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+			<span class="month">{entry_date format="%F"}</span>
+			<span class="day">{entry_date  format="%j"}</span>,
+			<span class="year">{expiration_date format="%Y"}</span>
+			<!-- 1 -->
 		{/if}
 		
 		{!-- Check if event is only on one date and time is NOT set --}
-		{if event_start_date == event_end_date && event_start_time ==""}
-			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+		{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}" ==""}
+			<span class="month">{entry_date  format="%F"}</span>
+			<span class="day">{entry_date  format="%j"}</span>,
+			<span class="year">{expiration_date format="%Y"}</span>
+			<!-- 2 -->
 		{/if}
 		
 		{!-- Check to see if repeating event --}
-		{if (event_start_date != event_end_date) && event_start_time !=""}
+		{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}"}
 			<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
 			{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
-			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
-			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
+			<span class="month">{entry_date format="%F"}</span>
+			<span class="day">{entry_date format="%j"}</span> to 
+			<span class="month">{entry_date format="%F"}</span>
+			<span class="day">{expiration_date format="%j"}</span>,
+			<span class="year">{expiration_date format="%Y"}</span>
+			<!-- 3 -->
 		{/if}
 		
 		{!-- Check to see if repeating event and time is NOT set --}
-		{if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' == 'year_end_date')}
-			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span> to 
-			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-			<!-- Year Start Date: {year_start_date} Year End Date: {year_end_date} -->
+		{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
+			<span class="month">{entry_date  format="%F"}</span>
+			<span class="day">{entry_date  format="%j"}</span> to 
+			<span class="month">{expiration_date format="%F"}</span>
+			<span class="day">{expiration_date format="%j"}</span>,
+			<span class="year">{expiration_date format="%Y"}</span>
+			<!-- 4 -->
 		{/if}
 		
 		{!-- Check to see if repeating event, time is NOT set, and event spans years --}
-		{if (event_start_date != event_end_date) && event_start_time == "" && ('year_start_date' != 'year_end_date')}
-			<span class="month">{exp:nice_date date="{event_start_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_start_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_start_date}" format="%Y"}</span> to 
-			<span class="month">{exp:nice_date date="{event_end_date}" format="%F"}</span>
-			<span class="day">{exp:nice_date date="{event_end_date}" format="%j"}</span>,
-			<span class="year">{exp:nice_date date="{event_end_date}" format="%Y"}</span>
-		{/if}in <?php echo '<a href="/events/locations/' . strtolower("{event_state}/{event_city}") . '">{event_city}, {event_state}</a>'; ?>
+		{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
+			<span class="month">{entry_date  format="%F"}</span>
+			<span class="day">{entry_date  format="%j"}</span>,
+			<span class="year">{entry_date  format="%Y"}</span> to 
+			<span class="month">{expiration_date format="%F"}</span>
+			<span class="day">{expiration_date format="%j"}</span>,
+			<span class="year">{expiration_date format="%Y"}</span>
+			<!-- 5 -->
+		{/if}in <?php echo '<a href="/events/location/' . strtolower("{event_state}/{event_city}") . '">{event_city}, {event_state}</a>'; ?>
 	</h2>
-	<meta itemprop="startDate" content="{event_start_date}{if event_start_time}T{exp:nice_date date='{event_start_time}' format='%H:%i'}{/if}">
+	<meta itemprop="startDate" content="{entry_date format="%Y-%m-%d"}{if event_start_time}T{exp:nice_date date='{event_start_time}' format='%H:%i'}{/if}">
 	<a href="http://newstartclub.com" rel="publisher"></a>
 </div>
 <div class="grid23 clearfix">
