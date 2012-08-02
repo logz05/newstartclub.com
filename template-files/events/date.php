@@ -3,7 +3,7 @@
 	title="Events in {exp:nice_date date="{segment_3}-{segment_4}" format="%F %Y"}"
 }
 {embed="embeds/_rss-feed"}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/events">Events</a></li>
 </ul>

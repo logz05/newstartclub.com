@@ -5,7 +5,7 @@
 			{title}
 		{/exp:weblog:entries}"
 }
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/faq">FAQ</a></li>
 </ul>
@@ -30,7 +30,7 @@
 	<div class="sidebar right">
 		{exp:weblog:entries weblog="questions" limit="1" url_title="{segment_3}"}
 			{related_entries id="qa_author"}
-			<div class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></div>
+			<header class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></header>
 			<p>{partner_bio}</p>
 			{/related_entries}
 		{/exp:weblog:entries}

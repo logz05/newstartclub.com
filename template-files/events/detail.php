@@ -7,7 +7,7 @@
 			&ldquo;{title}&rdquo; in {event_city}, {event_state}
 		{/exp:weblog:entries}
 "}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/events">Events</a></li>
 </ul>
@@ -110,7 +110,7 @@
 		</div><!--/#entry-->
 	</div>
 	<div class="sidebar right">
-		<div class="bar">RSVP List</div>
+		<header class="bar">RSVP List</header>
 		{embed="events/_rsvp-list"}
 		{embed="embeds/_share" channel="events" image=""}
 		</div>

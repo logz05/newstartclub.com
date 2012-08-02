@@ -134,7 +134,7 @@
 	</div><!--/.left-->
 	{/exp:user:edit}
 	<div class="sidebar right">
-		<div class="bar">Member Settings</div>
+		<header class="bar">Member Settings</header>
 		<p>Please enter your current password to save changes.</p>
 	</div>
 </div><!--/.grid23-->

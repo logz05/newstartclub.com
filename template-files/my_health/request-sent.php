@@ -126,7 +126,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	class="my_health"
 	title="Your request has been sent!"
 	add="pp/prettyPhoto|vimeo"}
-	<ul id="trail">
+	<ul class="trail">
 		<li><a href="/">Home</a></li>
 		<li><a href="/my_health">My Health</a></li>
 	</ul>
@@ -144,7 +144,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			</div>
 		</div>
 		<div class="sidebar right">
-			<div class="bar">Contact Us</div>
+			<header class="bar">Contact Us</header>
 			<img src="/assets/images/my_health/NEWSTART.png" width="190" />
 			<p class="center">20601 West Paoli Lane<br />Weimar, CA 95736</p>
 			<p class="center">(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>

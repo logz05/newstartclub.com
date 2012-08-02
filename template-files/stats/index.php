@@ -840,7 +840,7 @@ function memberAges($rangeLow, $rangeHigh)
 		
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Super Admin</div>
+		<header class="bar">Super Admin</header>
 			
 			<h2>Top 10 Cities</h2>
 			<ul>

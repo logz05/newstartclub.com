@@ -2,7 +2,7 @@
 	class="my_health"
 	title="Request More Information"
 }
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/my_health">My Health</a></li>
 </ul>
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Request More Info</div>
+		<header class="bar">Request More Info</header>
 		<p>We offer multiple NEWSTART&reg; Lifestyle Program locations throughout the United States. You may receive information from the programs listed <a data-reveal-id="locations">here</a>. The information you provide will be saved electronically and will not be shared with third parties.</p>
 		<div class="button-wrap">
 			<a href="/faq" class="super secondary button"><span>Browse FAQ</span></a>

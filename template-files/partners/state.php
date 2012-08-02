@@ -3,7 +3,7 @@
 	title="Partners in {exp:weblog:entries weblog="partners" limit="1" search:partner_state="={segment_3}" dynamic="off"}{partner_state:label}{/exp:weblog:entries}"
 }
 {embed="embeds/_rss-feed"}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/partners">Partners</a></li>
 </ul>

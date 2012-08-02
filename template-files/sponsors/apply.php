@@ -484,7 +484,7 @@ function getZIP (form) {
 </form>
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Sponsorship Application</div>
+		<header class="bar">Sponsorship Application</header>
 		{exp:weblog:entries weblog="sponsors" entry_id="480" limit="1"}
 			{body}
 		{/exp:weblog:entries}

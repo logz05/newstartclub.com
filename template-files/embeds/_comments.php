@@ -1,5 +1,5 @@
-<div id="the-comments" itemscope itemtype="http://schema.org/AggregateRating">
-	<div id="comment-title" class="bar">Comments
+<div class="the-comments" itemscope itemtype="http://schema.org/AggregateRating">
+	<header class="bar"  data-icon="B">Comments
 		{exp:comment:entries sort="asc" limit="1" weblog="{embed:channel}"}
 			{if no_results}(&thinsp;<span itemprop="reviewCount">0</span>&thinsp;){/if}
 			(&thinsp;<span itemprop="reviewCount">{total_comments}</span>&thinsp;)
@@ -11,35 +11,33 @@
 				<a href="/signin" data-reveal-id="signin-modal-comments">Leave a Comment</a>
 			{/if}
 		</span>
-	</div>
-	<div id="comments">
-		<ol id="comment-list">
-			{exp:comment:entries sort="asc" limit="20" weblog="{embed:channel}"}
-			<li id="c_{comment_id}" class="comment-box {switch="even|odd"}">
-				<h3 class="count">
-					<strong><a href="#c_{comment_id}" title="Permalink this comment">{absolute_count}</a></strong>
-					<span class="author"><?php echo ucwords(strtolower("{firstName}")); ?></span>
-					<span class="date">{comment_date format="%M %j, %Y, %g:%i %A %T"}</span>
-				</h3>
-				<div class="comment">
-					{comment}
-				</div>
-			</li>
-			{/exp:comment:entries}
-		</ol>
-	</div>
+	</header>
+	<ol class="comments listing">
+		{exp:comment:entries sort="asc" limit="20" weblog="{embed:channel}"}
+		<li id="c_{comment_id}" class="comment {switch="even|odd"}">
+			<h3 class="meta">
+				<strong><a href="#c_{comment_id}" title="Permalink this comment">{absolute_count}</a></strong>
+				<span class="author"><?php echo ucwords(strtolower("{firstName}")); ?></span>
+				<span class="date">{comment_date format="%M %j, %Y, %g:%i %A %T"}</span>
+			</h3>
+			<div class="comment-body">
+				{comment}
+			</div>
+		</li>
+		{/exp:comment:entries}
+	</ol>
 {if logged_in}
 	{exp:comment:preview}
-		<div id="comment-preview">
-			<div class="bar">Comment Preview</div>
+		<div class="comment-preview">
+			<header class="bar">Comment Preview</header>
 			<ol>
-				<li class="comment-box">
-					<h3 class="count">
+				<li class="comment">
+					<h3 class="meta">
 						<strong>*</strong>
 						<span class="author">{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{firstName}")); ?>{/exp:user:stats}</span>
 						<span class="date">{current_time format="%M %j, %Y, %g:%i %A %T"}</span>
 					</h3>
-					<div class="comment">
+					<div class="comment-body">
 						{comment}
 					</div>
 				</li>
@@ -49,7 +47,7 @@
 
 	<h2>Leave a Comment</h2>
 
-	<div id="comment-form">
+	<div class="comment-form">
 		<p>Only <a href="#allowed-elements" class="allowed-elements">these elements</a> are allowed in submitted comments.</p>
 		<ul id="allowed-elements">
 			<li>&lt;a href="http://www.mysite.com/"&gt;my site&lt;/a&gt;</li>

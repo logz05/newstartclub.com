@@ -5,7 +5,7 @@
 			{title}
 		{/exp:weblog:entries}
 "}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/resources">Resources</a></li>
 </ul>
@@ -26,7 +26,7 @@
 	<div class="main left">
 		<div class="post {resource_display_style} clearfix">
 		{if resource_display_style == "article"}
-			<div id="entry-details">
+			<div class="entry-details">
 				{exp:ce_img:single src="{resource_thumb}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
 				{if resource_buy_url}
 					<div class="button-wrap">
@@ -215,31 +215,23 @@
 	
 	</div>
 	{exp:weblog:entries weblog="resources" limit="1" url_title="{segment_3}"}
-		<div class="sidebar right {if resource_ingredients}ingredients{/if}">
-			{if resource_partner != ""}
-				{related_entries id="resource_partner"}
-					<div class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></div>
+		<div class="sidebar right">
+			<div class="section">
+				{if resource_partner}
+					{related_entries id="resource_partner"}
+						<header class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></header>
+						{partner_bio}
+						<p><a href="{url_title_path='resources/partner'}">View resources by {title}</a></p>
+					{/related_entries}
+				{/if}
+				{if resource_partner2}
+					{related_entries id="resource_partner2"}
+					<header class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></header>
 					{partner_bio}
 					<p><a href="{url_title_path='resources/partner'}">View resources by {title}</a></p>
-				{/related_entries}
-			{/if}
-			{if resource_partner2 != ""}
-				{related_entries id="resource_partner2"}
-				<div class="bar"><a href="{url_title_path='partners/detail'}">{title}</a></div>
-				{partner_bio}
-				<p><a href="{url_title_path='resources/partner'}">View resources by {title}</a></p>
-				{/related_entries}
-			{/if}
-			{if resource_ingredients}
-				<div class="bar ingredients">Ingredients</div>
-				{if logged_out}
-					<p class="button-wrap">
-						<a href="{path='signin'}" class="super small secondary button" data-reveal-id="signin-modal-recipe"><span>View Ingredients</span></a>
-					</p>
-				{if:else}
-					{resource_ingredients}
+					{/related_entries}
 				{/if}
-			{/if}
+			</div>
 			{embed="embeds/_share" channel="resources" image="{resource_thumb}"}
 		</div>
 	{/exp:weblog:entries}

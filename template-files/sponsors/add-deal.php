@@ -86,7 +86,7 @@
 {/exp:user:stats}
 </div>
 <div class="right sidebar">
-	<div class="bar" data-icon="n">Add Deals</div>
+	<header class="bar" data-icon="n">Add Deals</header>
 		<p>To view or edit a deal, click <a href="/sponsors/edit-deals">here</a>.</p>
 		<p><strong>IMPORTANT</strong>: Only deals for health related products and services may be added. For questions, please email <a href="mailto:club@newstart.com">club@newstart.com</a> or call 530-422-7993.</p>
 </div>

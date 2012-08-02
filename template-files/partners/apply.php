@@ -2,7 +2,7 @@
 	class="partners"
 	title="Partnership Application"
 }
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/{segment_1}">Partners</a></li>
 </ul>
@@ -183,7 +183,7 @@
 		</form>
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Partnership Application</div>
+		<header class="bar">Partnership Application</header>
 		<p>{site_name} partners must be individuals that abide by and promote the principles of the <a href="http://newstart.com">NEWSTART&reg;</a> acronym and should be in harmony with the teachings of the Seventh-day Adventist Church. We reserve the right to deny or revoke partnership.</p>
 	</div>
 </div>

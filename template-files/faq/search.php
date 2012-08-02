@@ -2,7 +2,7 @@
 	class="faq"
 	title="&ldquo;{exp:search:keywords}&rdquo; Search Results"
 }
-<ul id="trail">
+<ul class="trail">
   <li><a href="/">Home</a></li>
   <li><a href="/faq">FAQ</a></li>
 </ul>

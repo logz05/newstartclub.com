@@ -22,7 +22,7 @@
 	</div>
 
 	<div class="right sidebar">
-		<div class="bar" data-icon="n">Edit Deals</div>
+		<header class="bar" data-icon="n">Edit Deals</header>
 		<p>To see more about a deal click on the deal title.</p>
 		<p>To add a new deal, click <a href="/sponsors/add-deal">here</a>.</p>
 		<p>Click {exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}<a href="/deals/detail/{category_url_title}">here</a>{/exp:weblog:categories} to see your active deals.</p>

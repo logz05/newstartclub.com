@@ -113,7 +113,7 @@ exit;
 	class="my_health"
 	title="Health Score Calculator"
 }
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/my_health">My Health</a></li>
 </ul>
@@ -134,11 +134,11 @@ exit;
 						<table>
 						<tr>
 							<th scope="row"><label for="memberAge">Age</label></th>
-							<td><input type="text" class="input" name="memberAge" id="memberAge" value="" size="3" onblur="healthcalc(this.form)" /><span> yrs</span></td>
+							<td><input type="text" pattern="[0-9]*" class="input" name="memberAge" id="memberAge" value="" size="3" onblur="healthcalc(this.form)" /><span> yrs</span></td>
 						</tr>
 						<tr>
 							<th scope="row"><label for="memberWeight">Weight</label></th>
-							<td><input type="text" class="input" name="memberWeight" id="memberWeight" value="" size="5" onblur="healthcalc(this.form)" /><span> lbs</span></td>
+							<td><input type="text" pattern="[0-9]*" class="input" name="memberWeight" id="memberWeight" value="" size="5" onblur="healthcalc(this.form)" /><span> lbs</span></td>
 						</tr>
 					</table>
 					<table>
@@ -173,7 +173,7 @@ exit;
 						</tr>
 						<tr>
 							<th scope="row"><label for="memberWaistSize">Waist Size</label></th>
-							<td><input type="text" class="input" name="memberWaistSize" id="memberWaistSize" value="" size="3" onblur="healthcalc(this.form)" /><span> in</span></td>
+							<td><input type="text" pattern="[0-9]*" class="input" name="memberWaistSize" id="memberWaistSize" value="" size="3" onblur="healthcalc(this.form)" /><span> in</span></td>
 						</tr>
 					</table>
 				<div class="grid12-23 clearfix">
@@ -269,7 +269,7 @@ exit;
 
 	</div>
 	<div class="sidebar right">
-		<div class="bar">My Information</div>
+		<header class="bar">My Information</header>
 		<p>The information provided will only be used to calculate your health score and will not be shared with third parties.</p>
 		<div id="messageBox">
 			<p></p>

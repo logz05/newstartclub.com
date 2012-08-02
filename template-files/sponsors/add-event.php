@@ -175,7 +175,7 @@
 {/exp:user:stats}
 </div><!-- /.left -->
 <div class="right sidebar">
-	<div class="bar">Add Events</div>
+	<header class="bar">Add Events</header>
 		<p>To view or edit an event, click <a href="/sponsors/edit-event">here</a>.</p>
 		<p><strong>IMPORTANT:</strong> Please create a separate entry for each day of an event that does not fall on consecutive days.</p>
 		<p>Only approved {site_name} events may be added. If your event type does not fit one of the categories below, please email <a href="mailto:club@newstart.com">club@newstart.com</a> or call 530-422-7993 before adding your event. Please note that club events should generally be offered free or at low cost.</p>

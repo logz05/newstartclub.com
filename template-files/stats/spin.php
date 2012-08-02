@@ -22,7 +22,7 @@ var spinner = new Spinner(opts).spin(target);
 
 {exp:weblog:entries weblog="locations" category="{promo_code}" limit="1"}
         <div class="locations">
-          <div class="bar"><a href="/locations/">Featured Location</a></div>
+          <header class="bar"><a href="/locations/">Featured Location</a></header>
           <a href="/locations/detail/{url_title}" title="{title}">
             <div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
           </a>

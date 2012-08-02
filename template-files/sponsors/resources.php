@@ -95,9 +95,9 @@
 		</div>
 	</div>
 	<div class="right sidebar">
-		<div class="bar">Additional Resources</div>
+		<header class="bar">Additional Resources</header>
 		<p>To receive discounts on health related products and services from participating businesses, visit <a href="http://newstartclub.com/deals">http://newstartclub.com/deals</a> or call 530-422-7993.</p>
-		<div class="bar">Need Help?</div>
+		<header class="bar">Need Help?</header>
 		<p>NEWSTART&reg; Global medical missionary teams are available to help you get started with your health outreach.</p>
 		<p>To learn more or apply, please visit <a href="http://newstartglobal.com" title="NEWSTART&reg; Global">newstartglobal.com</a> or call 530-422-7999.</p>
 	</div>

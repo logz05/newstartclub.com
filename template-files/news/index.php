@@ -27,7 +27,7 @@ require_once ( 'utilities.php' );
 				{if weblog_short_name == "deals"    }<h2 data-icon="n">{/if}
 					
 					{if weblog_short_name == "deals"}
-						<a href="{path='deals/detail/{categories}{category_url_title}{/categories}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
+						<a href="{path='deals/detail/{categories show_group="24"}{category_url_title}{/categories}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
 					{if:elseif weblog_short_name == "questions"}
 						<a href="{path='faq/detail/{url_title}'}">{exp:char_limit total="48"}{qa_question}{/exp:char_limit}</a>
 					{if:else}

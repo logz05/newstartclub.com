@@ -1,9 +1,9 @@
 <div class="sidebar right">
-	<div class="bar">Deals</div>
+	<header class="bar">Deals</header>
 	<p>Looking for discounts on products and services to keep you fit and strong? As a NEWSTART&reg; Lifestyle Club member, you'll get discounts to local businesses so you can start saving and continue living the NEWSTART Lifestyle.</p>
 	<p>To find out how your organization can sponsor local NEWSTART Lifestyle Club deals, <a href="http://newstartclub.com/sponsors">click here</a>.</p>
 	
-	<div class="bar">Filter</div>
+	<header class="bar">Filter</header>
 	<h2 class="filter-heading state">State<span class="arrow up"></span><span class="arrow down"></span></h2>
 	<ul class="filter-list state">
 <?php

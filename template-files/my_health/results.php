@@ -129,7 +129,7 @@ function totalScore($score) {
 ?>
 {/if}
 
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/my_health">My Health</a></li>
 </ul>
@@ -305,7 +305,7 @@ function totalScore($score) {
 		{/if}
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Member Scores</div>
+		<header class="bar">Member Scores</header>
 		<p>Below is a chart of how your score compares with other lifestyle club members who have taken the HealthGauge&trade; test. Move your mouse over the chart to see the percentages.</p>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
@@ -338,6 +338,109 @@ function totalScore($score) {
 			}
 		</script>
 		<div id="results-chart"></div>
+		{!--
+		
+		<style>
+#results-chart iframe {
+	position: absolute;
+	top: -30px;
+}
+#chart-legend {
+	position: absolute;
+	top: -30px;
+}
+.section {
+	position: relative;
+}
+</style>
+
+<div class="sidebar right">
+		<header class="bar">Member Scores</header>
+		<p>Below is a chart of how your score compares with other lifestyle club members who have taken the HealthGauge&trade; test. Move your mouse over the chart to see the percentages.</p>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Task');
+				data.addColumn('number', 'Hours per Day');
+				data.addRows([
+					['Very Low',	 438],
+					['Low',				 909],
+					['Medium',		 753],
+					['High',			 474],
+					['Very High',	 572]
+				]);
+			
+				var options = {
+					width: 325, height: 280,
+					colors: ['#8dbe38','#5D83DA','#ECE90E','#F2B32F','#D24C4D'],
+					pieSliceText: 'none',
+					legend: 'none',
+					tooltip: {textStyle: {fontSize: 12}, text: 'percentage'},
+					chartArea: {top:40, left:0},
+					backgroundColor: 'transparent'
+				};
+			
+				var chart = new google.visualization.PieChart(document.getElementById('results-chart'));
+				chart.draw(data, options);
+			}
+		</script>
+		<div id="results-chart" style="width:230px; height:250px; overflow:hidden;"></div>
+		<section class="section">
+		<table id="chart-legend">
+			<thead>
+				<tr>
+					<td><h2>Risk Level</h2></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span class="bullet one">&bull;</span> 90-100 = Very Low</td>
+				</tr>
+				<tr>
+					<td><span class="bullet two">&bull;</span> 80-89 = Low</td>
+				</tr>
+				<tr>
+					<td><span class="bullet three">&bull;</span> 70-79 = Medium</td>
+				</tr>
+				<tr>
+					<td><span class="bullet four">&bull;</span> 60-69 = High</td>
+				</tr>
+				<tr>
+					<td><span class="bullet five">&bull;</span> 59 and lower = Very High</td>
+				</tr>
+			</tbody>
+		</table>
+		</section>
+	</div>
+		
+		<table id="chart-legend">
+			<thead>
+				<tr>
+					<td><h2>Risk Level</h2></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td{if memberScoreTotal >= '90'} class="strong"{/if}><span class="bullet one">&bull;</span> 90-100 = Very Low</td>
+				</tr>
+				<tr>
+					<td{if memberScoreTotal >= '80' AND memberScoreTotal < '90'} class="strong"{/if}><span class="bullet two">&bull;</span> 80-89 = Low</td>
+				</tr>
+				<tr>
+					<td{if memberScoreTotal >= '70' AND memberScoreTotal < '80'} class="strong"{/if}><span class="bullet three">&bull;</span> 70-79 = Medium</td>
+				</tr>
+				<tr>
+					<td{if memberScoreTotal >= '60' AND memberScoreTotal < '70'} class="strong"{/if}><span class="bullet four">&bull;</span> 60-69 = High</td>
+				</tr>
+				<tr>
+					<td{if memberScoreTotal < '60'} class="strong"{/if}><span class="bullet five">&bull;</span> 59 and lower = Very High</td>
+				</tr>
+			</tbody>
+		</table>
+		--}
 		<h2>Risk Level</h2>
 		<ul id="chart-legend">
 		{exp:user:stats}

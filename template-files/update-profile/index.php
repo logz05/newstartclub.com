@@ -205,7 +205,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			{/exp:user:edit}
 		</div><!--/.left-->
 		<div class="sidebar right">
-			<div class="bar">Update Profile</div>
+			<header class="bar">Update Profile</header>
 			<p>To view or change your completed profile at anytime as well as update your password, click on &ldquo;Settings&rdquo; at the top of the page.</p>
 			<div class="update-profile"></div>
 		</div>

@@ -5,7 +5,7 @@
 	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
 }
 
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/sponsors">Home</a></li>
 	<li><a href="/sponsors/edit-events">Edit Events</a></li>
 </ul>
@@ -190,7 +190,7 @@
 </div>
 
 <div class="right sidebar">
-	<div class="bar" data-icon="e">Edit Event</div>
+	<header class="bar" data-icon="e">Edit Event</header>
 		<p>To view or edit a event, click <a href="/sponsors/edit-events">here</a>.</p>
 	</div>
 </div>

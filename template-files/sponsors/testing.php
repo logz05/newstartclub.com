@@ -152,7 +152,7 @@ function show_form($listTotal)
             </form>
           </div><!-- /.left -->
           <div class="sidebar right">
-            <div class="bar">Email Signature</div>
+            <header class="bar">Email Signature</header>
             <p>The following digital signature will be added to your message:</p>
             <p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
             {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />

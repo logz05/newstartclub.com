@@ -84,7 +84,7 @@ $db->query($query);
 			{/exp:query}
 		</div><!-- /.left -->
 		<div class="sidebar right">
-			<div class="bar">Invite Members</div>
+			<header class="bar">Invite Members</header>
 			<p>You can invite members to join the club by sending a personal message from your email client or by using the form provided.</p>
 			<p>Members will be added to your <a href="/sponsors/email-members">member list</a> when they use the following link or when they use promo code <strong>{sponsor_number}</strong>:
 			<p><a href="/register/{sponsor_number}">{site_url}<br />register/{sponsor_number}</a></p>

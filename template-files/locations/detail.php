@@ -6,7 +6,7 @@
 				{title}
 			{/exp:weblog:entries}"
 }
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/locations">Locations</a></li>
 </ul>
@@ -42,7 +42,7 @@
 		</div>
 	</div>
 	<div class="sidebar right">
-		<div class="bar">Contact Person</div>
+		<header class="bar">Contact Person</header>
 		{if logged_out}
 			<p class="button-wrap">
 				<a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
@@ -62,10 +62,10 @@
 		{/if}
 		{exp:weblog:entries weblog="locations" limit="1"}
 			{if location_type=="profit"}
-				<div class="bar">Active Deals</div>
+				<header class="bar">Active Deals</header>
 				{embed="locations/_detail-deals"}
 			{if:else}
-				<div class="bar">Upcoming Events</div>
+				<header class="bar">Upcoming Events</header>
 				{embed="locations/_detail-events"}
 			{/if}
 		{/exp:weblog:entries}

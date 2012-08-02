@@ -17,7 +17,7 @@
 			{title}
 		{/exp:weblog:entries}
 "}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/recipes">Recipes</a></li>
 </ul>
@@ -47,8 +47,9 @@
 	
 	</div>
 	{exp:weblog:entries weblog="recipes" limit="1" url_title="{segment_3}"}
-		<div class="sidebar right ingredients">
-				<div class="bar ingredients">Ingredients</div>
+		<div class="sidebar right">
+			<section class="section ingredients">
+				<header class="bar">Ingredients</header>
 				{if logged_out}
 					<p class="button-wrap">
 						<a href="{path='signin'}" class="super small secondary button" data-reveal-id="signin-modal-recipe"><span>View Ingredients</span></a>
@@ -60,6 +61,8 @@
 						{resource_ingredients}
 					{/if}
 				{/if}
+			</section>
+			
 			{embed="embeds/_share" channel="recipes" image="{resource_thumb}"}
 		</div>
 	{/exp:weblog:entries}

@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="sidebar right">
-		<div class="bar">About</div>
+		<header class="bar">About</header>
 		<ul>
 			<li><a href="/about/terms-of-use">Terms of Use</a></li>
 			<li><a href="/about/privacy-policy">Privacy Policy</a></li>

@@ -1,6 +1,6 @@
-<div class="bar">RSVP List</div>
+<header class="bar">RSVP List</header>
 		{embed="events/_rsvp-list"}
-		<div class="bar">Filter</div>
+		<header class="bar">Filter</header>
 {exp:weblog:calendar weblog="events" show_future_entries="yes" switch="calendarToday|calendarCell"}
 	<table class="calendar-month" id="event-calendar">
 		<tr class="calendarHeader">

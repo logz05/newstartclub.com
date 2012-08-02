@@ -1,4 +1,4 @@
-<div class="bar">Local Club Events</div>
+<header class="bar">Local Club Events</header>
 		<p>These schools, churches, and health care organizations share our interest in helping you achieve true wellness. They provide locations, facilities, and services for locally organized club events such as: 
 			<ul class="bullets">
 				<li>Vegetarian cooking classes</li>
@@ -10,7 +10,7 @@
 				<li>Personal and group support</li>
 			</ul></p>
 		<p>To find out how your organization can sponsor local {site_name} events, <a href="/sponsors">click&nbsp;here</a>.</p>
-			<div class="bar">Filter</div>
+			<header class="bar">Filter</header>
 			<h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
 			<ul>
 <?php

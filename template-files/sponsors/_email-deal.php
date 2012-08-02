@@ -1,4 +1,4 @@
- <?php
+<?php
 
 $path = ini_get('include_path');
 ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
@@ -6,64 +6,36 @@ ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/co
 require_once('utilities.php');
 require_once('dbconnect.php');
 	
-//Category Members
+//Event Members
 $db = new DBconnect();
-$queryCat = '
-	SELECT 
-		exp_member_data.member_id,
-		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
-
-		FROM exp_members
-			INNER JOIN exp_user_category_posts
-			ON exp_members.member_id = exp_user_category_posts.member_id
-			
-			INNER JOIN exp_member_data
-			ON exp_members.member_id = exp_member_data.member_id
-			
-			WHERE exp_user_category_posts.cat_id = {segment_3}
-				AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_7 = {embed:sponsor_zipcode} )
-	
-UNION DISTINCT
-
-	SELECT 
+$queryDeal = '
+SELECT 
 		exp_member_data.member_id,
 		exp_members.username,
 		exp_member_data.m_field_id_3 AS first_name,
 		exp_member_data.m_field_id_4 AS last_name
 		
-		FROM exp_members
-			INNER JOIN member_relations
-			ON exp_members.member_id = member_relations.member_id
-			
-			INNER JOIN exp_user_category_posts
-			ON exp_members.member_id = exp_user_category_posts.member_id
-			
-			INNER JOIN exp_weblog_titles
-			ON member_relations.related_id = exp_weblog_titles.entry_id
-			
-			INNER JOIN exp_category_posts
-			ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
-			
-			JOIN exp_member_data
-			ON exp_member_data.member_id = exp_members.member_id
-			
-		WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-		AND exp_user_category_posts.cat_id = {segment_3}
+	FROM exp_members
+		INNER JOIN member_relations
+		ON exp_members.member_id = member_relations.member_id
 		
-		ORDER BY member_id DESC
+		INNER JOIN exp_member_data
+		ON exp_members.member_id = exp_member_data.member_id
+		
+	WHERE member_relations.related_id = {segment_4}
+	AND member_relations.cat_id = {embed:sponsor_number}
+	ORDER BY member_id DESC
 			';
 
-$queryResultsCat = $db->fetch($queryCat);
-$queryCountCat = count($queryResultsCat);
+$queryResultsDeal = $db->fetch($queryDeal);
+$queryCountDeal = count($queryResultsDeal);
 
 if (isset($_POST['custom_message']))
 {
-	send_emails($queryResultsCat, $_POST['email_subject'], $_POST['custom_message'], $_POST['interest'], $_POST['interest_line']);
-} 
+	send_emails($queryResultsDeal, $_POST['email_subject'], $_POST['custom_message']);
+}
 
-function send_emails($mailing_list, $subject, $custom_message, $interest, $interest_line)
+function send_emails($mailing_list, $subject, $custom_message)
 {
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
@@ -170,10 +142,9 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			<!--BEGIN FOOTER-->
 			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
 				<tr>
-					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">';
-						$message .= $interest;
-						$message .= $interest_line;
-						$message .= '
+					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">
+						You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.<br />
+						You can update your status <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
 					</td>
 				</tr>
 			</table>
@@ -194,7 +165,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 function show_form($listTotal)
 {
 	print '<div class="heading clearfix">
-						<h1>{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_3}"}{category_name}{/exp:weblog:categories} (&nbsp;'. $listTotal .'&nbsp;)</h1>
+						<h1>{exp:weblog:entries weblog="deals" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;'. $listTotal .'&nbsp;)</h1>
 				</div>
 				<div class="grid23 clearfix">
 					<div class="left">
@@ -214,8 +185,6 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<textarea name="interest" class="hidden">You are receiving this e-mail because you are interested in &ldquo;{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_3}"}{category_name}{/exp:weblog:categories}&rdquo;.</textarea>
-										<textarea name="interest_line" class="hidden"><br />You can update your preferences <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
 										</p>
@@ -223,15 +192,15 @@ function show_form($listTotal)
 								</tr>
 							</table>
 						</form>
-					</div><!-- /.left -->
+					</div>
 					<div class="sidebar right">
-						<div class="bar">Email Signature</div>
+						<header class="bar">Email Signature</header>
 						<p>The following digital signature will be added to your message:</p>
 						<p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
 						{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
 						<a href="http://newstartclub.com/location/{embed:sponsor_number}">newstartclub.com/location/{embed:sponsor_number}</a></p>
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
 function show_done($listRecipients)
@@ -256,12 +225,12 @@ function show_done($listRecipients)
 							<a href="/sponsors/email-members" class="super red button"><span>Back to Member List</span></a>
 						</p>
 					</div>
-				</div><!-- /.left -->
+				</div>
 					<div class="sidebar right">
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
-if (isset($_POST['custom_message'])) { show_done($queryResultsCat); } else { show_form($queryCountCat); }
+if (isset($_POST['custom_message'])) { show_done($queryResultsDeal); } else { show_form($queryCountDeal); }
 
 ?>

@@ -1,4 +1,4 @@
-<div class="bar">Search</div>
+<header class="bar">Search</header>
 {exp:search:advanced_form result_page="faq/search" weblog="questions" results="9"}
 <input type="hidden" name="search_in" value="everywhere" />
 <input id="query" name="keywords" type="search" class="input" placeholder="Search Questions" />

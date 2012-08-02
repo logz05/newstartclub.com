@@ -3,7 +3,7 @@
 	title="Events in <?php echo ucwords("{segment_4}"); ?>, <?php echo strtoupper("{segment_3}"); ?>"
 }
 {embed="embeds/_rss-feed"}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/events">Events</a></li>
 </ul>

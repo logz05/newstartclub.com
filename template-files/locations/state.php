@@ -3,7 +3,7 @@
 	title="Locations in {exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}"
 }
 {embed="embeds/_rss-feed"}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/locations">Locations</a></li>
 </ul>

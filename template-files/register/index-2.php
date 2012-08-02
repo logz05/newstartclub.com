@@ -222,7 +222,7 @@ function getZIP (form) {
 {/exp:user:register}
 	</div>
 	<div class="sidebar right">
-		<div class="bar">My Information</div>
+		<header class="bar">My Information</header>
 		<p class="fine-print">By providing your information, you will be enrolled as a {site_name} member. With this, you will receive email communications with healthy videos, articles, recipes and tips for improving your life, plus details on members-only events and discounts. <strong>Membership is FREE.</strong> Your information will never be shared with a third party, and you can opt out at any time.</p>
 	</div>
 

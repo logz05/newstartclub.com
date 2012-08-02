@@ -3,7 +3,7 @@
 	title="{embed:title} {segment_3_category_name}"
 }
 {embed="embeds/_rss-feed"}
-<ul id="trail">
+<ul class="trail">
 	<li><a href="/">Home</a></li>
 	<li><a href="/resources">Resources</a></li>
 </ul>

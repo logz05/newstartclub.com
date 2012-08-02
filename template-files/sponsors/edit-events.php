@@ -12,7 +12,7 @@
 	
 	</div>
 	<div class="right sidebar">
-		<div class="bar" data-icon="e">Edit Events</div>
+		<header class="bar" data-icon="e">Edit Events</header>
 		<p>To see more about an event click on the event title.</p>
 		<p>To add a new event, click <a href="/sponsors/add-event">here</a>.</p>
 		<p>Click {exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}<a href="/events/sponsor/{category_url_title}">here</a>{/exp:weblog:categories} to see your active events.</p>
