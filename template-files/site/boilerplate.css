@@ -104,7 +104,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	text-align: left;
 	display: inline-block;
-	width: 800px;
 }
 body.small {
 	width: 500px;
