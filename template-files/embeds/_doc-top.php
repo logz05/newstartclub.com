@@ -49,6 +49,14 @@
 </head>
 
 <body{if embed:map} onload="initialize()"{/if}>
+<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<label for="toggle-hidden-check" id="toggle-hidden-label">&emsp;&emsp;&emsp;</label>
 	<input type="checkbox" id="toggle-hidden-check">
 		<header class="header">
@@ -116,7 +124,7 @@
 			</ul>
 		</nav>
 		{/if}
-			<div id="shadow-left"></div>
-			<div id="shadow-right"></div>
+			<div class="shadow-left"></div>
+			<div class="shadow-right"></div>
 		</header>
 		<div class="body{if embed:class} {embed:class}{/if}{if segment_2 == 'detail'} detail{/if}"{if embed:microdata} itemscope itemtype="http://schema.org/{embed:microdata}"{/if}>

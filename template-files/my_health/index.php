@@ -3,8 +3,7 @@
 	title="My Health"
 }
 <div class="heading clearfix">
-	<div class="icon"></div>
-	<h1>How is Your Health?</h1>
+	<h1 data-icon="c">How is Your Health?</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
@@ -16,7 +15,7 @@
 	</div>
 	<div class="sidebar right">
 		{if logged_out}
-			<div class="bar">The HealthGauge<sup>&trade;</sup></div>
+			<header class="bar" data-icon="c">The HealthGauge<sup>&trade;</sup></header>
 			<a href="/my_health/calculator">
 				<div id="gauge"></div>
 			</a>
@@ -27,7 +26,7 @@
 		{/if}
 		{exp:user:stats}
 			{if memberScoreTotal == ""}
-				<div class="bar">The HealthGauge<sup>&trade;</sup></div>
+				<header class="bar" data-icon="c">The HealthGauge<sup>&trade;</sup></header>
 				<a href="/my_health/calculator/">
 					<div id="gauge"></div>
 				</a>
@@ -36,7 +35,7 @@
 					<a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
 				</p>
 			{if:else}
-				<div class="bar">My Health</div>
+				<header class="bar" data-icon="c">My Health</header>
 				<h2 class="center">Health Score Results</h2>
 				<h3 class="total-score"><a href="/my_health/results" title="Go to my results">{memberScoreTotal}</a></h3>
 				<p class="center">

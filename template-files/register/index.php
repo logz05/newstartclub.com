@@ -45,36 +45,36 @@ function getZIP (form) {
 		<tr>
 			<th scope="row" width="140"><label for="firstName" class="req"><span class="req">* </span>First Name</label></th>
 			<td>
-				<input type="text" class="input" name="firstName" id="firstName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+				<input type="text" class="input" name="firstName" id="firstName" title="First Name" value="" size="25" autocomplete="off" required onblur="registration(this.form)" />
 				<input type="text" class="hidden" value="" name="jsFirstName" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="lastName" class="req"><span class="req">* </span>Last Name</label></th>
 			<td>
-				<input type="text" class="input" name="lastName" id="lastName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+				<input type="text" class="input" name="lastName" id="lastName" title="Last Name" value="" size="25" autocomplete="off" required onblur="registration(this.form)" />
 				<input type="text" class="hidden" value="" name="jsLastName" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="address">Address</label></th>
-			<td><input type="text" class="input" id="address" name="address" value="" size="32" autocomplete="off" /></td>
+			<td><input type="text" class="input" id="address" name="address" title="Street Address" value="" size="32" autocomplete="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="zipCode" class="req"><span class="req">* </span>Zip Code</label></th>
 			<td>
-				<input type="text" pattern="[0-9]*" class="input" id="zipCode" name="zipCode" value="" size="7" autocomplete="off" onblur="getZIP(this.form)" />
+				<input type="text" title="5 digit zip code" pattern="[0-9]*" class="input" id="zipCode" name="zipCode" value="" size="7" autocomplete="off" required onblur="getZIP(this.form)" />
 				<p class="instructions">Outside the U.S.? Use <strong>00000</strong></p>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="city">City</label></th>
-			<td><input type="text" class="input" id="city" name="city" value="" size="20" /></td>
+			<td><input type="text" class="input" id="city" name="city" title="City" value="" size="20" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="state">State</label></th>
 			<td>
-				<select name="state" class="input"> 
+				<select name="state" title="State" class="input"> 
 				{select_state} 
 				<option value="{value}" {selected}>{value}</option> 
 				{/select_state} 
@@ -83,12 +83,12 @@ function getZIP (form) {
 		</tr>
 		<tr>
 			<th scope="row"><label for="phone">Phone</label></th>
-			<td><input type="tel" class="input" id="phone" name="phone" value="" size="15" autocomplete="off" /></td>
+			<td><input type="tel" class="input" id="phone" name="phone" title="Phone #" value="" size="15" autocomplete="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="username" class="req"><span class="req">* </span>Email</label></th>
 			<td>
-				<input type="email" class="input" id="email" name="username" value="" size="32" autocomplete="off" autocapitalize="off" onblur="registration(this.form)" />
+				<input type="email" class="input" id="email" name="username" title="Email address" value="" size="32" autocomplete="off" autocapitalize="off" required onblur="registration(this.form)" />
 				<input type="text" class="hidden" name="jsEmail" />
 				<p class="instructions">Please provide a valid email address to receive your FREE gift.</p>
 			</td>
@@ -96,14 +96,14 @@ function getZIP (form) {
 		<tr>
 			<th scope="row"><label for="password" class="req"><span class="req">* </span>Password</label></th>
 			<td>
-				<input type="password" class="input" id="password" name="password" size="20" autocomplete="off" onblur="registration(this.form)" />
+				<input type="password" class="input" id="password" name="password" title="Password" size="20" autocomplete="off" required onblur="registration(this.form)" />
 				<p class="instructions">Must be at least 5 characters. Can include letters and numbers.</p>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="password_confirm" class="req"><span class="req">* </span>Password, Again</label></th>
 			<td>
-				<input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" />
+				<input type="password" class="input" id="password_confirm" name="password_confirm" title="Confirm your password" size="20" autocomplete="off" required />
 				<input type="hidden" class="hidden" id="welcome_email_sent" name="welcome_email_sent" value="0" />
 				<input type="text" class="hidden" name="jsPassword" />
 				{if segment_2}<input type="hidden" class="input" id="promo_code" name="promo_code" size="5" value="{segment_2}" autocomplete="off" />{/if}
@@ -113,7 +113,7 @@ function getZIP (form) {
 		<tr>
 			<th scope="row"><label for="promo_code">Promo Code</label></th>
 			<td>
-				<input type="text" class="input" id="promo_code" name="promo_code" size="5" autocomplete="off" />
+				<input type="text" pattern="[0-9]*" class="input" id="promo_code" name="promo_code" size="5" autocomplete="off" />
 				<p class="instructions">If you received a promo code enter it here.</p>
 			</td>
 		</tr>
@@ -174,7 +174,7 @@ function getZIP (form) {
 {/exp:user:register}
 	</div>
 	<div class="sidebar right">
-		<div class="bar">My Information</div>
+		<header class="bar">My Information</header>
 		<p class="fine-print">By providing your information, you will be enrolled as a {site_name} member. With this, you will receive email communications with healthy videos, articles, recipes and tips for improving your life, plus details on members-only events and discounts. <strong>Membership is FREE.</strong> Your information will never be shared with a third party, and you can opt out at any time.</p>
 	</div>
 
