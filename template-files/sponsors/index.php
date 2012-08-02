@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="sidebar right">
-			<div class="bar">Become a Sponsor</div>
+			<header class="bar">Become a Sponsor</header>
 				{exp:weblog:entries weblog="sponsors" entry_id="478" limit="1"}
 					{body}
 				{/exp:weblog:entries}
@@ -96,13 +96,33 @@
 				</div>
 			{/exp:user:edit}
 		</div>
+		
+		{exp:user:stats dynamic="off"}
 		<div class="sidebar right">
-			<div class="bar">Admin Home</div>
+			<header class="bar">Sponsor Admin</header>
+			<p>Below is a list of users who currently can access this account:</p>
+			<ul class="bullets">
+				{exp:query sql="
+					SELECT CONCAT(m_field_id_3, ' ', m_field_id_4) AS full_name, username AS user_email FROM exp_member_data
+
+					JOIN exp_members
+					ON exp_member_data.member_id = exp_members.member_id
+
+					WHERE group_id = '13'
+					AND (m_field_id_25 = '{sponsor_number}' OR m_field_id_30 LIKE '%{sponsor_number}%')
+					ORDER BY full_name ASC
+					"}
+					<li><span class="has-tip"><span class="tooltip top"><i class="nub"></i>{user_email}</span>{full_name}</span></li>
+				{/exp:query}
+			</ul>
+			<p>If you need to add or change which users have access to this account, send us a message with the user&rsquo;s email address and your promo code and we&rsquo;ll add them to this list. Users must be a member of the NEWSTART Lifestyle Club before we can add them to this list.</p>
 			<p>For questions or comments about this service, please call 530-422-7993 or email <a href="mailto:club@newstart.com">club@newstart.com</a></p>
 			<div class="button-wrap">
 				<a href="/" class="super red button"><span>Club Home</span></a>
 			</div>
 		</div>
+		{/exp:user:stats}
+		
 	</div>
 {/if}
 {embed="embeds/_doc-bottom" script_add="jquery.validate.min|jquery.maskedinput-1.3.min|sponsor-admin" sponsor-apply="yes"}

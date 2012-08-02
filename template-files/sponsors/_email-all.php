@@ -67,10 +67,10 @@ $queryCountAll = count($queryResultsAll);
 
 if (isset($_POST['custom_message']))
 {
-	send_emails($queryResultsAll, $_POST['email_subject'], $_POST['custom_message'], $_POST['full_list'], $_POST['full_list_settings']);
+	send_emails($queryResultsAll, $_POST['email_subject'], $_POST['custom_message']);
 } 
 
-function send_emails($mailing_list, $subject, $custom_message, $full_list, $full_list_settings)
+function send_emails($mailing_list, $subject, $custom_message)
 {
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
@@ -177,10 +177,9 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			<!--BEGIN FOOTER-->
 			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
 				<tr>
-					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">';
-						$message .= $full_list;
-						$message .= $full_list_settings;
-						$message .= '
+					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">
+						You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.<br />
+						You can update your status <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
 					</td>
 				</tr>
 			</table>
@@ -221,7 +220,7 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<textarea name="full_list" class="hidden">You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com/" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.</textarea>
+										<textarea name="full_list" class="hidden">You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.</textarea>
 										<textarea name="full_list_settings" class="hidden"><br />You can update your status <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
@@ -232,7 +231,7 @@ function show_form($listTotal)
 						</form>
 					</div><!-- /.left -->
 					<div class="sidebar right">
-						<div class="bar">Email Signature</div>
+						<header class="bar">Email Signature</header>
 						<p>The following digital signature will be added to your message:</p>
 						<p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
 						{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />

@@ -18,6 +18,7 @@ $member = $SESS->userdata['member_id'];
 		{if segment_2 == "detail"}
 		<form action="" method="post">
 			<input type="hidden" id="delete_rsvp" name="delete_rsvp" value="{related_id}" />
+			<input type="hidden" id="cat_id" name="cat_id" value="{categories show_group='24'}{category_id}{/categories}" />
 			<button type="submit" name="submit" title="Remove this event from your RSVP list.">&times;</button>
 		</form>
 		{/if}

@@ -34,7 +34,9 @@ class Interest
 	}
 }
 
+//------------------------------------------------------------//
 //All Members
+//------------------------------------------------------------//
 $db = new DBconnect();
 $queryAll = '
 	SELECT DISTINCT 
@@ -127,8 +129,10 @@ $memberListAll = array();
 	{
 		array_push($memberListAll, $queryResultsAll[$i][0]);
 	}
-	
+
+//------------------------------------------------------------//
 //Category Members
+//------------------------------------------------------------//
 $db = new DBconnect();
 $queryCat = '
 	SELECT 
@@ -151,7 +155,7 @@ $queryCat = '
 		INNER JOIN exp_member_data
 		ON exp_members.member_id = exp_member_data.member_id
 		
-		WHERE exp_user_category_posts.cat_id = {segment_3}
+		WHERE exp_user_category_posts.cat_id = {segment_4}
 			AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_7 = {embed:sponsor_zipcode} )
 	
 UNION DISTINCT
@@ -187,7 +191,7 @@ UNION DISTINCT
 		ON exp_member_data.member_id = exp_members.member_id
 			
 		WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-		AND exp_user_category_posts.cat_id = {segment_3}
+		AND exp_user_category_posts.cat_id = {segment_4}
 		
 		ORDER BY member_id DESC
 			';
@@ -203,8 +207,10 @@ $memberListCat = array();
 	{
 		array_push($memberListCat, $queryResultsCat[$i][0]);
 	}
-	
+
+//------------------------------------------------------------//
 //Event Members
+//------------------------------------------------------------//
 $db = new DBconnect();
 $queryEvent = '
 SELECT 
@@ -228,14 +234,8 @@ FROM exp_members
 	INNER JOIN exp_member_data
 	ON exp_members.member_id = exp_member_data.member_id
 	
-	INNER JOIN exp_weblog_titles
-	ON member_relations.related_id = exp_weblog_titles.entry_id
-	
-	INNER JOIN exp_category_posts
-	ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
-	
-WHERE member_relations.related_id = {segment_3}
-AND exp_category_posts.cat_id = {embed:sponsor_number}
+WHERE member_relations.related_id = {segment_4}
+AND member_relations.cat_id = {embed:sponsor_number}
 ORDER BY member_id DESC
 			';
 
@@ -251,6 +251,50 @@ $memberListEvent = array();
 		array_push($memberListEvent, $queryResultsEvent[$i][0]);
 	}
 
+//------------------------------------------------------------//
+//Deal Members
+//------------------------------------------------------------//
+$db = new DBconnect();
+$queryDeal = '
+SELECT 
+	exp_member_data.member_id,
+	exp_member_data.m_field_id_3 AS first_name,
+	exp_member_data.m_field_id_4 AS last_name,
+	exp_member_data.m_field_id_8 AS address,
+	exp_member_data.m_field_id_9 AS city,
+	exp_member_data.m_field_id_10 AS state,
+	exp_member_data.m_field_id_7 AS zip_code,
+	exp_member_data.m_field_id_11 AS phone_number,
+	exp_member_data.m_field_id_24 AS health_score,
+	exp_member_data.m_field_id_34 AS score_history,
+	exp_members.username,
+	exp_members.join_date
+	
+FROM exp_members
+	JOIN member_relations
+	ON exp_members.member_id = member_relations.member_id
+	
+	JOIN exp_member_data
+	ON exp_members.member_id = exp_member_data.member_id
+	
+WHERE member_relations.related_id = {segment_4}
+AND member_relations.cat_id = {embed:sponsor_number}
+
+ORDER BY member_id DESC
+			';
+
+$queryResultsDeal = $db->fetch($queryDeal);
+$queryCountDeal = count($queryResultsDeal);
+
+//Member Event List is empty
+$memberListDeal = array();
+	
+	//Add all emails to Member Deal List separated by a comma
+	for ($i = 0; $i < $queryCountDeal; $i++)
+	{
+		array_push($memberListDeal, $queryResultsDeal[$i][0]);
+	}
+
 	date_default_timezone_set('US/Pacific');
 	
 function listMembers($count, $results) {
@@ -264,7 +308,7 @@ function listMembers($count, $results) {
 	
 		echo '<li>
 						<h2>'. $results[$i][10] .'</h2>
-						<div class="date">
+						<div class="date" data-icon="Y">
 							<span class="timeago">'. distanceOfTimeInWords( $results[$i][11] , {current_time}, true) .'</span>
 							<span class="join-date">'. date( "D, M j, Y	 g:ia T", ( $results[$i][11] - 21600 ) ) .'</span>
 						</div>
@@ -301,7 +345,7 @@ function listMembers($count, $results) {
 								foreach ($scoreHistory as $key => $value)
 								{
 									$date = explode("-", $key);
-									echo '<span class="has-tip"><span class="tooltip top"><i class="nub"></i>'. date( "F j, Y", mktime(0, 0, 0, $date[1], $date[2], $date[0]) ) .'</span>'. $value .'</span>';
+									echo '<span class="has-tip"><span class="tooltip top health-score"><i class="nub"></i>'. date( "F j, Y", mktime(0, 0, 0, $date[1], $date[2], $date[0]) ) .'</span>'. $value .'</span>';
 								}
 								echo '</p>';
 							}
@@ -312,22 +356,38 @@ function listMembers($count, $results) {
 }
 
 ?>
-		{if segment_4}
-			<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={segment_3}&event_name={exp:weblog:entries weblog='events' entry_id='{segment_3}' limit='1' show_future_entries='yes' dynamic='off' status='open|closed'}{url_title}{/exp:weblog:entries}" title="Export CSV file of this list" class="link-icon csv-file" data-icon="m">Export CSV</a>
-		{if:elseif segment_3}
-			<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&catname={exp:weblog:categories weblog='sponsors' style='linear' show='{segment_3}'}{category_url_title}{/exp:weblog:categories}&cat={segment_3}" title="Export CSV file of this list" class="link-icon csv-file" data-icon="m">Export CSV</a>
+		{if segment_3 == "interest"}
+			{exp:weblog:categories weblog='sponsors' style='linear' show='{segment_4}'}
+				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&catname={category_url_title}&cat={segment_4}" title="Export CSV file of {category_name}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+			{/exp:weblog:categories}
+			
+		{if:elseif segment_3 == "event"}
+			{exp:weblog:entries weblog='events' entry_id='{segment_4}' limit='1' show_future_entries='yes' dynamic='off' status='open|closed'}
+				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+			{/exp:weblog:entries}
+			
+		{if:elseif segment_3 == "deal"}
+			{exp:weblog:entries weblog='deals' entry_id='{segment_4}' limit='1' show_future_entries='yes' dynamic='off' status='open'}
+				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+			{/exp:weblog:entries}
+			
 		{if:else}
 			<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&all" title="Export CSV file of this list" class="link-icon csv-file" data-icon="m">Export CSV</a>
 		{/if}
 		<div class="heading clearfix"> 
-		{if segment_3 == '' || (segment_3 >= 'P0' && segment_3 <= 'P9999')}
-			<h1>Member List (&nbsp;<?php print $queryCountAll; ?>&nbsp;)</h1>
-		{if:elseif segment_4 != 'event' AND segment_3 != ''}
-			<h1>{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_3}"}{category_name}{/exp:weblog:categories} (&nbsp;<?php print $queryCountCat; ?>&nbsp;)</h1>
-		{if:elseif segment_4 == 'event'}
-			<h1>{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;<?php print $queryCountEvent; ?>&nbsp;)</h1>
-		{/if}
-	</div>
+			{if segment_3 == 'interest' && segment_4}
+				<h1>{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:weblog:categories} (&nbsp;<?php print $queryCountCat; ?>&nbsp;)</h1>
+				
+			{if:elseif segment_3 == 'event' && segment_4}
+				<h1>{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;<?php print $queryCountEvent; ?>&nbsp;)</h1>
+				
+			{if:elseif segment_3 == 'deal' && segment_4}
+				<h1>{exp:weblog:entries weblog="deals" category="{embed:sponsor_number}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="off" status="open"}{title}{/exp:weblog:entries} (&nbsp;<?php print $queryCountDeal; ?>&nbsp;)</h1>
+				
+			{if:else}
+				<h1>Member List (&nbsp;<?php print $queryCountAll; ?>&nbsp;)</h1>
+			{/if}
+		</div>
 	<div class="grid23 clearfix">
 		<div class="main left">
 			<p>Click on a member to see more information about them or click <a href="/sponsors/invite">here</a> to invite new members.</p>
@@ -340,48 +400,51 @@ function listMembers($count, $results) {
 				<div class="right"><strong>Join Date</strong></div>
 			</div>
 			<ul class="listing">
-			{if segment_3 == '' || (segment_3 <= 'P9999' && segment_3 >= 'P0')}{!-- Main Member Listing --}
-				<?php listMembers($queryCountAll, $queryResultsAll); ?>
-			{if:elseif segment_3 && segment_4 == ""}{!-- Category Member Listing --}
+			{if segment_3 == 'interest' && segment_4}{!-- Category Member Listing --}
 				<?php listMembers($queryCountCat, $queryResultsCat); ?>
-			{if:elseif segment_3 && segment_4 == 'event'}{!-- Event Member Listing --}
+				
+			{if:elseif segment_3 == 'event' && segment_4}{!-- Event Member Listing --}
 				<?php listMembers($queryCountEvent, $queryResultsEvent); ?>
+				
+			{if:elseif segment_3 == 'deal' && segment_4}
+				<?php listMembers($queryCountDeal, $queryResultsDeal); ?>
+				
+			{if:else}{!-- All Member Listing --}
+				<?php listMembers($queryCountAll, $queryResultsAll); ?>
 			{/if}
 			</ul>
 		</div>
 		
 		<div class="sidebar right">
-			<div class="bar">Filter Members</div>
+			<header class="bar">Filter Members</header>
+			
+			{exp:weblog:entries weblog="deals" category="{embed:sponsor_number}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}
+				<h2 class="filter-heading">Deals<span class="arrow up"></span><span class="arrow down"></span></h2>
+				<ul>
+			{/exp:weblog:entries}
+			{exp:weblog:entries weblog="deals" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="off" orderby="date" sort="asc" status="open|closed"}
+				{exp:query sql="SELECT COUNT(*) AS total FROM member_relations WHERE related_id = {entry_id} AND cat_id = {embed:sponsor_number}"}
+					<li>{if segment_4 == entry_id}<strong>{/if}<a href="/sponsors/email-members/deal/{entry_id}" title="{title}">{title} (&nbsp;{total}&nbsp;)</a>{if segment_4 == entry_id}</strong>{/if}</li>
+				{/exp:query}
+			{/exp:weblog:entries}
+			{exp:weblog:entries weblog="deals" category="{embed:sponsor_number}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}
+				</ul>
+			{/exp:weblog:entries}
+			
 			{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}
-				<h2>Events</h2>
+				<h2 class="filter-heading">Events<span class="arrow up"></span><span class="arrow down"></span></h2>
 				<ul>
 			{/exp:weblog:entries}
 			{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="off" orderby="date" sort="asc" status="open|closed"}
-				{exp:query sql="
-					SELECT COUNT(*) AS total
-						FROM exp_members
-							INNER JOIN member_relations
-							ON exp_members.member_id = member_relations.member_id
-							
-							INNER JOIN exp_member_data
-							ON exp_members.member_id = exp_member_data.member_id
-							
-							INNER JOIN exp_weblog_titles
-							ON member_relations.related_id = exp_weblog_titles.entry_id
-							
-							INNER JOIN exp_category_posts
-							ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
-							
-						WHERE member_relations.related_id = {entry_id}
-						AND exp_category_posts.cat_id = {embed:sponsor_number}"}
-					<?php if ("{total}" == "0") {	 } else { ?><li>{if segment_3 == entry_id}<strong>{/if}<a href="/sponsors/email-members/{entry_id}/event" title="{title}">{title} (&nbsp;{total}&nbsp;)</a>{if segment_3 == entry_id}</strong>{/if}</li><?php } ?>
+				{exp:query sql="SELECT COUNT(*) AS total FROM member_relations WHERE related_id = {entry_id} AND cat_id = {embed:sponsor_number}"}
+					<li>{if segment_3 == entry_id}<strong>{/if}<a href="/sponsors/email-members/event/{entry_id}" title="{title}">{title} (&nbsp;{total}&nbsp;)</a>{if segment_3 == entry_id}</strong>{/if}</li>
 				{/exp:query}
 			{/exp:weblog:entries}
 			{exp:weblog:entries weblog="events" category="{embed:sponsor_number}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}
 				</ul>
 			{/exp:weblog:entries}
 			
-			<h2>Interests</h2>
+			<h2 class="filter-heading">Interests<span class="arrow up"></span><span class="arrow down"></span></h2>
 			<ul><?php $interests = array(); ?>
 			{exp:weblog:categories weblog="sponsors" style="linear" category_group="14|15"}
 			{exp:query 
@@ -426,14 +489,14 @@ for ($i = (count($interests) - 1); $i > -1; $i--)
 {
 	$interest =& $interests[$i];
 	print "\t\t\t\t".'<li>';
-	if ( $interest->path == "{segment_3}" )
+	if ( $interest->path == "{segment_4}" )
 	{
 		print '<strong>';
 	}
 	
-	print '<a href="/sponsors/email-members/'.$interest->path.'" title="'.$interest->category_name.'">'.$interest->category_name.' (&nbsp;'.$interest->total.'&nbsp;)</a>';
+	print '<a href="/sponsors/email-members/interest/'.$interest->path.'" title="'.$interest->category_name.'">'.$interest->category_name.' (&nbsp;'.$interest->total.'&nbsp;)</a>';
 	
-	if ( $interest->path == "{segment_3}" )
+	if ( $interest->path == "{segment_4}" )
 	{
 		print '</strong>';
 	}
@@ -441,7 +504,7 @@ for ($i = (count($interests) - 1); $i > -1; $i--)
 }
 ?>
 			</ul>
-			<h2>More Info</h2>
+			<h2 class="filter-heading">More Info<span class="arrow up"></span><span class="arrow down"></span></h2>
 			<ul><?php $more_info = array(); ?>
 			{exp:weblog:categories weblog="sponsors" style="linear" category_group="16"}
 			{exp:query 
@@ -477,7 +540,7 @@ for ($i = (count($interests) - 1); $i > -1; $i--)
 								WHERE exp_category_posts.cat_id = {embed:sponsor_number}
 								AND exp_user_category_posts.cat_id = {category_id}
 					) a"}
-					<?php if ("{total}" == "0") {	 } else { $more_info[] = new Interest("/sponsors/email-members/{category_id}", "{category_name}", "{total}"); } ?>
+					<?php if ("{total}" == "0") {	 } else { $more_info[] = new Interest("/sponsors/email-members/interest/{category_id}", "{category_name}", "{total}"); } ?>
 				{/exp:query}
 			{/exp:weblog:categories}
 <?php
