@@ -15,8 +15,35 @@
 		echo '{embed="embeds/_signin-modal modal-role="'. $file .'"}'."\n";
 	} ?>
 {/if}
+<!-- {embed:show-coupons} -->
+{if "{embed:show-coupons}"}
+	{exp:weblog:entries weblog="deals" entry_id="{embed:show-coupons}" show_expired="yes" show_future_entries="yes" orderby="date" sort="asc" dynamic="off"}
+		<div id="modal-coupon-{entry_id}" class="deals reveal-modal">
+			<div class="coupon post">
+				<div class="sponsor">{categories show_group="24"}{category_name}{/categories}</div>
+				<div class="deal-title">{title}</div>
+				<div class="code">Coupon code: <span>{deal_code}</span></div>
+				<div class="instructions">
+					{deal_instructions}
+					<p class="valid">Valid from {entry_date format="%F %j%S, %Y"}{if expiration_date} to {expiration_date format="%F %j%S, %Y"}{/if}</p>
+				</div>
+				<div class="terms">{deal_terms}</div>
+				<div class="url"><span>newstartclub.com/deal/{entry_id}</span></div>
+				<i>t</i>
+			</div>
+			<div class="button-wrap center">
+			{categories show_group="45"}
+				{if category_id == "449"}
+					<a href="/deals/online/{entry_id}" class="super secondary button copy-coupon" target="_blank"><span>Copy</span></a>
+				{/if}
+			{/categories}
+			<a href="/deal/{entry_id}" class="super secondary button print-coupon" target="_blank"><span>Print</span></a></div>
+			<a class="close-modal close">&times;</a>
+		</div>
+	{/exp:weblog:entries}
+{/if}
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-{if logged_out}<script src="/assets/js/jquery.reveal.js"></script>{/if}
+<script src="/assets/js/jquery.reveal.js"></script>
 <script src="/assets/js/common.js"></script>
 
 {if "{embed:script_add}"}
