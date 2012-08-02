@@ -7,10 +7,8 @@ body {
 	background-image: url(/assets/css/images/background-gradient-texture.png);
 	background-repeat: repeat-x;
 	background-color: #A7C7EF;
-	/*
-overflow: hidden;
 	padding: 0 20px;
-*/
+	width: 800px;
 }
 
 /* Header
@@ -343,6 +341,7 @@ overflow: hidden;
 .post h4 + p,
 p:first-child,
 .post p:first-child,
+.entry-details + p,
 ul.tabs-content p:first-child,
 .post img + p,
 .post-details + p,
@@ -444,7 +443,7 @@ a.link-more {
 ========================================================================== */
 /* RSS and Print Icons
 -------------------------------------------------------------------------- */
-.body > .link-icon {
+.link-icon[data-icon] {
 	position: absolute;
 	right: 40px;
 	top: 20px;
@@ -453,13 +452,21 @@ a.link-more {
 	font-style: normal;
 	color: #fff;
 }
-.link-icon:after {
+.ie7 .link-icon[data-icon],
+.ie8 .link-icon[data-icon] {
+	color: #ccc;
+}
+.link-icon[data-icon]:after {
 	font-size: 22px;
 	margin-left: 6px;
 	top: 2px;
 	color: #ccc;
 }
-.body > .link-icon:hover { text-decoration: none; }
+.ie7 .link-icon[data-icon]:after,
+.ie8 .link-icon[data-icon]:after {
+	margin-left: 0;
+}
+.link-icon:hover { text-decoration: none; }
 
 /* Search
 -------------------------------------------------------------------------- */
@@ -491,6 +498,10 @@ a.link-more {
 .heading h1[data-icon]:before {
 	font-size: 42px;
 	margin-right: 6px;
+}
+.ie7 .heading h1[data-icon]:before,
+.ie8 .heading h1[data-icon]:before {
+	margin-right: 0;
 }
 .detail .heading h1 {
 	position: relative;
@@ -584,11 +595,13 @@ ul.tabs-content > li.active { display: block; }
 
 /* Images Styles for main listing and Detail pages
 -------------------------------------------------------------------------- */
-a.image img,
-.post img.image {
+.image img,
+.post .image {
 	padding: 0;
 	margin: 0;
-	border: 5px solid #fff;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #fff;
 	-webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
 	-moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
 	box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
@@ -596,18 +609,23 @@ a.image img,
 	-moz-transition: -moz-box-shadow 0.15s ease-in-out;
 	transition: box-shadow 0.15s ease-in-out;
 }
-a.image:hover img {
+.ie7 .image img,
+.ie8 .image img,
+.ie7 .post .image,
+.ie8 .post .image {
+	border-color: #eee;
+}
+.image:hover img {
 	-moz-box-shadow: rgba(0,0,0,0.4) 0px 1px 4px;
 	-webkit-box-shadow: rgba(0,0,0,0.4) 0px 1px 4px;
 	box-shadow: rgba(0,0,0,0.4) 0px 1px 4px;
 }
-a.image:active img {
+.image:active img {
 	-webkit-transform: translateY(1px);
 	-moz-transform: translateY(1px);
 }
-.listing a.image img { border: 5px solid #fff; }
-.post img.image {
-	border: 8px solid #fff;
+.post .image {
+	border-width: 8px;
 	float: left;
 	margin: 0 18px 15px 0;
 	-webkit-box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
@@ -617,11 +635,11 @@ a.image:active img {
 
 /* Breadcrumb Trail
 -------------------------------------------------------------------------- */
-#trail {
+.trail {
 	margin: 0 0 5px;
 	padding: 0;
 }
-#trail li:before {
+.trail li:before {
 	content:'\25B6';
 	color: #AAA;
 	font-size: 9px;
@@ -629,58 +647,48 @@ a.image:active img {
 	position: relative;
 	top: -1px;
 }
-#trail li {
+.trail li {
 	display: inline;
 	font-weight: bold;
 	font-size: 13px;
 }
-#trail li a { display: inline-block; }
-#trail li:first-child {
+.trail li a { display: inline-block; }
+.trail li:first-child {
 	padding-left: 0;
 	background: none;
 }
-#trail li:first-child:before {
+.trail li:first-child:before {
 	content:'';
 	padding: 0;
 }
 
 /* Page Shadow
 -------------------------------------------------------------------------- */
-#shadow-left, #shadow-right {
+.shadow-left, .shadow-right {
 	width: 20px;
 	height: 630px;
 	position: absolute;
 	top: 45px;
 	z-index: -1;
 }
-#shadow-right {
+.shadow-right {
 	background: url(/assets/css/images/shadow-right.png) no-repeat;
 	right: -20px;
 }
-#shadow-left {
+.shadow-left {
 	background: url(/assets/css/images/shadow-left.png) no-repeat;
 	left: -20px;
 }
 
 /* Icon Fonts
 -------------------------------------------------------------------------- */
-.print-this i,
-.csv-file i,
-li.deal > i,
-.coupon > i,
-.coupon .url i,
-.news li.entry h2 i {
-	font-style: normal !important;
-	font-weight: normal;
-	font-family: 'Pictos Custom', sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
 .link-icon[data-icon]:after,
 .heading h1[data-icon]:before,
 li.deal .details:before,
-li.deal .show-code span:after,
+li.deal .show-coupon span:after,
 .tags [data-icon]:before,
 .news li.entry h2:before,
+.coupon i,
 .bar:after {
 	font-family: 'Pictos Custom', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -690,9 +698,31 @@ li.deal .show-code span:after,
 	position: relative;
 	line-height: 36px;
 }
+.ie7 .link-icon[data-icon]:after,
+.ie8 .link-icon[data-icon]:after,
+.ie7 li.deal .details:before,
+.ie8 li.deal .details:before,
+.ie7 li.deal .show-code span:after,
+.ie8 li.deal .show-code span:after,
+.ie7 .heading h1[data-icon]:before,
+.ie8 .heading h1[data-icon]:before,
+.ie7 .tags [data-icon]:before,
+.ie8 .tags [data-icon]:before,
+.ie7 .news li.entry h2:before,
+.ie8 .news li.entry h2:before,
+.ie7 .bar:after,
+.ie8 .bar:after {
+	content:'';
+}
 
-/* Dividing Bar
+/* Section Elements
 -------------------------------------------------------------------------- */
+.section {
+	margin: 15px 0 0;
+}
+.section:first-child {
+	margin-top: 0;
+}
 .bar {
 	font-size: 14px;
 	font-weight: 600;
@@ -722,7 +752,6 @@ li.deal .show-code span:after,
 /* Sidebar
 -------------------------------------------------------------------------- */
 .sidebar { color: #535353; }
-.sidebar .social-links { margin: 10px 0 0; }
 .sidebar .FB_UI_Hidden { width: 50px !important; }
 .sidebar .fb_iframe_widget { 
 	margin-top: 8px;
@@ -822,6 +851,7 @@ li.deal .show-code span:after,
 .tags [data-icon]:before {
 	color: #999;
 	font-size: 16px;
+	line-height: 16px;
 	top: 3px;
 	position: relative;
 	margin-right: 3px;
@@ -854,9 +884,11 @@ li.deal .show-code span:after,
 	font-weight: bold;
 	font-size: 11px;
 	text-align: center;
-	width: 124px;
 	padding: 5px 9px 7px 8px;
 	z-index: 999;
+}
+.tooltip.health-score {
+	width: 124px;
 }
 .has-tip:hover .tooltip {
 	display: block;
@@ -905,8 +937,12 @@ li.deal .show-code span:after,
 	position: fixed; 
 	height: 100%;
 	width: 100%;
-	background: #4293DB;
-	background: rgba(0,0,0,.8);
+	background-color: #4293DB;
+	background-color: rgba(0,0,0,0.8);
+	background: -webkit-radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+	background: -moz-radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+	background: -o-radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85));
+	background: -ms-radial-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85));
 	z-index: 1100;
 	display: none;
 	top: 0;
@@ -925,9 +961,9 @@ li.deal .show-code span:after,
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-	-moz-box-shadow: 0 0 50px rgba(0,0,0,1);
-	-webkit-box-shadow: 0 0 50px rgba(0,0,0,1);
-	box-shadow: 0 0 50px rgba(0,0,0,1);
+	-moz-box-shadow: 0 2px 35px rgba(0, 0, 0, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 1px white;
+	-webkit-box-shadow: 0 2px 35px rgba(0, 0, 0, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 1px white;
+	box-shadow: 0 2px 35px rgba(0, 0, 0, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.3), inset 0 1px 1px white;
 }
 .reveal-modal.mini {
 	width: 300px;
@@ -936,6 +972,13 @@ li.deal .show-code span:after,
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
 	text-align: center;
+}
+.reveal-modal.deals {
+	width: 550px;
+	margin-left: -305px;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
 }
 .reveal-modal input[type="email"],
 .reveal-modal input[type="password"] {
@@ -1004,13 +1047,13 @@ li.deal .show-code span:after,
 .listing > li:first-child {
 	border-top: 0;
 }
-.listing > li:hover a.image img,
-.listing > li:hover a.image div {
+.listing > li:hover .image img,
+.listing > li:hover .image div {
 	-webkit-box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
 	-moz-box-shadow: rgba(0,0,0,0.5) 0px 1px 3px;
 }
-.listing > li a.image:active img,
-.listing > li a.image:active div {
+.listing > li .image:active img,
+.listing > li .image:active div {
 	-webkit-transform: translateY(1px);
 	-moz-transform: translateY(1px);
 }
@@ -1064,13 +1107,13 @@ h1:hover .edit-this { opacity: 1.0; }
 
 /* Comment Styles
 ========================================================================== */
-#the-comments, #comment-preview {
+.the-comments, .comment-preview {
 	border-top: 1px dashed #DDD;
 	padding-top: 8px;
 	margin-top: 10px;
 	position: relative;
 }
-#the-comments .leave-cmt {
+.the-comments .leave-cmt {
 	position: absolute;
 	color: #fff;
 	right: 30px;
@@ -1079,79 +1122,69 @@ h1:hover .edit-this { opacity: 1.0; }
 	font-weight: normal;
 	margin-top: 2px;
 }
-#the-comments ol,
-#the-comments ol li	 { 
-	list-style-type: none;
-	margin: 0 !important;
-	padding: 0;
-}
-#comment-list li.comment-box,
-#comment-preview li.comment-box {
-	position: relative;
-	padding: 0 0 10px;
-	border-top: 1px dashed #eee;
-}
-#comment-list li.comment-box:first-child,
-#comment-preview li.comment-box {
-	border-top: 0;
-}
-#the-comments .bar {
-	background-image: url(/assets/css/images/icon-small-comments.png);
-	background-position: 464px center;
-	background-repeat: no-repeat;
-}
-#the-comments > h2 {
+.the-comments > h2 {
 	font-weight: 600;
 	font-size: 18px;
 	color: #535353;
 	margin: 4px 0;
 	line-height: 25px;
 }
-#comments h3.count,
-#comment-preview h3.count {
+.comments .meta,
+.comment-preview .meta {
 	font-size: 16px;
 	font-weight: normal;
-	padding: 8px 0px 8px 40px;
+	padding: 0 0 8px 40px;
 	margin: 0;
 }
-#comments h3 strong,
-#comment-preview h3 strong {
+.comments h3 strong,
+.comment-preview h3 strong {
 	font-size: 20px;
 	font-weight: bold;
+	line-height: 1;
 	left: 0;
-	top: 5px;
 	position: absolute;
 	text-align: center;
 	width: 40px;
 }
-#comments h3 .date,
-#comment-preview h3 .date {
+.comments .date,
+.comment-preview .date {
 	color: #aaa;
 	font-size: 11px;
+	line-height: 1;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	right: 8px;
 }
-#the-comments ul#allowed-elements {
+.comment-form p,
+.comments.listing p {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 11px;
+	line-height: 15px;
+}
+.comments.listing p {
+	margin-top: 10px;
+}
+.comments.listing p:first-child {
+	margin-top: 0;
+}
+.the-comments #allowed-elements {
 	margin: 0 0 8px 6px;
 	padding: 0;
 }
-#the-comments ul#allowed-elements li {
+.the-comments #allowed-elements li {
 	font-size: 11px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	list-style-type: none;
 	color: #555;
 	font-style: italic;
 }
-.comment { margin: 0px 20px 0px 40px; }
-#the-comments table tbody th,
-#the-comments table tbody td {
-	border: 0;
+.comment-body { 
+	margin: 0px 20px 0px 40px;
 }
-#comment-form p, #comment-list p, #comment-preview p {
-	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-	font-size: 11px;
+.the-comments table tbody th,
+.the-comments table tbody td {
+	border: 0;
 }
 
 /* Specific Page Styles
@@ -1203,16 +1236,17 @@ h1:hover .edit-this { opacity: 1.0; }
 }
 .orbit-caption h3 a,
 .orbit-caption h3 a:hover {
-	color:#eee;
+	color: #eee;
 }
 .orbit-caption h2 {
 	font-size: 16px;
 	margin: 3px 10px;
-	color:white;
+	color: #fff;
 }
 .orbit-caption h3 {
 	margin: 0 10px;
 	font-weight: normal;
+	color: #fff;
 }
 .orbit-wrapper .content {
 	background-color: #000;
@@ -1247,8 +1281,8 @@ h1:hover .edit-this { opacity: 1.0; }
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 }
-.home .my_health .bar {
-	background-image: url(/assets/css/images/icon-small-myhealth.png);
+.home .main .bar.events {
+	margin-bottom: 0;
 }
 .home .sponsor-admin .bar[data-icon]:after {
 	font-size: 26px;
@@ -1265,7 +1299,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	list-style-type: none;
 	text-align: center;
 }
-.home .resources a.image { margin: 0 0 4px; }
+.home .resources .image { margin: 0 0 4px; }
 .home .resources li.resource span.title {
 	font-weight: bold;
 	font-size: 11px;
@@ -1283,21 +1317,18 @@ h1:hover .edit-this { opacity: 1.0; }
 	font-family: HelveticaNeue, Helvetica-Neue, Helvetica, Arial, sans-serif;
 }
 .home .resources .see-more a { color: #5b7316; }
-.home div.events { margin: 10px 0 0; }
 .home .events ul {
 	margin: 0;
 	padding: 0;
 }
-.home #rsvp-list {
-	margin-bottom: 6px;
-}
-.home .events li:first-child { border-top: none; }
 .home .events li {
-	margin: 0;
-	position: relative;
-	padding: 7px 0;
-	border-top: 1px dashed #DDD;
-	list-style-type: none;
+	padding: 0;
+}
+.home .events li:first-child {
+	padding: 0 0 7px;
+}
+.home .events li:first-child .date {
+	top: 4px;
 }
 .home li.event .details {
 	margin: 0 0;
@@ -1306,39 +1337,26 @@ h1:hover .edit-this { opacity: 1.0; }
 	line-height: 19px;
 }
 .home .events li.event h3 { padding: 0; }
-.home .news { margin: 4px 0 0; }
 .home .news h4 { margin: 12px 0; }
 .home .my_health h2 { text-align: center; }
-.home .members { margin: 10px 0 0; }
+.home .deals .title {
+	text-align: center;
+	margin: 5px 0 0;
+	font-size: 14px;
+	font-weight: 600;
+	display: block;
+}
 .home .members li, .home .sponsor-admin li { margin-bottom: 4px; }
-.home .location-map {
-	height: 110px;
-	border: 5px solid #fff;
-	margin-top: 8px;
-	background-repeat: no-repeat;
-	-webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
-	-webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
-	-moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
-}
-.home .location-map:hover {
-	-webkit-box-shadow: rgba(0,0,0,0.6) 0px 1px 3px;
-	-moz-box-shadow: rgba(0,0,0,0.6) 0px 1px 3px;
-}
-.home .location-map:active {
-	-webkit-transform: translateY(1px);
-	-moz-transform: translateY(1px);
-}
-.home > .icon:hover em,
-.home > .icon:hover i {
+.home .link-icon:hover,
+.home .link-icon:hover:after {
 	color: #555;
 }
 
 /* My Health | http://newstartclub.com/my_health
 -------------------------------------------------------------------------- */
-.my_health .heading .icon {
-	width: 41px;
-	background-image: url(/assets/css/images/icon-large-myhealth.png);
-	margin: 7px 10px 0 0;
+.my_health .heading h1[data-icon]:before {
+	font-size: 52px;
+	top: 8px;
 }
 .my_health #gauge {
 	background: url(/assets/css/images/my_health_gauge.png) no-repeat top center;
@@ -1537,7 +1555,10 @@ h1:hover .edit-this { opacity: 1.0; }
 .my_health a,
 .my_health .post .vimeoBadge a,
 .my_health table label,
-.my_health.reveal-modal h2 { color: #f438a5; }
+.my_health.reveal-modal h2,
+.my_health .heading h1[data-icon]:before {
+	color: #f438a5;
+}
 .my_health a:hover { color: #c60c78; }
 .my_health #total-score.one {
 	background-color: #dcebc3;
@@ -1664,7 +1685,7 @@ h1:hover .edit-this { opacity: 1.0; }
 .recipes .heading h1[data-icon]:before {
 	top: 2px;
 }
-.recipes li.recipe a.image {
+.recipes li.recipe .image {
 	position: relative;
 	float: left;
 }
@@ -1735,7 +1756,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	display: block;
 	margin: 5px 0;
 }
-.recipes #related-entries a.image {
+.recipes #related-entries .image {
 	float: none;
 	display: block;
 }
@@ -1766,12 +1787,12 @@ h1:hover .edit-this { opacity: 1.0; }
 .resources .heading h1[data-icon]:before {
 	
 }
-.resources a.image {
+.resources .image {
 	position: relative;
 	float: left;
 }
-.resources a.image:hover .play { background: url(/assets/css/images/play-icon-hover.png) no-repeat scroll center center transparent; }
-.resources a.image .play {
+.resources .image:hover .play { background: url(/assets/css/images/play-icon-hover.png) no-repeat scroll center center transparent; }
+.resources .image .play {
 	background: url(/assets/css/images/play-icon.png) no-repeat scroll center center transparent;
 	position: absolute;
 	top: 0;
@@ -1780,7 +1801,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	height: 100%;
 	z-index: 1;
 }
-.borderradius .resources a.image .play {
+.borderradius .resources .image .play {
 	background-image: none;
 	border: 3px solid white;
 	border-radius: 25px;
@@ -1793,12 +1814,12 @@ h1:hover .edit-this { opacity: 1.0; }
 	-webkit-transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 	-moz-transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
-.borderradius .resources a.image:hover .play {
+.borderradius .resources .image:hover .play {
 	background-image: none;
 	background-color: rgba(140, 220, 51, 0.6);
 	box-shadow: 0 0 7px rgba(255, 255, 255, 0.7);
 }
-.borderradius .resources a.image .play i {
+.borderradius .resources .image .play i {
 	display: block;
 	width: 0;
 	height: 0;
@@ -1902,7 +1923,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	display: block;
 	margin: 5px 0;
 }
-.resources #related-entries a.image {
+.resources #related-entries .image {
 	float: none;
 	display: block;
 }
@@ -1943,7 +1964,7 @@ h1:hover .edit-this { opacity: 1.0; }
 .partners li.partner { position: relative; }
 .partners li.partner img,
 .partners .partner img { float: left; }
-.partners .list a.image img {
+.partners .list .image img {
 	border: 5px solid #fff;
 	padding: 0;
 	margin: 0;
@@ -2168,8 +2189,8 @@ h1:hover .edit-this { opacity: 1.0; }
 	border-color: #FFB637;
 }
 .events .heading h1[data-icon]:before,
-.events > .link-icon:hover,
-.events > .link-icon:hover:after {
+.events .link-icon:hover,
+.events .link-icon:hover:after {
 	color: #FFB637;
 }
 .events .post a,
@@ -2210,7 +2231,7 @@ table.events a,
 .locations li.location h2,
 .locations li.location h3 { padding-left: 113px; }
 .locations .location p { margin: 10px 0 0 0; }
-.locations li.location a.image div {
+.locations li.location .image div {
 	width: 90px;
 	height: 90px;
 	float: left;
@@ -2317,8 +2338,9 @@ li.deal .expires {
 	font-weight: bold;
 	font-style: italic;
 }
-li.deal .show-code {
+li.deal .show-coupon {
 	background-color: #649C55;
+	border: 0;
 	padding: 3px;
 	margin: 4px 0 0;
 	font-family: 'Open Sans', "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
@@ -2330,20 +2352,17 @@ li.deal .show-code {
 	-moz-transition: background-color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out;
 }
-li.deal .show-code span:after {
-	
-}
-li.deal .show-code:hover {
+li.deal .show-coupon:hover {
 	color: #fff;
 	background-color: #145C00;
 	text-decoration: none;
 }
-li.deal .show-code span {
+li.deal .show-coupon span {
 	padding: 1px 6px;
 	border: 1px dashed #fff;
 	display: block;
 }
-li.deal .show-code span:after {
+li.deal .show-coupon span:after {
 	line-height: 1;
 	margin-left: 5px;
 }
@@ -2371,13 +2390,16 @@ li.deal.dependant .details:before {
 li.deal.dependant .details {
 	padding-left: 58px;
 }
-body.deal {
+.ie7 li.deal.dependant .details,
+.ie8 li.deal.dependant .details {
+	padding-left: 0;
+}
+.view-coupon {
 	width: 580px;
+	text-align: center;
 }
-.deal .body {
+.view-coupon .body {
 	width: 500px;
-}
-.deal .body {
 	margin-top: 50px;
 	padding: 40px;
 	min-height: 100px;
@@ -2401,6 +2423,10 @@ body.deal {
 	position: absolute;
 	right: -13px;
 	top: 67%;
+}
+.ie7 .coupon > i,
+.ie8 .coupon > i {
+	display: none;
 }
 .coupon .deal-title {
 	padding: 8px 0px;
@@ -2471,7 +2497,7 @@ li.deal .details:before,
 
 /* News | http://newstartclub.com/news
 -------------------------------------------------------------------------- */
-.news .heading [data-icon]:before {
+.news .heading h1[data-icon]:before {
 	top: 3px;
 }
 .news .listing li.entry { padding: 6px 0; }
@@ -2501,6 +2527,10 @@ li.deal .details:before,
 	margin: 0 0;
 	letter-spacing: normal;
 	position: relative;
+}
+.ie7 .news li.entry h2,
+.ie8 .news li.entry h2 {
+	padding-left: 0;
 }
 .news li.entry h2:before {
 	font-size: 22px;
@@ -2988,9 +3018,9 @@ li.deal .details:before,
 	h2, h3 { page-break-after: avoid; }
 	
 	body, .body { width: 100% }
-	.post img.image { border: 2px solid #ddd; }
-	.header, .footer, .social-links, #trail, #the-comments, .link-icon { display: none }
-	.body, .post img.image, .bar { -webkit-box-shadow: none; -moz-box-shadow: none;	box-shadow: none; }
+	.post .image { border: 2px solid #ddd; }
+	.header, .footer, .social-links, .trail, .the-comments, .link-icon { display: none }
+	.body, .post .image, .bar { -webkit-box-shadow: none; -moz-box-shadow: none;	box-shadow: none; }
 	.body { padding: 0; }
 	.bar { padding-left: 0; }
 	.bar a { color: black !important;}
@@ -3001,5 +3031,5 @@ li.deal .details:before,
 	.coupon { background-color: #EBF5DE;	background-image: url(/assets/css/images/coupon-watermark.png) !important; background-color: #EBF5DE !important; background-position: center center !important; background-repeat: no-repeat !important; }
 	.coupon .code span, .coupon > i { color: #1A7D00 !important; }
 	.coupon .sponsor, .coupon .url { background: #649C55 !important; }
-	body.deal .button-wrap { display: none; visibility: hidden; }
+	.view-coupon .button-wrap { display: none; visibility: hidden; }
 }
