@@ -1,4 +1,4 @@
-{exp:rss:feed weblog="{segment_1}" show_future_entries="yes"}
+{exp:rss:feed channel="{segment_1}" show_future_entries="yes"}
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
 		xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -10,7 +10,7 @@
 				{site_name} Events
 				{if segment_3} | 
 					{if segment_3 == "locations"}{segment_5}, {segment_4}{/if}
-					{if segment_3 == "date"}{exp:nice_date date="{segment_4}-{segment_5}" format="%F %Y"}{/if}
+					{if segment_3 == "date"}{exp:low_nice_date date="{segment_4}-{segment_5}" format="%F %Y"}{/if}
 					{if segment_3 != "date" || segment_3 != "locations"}{segment_4_category_name}{/if}
 				{/if}
 			{/exp:xml_encode}
@@ -23,8 +23,8 @@
 
 		<atom:link href="{site_url}events/rss{if segment_3}{segment_3}/{/if}{if segment_4}{segment_4}/{/if}{if segment_5}{segment_5}/{/if}" rel="self" type="application/rss+xml" />
 		
-{exp:weblog:entries 
-	weblog="{segment_1}"
+{exp:channel:entries 
+	channel="events"
 		limit="25"
 		rdf="off"
 		dynamic_start="on"
@@ -42,7 +42,7 @@
 			<guid isPermaLink="false">{title_permalink="events/detail"}#id:{entry_id}#date:{gmt_entry_date format="%H:%i"}</guid>
 			<description>
 				<![CDATA[
-					{exp:textile}{event_description}{/exp:textile}
+					{event_description}
 					<h3>Sponsored by:</h3>
 					{categories show_group="24"}
 						<p><a href="{site_url}locations/detail/{category_url_title}{exp:xml_encode}?utm_source=Events&utm_medium=RSS&utm_campaign=sponsored+by{/exp:xml_encode}">{category_name}</a></p>
@@ -50,39 +50,39 @@
 					<h3>Date</h3>
 					<p>
 						{!-- Check if event is only on one date and time is set --}
-						{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}"}
-							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
-							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+						{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}"}
+							<span class="start-time">{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
-							<span class="day">{entry_date  format="%j"}</span>,
+							<span class="day">{entry_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
 							<!-- 1 -->
 						{/if}
 						
 						{!-- Check if event is only on one date and time is NOT set --}
-						{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}" ==""}
-							<span class="month">{entry_date  format="%F"}</span>
-							<span class="day">{entry_date  format="%j"}</span>,
+						{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}" ==""}
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{entry_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
 							<!-- 2 -->
 						{/if}
 						
 						{!-- Check to see if repeating event --}
-						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}"}
-							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
-							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}"}
+							<span class="start-time">{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date format="%j"}</span> to 
-							<span class="month">{entry_date format="%F"}</span>
+							<span class="month">{expiration_date format="%F"}</span>
 							<span class="day">{expiration_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
 							<!-- 3 -->
 						{/if}
 						
 						{!-- Check to see if repeating event and time is NOT set --}
-						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
-							<span class="month">{entry_date  format="%F"}</span>
-							<span class="day">{entry_date  format="%j"}</span> to 
+						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{entry_date format="%j"}</span> to 
 							<span class="month">{expiration_date format="%F"}</span>
 							<span class="day">{expiration_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
@@ -90,10 +90,10 @@
 						{/if}
 						
 						{!-- Check to see if repeating event, time is NOT set, and event spans years --}
-						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
-							<span class="month">{entry_date  format="%F"}</span>
-							<span class="day">{entry_date  format="%j"}</span>,
-							<span class="year">{entry_date  format="%Y"}</span> to 
+						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
+							<span class="month">{entry_date format="%F"}</span>
+							<span class="day">{entry_date format="%j"}</span>,
+							<span class="year">{entry_date format="%Y"}</span> to 
 							<span class="month">{expiration_date format="%F"}</span>
 							<span class="day">{expiration_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
@@ -110,7 +110,7 @@
 			{/categories}
 			<pubDate>{gmt_entry_date format="%D, %d %M %Y %H:%i %T"}</pubDate>
 		</item>
-{/exp:weblog:entries}
+{/exp:channel:entries}
 
 		</channel>
 </rss>

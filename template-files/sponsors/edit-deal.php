@@ -1,8 +1,8 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title='Edit {exp:weblog:entries weblog="deals" url_title="{segment_3}" limit="1"}&ldquo;{title}&rdquo;{/exp:weblog:entries}'
+	title='Edit {exp:channel:entries channel="deals" url_title="{segment_3}" limit="1"}&ldquo;{title}&rdquo;{/exp:channel:entries}'
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 
 <ul class="trail">
@@ -10,7 +10,7 @@
 	<li><a href="/sponsors/edit-deals">Edit Deals</a></li>
 </ul>
 
-{exp:weblog:entries weblog="deals" url_title="{segment_3}" limit="1" show_future_entries="yes"}
+{exp:channel:entries channel="deals" url_title="{segment_3}" limit="1" show_future_entries="yes"}
 <div class="heading clearfix">
 	<h1>Edit &ldquo;{title}&rdquo;</h1>
 </div>
@@ -64,7 +64,7 @@
 			<td>
 				<textarea id="field_id_378" class="input" name="field_id_378" dir="ltr" cols="34" rows="5">{deal_terms}</textarea>
 				<p class="instructions">Example: <em>Limit one coupon per customer.</em></p>
-				<input class="checkbox hidden" type="checkbox" name="category[]" value="{sponsor_number}" checked="checked" />
+				<input class="checkbox hidden" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" />
 			</td>
 		</tr>
 		<tr>
@@ -93,7 +93,7 @@
 		</tr>
 	</table>
 {/exp:weblog:entry_form}
-{/exp:weblog:entries}
+{/exp:channel:entries}
 </div>
 
 <div class="right sidebar">

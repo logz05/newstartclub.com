@@ -31,7 +31,7 @@
       {/exp:user:forgot}
     {if:else}
       <h1>You&rsquo;re already signed in!</h1>
-      <p>If you&rsquo;d like to change your password go to <a href="/settings/">settings</a> and use the new password form under the Account section.</p>
+      <p>If you&rsquo;d like to change your password go to <a href="{path='settings'}">settings</a> and use the new password form under the Account section.</p>
     {/if}
   </div>
 </body>

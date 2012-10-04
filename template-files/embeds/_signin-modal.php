@@ -7,7 +7,7 @@
 				<h3>You must sign in to view the ingredients.</h3>
 			{/if}
 			{if embed:modal-role == "video"}
-				<h3>You must sign in to watch &ldquo;{exp:weblog:entries weblog="resources" limit="1" url_title="{segment_3}"}{title}{/exp:weblog:entries}&rdquo;</h3>
+				<h3>You must sign in to watch &ldquo;{exp:channel:entries channel="resources" limit="1" url_title="{segment_3}"}{title}{/exp:channel:entries}&rdquo;</h3>
 			{/if}
 			{if embed:modal-role == "comments"}
 				<h3>You must sign in to leave a comment.</h3>

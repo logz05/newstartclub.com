@@ -1,4 +1,4 @@
-{exp:weblog:entries weblog="deals" entry_id="{segment_3}" show_expired="yes" show_future_entries="yes"}
+{exp:channel:entries channel="deals" entry_id="{segment_3}" show_expired="yes" show_future_entries="yes"}
 
 <?php
 
@@ -75,29 +75,92 @@ if ( count($results) == 0) {
 body, .header-bar, .preview-frame {
 	width: 100%;
 }
+body {
+	background-color: #BDC1C7;
+}
 .header-bar {
-	background: url(/assets/css/images/deals-website-preview-bar-logo.png) right center no-repeat #A7C7EF;
-	box-shadow: 0 -20px 8px 20px rgba(17, 42, 86,0.7);
-	z-index: 2;
+	background: url(/assets/css/images/deals-website-preview-bar-logo.png) right center no-repeat #4B84C1;
+	box-shadow: 0 -20px 15px 20px rgba(17, 42, 86, 0.6);
+	z-index: 20;
 	position: relative;
-	border-bottom: 2px solid #D1DCEC;
-	height: 80px;
+	border-bottom: 5px solid #FFF;
+	min-height: 80px;
+	color: #fff;
+	text-shadow: 0 1px 1px #284768;
+	font-family: 'Open Sans', sans-serif;
+}
+.close {
+	position: absolute;
+	left: -30px;
+	top: 6px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #fff;
+}
+.close:hover {
+	text-decoration: none;
+	color: #fff;
+	top: 7px;
+	text-shadow: 0 0 10px rgba(17, 42, 86, 1);
+}
+.instructions {
+	position: relative;
+	margin: 0 225px 0 48px;
+	padding-top: 5px;
+}
+.instructions h1 {
+	font-size: 16px;
+	margin: 0 0 6px;
+	padding-top: 10px;
+}
+.instructions p {
+	font-style: italic;
+	font-size: 15px;
+	margin: 0 0 10px;
+}
+.preview-frame {
+	position: relative;
+	z-index: 10;
+}
+#loading {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 1;
 }
 </style>
 </head>
 	<body>
 		{related_entries id="deal_location"}
-		<div class="header-bar">
-			<div class="close-header">
-				<a href="http://{location_website}" class="close-button close" >&times;</a>
+		<header class="header-bar">
+			<div class="instructions">
+				<a href="http://{location_website}" class="close" title="Remove frame">&times;</a>
+				<h1>Your coupon code has been copied to the clipboard. When you check out on the store's website, paste the code in the promo code field.</h1>
+				<p>To paste, right click for the edit menu. For the PC keyboard shortcut, use Ctrl + V. On a Mac, use Cmd + V.</p>
 			</div>
-			
-			<p class="meta-data">
-				<a href="http://{location_website}" class="close">Close Frame</a>
-			</p>
-		</div>
+		</header>
+		<div id="loading"></div>
 		<iframe class="preview-frame" src="http://{location_website}" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
 		{/related_entries}
-	{/exp:weblog:entries}
+	{/exp:channel:entries}
+<script src="/assets/js/spin.min.js"></script>
+<script type="text/javascript">
+//Spin.js loading indicator
+
+	var opts = {
+		lines: 12,
+		length: 6,
+		width: 3,
+		radius: 8,
+		color: '#777',
+		speed: 1.3,
+		trail: 70,
+		shadow: false
+	};
+	var target = document.getElementById('loading');
+	var spinner = new Spinner(opts).spin(target);
+	
+// End Spin.js parameters
+</script>
 	</body>
 </html>

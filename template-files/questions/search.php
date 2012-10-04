@@ -1,10 +1,10 @@
 {embed="embeds/_doc-top"
-	class="faq"
+	class="questions"
 	title="&ldquo;{exp:search:keywords}&rdquo; Search Results"
 }
 <ul class="trail">
-  <li><a href="/">Home</a></li>
-  <li><a href="/faq">FAQ</a></li>
+  <li><a href="{path='site_index'}">Home</a></li>
+  <li><a href="{path='questions'}">Questions</a></li>
 </ul>
 <div class="heading clearfix">
 	<h1>Search Results</h1>
@@ -18,11 +18,11 @@
 		{exp:search:search_results}
 			<li class="question">
 				<h2>Q.</h2>
-				<h3><a href="{url_title_path='faq/detail'}">{qa_question}</a></h3>
+				<h3><a href="{url_title_path='questions/detail'}">{exp:eehive_hacksaw}{question_question}{/exp:eehive_hacksaw}</a></h3>
 				<p class="answer">
-					{exp:trunchtml chars="120" inline="&hellip; <a class='link-more' href='{url_title_path='faq/detail'}'>more&raquo;</a>"}
-						{exp:html_strip}{qa_answer}{/exp:html_strip}
-					{/exp:trunchtml}
+					{exp:eehive_hacksaw chars="120" append="&hellip; <a class='link-more' href='{url_title_path='questions/detail'}'>more&raquo;</a>"}
+						{question_response}
+					{/exp:eehive_hacksaw}
 				</p>
 			</li>
 		{/exp:search:search_results}
@@ -34,7 +34,7 @@
 		</ul>
 	</div>
 	<div class="sidebar right">
-		{embed="faq/_sidebar"}
+		{embed="questions/_sidebar"}
 	</div>
 </div>
 {embed="embeds/_doc-bottom" sim="comments|question"}

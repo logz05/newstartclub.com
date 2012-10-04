@@ -1,24 +1,25 @@
-<ul class="listing">
-{exp:weblog:entries weblog="recipes" limit="12" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="off" cache="yes" refresh="10" {if embed:category}category="{segment_3_category_id}"{/if}}
+{exp:channel:entries channel="recipes" limit="12" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="no" cache="yes" refresh="10" {if embed:category}category="{segment_3_category_id}"{/if}}
 	{if no_results}
 		<p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
-		<p>Please choose from a category on the right or click <a href="/resources">here</a> to see our latest resources.</p>
+		<p>Please choose from a category on the right or click <a href="{path='resources'}">here</a> to see our latest resources.</p>
 	{/if}
+{if count == 1}
+	<ul class="listing">
+{/if}
 	<li class="recipe clearfix">
-		<h2><a href="{url_title_path='recipes/detail'}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
-	{if resource_thumb != ''}
+		<h2><a href="{url_title_path='recipes/detail'}">{title}</a>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}</h2>
+	{if recipe_image}
 		<a href="{url_title_path='recipes/detail'}" class="image">
-			{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
-			{exp:ce_img:single src="{resource_thumb}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+			{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
 		</a>
 	{if:else}
 		<a href="{url_title_path='recipes/detail'}"><div class="resource-placeholder"></div></a>
 	{/if}
 		<div class="details">
 			<p class="description">
-				{exp:trunchtml chars="200" inline="&hellip; <a class='link-more' href='/recipes/detail/{url_title}'>more&raquo;</a>"}
-					{exp:html_strip}{resource_description}{/exp:html_strip}
-				{/exp:trunchtml}
+				{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='/recipes/detail/{url_title}'>more&raquo;</a>"}
+					{recipe_instructions}
+				{/exp:eehive_hacksaw}
 			</p>
 			<ul class="tags">
 				<li data-icon="r">Tags:</li>
@@ -31,12 +32,11 @@
 			</ul>
 		</div>
 	</li>
-	{paginate}
-		{if "{total_pages}" > 1}
-			<li class="pagination">
-				<p>{pagination_links}</p>
-			</li>
-		{/if}
-	{/paginate}
-{/exp:weblog:entries}
-</ul>
+{if count == total_results}
+	</ul>
+{/if}
+
+{paginate}
+	<p class="pagination">{pagination_links}</p>
+{/paginate}
+{/exp:channel:entries}

@@ -1,10 +1,5 @@
-<?php
+{exp:channel:categories channel="locations" show="{segment_2}" style="linear"}
 
-{exp:weblog:categories weblog="locations" show="{segment_2}" style="linear"}
+	{exp:http_header status="301" location="{path='locations/detail/{category_url_title}'}" terminate="yes"}
 
-header("Location: /locations/detail/{category_url_title}"); /* Redirect browser */
-
-exit;
-{/exp:weblog:categories}
-
-?>
+{/exp:channel:categories}

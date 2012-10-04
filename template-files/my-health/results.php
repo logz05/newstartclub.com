@@ -10,9 +10,9 @@ function resultsPieChart($low, $high) {
 	$db = new DBconnect();
 	
 	if ($low == 0) {
-		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_24 < '. $high .' AND m_field_id_24 != ""';
+		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 != ""';
 	} else {
-		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_24 < '. $high .' AND m_field_id_24 >= '. $low;
+		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 >= '. $low;
 	}
 	
 	$subTotal = count($db->fetch($querySubTotal));
@@ -22,32 +22,29 @@ function resultsPieChart($low, $high) {
 
 ?>
 {embed="embeds/_doc-top" 
-	class="my_health"
+	class="my-health"
 	title="My Health"
 }
 {exp:user:stats}
 <?php
-		$hsAge = "{memberAge}";
-		$hsWeight = "{memberWeight}";
-		$hsHeightFeet = "{memberHeightFeet}";
-		$hsHeightInches = "{memberHeightInches}";
-		$hsWaistSize = "{memberWaistSize}";
-		$hsSleep = "{memberSleep}";
-		$hsExercise = "{memberExercise}";
-		$hsSmoking = "{memberSmoking}";
-		$hsAlcohol = "{memberAlcohol}";
-		$hsDiet = "{memberDiet}";
-		$hsNutrition = "{memberNutrition}";
-		$hsEmotional = "{memberEmotional}";
+		$hsAge = "{member_age}";
+		$hsWeight = "{member_weight}";
+		$hsHeightInches = "{member_height_in}";
+		$hsWaistSize = "{member_waist_in}";
+		$hsSleep = "{member_score_sleep}";
+		$hsExercise = "{member_score_exercise}";
+		$hsSmoking = "{member_score_smoking}";
+		$hsAlcohol = "{member_score_alcohol}";
+		$hsDiet = "{member_score_diet}";
+		$hsNutrition = "{member_score_nutrition}";
+		$hsEmotional = "{member_score_emotional}";
 		
-		$hsHeightTotal = ($hsHeightFeet*12)+$hsHeightInches;
+		$hsWaistPoints = 11 - ( abs(( $hsWaistSize / $hsHeightInches ) - .45 ) * 60 );
 		
-		$hsWaistPoints = 11 - ( abs(( $hsWaistSize / $hsHeightTotal ) - .45 ) * 60 );
+		$hsHealthyWeightLow = round((18.5/703)*($hsHeightInches*$hsHeightInches));
+		$hsHealthyWeightHigh = round((24.9/703)*($hsHeightInches*$hsHeightInches));
 		
-		$hsHealthyWeightLow = round((18.5/703)*($hsHeightTotal*$hsHeightTotal));
-		$hsHealthyWeightHigh = round((24.9/703)*($hsHeightTotal*$hsHeightTotal));
-		
-		$bmi = ($hsWeight/($hsHeightTotal*$hsHeightTotal))*703;
+		$bmi = ($hsWeight/($hsHeightInches*$hsHeightInches))*703;
 		$bmiPoints = 11 - abs($bmi - 21.7);
 		$hsTotal = round(($hsSleep + $hsExercise + $hsSmoking + $hsAlcohol + $hsDiet + $hsNutrition + $hsEmotional + $bmiPoints + $hsWaistPoints), 1);
 
@@ -68,35 +65,32 @@ function graphColor($score) {
 }
 
 ?>
-	{if memberScoreTotal == ""}
-		{redirect="my_health/calculator"}
+	{if member_score_total == ""}
+		{redirect="my-health/calculator"}
 	{/if}
 {/exp:user:stats}
 {if logged_out}
 <?php
-	if (isset($_POST['memberAge']))
+	if (isset($_POST['member_age']))
 	{
-		$hsAge = $_POST['memberAge'];
-		$hsWeight = $_POST['memberWeight'];
-		$hsHeightFeet = $_POST['memberHeightFeet'];
-		$hsHeightInches = $_POST['memberHeightInches'];
-		$hsWaistSize = $_POST['memberWaistSize'];
-		$hsSleep = $_POST['memberSleep'];
-		$hsExercise = $_POST['memberExercise'];
-		$hsSmoking = $_POST['memberSmoking'];
-		$hsAlcohol = $_POST['memberAlcohol'];
-		$hsDiet = $_POST['memberDiet'];
-		$hsNutrition = $_POST['memberNutrition'];
-		$hsEmotional = $_POST['memberEmotional'];
+		$hsAge = $_POST['member_age'];
+		$hsWeight = $_POST['member_weight'];
+		$hsHeightInches = $_POST['member_height_in'];
+		$hsWaistSize = $_POST['member_waist_in'];
+		$hsSleep = $_POST['member_score_sleep'];
+		$hsExercise = $_POST['member_score_exercise'];
+		$hsSmoking = $_POST['member_score_smoking'];
+		$hsAlcohol = $_POST['member_score_alcohol'];
+		$hsDiet = $_POST['member_score_diet'];
+		$hsNutrition = $_POST['member_score_nutrition'];
+		$hsEmotional = $_POST['member_score_emotional'];
 		
-		$hsHeightTotal = ($hsHeightFeet*12)+$hsHeightInches;
+		$hsWaistPoints = 11 - ( abs(( $hsWaistSize / $hsHeightInches ) - .45 ) * 60 );
 		
-		$hsWaistPoints = 11 - ( abs(( $hsWaistSize / $hsHeightTotal ) - .45 ) * 60 );
+		$hsHealthyWeightLow = round((18.5/703)*($hsHeightInches*$hsHeightInches));
+		$hsHealthyWeightHigh = round((24.9/703)*($hsHeightInches*$hsHeightInches));
 		
-		$hsHealthyWeightLow = round((18.5/703)*($hsHeightTotal*$hsHeightTotal));
-		$hsHealthyWeightHigh = round((24.9/703)*($hsHeightTotal*$hsHeightTotal));
-		
-		$bmi = ($hsWeight/($hsHeightTotal*$hsHeightTotal))*703;
+		$bmi = ($hsWeight/($hsHeightInches*$hsHeightInches))*703;
 		$bmiPoints = 11 - abs($bmi - 21.7);
 		$hsTotal = round(($hsSleep + $hsExercise + $hsSmoking + $hsAlcohol + $hsDiet + $hsNutrition + $hsEmotional + $bmiPoints + $hsWaistPoints), 1);
 		
@@ -130,8 +124,8 @@ function totalScore($score) {
 {/if}
 
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/my_health">My Health</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='my-health'}">My Health</a></li>
 </ul>
 <div class="heading clearfix">
 	<h1>Health Score Results</h1>
@@ -139,8 +133,8 @@ function totalScore($score) {
 
 <div class="grid23 clearfix">
 	<div class="main left">
-		{exp:user:stats}
-			
+		{exp:user:stats dynamic="off"}
+
 			<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 			<script type="text/javascript">
 				google.load("visualization", "1", {packages:["corechart"]});
@@ -153,7 +147,7 @@ function totalScore($score) {
 					data.addRows([
 						<?php
 						
-						$score_history = unserialize( '{memberScoreHistory}' );
+						$score_history = unserialize( '{member_score_history}' );
 
 						if ( count($score_history) > 1 ) {
 						
@@ -202,9 +196,9 @@ function totalScore($score) {
 			</dl>
 			<ul class="tabs-content">
 				<li id="current">
-					<h2 id="total-score" class="{if memberScoreTotal > '90'}one{if:elseif memberScoreTotal < '90' AND memberScoreTotal >= '80'}two{if:elseif memberScoreTotal >= '70' AND memberScoreTotal < '80'}three{if:elseif memberScoreTotal >= '60' AND	memberScoreTotal < '70'}four{if:elseif memberScoreTotal < '60'}five{/if}">{memberScoreTotal}</h2>
+					<h2 id="total-score" class="{if member_score_total > '90'}one{if:elseif member_score_total < '90' AND member_score_total >= '80'}two{if:elseif member_score_total >= '70' AND member_score_total < '80'}three{if:elseif member_score_total >= '60' AND	member_score_total < '70'}four{if:elseif member_score_total < '60'}five{/if}">{member_score_total}</h2>
 					<p class="button-wrap">
-						<a href="/my_health/calculator" class="super secondary button"><span>Recalculate</span></a>
+						<a href="{path='my-health/calculator'}" class="super secondary button"><span>Recalculate</span></a>
 					</p>
 				</li>
 				<li id="history">
@@ -213,38 +207,38 @@ function totalScore($score) {
 			</ul>
 			<div class="post">
 			<h3>Summary</h3>
-			<p>According to your health score, you have a	 <?php echo round(100 - {memberScoreTotal}, 1); ?>% risk of developing a lifestyle related disease such as heart disease, cancer, or diabetes.</p>
+			<p>According to your health score, you have a	 <?php echo round(100 - {member_score_total}, 1); ?>% risk of developing a lifestyle related disease such as heart disease, cancer, or diabetes.</p>
 				
 			<h2>Recommendations</h2>
 			<ul id="recommendations">
-				{if memberSleep != "11"}<li><a href="/resources/living-better/rest">Get 7-8 hours of sleep nightly</a></li>{/if}
-				{if memberExercise != "13"}<li><a href="/resources/living-better/exercise">Exercise regularly</a></li>{/if}
-				{if memberSmoking != "11"}<li><a href="/resources/health-condition/addictions">Don&rsquo;t smoke</a></li>{/if}
-				{if memberAlcohol != "11"}<li><a href="/resources/health-condition/addictions">Don&rsquo;t drink alcohol</a></li>{/if}
-				{if memberDiet != "11"}<li><a href="/recipes">Eat whole plant foods every day</a></li>{/if}
-				{if memberNutrition != "10"}<li><a href="/recipes">Avoid refined sugars and oils</a></li>{/if}
-				{if memberEmotional != "11"}<li><a href="/resources/living-better/emotional-wellbeing">Boost your EQ</a></li>{/if}
+				{if member_score_sleep != "11"    }<li><a href="{path='resources/living-better/rest'}">Get 7-8 hours of sleep nightly</a></li>{/if}
+				{if member_score_exercise != "13" }<li><a href="{path='resources/living-better/exercise'}">Exercise regularly</a></li>{/if}
+				{if member_score_smoking != "11"  }<li><a href="{path='resources/health-condition/addictions'}">Don&rsquo;t smoke</a></li>{/if}
+				{if member_score_alcohol != "11"  }<li><a href="{path='resources/health-condition/addictions'}">Don&rsquo;t drink alcohol</a></li>{/if}
+				{if member_score_diet != "11"     }<li><a href="{path='resources/detail/10-day-meal-plan'}">Eat whole plant foods every day</a></li>{/if}
+				{if member_score_nutrition != "10"}<li><a href="{path='resources/detail/10-day-meal-plan'}">Avoid refined sugars and oils</a></li>{/if}
+				{if member_score_emotional != "11"}<li><a href="{path='resources/living-better/emotional-wellbeing'}">Boost your EQ</a></li>{/if}
 				<?php if ( $hsWeight > $hsHealthyWeightHigh || $hsWeight < $hsHealthyWeightLow ) { ?>
-					<li><a href="/resources/health-conditions/obesity">Maintain a healthy weight between <?php echo $hsHealthyWeightLow . '-' . $hsHealthyWeightHigh . ' lbs.'; ?></a></li>
+					<li><a href="{path='resources/health-conditions/obesity'}">Maintain a healthy weight between <?php echo $hsHealthyWeightLow . '-' . $hsHealthyWeightHigh . ' lbs.'; ?></a></li>
 				<?php } ?>
-				<?php if ( ($hsWaistSize / $hsHeightTotal ) < 0.4 || ($hsWaistSize / $hsHeightTotal ) > 0.5 ) { ?>
-					<li><a href="/resources/health-conditions/obesity">Maintain a healthy waist size between <?php echo round($hsHeightTotal * 0.4) . '-' . round($hsHeightTotal * 0.5) . ' in.'; ?></a></li>
+				<?php if ( ($hsWaistSize / $hsHeightInches ) < 0.4 || ($hsWaistSize / $hsHeightInches ) > 0.5 ) { ?>
+					<li><a href="{path='resources/health-conditions/obesity'}">Maintain a healthy waist size between <?php echo round($hsHeightInches * 0.4) . '-' . round($hsHeightInches * 0.5) . ' in.'; ?></a></li>
 				<?php } ?>
-				<?php if ( {memberScoreTotal} < 70 ) { ?>
+				<?php if ( {member_score_total} < 70 ) { ?>
 					<li><a href="http://www.newstart.com">Consider attending a NEWSTART&reg; Lifestyle Program</a></li>
 				<?php } ?>
-					<li><a href="/resources/detail/newstart-lifestyle/">Continue following the NEWSTART&reg; Lifestyle</a></li>
+					<li><a href="{path='resources/detail/newstart-lifestyle/'}">Continue following the NEWSTART&reg; Lifestyle</a></li>
 			</ul>
 					
 			<p class="button-wrap">
-				<a href="/my_health/tell-me-more" class="super green button"><span>Tell me more</span></a>
+				<a href="{path='my-health/tell-me-more'}" class="super green button"><span>Tell me more</span></a>
 			</p>
 			</div>
 		{/exp:user:stats}
 		{if logged_out}
 		<?php 
 			
-			if (isset($_POST['memberAge']))
+			if (isset($_POST['member_age']))
 			{ ?>
 			<dl class="tabs">
 				<dd><a class="default" rel="current">Current Score</a></dd>
@@ -254,7 +248,7 @@ function totalScore($score) {
 				<li id="current">
 					<h2 id="total-score" class="<?php totalScore($hsTotal); ?>"><?php echo $hsTotal; ?></h2>
 					<p class="button-wrap">
-						<a href="/my_health/calculator" class="super secondary button"><span>Recalculate</span></a>
+						<a href="{path='my-health/calculator'}" class="super secondary button"><span>Recalculate</span></a>
 					</p>
 				</li>
 				<li id="history">
@@ -269,21 +263,21 @@ function totalScore($score) {
 			<h2>Recommendations</h2>
 			<p><em>Save your score to your profile to view a list of personalized recommendations.</em></p>
 			
-			<form action="/register" method="post">
+			<form action="{path='register'}" method="post">
 				<div class="hidden">
-					<input class="hidden" type="hidden" name="memberAge" value="<?php echo $_POST['memberAge']; ?>" />
-					<input class="hidden" type="hidden" name="memberWeight" value="<?php echo $_POST['memberWeight']; ?>" />
+					<input class="hidden" type="hidden" name="member_age" value="<?php echo $_POST['member_age']; ?>" />
+					<input class="hidden" type="hidden" name="member_weight" value="<?php echo $_POST['member_weight']; ?>" />
 					<input class="hidden" type="hidden" name="memberHeightFeet" value="<?php echo $_POST['memberHeightFeet']; ?>" />
-					<input class="hidden" type="hidden" name="memberHeightInches" value="<?php echo $_POST['memberHeightInches']; ?>" />
-					<input class="hidden" type="hidden" name="memberWaistSize" value="<?php echo $_POST['memberWaistSize']; ?>" />
-					<input class="hidden" type="hidden" name="memberSleep" value="<?php echo $_POST['memberSleep']; ?>" />
-					<input class="hidden" type="hidden" name="memberExercise" value="<?php echo $_POST['memberExercise']; ?>" />
-					<input class="hidden" type="hidden" name="memberAlcohol" value="<?php echo $_POST['memberAlcohol']; ?>" />
-					<input class="hidden" type="hidden" name="memberSmoking" value="<?php echo $_POST['memberSmoking']; ?>" />
-					<input class="hidden" type="hidden" name="memberDiet" value="<?php echo $_POST['memberDiet']; ?>" />
-					<input class="hidden" type="hidden" name="memberNutrition" value="<?php echo $_POST['memberNutrition']; ?>" />
-					<input class="hidden" type="hidden" name="memberEmotional" value="<?php echo $_POST['memberEmotional']; ?>" />
-					<input class="hidden" type="hidden" name="memberScoreTotal" value="<?php echo $hsTotal; ?>" />
+					<input class="hidden" type="hidden" name="member_height_in" value="<?php echo $_POST['member_height_in']; ?>" />
+					<input class="hidden" type="hidden" name="member_waist_in" value="<?php echo $_POST['member_waist_in']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_sleep" value="<?php echo $_POST['member_score_sleep']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_exercise" value="<?php echo $_POST['member_score_exercise']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_alcohol" value="<?php echo $_POST['member_score_alcohol']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_smoking" value="<?php echo $_POST['member_score_smoking']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_diet" value="<?php echo $_POST['member_score_diet']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_nutrition" value="<?php echo $_POST['member_score_nutrition']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_emotional" value="<?php echo $_POST['member_score_emotional']; ?>" />
+					<input class="hidden" type="hidden" name="member_score_total" value="<?php echo $hsTotal; ?>" />
 					<input class="hidden" type="hidden" name="memberScoreHistory" value='<?php echo $scoreHistory; ?>' />
 				</div>
 				<div class="button-wrap">
@@ -298,7 +292,7 @@ function totalScore($score) {
 			<p>It appears that you haven&rsquo;t calculated your health score yet. Click the button below to calculate your health score.</p>
 			
 			<p class="button-wrap">
-				<a href="/my_health/calculator" class="super giant green button"><span>Calculate</span></a>
+				<a href="{path='my-health/calculator'}" class="super giant green button"><span>Calculate</span></a>
 			</p>
 			</div>
 		<?php } ?>
@@ -316,11 +310,11 @@ function totalScore($score) {
 				data.addColumn('string', 'Task');
 				data.addColumn('number', 'Hours per Day');
 				data.addRows([
-					['Very Low',	 <?php resultsPieChart(90, 100) ?>],
-					['Low',				 <?php resultsPieChart(80, 90) ?>],
-					['Medium',		 <?php resultsPieChart(70, 80) ?>],
-					['High',			 <?php resultsPieChart(60, 70) ?>],
-					['Very High',	 <?php resultsPieChart(0, 60) ?>]
+					['Very Low',   <?php resultsPieChart(90, 100) ?>],
+					['Low',        <?php resultsPieChart(80, 90) ?>],
+					['Medium',     <?php resultsPieChart(70, 80) ?>],
+					['High',       <?php resultsPieChart(60, 70) ?>],
+					['Very High',  <?php resultsPieChart(0, 60) ?>]
 				]);
 			
 				var options = {
@@ -424,19 +418,19 @@ function totalScore($score) {
 			</thead>
 			<tbody>
 				<tr>
-					<td{if memberScoreTotal >= '90'} class="strong"{/if}><span class="bullet one">&bull;</span> 90-100 = Very Low</td>
+					<td{if member_score_total >= '90'} class="strong"{/if}><span class="bullet one">&bull;</span> 90-100 = Very Low</td>
 				</tr>
 				<tr>
-					<td{if memberScoreTotal >= '80' AND memberScoreTotal < '90'} class="strong"{/if}><span class="bullet two">&bull;</span> 80-89 = Low</td>
+					<td{if member_score_total >= '80' AND member_score_total < '90'} class="strong"{/if}><span class="bullet two">&bull;</span> 80-89 = Low</td>
 				</tr>
 				<tr>
-					<td{if memberScoreTotal >= '70' AND memberScoreTotal < '80'} class="strong"{/if}><span class="bullet three">&bull;</span> 70-79 = Medium</td>
+					<td{if member_score_total >= '70' AND member_score_total < '80'} class="strong"{/if}><span class="bullet three">&bull;</span> 70-79 = Medium</td>
 				</tr>
 				<tr>
-					<td{if memberScoreTotal >= '60' AND memberScoreTotal < '70'} class="strong"{/if}><span class="bullet four">&bull;</span> 60-69 = High</td>
+					<td{if member_score_total >= '60' AND member_score_total < '70'} class="strong"{/if}><span class="bullet four">&bull;</span> 60-69 = High</td>
 				</tr>
 				<tr>
-					<td{if memberScoreTotal < '60'} class="strong"{/if}><span class="bullet five">&bull;</span> 59 and lower = Very High</td>
+					<td{if member_score_total < '60'} class="strong"{/if}><span class="bullet five">&bull;</span> 59 and lower = Very High</td>
 				</tr>
 			</tbody>
 		</table>
@@ -444,11 +438,11 @@ function totalScore($score) {
 		<h2>Risk Level</h2>
 		<ul id="chart-legend">
 		{exp:user:stats}
-			<li{if memberScoreTotal >= '90'} class="strong"{/if}><span class="bullet one">&bull;</span> 90-100 = Very Low</li>
-			<li{if memberScoreTotal >= '80' AND memberScoreTotal < '90'} class="strong"{/if}><span class="bullet two">&bull;</span> 80-89 = Low</li>
-			<li{if memberScoreTotal >= '70' AND memberScoreTotal < '80'} class="strong"{/if}><span class="bullet three">&bull;</span> 70-79 = Medium</li>
-			<li{if memberScoreTotal >= '60' AND memberScoreTotal < '70'} class="strong"{/if}><span class="bullet four">&bull;</span> 60-69 = High</li>
-			<li{if memberScoreTotal < '60'} class="strong"{/if}><span class="bullet five">&bull;</span> 59 and lower = Very High</li>
+			<li{if member_score_total >= '90'} class="strong"{/if}><span class="bullet one">&bull;</span> 90-100 = Very Low</li>
+			<li{if member_score_total >= '80' AND member_score_total < '90'} class="strong"{/if}><span class="bullet two">&bull;</span> 80-89 = Low</li>
+			<li{if member_score_total >= '70' AND member_score_total < '80'} class="strong"{/if}><span class="bullet three">&bull;</span> 70-79 = Medium</li>
+			<li{if member_score_total >= '60' AND member_score_total < '70'} class="strong"{/if}><span class="bullet four">&bull;</span> 60-69 = High</li>
+			<li{if member_score_total < '60'} class="strong"{/if}><span class="bullet five">&bull;</span> 59 and lower = Very High</li>
 		{/exp:user:stats}
 		{if logged_out}
 			<li<?php if ( $hsTotal >= 90) { echo ' class="strong"'; } ?>><span class="bullet one">&bull;</span> 90-100 = Very Low</li>

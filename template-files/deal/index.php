@@ -1,10 +1,5 @@
-<?php
+{exp:channel:entries channel="deals" entry_id="{segment_2}" show_expired="yes" show_future_entries="yes"}
 
-{exp:weblog:entries weblog="deals" entry_id="{segment_2}" style="linear" show_expired="yes"}
+	{exp:http_header status="301" location="{url_title_path='deals/detail'}" terminate="yes"}
 
-header("Location: /deals/coupon/{url_title}"); /* Redirect browser */
-
-exit;
-{/exp:weblog:entries}
-
-?>
+{/exp:channel:entries}

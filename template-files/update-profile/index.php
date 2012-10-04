@@ -137,25 +137,20 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 }
 ?>
 {exp:user:stats dynamic="off"}
-
-<?php
-	$email_sent = {welcome_email_sent};
-	
-	//Update member profile to show that email has been sent.
-	$query = "UPDATE exp_member_data SET m_field_id_32 = 1 WHERE member_id = {member_id}";
-	
-	$db->query($query);
-	
-	$db = null; // force the class destructor to run
-	
-	echo '<!-- '. $email_sent .' -->';
-	
-	if ($email_sent != 1) {
-		 send_emails('{firstName}', '{lastName}', '{username}', $_SESSION["jsPassword"]);
-	}
-
-?>
-
+	{if member_welcome_email !="1"}
+		<?php
+		
+			send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION["jsPassword"]);
+			
+			//Update member profile to show that email has been sent.
+			$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";
+			
+			$db->query($query);
+			
+			$db = null; // force the class destructor to run
+		
+		?>
+	{/if}
 {/exp:user:stats}
 
 {embed="embeds/_doc-top" 
@@ -170,7 +165,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	
 			<h2 class="first">To better serve your health needs, please take a moment to indicate the areas you&rsquo;re interested in.</h2>
 			
-		{exp:user:edit return="/my_health" form:class="clearfix" form:id="update-profile"}
+		{exp:user:edit return="/my-health" form:class="clearfix" form:id="update-profile"}
 			<h2>Check the subjects you are interested in</h2>
 			<div class="grid12-23 clearfix">
 				<div class="left">
@@ -197,17 +192,17 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 				{/category_body}{/categories}
 			</ul>
 
-			<input type="hidden" class="hidden" name="firstName" id="firstName" value="{firstName}" size="25" autocomplete="off" />
-			<input type="hidden" pattern="[0-9]*" class="hidden" id="zipCode" name="zipCode" value="{zipCode}" size="7" autocomplete="off" />
-			<input type="hidden" name="terms_and_conditions" value="on" />
+			<input type="hidden" class="hidden" name="member_first_name" id="member_first_name" value="{member_first_name}" size="25" autocomplete="off" />
+			<input type="hidden" class="hidden" name="member_last_name" id="member_last_name" value="{member_last_name}" size="25" autocomplete="off" />
+			<input type="hidden" pattern="[0-9]*" class="hidden" id="member_zip" name="member_zip" value="{member_zip}" size="7" autocomplete="off" />
 			
 			<p><button type="submit" class="super green button"><span>Save</span></button></p>
 			{/exp:user:edit}
-		</div><!--/.left-->
+		</div>
 		<div class="sidebar right">
 			<header class="bar">Update Profile</header>
 			<p>To view or change your completed profile at anytime as well as update your password, click on &ldquo;Settings&rdquo; at the top of the page.</p>
 			<div class="update-profile"></div>
 		</div>
-	</div><!--/.grid23-->
+	</div>
 {embed="embeds/_doc-bottom"}

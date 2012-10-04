@@ -4,8 +4,8 @@
 "}
 {embed="embeds/_rss-feed"}
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/deals">Deals</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='deals'}">Deals</a></li>
 </ul>
 <div class="heading clearfix">
 	<h1>{segment_3_category_name}</h1>
@@ -20,5 +20,5 @@
 </div>
 {embed="embeds/_doc-bottom"
 	sim="coupon"
-	show-coupons='{exp:weblog:entries weblog="deals" dynamic="off" category="{segment_3_category_id}" show_future_entries="yes" show_expired="yes" backspace="1"}{entry_id}|{/exp:weblog:entries}'
+	show-coupons='{exp:channel:entries channel="deals" dynamic="no" category="{segment_3_category_id}" show_future_entries="yes" show_expired="yes" backspace="1"}{entry_id}|{/exp:channel:entries}'
 }

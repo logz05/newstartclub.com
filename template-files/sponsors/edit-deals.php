@@ -1,7 +1,7 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Edit Deals"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 
 <div class="heading clearfix">
@@ -17,7 +17,7 @@
 		</div>
 	</noscript>
 
-	{embed="sponsors/_deal-list" sponsor_number="{sponsor_number}"}
+	{embed="sponsors/_deal-list" sponsor_number="{member_admin_id}"}
 
 	</div>
 
@@ -25,7 +25,7 @@
 		<header class="bar" data-icon="n">Edit Deals</header>
 		<p>To see more about a deal click on the deal title.</p>
 		<p>To add a new deal, click <a href="/sponsors/add-deal">here</a>.</p>
-		<p>Click {exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}<a href="/deals/detail/{category_url_title}">here</a>{/exp:weblog:categories} to see your active deals.</p>
+		<p>Click {exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}<a href="/deals/sponsor/{category_url_title}">here</a>{/exp:channel:categories} to see your active deals.</p>
 	</div>
 </div>
 {/exp:user:stats}

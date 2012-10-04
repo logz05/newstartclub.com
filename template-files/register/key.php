@@ -10,7 +10,7 @@
 	{if group_id==1}
 		<p>You&rsquo;re currently signed in as a Super Admin. To see this form you must log out.</p>
 	{/if}
-{exp:user:register form:name="register-key" form:id="register" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" require_key="yes"}
+{exp:user:register form:name="register-key" form:id="register" return="update-profile" required="member_first_name|member_last_name|username|password|password_confirm|zipCode" require_key="yes"}
 <script type="text/javascript">
 
 function getZIP (form) {
@@ -37,12 +37,12 @@ function getZIP (form) {
 	</noscript>
 	<table>
 		<tr>
-			<th scope="row" width="140"><label for="firstName" class="req"><span class="req">* </span>First Name</label></th>
-			<td><input type="text" class="input" name="firstName" id="firstName" value="" size="25" autocomplete="off" /></td>
+			<th scope="row" width="140"><label for="member_first_name" class="req"><span class="req">* </span>First Name</label></th>
+			<td><input type="text" class="input" name="member_first_name" id="member_first_name" value="" size="25" autocomplete="off" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="lastName" class="req"><span class="req">* </span>Last Name</label></th>
-			<td><input type="text" class="input" name="lastName" id="lastName" value="" size="25" autocomplete="off" /></td>
+			<th scope="row"><label for="member_last_name" class="req"><span class="req">* </span>Last Name</label></th>
+			<td><input type="text" class="input" name="member_last_name" id="member_last_name" value="" size="25" autocomplete="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="address">Address</label></th>
@@ -106,7 +106,7 @@ function getZIP (form) {
 			<td>
 				<p id="terms-conditions">
 					<input class="checkbox" type="checkbox" name="terms_and_conditions">
-					<span>I agree to the <a href="/about/terms-of-use">terms</a> and <a href="/about/privacy-policy">conditions</a> which include receiving a quarterly eNewsletter.</span>
+					<span>I agree to the <a href="{path='about/terms-of-use'}">terms</a> and <a href="{path='about/privacy-policy'}">conditions</a> which include receiving a quarterly eNewsletter.</span>
 				</p>
 			</td>
 		</tr>

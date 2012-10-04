@@ -14,7 +14,7 @@ require_once ( 'utilities.php' );
 	title="
 		{if logged_in}
 			{exp:user:stats dynamic='off'}
-				Hello, <?php echo ucwords(strtolower("{firstName}")); ?>
+				Hello, <?php echo ucwords(strtolower("{member_first_name}")); ?>
 			{/exp:user:stats}
 		{/if}
 		{if logged_out}
@@ -24,7 +24,7 @@ require_once ( 'utilities.php' );
 	{if logged_out}
 		<div id="intro-heading" class="clearfix">
 			<p class="button-wrap">
-				<a href="/register" class="giant super green button"><span>Get Started &raquo;</span></a>
+				<a href="{path='register'}" class="giant super green button"><span>Get Started &raquo;</span></a>
 			</p>
 			<h1>Live Well Naturally.</h1>
 		</div>
@@ -32,38 +32,36 @@ require_once ( 'utilities.php' );
 		{embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub"}
 		<div class="heading clearfix">
 			{exp:user:stats dynamic="off"}
-				<h1>Welcome home, <span><?php echo ucwords(strtolower("{firstName}")); ?></span></h1>
+				<h1>Welcome home, <span><?php echo ucwords(strtolower("{member_first_name}")); ?></span></h1>
 			{/exp:user:stats}
 		</div>
 	{/if}
 	<div class="grid23 clearfix">
 		<div class="main left">
 			<section class="section resources">
-				<header class="bar" data-icon="d"><a href="/resources">Featured Resources</a></header>
+				<header class="bar" data-icon="d"><a href="{path='resources'}">Featured Resources</a></header>
 				{embed="site/featured-resources"}
 			</section>
 			
 			{embed="site/local-events"}
 			
 			<section class="section news">
-				<header class="bar" data-icon="h"><a href="/news">Latest Updates</a></header>
+				<header class="bar" data-icon="h"><a href="{path='news'}">Latest Updates</a></header>
 				<ul class="listing">
-					{exp:weblog:entries weblog="resources|events|partners|locations|questions|recipes|deals" limit="5" orderby="date" sort="desc" dynamic="off" show_expired="yes"}
-					<li class="entry {weblog_short_name}">
-						{if weblog_short_name == "resources"}<h2 data-icon="d">{/if}
-						{if weblog_short_name == "partners" }<h2 data-icon="a">{/if}
-						{if weblog_short_name == "events"   }<h2 data-icon="e">{/if}
-						{if weblog_short_name == "locations"}<h2 data-icon="f">{/if}
-						{if weblog_short_name == "recipes"  }<h2 data-icon="g">{/if}
-						{if weblog_short_name == "questions"}<h2 data-icon="i">{/if}
-						{if weblog_short_name == "deals"    }<h2 data-icon="n">{/if}
+					{exp:channel:entries channel="resources|events|services|locations|questions|recipes|deals" limit="5" orderby="date" sort="desc" dynamic="no" show_expired="yes"}
+					<li class="entry {channel_short_name}">
+						{if channel_short_name == "resources"}<h2 data-icon="d">{/if}
+						{if channel_short_name == "services" }<h2 data-icon="a">{/if}
+						{if channel_short_name == "events"   }<h2 data-icon="e">{/if}
+						{if channel_short_name == "locations"}<h2 data-icon="f">{/if}
+						{if channel_short_name == "recipes"  }<h2 data-icon="g">{/if}
+						{if channel_short_name == "questions"}<h2 data-icon="i">{/if}
+						{if channel_short_name == "deals"    }<h2 data-icon="n">{/if}
 							
-							{if weblog_short_name == "deals"}
-								<a href="{path='deals/detail/{categories show_group="24"}{category_url_title}{/categories}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
-							{if:elseif weblog_short_name == "questions"}
-								<a href="{path='faq/detail/{url_title}'}">{exp:char_limit total="48"}{qa_question}{/exp:char_limit}</a>
+							{if channel_short_name == "questions"}
+								<a href="{path='questions/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{question_question}{/exp:eehive_hacksaw}</a>
 							{if:else}
-								<a href="{path='{weblog_short_name}/detail/{url_title}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
+								<a href="{path='{channel_short_name}/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
 							{/if}
 						</h2>
 						<div class="date">
@@ -71,43 +69,43 @@ require_once ( 'utilities.php' );
 							<span class="entry-date">{entry_date format="%D, %M %j, %Y	%g:%i%a %T"}</span>
 						</div>
 					</li>
-					{/exp:weblog:entries}
+					{/exp:channel:entries}
 				</ul>
 			</div>
 		</section>
 
 		<div class="right sidebar">
-			<section class="section my_health">
+			<section class="section my-health">
 				{if logged_out}
-					<header class="bar" data-icon="c"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></header>
-					<a href="/my_health/calculator">
+					<header class="bar" data-icon="c"><a href="{path='my-health'}">The HealthGauge<sup>&trade;</sup></a></header>
+					<a href="{path='my-health/calculator'}">
 						<div id="gauge"></div>
 					</a>
 					<p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
 					<p class="button-wrap">
-						<a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
+						<a href="{path='my-health/calculator'}" class="super small secondary button"><span>Calculate</span></a>
 					</p>
 				{/if}
 				
 				{exp:user:stats dynamic="off"}
-				{if memberScoreTotal == ""}
-					<header class="bar" data-icon="c"><a href="/my_health">The HealthGauge<sup>&trade;</sup></a></header>
-					<a href="/my_health/calculator">
+				{if member_score_total == ""}
+					<header class="bar" data-icon="c"><a href="{path='my-health'}">The HealthGauge<sup>&trade;</sup></a></header>
+					<a href="{path='my-health/calculator'}">
 						<div id="gauge"></div>
 					</a>
 					<p>This health score calculator will evaluate your risk of developing a lifestyle related disease by comparing your personal health practices with modern scientific information.</p>
 					<p class="button-wrap">
-						<a href="/my_health/calculator" class="super small secondary button"><span>Calculate</span></a>
+						<a href="{path='my-health/calculator'}" class="super small secondary button"><span>Calculate</span></a>
 					</p>
 				{if:else}
-				<header class="bar" data-icon="c"><a href="/my_health">My Health</a></header>
-					<h2 class="my_health">Health Score Results</h2>
+				<header class="bar" data-icon="c"><a href="{path='my-health'}">My Health</a></header>
+					<h2 class="my-health">Health Score Results</h2>
 					<h3 class="total-score">
-						<a href="/my_health/results">{memberScoreTotal}</a>
+						<a href="{path='my-health/results'}">{member_score_total}</a>
 					</h3>
-					<p class="center"><a href="/my_health/calculator">Recalculate</a></p>
+					<p class="center"><a href="{path='my-health/calculator'}">Recalculate</a></p>
 					<p class="button-wrap center">
-						<a href="/my_health/results" class="super small secondary button"><span>View Recommendations</span></a>
+						<a href="{path='my-health/results'}" class="super small secondary button"><span>View Recommendations</span></a>
 					</p>
 				{/if}
 				{/exp:user:stats}
@@ -116,19 +114,19 @@ require_once ( 'utilities.php' );
 		{if logged_in}
 		
 			<section class="section deals">
-				<header class="bar" data-icon="n"><a href="/deals">Featured Deal</a></header>
-				{exp:weblog:entries weblog="deals" limit="1"}
-				<a href="/deals/detail/{categories show_group="24"}{category_url_title}{/categories}" class="image">
-				{categories show_group="24"}
-					{exp:ce_img:single src="{category_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
-				{/categories}
+				<header class="bar" data-icon="n"><a href="{path='deals'}">Featured Deal</a></header>
+				{exp:channel:entries channel="deals" limit="1" show_future_entries="yes"}
+				<a href="{url_title_path='deals/detail'}" class="image">
+				{deal_location}
+					{exp:ce_img:single src="{location_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
+				{/deal_location}
 				</a>
-				<h2 class="title"><a href="/deals/detail/{categories show_group="24"}{category_url_title}{/categories}">{title}</a></h2>
-				{/exp:weblog:entries}
+				<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+				{/exp:channel:entries}
 			</section>
 			
 			<section class="section members">
-				<header class="bar" data-icon="j"><a href="/settings">My Interests</a></header>
+				<header class="bar" data-icon="j"><a href="{path='settings'}">My Interests</a></header>
 					<ul>
 						{exp:user:stats}{categories group_id="14|15"}
 							{category_body}<li><a href="{path='resources/{reg1_path}{reg2_path}'}">&raquo; {category_description}</a></li>
@@ -136,71 +134,71 @@ require_once ( 'utilities.php' );
 						{/exp:user:stats}
 					</ul>
 					<p class="button-wrap">
-						<a href="/settings" class="super small secondary button"><span>Update my interests</span></a>
+						<a href="{path='settings'}" class="super small secondary button"><span>Update my interests</span></a>
 					</p>
 			</section>
 			<section class="section events">
-				<header class="bar" data-icon="e"><a href="/events">RSVP List</a></header>
+				<header class="bar" data-icon="e"><a href="{path='events'}">RSVP List</a></header>
 				{embed="events/_rsvp-list"}
 			</section>
 		{/if}
 		
 		{if logged_out}
 			<section class="section deals">
-				<header class="bar" data-icon="n"><a href="/deals">Featured Deal</a></header>
-				{exp:weblog:entries weblog="deals" limit="1"}
-				<a href="/deals/detail/{categories show_group="24"}{category_url_title}{/categories}" class="image">
+				<header class="bar" data-icon="n"><a href="{path='deals'}">Featured Deal</a></header>
+				{exp:channel:entries channel="deals" limit="1" show_future_entries="yes"}
+				<a href="{url_title_path='deals/detail'}" class="image">
 				{categories show_group="24"}
 					{exp:ce_img:single src="{category_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
 				{/categories}
 				</a>
-				<a class="title" href="/deals/detail/{categories show_group="24"}{category_url_title}{/categories}">{title}</a>
-				{/exp:weblog:entries}
+				<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+				{/exp:channel:entries}
 			</section>
 			
 			<section class="section resources">
-				<header class="bar" data-icon="d"><a href="/resources">Resource Topics</a></header>
+				<header class="bar" data-icon="d"><a href="{path='resources'}">Resource Topics</a></header>
 				<h2>Health Conditions</h2>
 				<ul>
 					<?php
 						$categories = array(
-						{exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="17" backspace="1"}
+						{exp:channel:categories weblog="resources" style="linear" show_empty="no" category_group="17" backspace="1"}
 							'{count}' => '<li><a href="{path=\'resources/health-condition/{category_url_title}\'}">{category_name}</a></li>',
-						{/exp:weblog:categories}
+						{/exp:channel:categories}
 						);
 						for ($i = 1; $i <= 8; $i++) {
 							echo $categories[$i] . "\n";
 						};
 					?>
-					<li class="see-more"><a href="/resources">See more &raquo;</a></li>
+					<li class="see-more"><a href="{path='resources'}">See more &raquo;</a></li>
 				</ul>
 				<h2>Living Better</h2>
 				<ul>
 					<?php
 						$categories = array(
-						{exp:weblog:categories weblog="resources" style="linear" show_empty="no" category_group="19" backspace="1"}
+						{exp:channel:categories weblog="resources" style="linear" show_empty="no" category_group="19" backspace="1"}
 							'{count}' => '<li><a href="{path=\'resources/living-better/{category_url_title}\'}">{category_name}</a></li>',
-						{/exp:weblog:categories}
+						{/exp:channel:categories}
 						);
 						for ($i = 1; $i <= 8; $i++) {
 							echo $categories[$i] . "\n";
 						};
 					?>
-					<li class="see-more"><a href="/resources">See more &raquo;</a></li>
+					<li class="see-more"><a href="{path='resources'}">See more &raquo;</a></li>
 				</ul>
 				<h2>Recipes</h2>
 				<ul>
 					<?php
 						$categories = array(
-						{exp:weblog:categories weblog="recipes" style="linear" show_empty="no" category_group="39" backspace="1"}
+						{exp:channel:categories weblog="recipes" style="linear" show_empty="no" category_group="39" backspace="1"}
 							'{count}' => '<li><a href="{path=\'recipes/type/{category_url_title}\'}">{category_name}</a></li>',
-						{/exp:weblog:categories}
+						{/exp:channel:categories}
 						);
 						for ($i = 1; $i <= 8; $i++) {
 							echo $categories[$i] . "\n";
 						};
 					?>
-					<li class="see-more"><a href="/resources">See more &raquo;</a></li>
+					<li class="see-more"><a href="{path='resources'}">See more &raquo;</a></li>
 				</ul>
 			</section>
 		{/if}
@@ -242,22 +240,22 @@ require_once ( 'utilities.php' );
 			
 			{exp:user:stats dynamic="off"}
 		
-			{if member_group == "1" || member_group == "13"}
+			{if member_group == "1" || member_group == "6"}
 				<section class="section sponsor-admin">
-					<header class="bar" data-icon="O"><a href="/sponsors">Sponsor Admin</a></header>
+					<header class="bar" data-icon="O"><a href="{path='sponsors'}">Sponsor Admin</a></header>
 						<ul>
-						{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}
+						{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}
 						{if sponsor_type == "profit"}
-							<li><a href="/sponsors/add-deal">&raquo; Add Deals</a></li>
-							<li><a href="/sponsors/edit-deals">&raquo; Edit Deals</a></li>
+							<li><a href="{path='sponsors/add-deal'}">&raquo; Add Deals</a></li>
+							<li><a href="{path='sponsors/edit-deals'}">&raquo; Edit Deals</a></li>
 						{if:else}
-							<li><a href="/sponsors/add-event">&raquo; Add Event</a></li>
-							<li><a href="/sponsors/edit-events">&raquo; Edit Events</a></li>
+							<li><a href="{path='sponsors/add-event'}">&raquo; Add Event</a></li>
+							<li><a href="{path='sponsors/edit-events'}">&raquo; Edit Events</a></li>
 						{/if}
-						{/exp:weblog:categories}
-							<li><a href="/sponsors/invite">&raquo; Invite Members</a></li>
-							<li><a href="/sponsors/email-members">&raquo; Email Members</a></li>
-							<li><a href="/sponsors/resources">&raquo; Get Resources</a></li>
+						{/exp:channel:categories}
+							<li><a href="{path='sponsors/invite'}">&raquo; Invite Members</a></li>
+							<li><a href="{path='sponsors/email-members'}">&raquo; Email Members</a></li>
+							<li><a href="{path='sponsors/resources'}">&raquo; Get Resources</a></li>
 						</ul>
 				</section>
 			{/if}

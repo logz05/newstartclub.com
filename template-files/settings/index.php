@@ -1,7 +1,6 @@
 {embed="embeds/_doc-top" 
-	class="{class}"
+	class="members"
 	title="Member Settings"}
-{assign_variable:class="members"}
 <div class="heading clearfix">
 	<h1 data-icon="j">Member Settings</h1>
 </div>
@@ -28,7 +27,7 @@
 		</div>
 	</noscript>
 	
-{exp:user:edit form:class="clearfix" form:name="settings" form:id="settings" return="settings" error_page="members/error" password_required="y" dynamic="off"}
+{exp:user:edit form:class="clearfix" form:name="settings" form:id="settings" return="settings" error_page="members/error" password_required="y" dynamic="no"}
 		<h2 class="first">Subjects you are interested in:</h2>
 		<div class="grid12-23 clearfix">
 			<div class="left">
@@ -57,38 +56,38 @@
 		<h2>Profile Information</h2>
 		<table>
 			<tr>
-				<th scope="row" width="178"><label for="firstName">First Name</label></th>
-				<td><input type="text" class="input" name="firstName" id="firstName" value="{firstName}" size="20" /></td>
+				<th scope="row" width="178"><label for="member_first_name">First Name</label></th>
+				<td><input type="text" class="input" name="member_first_name" id="member_first_name" value="{member_first_name}" size="20" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="lastName">Last Name</label></th>
-				<td><input type="text" class="input" name="lastName" id="lastName" value="{lastName}" size="20" /></td>
+				<th scope="row"><label for="member_last_name">Last Name</label></th>
+				<td><input type="text" class="input" name="member_last_name" id="member_last_name" value="{member_last_name}" size="20" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="address">Address</label></th>
-				<td><input type="text" class="input" id="address" name="address" value="{address}" size="25" /></td>
+				<th scope="row"><label for="member_address">Address</label></th>
+				<td><input type="text" class="input" id="member_address" name="member_address" value="{member_address}" size="25" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="city">City</label></th>
-				<td><input type="text" class="input" id="city" name="city" value="{city}" size="20" /></td>
+				<th scope="row"><label for="member_city">City</label></th>
+				<td><input type="text" class="input" id="member_city" name="member_city" value="{member_city}" size="20" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="state">State</label></th>
+				<th scope="row"><label for="member_state">State</label></th>
 				<td>
-					<select name="state" class="input"> 
-						{select_state} 
+					<select name="member_state" class="input"> 
+						{select_member_state} 
 						<option value="{value}" {selected}>{value}</option> 
-						{/select_state} 
+						{/select_member_state} 
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="zipCode">Zip Code</label></th>
-				<td><input type="text" class="input" id="zipCode" name="zipCode" value="{zipCode}" size="7" /></td>
+				<th scope="row"><label for="member_zip">Zip Code</label></th>
+				<td><input type="text" class="input" id="member_zip" name="member_zip" value="{member_zip}" size="7" /></td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="phone">Phone</label></th>
-				<td><input type="text" class="input" id="phone" name="phone" value="{phone}" size="15" /></td>
+				<th scope="row"><label for="member_phone">Phone</label></th>
+				<td><input type="text" class="input" id="member_phone" name="member_phone" value="{member_phone}" size="15" /></td>
 			</tr>
 		</table>
 		
@@ -113,7 +112,7 @@
 				<th scope="row"><label for="current_password" class="req">Current Password</label></th>
 				<td>
 					<input type="password" class="input" id="current_password" name="current_password" size="20" autocomplete="off" />
-					<input type="hidden" name="terms_and_conditions" value="on" />
+					<input type="hidden" name="member_terms_conditions" value="on" />
 				</td>
 			</tr>
 			<tr>
@@ -122,7 +121,7 @@
 					<input type="hidden" name="update" value="updated" />
 					<div class="button-wrap">
 						<button type="submit" class="super green button"><span>Update</span></button>
-						<a id="delete-account" class="right" href="/delete-account/"><span>&times;</span> Delete Account&hellip;</a>
+						<a id="delete-account" class="right" href="{path='delete-account'}"><span>&times;</span> Delete Account&hellip;</a>
 					</div>
 				</td>
 			</tr>

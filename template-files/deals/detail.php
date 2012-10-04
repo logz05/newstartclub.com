@@ -1,66 +1,44 @@
+{exp:channel:entries channel="deals" show_future_entries="yes" require_entry="yes"}
+{if no_results || segment_4 !=""}{redirect="404"}{/if}
+
 {embed="embeds/_doc-top" 
 	class="deals"
 	map="yes"
-	title="
-		{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
-			{title} Deals
-		{/exp:weblog:entries}
+	title="{title}
 	"
-	microdata="organization"
+	microdata="offer"
 	meta='
-		{exp:weblog:entries weblog="locations" url_title="{segment_3}"}
 			<meta property="og:title" content="{title}"/>
 			<meta property="og:site_name" content="{site_name}"/>
 			<meta property="og:url" content="{title_permalink='deals/detail'}"/>
-			<meta property="og:type" content="company"/>
-			<meta property="og:image" content="{location_image}"/>
-			<meta property="og:description" content="{exp:trunchtml chars="200"}{exp:html_strip}{location_description}{/exp:html_strip}{/exp:trunchtml}"/>
-			<meta name="description" content="{exp:trunchtml chars="200"}{exp:html_strip}{location_description}{/exp:html_strip}{/exp:trunchtml}"/>
-		{/exp:weblog:entries}
+			<meta property="og:type" content="article"/>
+			<meta property="og:image" content="http://newstartclub.com{categories show_group="24"}{category_image}{/categories}"/>
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="200" append="&hellip;"}{deal_instructions}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="200" append="&hellip;"}{deal_instructions}{/exp:eehive_hacksaw}"/>
 	'
 }
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/deals">Deals</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='deals'}">Deals</a></li>
 </ul>
-{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
-{if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
-	<h1 itemprop="name">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{location_slogan}"}{location_slogan}</h1>
+	<h1 itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h2>Valid from {entry_date format="%F %j%S, %Y"}{if expiration_date} to {expiration_date format="%F %j%S, %Y"}{/if} at {categories show_group="24"}<a href="/locations/detail/{category_url_title}">{category_name}</a>{/categories}</h2>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post">
-			<div class="clearfix">
-				{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" title="{location_slogan}" class="image" itemprop="image"'}
-				<span itemprop="description">{location_description}</span>
-			</div>
-		</div>
-		{/exp:weblog:entries}
-		<header class="bar" data-icon="n">Active Deals</header>
-		<ul class="listing">
-		{exp:weblog:entries weblog="deals" category="{segment_3_category_id}" dynamic="off" show_future_entries="yes" orderby="expiration_date|entry_date" sort="asc|asc"}
-			{if no_results}
-				<div class="post">
-					<p><em>No active deals.</em></p>
-				</div>
+			{deal_location}
+			{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" class="image" itemprop="image"'}
+			<span itemprop="description">{location_description}</span>
+			{/deal_location}
+			<div class="instructions">{deal_instructions}</div>
+			{if logged_out}
+				<a class="show-coupon" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
+			{if:else}
+				<a class="show-coupon" href="{url_title_path='deals/detail'}" data-reveal-id="modal-coupon-{entry_id}"><span data-icon="p">Show coupon code</span></a>
 			{/if}
-			<li class="deal dependant">
-				<div class="details" data-icon="n">
-					<h2><a href="{url_title_path='deals/coupon'}" data-reveal-id="modal-coupon-{entry_id}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
-					{deal_instructions}
-					<p class="expires">{if expiration_date}Expires: {expiration_date format="%m/%d/%y"}{/if}</p>
-					{if logged_out}
-						<a class="show-coupon" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></span></a>
-					{if:else}
-						<a class="show-coupon" href="/deals/coupon/{url_title}" data-reveal-id="modal-coupon-{entry_id}"><span data-icon="p">Show coupon code</span></a>
-					{/if}
-				</div>
-			</li>
-		{/exp:weblog:entries}
-		</ul>
-		{exp:weblog:entries weblog="locations" require_entry="yes" limit="1"}
-		<div class="post">
+			{deal_location}
 			<dl>
 				<dt>Location:</dt>
 				<dd itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
@@ -81,14 +59,14 @@
 				{/if}
 			</div>
 			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
-			
-		</div><!--/.post-->
+			{/deal_location}
+		</div>
 	</div>
 	<div class="sidebar right">
-		{embed="embeds/_share" channel="locations" image="{location_image}"}
+		{embed="deals/_more-deals" entry_id="{entry_id}" cat_id="{categories show_group='24'}{category_id}{/categories}"}
+		{embed="embeds/_share" channel="deals" image="{related_entries id='deal_location'}{location_image}{/related_entries}"}
 	</div>
 </div>
-{/exp:weblog:entries}
 <div id="map-area">
 	<div id="canvas"><span id="loading"></span></div>
 	<span class="shadow"></span>
@@ -112,10 +90,11 @@
 // End Spin.js parameters
 </script>
 <div id="directions"></div>
-{exp:weblog:entries weblog="locations" limit="1" require_entry="yes" limit="1" url_title="{segment_3}"}
-<input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />{/exp:weblog:entries}
+{deal_location}
+<input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />{/deal_location}
+{/exp:channel:entries}
 {exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
 {embed="embeds/_doc-bottom"
 	sim="coupon|directions"
-	show-coupons='{exp:weblog:entries weblog="deals" category="{segment_3_category_id}" dynamic="off" show_future_entries="yes" backspace="1"}{entry_id}|{/exp:weblog:entries}'
+	show-coupons='{exp:channel:entries channel="deals" show_future_entries="yes"}{entry_id}{/exp:channel:entries}'
 }

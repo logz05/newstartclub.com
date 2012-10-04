@@ -1,8 +1,7 @@
 {embed="embeds/_doc-top" 
-	class="{class}"
+	class="members"
 	title="Privacy Policy"
 "}
-{assign_variable:class="members"}
 {if segment_3}
 	{redirect="404"}
 {/if}
@@ -57,8 +56,8 @@
 	<div class="sidebar right">
 		<header class="bar">About</header>
 		<ul>
-			<li><a href="/about/terms-of-use">Terms of Use</a></li>
-			<li><a href="/about/privacy-policy">Privacy Policy</a></li>
+			<li><a href="{path='about/terms-of-use'}">Terms of Use</a></li>
+			<li><a href="{path='about/privacy-policy'}">Privacy Policy</a></li>
 		</ul>
 	</div>
 </div>

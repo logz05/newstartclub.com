@@ -1,10 +1,10 @@
 {embed="embeds/_doc-top" 
-	class="partners"
+	class="services"
 	title="Partnership Application"
 }
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/{segment_1}">Partners</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='{segment_1}'}">Partners</a></li>
 </ul>
 <div class="heading clearfix">
 	<h1>
@@ -20,7 +20,7 @@
 						<label for="name">Name</label>
 					</th>
 					<td>
-						<input type="text" name="name" class="input" id="name" size="25" value="{exp:user:stats dynamic='off'}{firstName} {lastName}{/exp:user:stats}" />
+						<input type="text" name="name" class="input" id="name" size="25" value="{exp:user:stats dynamic='off'}{member_first_name} {member_last_name}{/exp:user:stats}" />
 					</td>
 				</tr>
 				<tr>

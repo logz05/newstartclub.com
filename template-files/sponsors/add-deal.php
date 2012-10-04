@@ -2,37 +2,37 @@
 	class="sponsors"
 	title="Create a new deal"
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}{sponsor_type}{/exp:weblog:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 <div class="heading clearfix">
 	<h1>Create a new deal</h1>
 </div>
 <div class="grid23 clearfix">
-	<div class="main events left">
+	<div class="main left">
 	<noscript>
 		<div class="alert-box warning">
 			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
 		</div>
 	</noscript>
 	<h2>Deal Information</h2>
-{exp:user:stats dynamic="off"}
-{exp:weblog:entry_form weblog="deals" return="/sponsors/edit-deals" category="{sponsor_number}"}
+
+{exp:safecracker channel="deals" return="sponsors/edit-deals"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
 			<td><input type="text" class="input" name="title" id="title" value="{title}" size="36" maxlength="100" onkeyup="liveUrlTitle();" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_374">* Coupon Code</label></th>
+			<th scope="row"><label for="deal_code">* Coupon Code</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_374" class="input" name="field_id_374" value="" maxlength="128" size="25" onBlur="this.value=couponcode(this.value);" /><br>
-				<p class="instructions">Put your coupon code here. Example: <em>SUMMER12</em></p>
+				<input type="text" dir="ltr" id="deal_code" class="input" name="deal_code" value="" maxlength="128" size="25" onBlur="this.value=couponcode(this.value);" /><br>
+				<p class="instructions">Put your coupon code here. Example: <em>SUMMER25</em></p>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_375">* Instructions</label></th>
+			<th scope="row"><label for="deal_instructions">* Instructions</label></th>
 			<td>
-				<textarea id="field_id_375" class="input" name="field_id_375" dir="ltr" cols="34" rows="6"></textarea>
+				<textarea id="deal_instructions" class="input" name="deal_instructions" dir="ltr" cols="34" rows="6"></textarea>
 				<p class="instructions">Should include instructions for how your coupon is to be used.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
@@ -51,10 +51,18 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_378">* Terms</label></th>
+			<th scope="row"><label for="deal_terms">* Terms</label></th>
 			<td>
-				<textarea id="field_id_378" class="input" name="field_id_378" dir="ltr" cols="34" rows="5"></textarea>
+				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" cols="34" rows="5"></textarea>
 				<p class="instructions">Example: <em>Limit one coupon per customer.</em></p>
+				{exp:user:stats dynamic="off"}
+				<div class="hidden">
+				{exp:query sql="
+					SELECT entry_id FROM exp_category_posts WHERE cat_id = {member_admin_id} LIMIT 1
+				"}
+					<input type="hidden" name="deal_location[selections][]" value="{entry_id}">
+				{/exp:query}
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -69,6 +77,8 @@
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" /> <span>Online</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" /> <span>Product</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" /> <span>Service</span></label></li>
+					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>
+				{/exp:user:stats}
 				</ul>
 			</td>
 		</tr>
@@ -82,13 +92,24 @@
 			</td>
 		</tr>
 	</table>
-{/exp:weblog:entry_form}
-{/exp:user:stats}
+{/exp:safecracker}
 </div>
 <div class="right sidebar">
-	<header class="bar" data-icon="n">Add Deals</header>
-		<p>To view or edit a deal, click <a href="/sponsors/edit-deals">here</a>.</p>
+	<section class="section">
+		<header class="bar" data-icon="n">Add Deals</header>
+		<p>To view or edit a deal, click <a href="{path='sponsors/edit-deals'}">here</a>.</p>
 		<p><strong>IMPORTANT</strong>: Only deals for health related products and services may be added. For questions, please email <a href="mailto:club@newstart.com">club@newstart.com</a> or call 530-422-7993.</p>
+	</section>
+	{if logged_in_member_id == 1}
+	<section class="section mysection" style="display:none;">
+		<header class="bar">Fade In</header>
+		<p>This was loaded 2 seconds after the page was ready.</p>
+	</section>
+	<section class="section">
+		<header class="bar">Test</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</section>
+	{/if}
 </div>
 </div>
 {embed="embeds/_doc-bottom" script_add="jquery-ui-1.8.21.custom.min|sponsors"}

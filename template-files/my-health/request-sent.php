@@ -4,11 +4,11 @@
 	if (isset($_POST['name']))
 	{
 	$memberName = $_POST['name']; 
-	$memberAge = "{memberAge}"; 
+	$member_age = "{member_age}"; 
 	$memberAddress = "{address}, {city}, {state} {zipCode}"; 
 	$memberPhone = $_POST['phone']; 
 	$memberEmail = "{username}"; 
-	$memberHS = "{memberScoreTotal}"; 
+	$memberHS = "{member_score_total}"; 
 	$customMessage = $_POST['custom-message'];
 	
 	$todayis = date("l, F j, Y, g:i a") ;
@@ -79,7 +79,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 										<tr>
 											<td style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.5; font-size:16px; color:#010101;">
 												<p><strong>Name</strong>: '. $memberName .'</p>
-												<p><strong>Age</strong>: '. $memberAge .'</p>
+												<p><strong>Age</strong>: '. $member_age .'</p>
 												<p><strong>Address</strong>: '. $memberAddress .'</p>
 												<p><strong>Phone</strong>: '. $memberPhone .'</p>
 												<p><strong>Email</strong>: '. $memberEmail .'</p>
@@ -114,7 +114,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	// To send HTML mail, the Content-type header must be set
 	$headers	 = 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-	$headers .= 'From: {firstName} {lastName} <{username}>' . "\r\n";
+	$headers .= 'From: {member_first_name} {member_last_name} <{username}>' . "\r\n";
 	$headers .= 'Bcc: ddennis@weimar.org, tbaril@weimar.org' . "\r\n";
 	
 	mail("club@newstart.com", $subject, stripslashes($message), $headers);
@@ -123,12 +123,12 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	?>
 {/exp:user:stats}
 {embed="embeds/_doc-top" 
-	class="my_health"
+	class="my-health"
 	title="Your request has been sent!"
 	add="pp/prettyPhoto|vimeo"}
 	<ul class="trail">
-		<li><a href="/">Home</a></li>
-		<li><a href="/my_health">My Health</a></li>
+		<li><a href="{path='site_index'}">Home</a></li>
+		<li><a href="/my-health">My Health</a></li>
 	</ul>
 	<div class="heading clearfix">
 		<h1>Congratulations!</h1>
@@ -140,12 +140,12 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 				<div class="vimeoBadge">
 					<script type="text/javascript" src="http://vimeo.com/weimartv/badgeo/?stream=channel&amp;stream_id=39106&amp;count=12&amp;thumbnail_width=100&amp;show_titles=yes"></script>
 				</div>
-				<p><a href="/my_health/results">&laquo; Back to my results</a></p>
+				<p><a href="/my-health/results">&laquo; Back to my results</a></p>
 			</div>
 		</div>
 		<div class="sidebar right">
 			<header class="bar">Contact Us</header>
-			<img src="/assets/images/my_health/NEWSTART.png" width="190" />
+			<img src="/assets/images/my-health/NEWSTART.png" width="190" />
 			<p class="center">20601 West Paoli Lane<br />Weimar, CA 95736</p>
 			<p class="center">(800) 525-9192<br /><a href="http://www.newstart.com" title="NEWSTART&reg;">www.newstart.com</a></p>
 		</div><!--/.sidebar-->

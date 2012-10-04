@@ -1,10 +1,10 @@
 {embed="embeds/_doc-top" 
-	class="my_health"
+	class="my-health"
 	title="Request More Information"
 }
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/my_health">My Health</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='my-health'}">My Health</a></li>
 </ul>
 <div class="heading clearfix">
 	<h1>Request More Information</h1>
@@ -13,15 +13,14 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post">
-			{exp:weblog:entries weblog="my_health" entry_id="640" limit="1"}
-				{body}
-			{/exp:weblog:entries}
-			<form method="post" action="/my_health/request-sent/" class="clearafter request-info">
+			<p><img alt="NEWSTART Lifestyle Club" class="image" height="120" src="/assets/images/my_health/request_info.jpg" width="240">Our NEWSTART® physicians and staff have extensive experience treating a variety of health conditions without the use of drugs. If you would like to know how we can help you, please take a moment to tell us about your condition and our friendly NEWSTART® staff will contact you shortly.</p>
+			<p>Take control of your future, learn today what we can do for you! It’s completely confidential and <span class="caps">FREE</span>.</p>
+			<form method="post" action="/my-health/request-sent/" class="clearafter request-info">
 				<table>
 					{exp:user:stats}
 					<tr>
 						<th scope="row"><label for="name">Name</label></th>
-						<td><input type="text" class="input" name="name" id="name" value="{firstName} {lastName}" size="28" /></td>
+						<td><input type="text" class="input" name="name" id="name" value="{member_first_name} {member_last_name}" size="28" /></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="email">Email</label></th>
@@ -35,7 +34,7 @@
 						<th scope="row"><label for="zipCode">Zip Code</label></th>
 						<td>
 							<input type="text" class="input" id="zipCode" name="zipCode" value="{zipCode}" size="7" />
-							<input type="hidden" name="memberAge" value="{memberAge}" />
+							<input type="hidden" name="member_age" value="{member_age}" />
 						</td>
 					</tr>
 					{/exp:user:stats}
@@ -49,7 +48,7 @@
 							<div class="button-wrap">
 								<button type="submit" class="super green button"><span>Send Request</span></button>
 							</div>
-							<p><a href="/my_health/results">&laquo; Back to my results</a></p>
+							<p><a href="{path='my-health/results'}">&laquo; Back to my results</a></p>
 						</td>
 					</tr>
 				</table>
@@ -60,8 +59,8 @@
 		<header class="bar">Request More Info</header>
 		<p>We offer multiple NEWSTART&reg; Lifestyle Program locations throughout the United States. You may receive information from the programs listed <a data-reveal-id="locations">here</a>. The information you provide will be saved electronically and will not be shared with third parties.</p>
 		<div class="button-wrap">
-			<a href="/faq" class="super secondary button"><span>Browse FAQ</span></a>
+			<a href="{path='questions'}" class="super secondary button"><span>Browse Questions</span></a>
 		</div>
-	</div><!--/.sidebar-->
-</div><!--/.grid23-->
+	</div>
+</div>
 {embed="embeds/_doc-bottom"}

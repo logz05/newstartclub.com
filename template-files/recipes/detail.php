@@ -2,35 +2,32 @@
 	class="recipes"
 	microdata="recipe"
 	meta='
-		{exp:weblog:entries weblog="recipes" url_title="{segment_3}"}
+		{exp:channel:entries channel="recipes" url_title="{segment_3}"}
 			<meta property="og:title" content="{title}"/>
 			<meta property="og:site_name" content="{site_name}"/>
 			<meta property="og:url" content="{title_permalink='recipes/detail'}"/>
 			<meta property="og:type" content="food"/>
 			<meta property="og:image" content="{site_url}{resource_thumb}"/>
-			<meta property="og:description" content="{exp:trunchtml chars="300"}{exp:html_strip}{resource_description}{/exp:html_strip}{/exp:trunchtml}"/>
-			<meta name="description" content="{exp:trunchtml chars="300"}{exp:html_strip}{resource_description}{/exp:html_strip}{/exp:trunchtml}"/>
-		{/exp:weblog:entries}
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_description}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_description}{/exp:eehive_hacksaw}"/>
+		{/exp:channel:entries}
 	'
-	title="
-		{exp:weblog:entries weblog='recipes' url_title='{segment_3}'}
-			{title}
-		{/exp:weblog:entries}
-"}
+	title="{exp:low_title:entry url_title='{segment_3}' channel='recipes'}"
+}
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/recipes">Recipes</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='recipes'}">Recipes</a></li>
 </ul>
-{exp:weblog:entries weblog="recipes" limit="1" require_entry="yes"}
+{exp:channel:entries channel="recipes" limit="1" require_entry="yes"}
 {if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
-	<h1 itemprop="name">{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h1 itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<div class="post {resource_display_style} clearfix">
-			{exp:ce_img:single src="{resource_thumb}" max_width="200" attributes='alt="{title}" title="{title}" class="image" itemprop="image"'}
-			<div class="description" itemprop="recipeInstructions">{resource_description}</div>
+		<div class="post recipe clearfix">
+			{exp:ce_img:single src="{recipe_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image" itemprop="image"'}
+			<div class="description" itemprop="recipeInstructions">{recipe_instructions}</div>
 		</div>
 		<ul class="tags">
 			<li data-icon="r">Tags:</li>
@@ -41,12 +38,32 @@
 				{if category_group == "43"}<li><a href="{site_url}recipes/ethnic/{category_url_title}/" itemprop="recipeCuisine">{category_name}</a></li>{/if}
 			{/categories}
 		</ul>
-		{/exp:weblog:entries}
+		
+		{exp:playa:children field="recipe_related"}
+			{if count == 1}
+			<div id="related-entries">
+				<h2>Related Entries</h2>
+				<ul class="clearfix">
+			{/if}
+					<li>
+						<a href="{url_title_path='recipes/detail'}" class="image">
+							{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
+							{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
+						</a>
+						<span class="title"><a href="{url_title_path='recipes/detail'}">{title}</a></span>
+					</li>
+			{if count == total_results}
+				</ul>
+			</div>
+			{/if}
+		{/exp:playa:children}
+		
+{/exp:channel:entries}
 	
 	{embed="embeds/_comments" channel="recipes"}
 	
 	</div>
-	{exp:weblog:entries weblog="recipes" limit="1" url_title="{segment_3}"}
+	{exp:channel:entries channel="recipes" limit="1" url_title="{segment_3}"}
 		<div class="sidebar right">
 			<section class="section ingredients">
 				<header class="bar">Ingredients</header>
@@ -55,16 +72,12 @@
 						<a href="{path='signin'}" class="super small secondary button" data-reveal-id="signin-modal-recipe"><span>View Ingredients</span></a>
 					</p>
 				{if:else}
-					{if recipe_ingredients}
-						{recipe_ingredients}
-					{if:else}
-						{resource_ingredients}
-					{/if}
+					{recipe_ingredients}
 				{/if}
 			</section>
 			
 			{embed="embeds/_share" channel="recipes" image="{resource_thumb}"}
 		</div>
-	{/exp:weblog:entries}
+	{/exp:channel:entries}
 </div>
 {embed="embeds/_doc-bottom" sim="recipe|comments"}

@@ -10,10 +10,10 @@ require_once('dbconnect.php');
 $db = new DBconnect();
 $queryCat = '
 	SELECT 
-		exp_member_data.member_id,
+		exp_members.member_id,
 		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name
 
 		FROM exp_members
 			INNER JOIN exp_user_category_posts
@@ -23,15 +23,15 @@ $queryCat = '
 			ON exp_members.member_id = exp_member_data.member_id
 			
 			WHERE exp_user_category_posts.cat_id = {segment_4}
-				AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_7 = {embed:sponsor_zipcode} )
+				AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
 	
 UNION DISTINCT
 
 	SELECT 
-		exp_member_data.member_id,
+		exp_members.member_id,
 		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name
 		
 		FROM exp_members
 			INNER JOIN member_relations
@@ -40,11 +40,11 @@ UNION DISTINCT
 			INNER JOIN exp_user_category_posts
 			ON exp_members.member_id = exp_user_category_posts.member_id
 			
-			INNER JOIN exp_weblog_titles
-			ON member_relations.related_id = exp_weblog_titles.entry_id
+			INNER JOIN exp_channel_titles
+			ON member_relations.related_id = exp_channel_titles.entry_id
 			
 			INNER JOIN exp_category_posts
-			ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
+			ON exp_channel_titles.entry_id = exp_category_posts.entry_id
 			
 			JOIN exp_member_data
 			ON exp_member_data.member_id = exp_members.member_id
@@ -68,8 +68,8 @@ function send_emails($mailing_list, $subject, $custom_message, $interest, $inter
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-	$headers .= 'From: {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories} <club@newstart.com>' . "\r\n";
-	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
+	$headers .= 'From: {exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
+	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
 	
 	$clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');
 	
@@ -145,7 +145,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 											$message .= 'Dear '. $mailing_list[$i][2] .',<br />';
 											$message .= $custom_message;
 											$message .= '
-											<p style="color:#010101;">{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
 											<a href="http://newstartclub.com/location/{embed:sponsor_number}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_number}</a></p>
 											</td>
 										</tr>
@@ -194,7 +194,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 function show_form($listTotal)
 {
 	print '<div class="heading clearfix">
-						<h1>{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:weblog:categories} (&nbsp;'. $listTotal .'&nbsp;)</h1>
+						<h1>{exp:channel:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories} (&nbsp;'. $listTotal .'&nbsp;)</h1>
 				</div>
 				<div class="grid23 clearfix">
 					<div class="left">
@@ -214,8 +214,8 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<textarea name="interest" class="hidden">You are receiving this e-mail because you are interested in &ldquo;{exp:weblog:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:weblog:categories}&rdquo;.</textarea>
-										<textarea name="interest_line" class="hidden"><br />You can update your preferences <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
+										<textarea name="interest" class="hidden">You are receiving this e-mail because you are interested in &ldquo;{exp:channel:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories}&rdquo;.</textarea>
+										<textarea name="interest_line" class="hidden"><br />You can update your preferences <a href="http://newstartclub.com/settings" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
 										</p>
@@ -223,15 +223,15 @@ function show_form($listTotal)
 								</tr>
 							</table>
 						</form>
-					</div><!-- /.left -->
+					</div>
 					<div class="sidebar right">
 						<header class="bar">Email Signature</header>
 						<p>The following digital signature will be added to your message:</p>
-						<p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
-						{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
-						<a href="http://newstartclub.com/location/{embed:sponsor_number}">newstartclub.com/location/{embed:sponsor_number}</a></p>
+						<p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
+						{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
+						<a href="{path=\'location/{embed:sponsor_number}\'}">newstartclub.com/location/{embed:sponsor_number}</a></p>
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
 function show_done($listRecipients)
@@ -253,13 +253,13 @@ function show_done($listRecipients)
 						
 			print '</ul>
 						<p class="button-wrap">
-							<a href="/sponsors/email-members" class="super red button"><span>Back to Member List</span></a>
+							<a href="{path=\'sponsors/email-members\'}" class="super red button"><span>Back to Member List</span></a>
 						</p>
 					</div>
-				</div><!-- /.left -->
+				</div>
 					<div class="sidebar right">
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
 if (isset($_POST['custom_message'])) { show_done($queryResultsCat); } else { show_form($queryCountCat); }

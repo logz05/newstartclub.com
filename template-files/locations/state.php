@@ -1,34 +1,18 @@
 {embed="embeds/_doc-top" 
 	class="locations"
-	title="Locations in {exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}"
+	title="Locations in {exp:channel:entries channel="locations" limit="1" search:location_state="={segment_3}" dynamic="no"}{location_state:label}{/exp:channel:entries}"
 }
 {embed="embeds/_rss-feed"}
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/locations">Locations</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='locations'}">Locations</a></li>
 </ul>
 <div class="heading clearfix">
-	<h1>{exp:weblog:entries weblog="locations" limit="1" search:location_state="={segment_3}" dynamic="off"}{location_state:label}{/exp:weblog:entries}</h1>
+	<h1>{exp:channel:entries channel="locations" limit="1" search:location_state="={segment_3}" dynamic="no"}{location_state:label}{/exp:channel:entries}</h1>
 </div>		
 <div class="grid23 clearfix">
 	<div class="main left">
-	<ul class="listing">
-	{exp:weblog:entries weblog="locations" orderby="location_city" sort="asc" search:location_state="={segment_3}" limit="9" paginate="bottom" disable="member_data" dynamic="off" cache="yes" refresh="10"}
-		<li class="location clearfix">
-			<a href="{url_title_path='locations/detail'}" class="image"><div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=90x110&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});">
-			</div></a>
-			<h2><a href="{url_title_path='locations/detail'}">{title}</a></h2>
-			<h3>{location_address}<br />{if location_address2}{location_address2}<br />{/if}{location_city}, {location_state}</h3>
-		</li>
-		{paginate}
-			{if "{total_pages}" > 1}
-				<li class="pagination">
-					<p>{pagination_links}</p>
-				</li>
-			{/if}
-		{/paginate}
-	{/exp:weblog:entries}
-	</ul>
+		{embed="locations/_page-listing" parameters="search:location_state='={segment_3}'"}
 	</div>
 	<div class="sidebar right">
 		{embed="locations/_sidebar"}

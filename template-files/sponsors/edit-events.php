@@ -8,14 +8,14 @@
 	{exp:user:stats dynamic="off"}
 	<div class="main sponsor-events left">
 	
-	{embed="sponsors/_event-list" sponsor_number="{sponsor_number}"}
+	{embed="sponsors/_event-list" sponsor_number="{member_admin_id}"}
 	
 	</div>
 	<div class="right sidebar">
 		<header class="bar" data-icon="e">Edit Events</header>
 		<p>To see more about an event click on the event title.</p>
 		<p>To add a new event, click <a href="/sponsors/add-event">here</a>.</p>
-		<p>Click {exp:weblog:categories show="{sponsor_number}" weblog="locations" style="linear"}<a href="/events/sponsor/{category_url_title}">here</a>{/exp:weblog:categories} to see your active events.</p>
+		<p>Click {exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}<a href="/events/sponsor/{category_url_title}">here</a>{/exp:channel:categories} to see your active events.</p>
 	</div>
 	{/exp:user:stats}
 </div><!-- /.grid23 -->

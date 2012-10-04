@@ -10,7 +10,7 @@
 	<div class="main events left">
 	<h2>Event Information</h2>
 {exp:user:stats dynamic="off"}
-{exp:weblog:entry_form weblog="events" return="/sponsors/edit-events" category="{sponsor_number}"}
+{exp:weblog:entry_form channel="events" return="/sponsors/edit-events" category="{member_admin_id}"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
@@ -48,7 +48,7 @@
 					<em>If all day event leave this field blank.</em></p>
 			</td>
 		</tr>
-		{exp:weblog:entries weblog="locations" limit="1" category="{sponsor_number}"}
+		{exp:channel:entries channel="locations" limit="1" category="{member_admin_id}"}
 		<tr>
 			<th scope="row"><label for="field_id_341">Name</label></th>
 			<td>
@@ -129,7 +129,7 @@
 			<th scope="row"><label for="field_id_340">*&nbsp;Zip Code</label></th>
 			<td><input type="text" dir="ltr" id="field_id_340" class="input" name="field_id_340" value="{location_zip}" maxlength="9" size="5" /><br></td>
 		</tr>
-		{/exp:weblog:entries}
+		{/exp:channel:entries}
 		<tr>
 			<th scope="row"><label for="field_id_35">*&nbsp;Description</label></th>
 			<td>

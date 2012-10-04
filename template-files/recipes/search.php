@@ -10,45 +10,48 @@
 	</div>
 	<div class="grid23 clearfix">
 		<div class="main left">
-			<ul class="listing">
 			{exp:search:search_results}
-				<li class="recipe {resource_display_style} clearfix">
-					<h2><a href="{url_title_path='recipes/detail'}">{title}</a>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}</h2>
-				{if resource_thumb != ''}
+			{if count == 1}
+				<ul class="listing">
+			{/if}
+				<li class="recipe clearfix">
+					<h2><a href="{url_title_path='recipes/detail'}">{title}</a>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}</h2>
+				{if recipe_image}
 					<a href="{url_title_path='recipes/detail'}" class="image">
-						{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
-						{exp:ce_img:single src="{resource_thumb}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+						{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
 					</a>
 				{if:else}
 					<a href="{url_title_path='recipes/detail'}"><div class="resource-placeholder"></div></a>
 				{/if}
 					<div class="details">
 						<p class="description">
-							{exp:html_strip}
-								{exp:char_limit total="200"}{resource_description}{/exp:char_limit}
-							{/exp:html_strip}<a class="link-more" href="{url_title_path='recipes/detail'}">more&raquo;</a>
+							{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='/recipes/detail/{url_title}'>more&raquo;</a>"}
+								{recipe_instructions}
+							{/exp:eehive_hacksaw}
 						</p>
 						<ul class="tags">
-							<li><span>Tags:</span></li>
+							<li data-icon="r">Tags:</li>
 							{categories show_group="not 22"}
-								{if category_group == "22"}<li><a href="{site_url}recipes/language/{category_url_title}/">{category_name}</a></li>{/if}
-								{if category_group == "39"}<li><a href="{site_url}recipes/type/{category_url_title}/">{category_name}</a></li>{/if}
-								{if category_group == "42"}<li><a href="{site_url}recipes/sensitivity/{category_url_title}/">{category_name}</a></li>{/if}
-								{if category_group == "43"}<li><a href="{site_url}recipes/ethnic/{category_url_title}/">{category_name}</a></li>{/if}
+								{if category_group == "22"}<li><a href="{site_url}recipes/language/{category_url_title}">{category_name}</a></li>{/if}
+								{if category_group == "39"}<li><a href="{site_url}recipes/type/{category_url_title}">{category_name}</a></li>{/if}
+								{if category_group == "42"}<li><a href="{site_url}recipes/sensitivity/{category_url_title}">{category_name}</a></li>{/if}
+								{if category_group == "43"}<li><a href="{site_url}recipes/ethnic/{category_url_title}">{category_name}</a></li>{/if}
 							{/categories}
 						</ul>
 					</div>
 				</li>
-			{/exp:search:search_results}
-			{if paginate}
-				<li class="pagination">
-					<p>{paginate}</p>
-				</li>
+			{if count == total_results}
+				</ul>
 			{/if}
-			</ul>
-		</div><!--/.list-->
+			
+			{paginate}
+				<p class="pagination">{pagination_links}</p>
+			{/paginate}
+				
+			{/exp:search:search_results}
+		</div>
 		<div class="sidebar right">
 			{embed="recipes/_sidebar" channel="recipes"}
-		</div><!--/.sidebar-->
-	</div><!--/.grid23-->
+		</div>
+	</div>
 {embed="embeds/_doc-bottom"}

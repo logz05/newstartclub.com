@@ -1,4 +1,5 @@
-{exp:weblog:entries weblog="events" sort="asc" orderby="date" show_future_entries="yes" limit="9" paginate="bottom" dynamic="off" {embed:parameters}}
+<ul class="listing">
+{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="9" paginate="bottom" dynamic="no" {embed:parameters}}
 {if no_results}
 	<p>There are currently no upcoming events.</p>
 {/if}
@@ -12,7 +13,7 @@
 				<span class="time">
 					{!-- Check if event is only on one date and time is set --}
 					{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}"}
-						{exp:nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
+						{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
 					{/if}
 					
 					{!-- Check if event is only on one date and time is NOT set --}
@@ -27,11 +28,11 @@
 				</span>
 			</span>
 		</h2>
-		<h3><a href="/events/location/<?php echo strtolower("{event_state}/{event_city}"); ?>">{event_city}, {event_state}</a></h3>
+		<h3><a href="{path='events/location/<?php echo strtolower("{event_state}/{event_city}"); ?>'}">{event_city}, {event_state}</a></h3>
 		<p class="details">
-			{exp:trunchtml chars="150" threshold="150" inline="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
-				{exp:html_strip}{exp:textile}{event_description}{/exp:textile}{/exp:html_strip}
-			{/exp:trunchtml}
+			{exp:eehive_hacksaw chars="150" append="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
+				{event_description}
+			{/exp:eehive_hacksaw}
 		</p>
 	</li>
 	{paginate}
@@ -41,4 +42,5 @@
 			</li>
 		{/if}
 	{/paginate}
-{/exp:weblog:entries}
+{/exp:channel:entries}
+</ul>

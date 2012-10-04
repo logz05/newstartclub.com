@@ -1,6 +1,6 @@
 {embed="embeds/_doc-top" 
 	class="news"
-	title="News"
+	title="News Feed"
 }
 <?php
 $path = ini_get('include_path');
@@ -11,27 +11,25 @@ require_once ( 'utilities.php' );
 ?>
 {embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub"}
 <div class="heading clearfix">
-	<h1 data-icon="h">News</h1>
+	<h1 data-icon="h">News Feed</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
 		<ul class="listing">
-		{exp:weblog:entries weblog="resources|events|partners|locations|recipes|questions|deals" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="off" show_expired="yes"}
-			<li class="entry {weblog_short_name}">
-				{if weblog_short_name == "resources"}<h2 data-icon="d">{/if}
-				{if weblog_short_name == "partners" }<h2 data-icon="a">{/if}
-				{if weblog_short_name == "events"   }<h2 data-icon="e">{/if}
-				{if weblog_short_name == "locations"}<h2 data-icon="f">{/if}
-				{if weblog_short_name == "recipes"  }<h2 data-icon="g">{/if}
-				{if weblog_short_name == "questions"}<h2 data-icon="i">{/if}
-				{if weblog_short_name == "deals"    }<h2 data-icon="n">{/if}
+		{exp:channel:entries channel="resources|events|services|locations|recipes|questions|deals" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="no" show_expired="yes"}
+			<li class="entry {channel_short_name}">
+				{if channel_short_name == "resources"}<h2 data-icon="d">{/if}
+				{if channel_short_name == "services" }<h2 data-icon="a">{/if}
+				{if channel_short_name == "events"   }<h2 data-icon="e">{/if}
+				{if channel_short_name == "locations"}<h2 data-icon="f">{/if}
+				{if channel_short_name == "recipes"  }<h2 data-icon="g">{/if}
+				{if channel_short_name == "questions"}<h2 data-icon="i">{/if}
+				{if channel_short_name == "deals"    }<h2 data-icon="n">{/if}
 					
-					{if weblog_short_name == "deals"}
-						<a href="{path='deals/detail/{categories show_group="24"}{category_url_title}{/categories}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
-					{if:elseif weblog_short_name == "questions"}
-						<a href="{path='faq/detail/{url_title}'}">{exp:char_limit total="48"}{qa_question}{/exp:char_limit}</a>
+					{if channel_short_name == "questions"}
+						<a href="{path='questions/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{question_question}{/exp:eehive_hacksaw}</a>
 					{if:else}
-						<a href="{path='{weblog_short_name}/detail/{url_title}'}">{exp:char_limit total="48"}{title}{/exp:char_limit}</a>
+						<a href="{path='{channel_short_name}/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
 					{/if}
 				</h2>
 				<div class="date">
@@ -46,11 +44,11 @@ require_once ( 'utilities.php' );
 					</li>
 				{/if}
 			{/paginate}
-		{/exp:weblog:entries}
+		{/exp:channel:entries}
 		</ul>
 	</div>
 	<div class="sidebar right">
 		{embed="news/_sidebar"}
-	</div><!--/.sidebar-->
-</div><!--/.grid23-->
+	</div>
+</div>
 {embed="embeds/_doc-bottom"}

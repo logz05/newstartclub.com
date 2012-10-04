@@ -16,8 +16,8 @@
 		{exp:comment:entries sort="asc" limit="20" weblog="{embed:channel}"}
 		<li id="c_{comment_id}" class="comment {switch="even|odd"}">
 			<h3 class="meta">
-				<strong><a href="#c_{comment_id}" title="Permalink this comment">{absolute_count}</a></strong>
-				<span class="author"><?php echo ucwords(strtolower("{firstName}")); ?></span>
+				<strong><a href="#c_{comment_id}" title="Permalink this comment">{count}</a></strong>
+				<span class="author"><?php echo ucwords(strtolower("{member_first_name}")); ?></span>
 				<span class="date">{comment_date format="%M %j, %Y, %g:%i %A %T"}</span>
 			</h3>
 			<div class="comment-body">
@@ -34,7 +34,7 @@
 				<li class="comment">
 					<h3 class="meta">
 						<strong>*</strong>
-						<span class="author">{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{firstName}")); ?>{/exp:user:stats}</span>
+						<span class="author">{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{member_first_name}")); ?>{/exp:user:stats}</span>
 						<span class="date">{current_time format="%M %j, %Y, %g:%i %A %T"}</span>
 					</h3>
 					<div class="comment-body">
@@ -65,7 +65,7 @@
 				<th scope="row"><label for="comment">Comment</label></th>
 				<td>
 					<textarea class="input" name="comment" id="cmt-textarea" cols="38" rows="5">{comment}</textarea>
-					<input type="hidden" name="name" value="<?php echo ucwords(strtolower("{firstName}")); ?>" size="50" />
+					<input type="hidden" name="name" value="<?php echo ucwords(strtolower("{member_first_name}")); ?>" size="50" />
 					<input type="hidden" name="email" value="{email}" size="50" /> 
 					<input type="hidden" name="location" value="{state} {zipCode}" size="50" />
 				</td>

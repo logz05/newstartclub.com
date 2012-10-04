@@ -1,4 +1,4 @@
-{exp:weblog:entries weblog="deals" require_entry="yes" limit="1" show_expired="yes" show_future_entries="yes"}
+{exp:channel:entries channel="deals" require_entry="yes" limit="1" show_expired="yes" show_future_entries="yes"}
 
 <?php
 
@@ -52,7 +52,7 @@ if ( count($results) == 0) {
 	<link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript">
 		window.onload = function() { window.print(); }
-		setTimeout("self.close();",500) 
+		//setTimeout("self.close();",500) 
 	</script>
 </head>
 <body class="view-coupon">
@@ -79,4 +79,4 @@ if ( count($results) == 0) {
 	</div>
 </div>
 </body>
-</html>{/exp:weblog:entries}
+</html>{/exp:channel:entries}

@@ -15,14 +15,14 @@
 	<meta name="author" content="{site_name}">
 	{if embed:meta}{embed:meta}{/if}
 	<meta property="fb:admins" content="696875904" />
-	{if segment_1 == "news"}<link rel="alternate" type="application/rss+xml" title="{site_name} News" href="/news/rss" />{/if}
-	{if segment_1 == "faq" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} FAQ" href="/faq/rss" />{/if}
-	{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="/resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
-	{if segment_1 == "events" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Events" href="/events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
+	{if segment_1 == "news"                              }<link rel="alternate" type="application/rss+xml" title="{site_name} News"      href="{path='news/rss'}" />{/if}
+	{if segment_1 == "faq" && segment_2 != "detail"      }<link rel="alternate" type="application/rss+xml" title="{site_name} FAQ"       href="{path='faq/rss' }" />{/if}
+	{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
+	{if segment_1 == "events" && segment_2 != "detail"   }<link rel="alternate" type="application/rss+xml" title="{site_name} Events"    href="events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
 
 	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
-	<link rel="stylesheet" href="{stylesheet='site/default'}" type="text/css" />
-	<link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{stylesheet='site/default'    }" type="text/css" />
+	<link rel="stylesheet" href="{stylesheet='site/icons'      }" type="text/css" />
 {if embed:add}
 	<?php 
 		$splitcontents = explode('|', '{embed:add}');
@@ -31,7 +31,7 @@
 		} 
 	?>
 {/if}
-	<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
+	<script src="{site_url}/assets/js/modernizr-custom-2.6.1.js"></script>
 
 	{if embed:map}{embed="embeds/_google-maps"}{/if}
 	<!--Google Analytics-->
@@ -49,7 +49,7 @@
 </head>
 
 <body{if embed:map} onload="initialize()"{/if}>
-<div id="fb-root"></div>
+	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) return;
@@ -57,74 +57,101 @@
 		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
+	
 	<label for="toggle-hidden-check" id="toggle-hidden-label">&emsp;&emsp;&emsp;</label>
 	<input type="checkbox" id="toggle-hidden-check">
-		<header class="header">
-			<nav class="super-nav">
-				<ul>
-					{if logged_in}<li><h5>Hi, <strong>{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{firstName} {lastName}")); ?>{/exp:user:stats}</strong></h5></li>{/if}
-					{if group_id == '1' && segment_1 == "sponsors"}<li><h5>{exp:user:stats dynamic="off"}{sponsor_number} | {exp:weblog:entries weblog='locations' category='{sponsor_number}' limit='1' dynamic='off' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{location_zip}{/exp:weblog:entries}{/exp:user:stats}</h5></li>{/if}
-					{if segment_1 != "sponsors" && (member_group == 1 || member_group == 13)}<li><a href="/sponsors">Sponsor Admin</a></li>{/if}
-					{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)}<li><a href="/">Main Site</a></li>{/if}
-					<li>
-						{if logged_out}<a href="/{if segment_1 == 'sponsors'}sponsors/{/if}signin" data-reveal-id="signin-modal-mini" id="sign-in">Sign In</a>{/if}
-						{if logged_in}<a href="{path=logout}">Sign Out</a>{/if}
-					</li>
-					<li>
-						{if logged_out}<a href="{if segment_1 == 'sponsors'}/sponsors/apply{if:else}/register{/if}" {if segment_1 == "sponsors"}data-reveal-id="signin-modal-sponsor-apply"{/if}>{if segment_1 == 'sponsors'}Apply{if:else}Register{/if}</a>{/if}
-						{if logged_in}<a href="/settings">Settings</a>{/if}
-					</li>
-				</ul>
-			</nav>
-		{if logged_out}
-			<div class="free-mem-ribbon">
-				<a href="/register"></a>
-			</div>
-		{/if}
-		<div class="masthead"></div>
-		<nav class="main-nav{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)} sponsors{/if}{if embed:sponsor_type} {embed:sponsor_type}{/if}">
+	
+	<header class="header">
+		<nav class="super-nav">
 			<ul>
-			{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)}
-				<li class="home{if segment_1 == "sponsors" && segment_2 == ""} current{/if}"><a href="/sponsors">&emsp;</a><i></i></li>
-				{if embed:sponsor_type == "profit"}
-					<li{if segment_2 == "add-deal"} class="current"{/if}><a href="/sponsors/add-deal">Add Deals</a><i></i></li>
-					<li{if segment_2 == "edit-deals" || segment_2 == "edit-deal"} class="current"{/if}><a href="/sponsors/edit-deals">Edit Deals</a><i></i></li>
-				{if:else}
-					<li{if segment_2 == "add-event"} class="current"{/if}><a href="/sponsors/add-event">Add Events</a><i></i></li>
-					<li{if segment_2 == "edit-events"} class="current"{/if}><a href="/sponsors/edit-events">Edit Events</a><i></i></li>
+				{if logged_in}
+					<li>Hi, <strong>{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?>{/exp:user:stats}</strong></li>
 				{/if}
-				<li{if segment_2 == "invite"} class="current"{/if}><a href="/sponsors/invite">Invite Members</a><i></i></li>
-				<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="/sponsors/email-members">Email Members</a><i></i></li>
-				<li{if segment_2 == "resources"} class="current"{/if}><a href="/sponsors/resources">Resources</a><i></i></li>
-			{if:else}
-				<li class="home{if segment_1 == ""} current{/if}"><a href="/">&emsp;</a><i></i></li>
-				<li{if segment_1 == "my_health"} class="current"{/if}><a href="/my_health">My Health</a><i></i></li>
-				<li{if segment_1 == "resources"} class="current"{/if}><a href="/resources">Resources</a><i></i></li>
-				<li{if segment_1 == "partners"} class="current"{/if}><a href="/partners">Partners</a><i></i></li>
-				<li{if segment_1 == "recipes"} class="current"{/if}><a href="/recipes">Recipes</a><i></i></li>
-				<li{if segment_1 == "events"} class="current"{/if}><a href="/events">Events</a><i></i></li>
-				<li{if segment_1 == "locations"} class="current"{/if}><a href="/locations">Locations</a><i></i></li>
-				<li{if segment_1 == "deals"} class="current"{/if}><a href="/deals">Deals</a><i></i></li>
-			{/if}
+				{if group_id == '1' && segment_1 == "sponsors"}
+					{exp:user:stats dynamic="off"}
+					<li>{exp:channel:entries channel='locations' category='{member_admin_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{member_admin_id} | {location_zip}{/exp:channel:entries}</li>
+					{/exp:user:stats}
+				{/if}
+				{if segment_1 != "sponsors" && (member_group == 1 || member_group == 6)}<li><a href="{path='sponsors'}">Sponsor Admin</a></li>{/if}
+				{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)}<li><a href="{path='site_index'}">Main Site</a></li>{/if}
+				<li>
+					{if logged_out}
+						{if segment_1 == 'sponsors'}
+							<a href="{path='sponsors/signin'}" data-reveal-id="signin-modal-mini" id="sign-in">Sign In</a>
+						{if:else}
+							<a href="{path='signin'}" data-reveal-id="signin-modal-mini" id="sign-in">Sign In</a>
+						{/if}
+					{if:else}
+						<a href="{path='logout'}">Sign Out</a>
+					{/if}
+				</li>
+				<li>
+					{if logged_out}
+						{if segment_1 == 'sponsors'}
+							<a href="{path='sponsors/apply'}" data-reveal-id="signin-modal-sponsor-apply">Apply</a>
+						{if:else}
+							<a href="{path='register'}">Register</a>
+						{/if}
+					{if:else}
+						<a href="{path='settings'}">Settings</a>
+					{/if}
+				</li>
 			</ul>
 		</nav>
-		{if segment_1 == "sponsors" && (member_group == 1 || member_group == 13)}
+	{if logged_out}
+		<div class="free-mem-ribbon">
+			<a href="{path='register'}"></a>
+		</div>
+	{/if}
+	<div class="masthead"></div>
+	<nav class="main-nav{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)} sponsors{/if}{if embed:sponsor_type} {embed:sponsor_type}{/if}">
+		<ul>
+		{!-- If the logged in member is in the Sponsor member group and on the Sponsor section of the site then show the sponsor nav bar. Else show regular nav bar. --}
+		{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)}
 		
+			<li class="home{if segment_1 == "sponsors" && segment_2 == ""} current{/if}"><a href="{path='sponsors'}">&emsp;</a><i></i></li>
+			{if embed:sponsor_type == "profit"}
+				<li{if segment_2 == "add-deal"                              } class="current"{/if}><a href="{path='sponsors/add-deal'  }">Add Deals</a><i></i></li>
+				<li{if segment_2 == "edit-deals" || segment_2 == "edit-deal"} class="current"{/if}><a href="{path='sponsors/edit-deals'}">Edit Deals</a><i></i></li>
+			{if:else}
+				<li{if segment_2 == "add-event"  } class="current"{/if}><a href="{path='sponsors/add-event'  }">Add Events</a><i></i></li>
+				<li{if segment_2 == "edit-events"} class="current"{/if}><a href="{path='sponsors/edit-events'}">Edit Events</a><i></i></li>
+			{/if}
+			<li{if segment_2 == "invite"                                    } class="current"{/if}><a href="{path='sponsors/invite'       }">Invite Members</a><i></i></li>
+			<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="{path='sponsors/email-members'}">Email Members</a><i></i></li>
+			<li{if segment_2 == "resources"                                 } class="current"{/if}><a href="{path='sponsors/resources'    }">Resources</a><i></i></li>
+			
 		{if:else}
-		<nav class="sub-nav">
-			<ul>
-				<li><a href="/resources/detail/nutrition"{if segment_2 == "detail" && segment_3 =="nutrition"} class="active"{/if} title="Nutrition">Nutrition</a></li>
-				<li><a href="/resources/detail/exercise"{if segment_2 == "detail" && segment_3 =="exercise"} class="active"{/if} title="Exercise">Exercise</a></li>
-				<li><a href="/resources/detail/water"{if segment_2 == "detail" && segment_3 =="water"} class="active"{/if} title="Water">Water</a></li>
-				<li><a href="/resources/detail/sunlight"{if segment_2 == "detail" && segment_3 =="sunlight"} class="active"{/if} title="Sunlight">Sunlight</a></li>
-				<li><a href="/resources/detail/temperance"{if segment_2 == "detail" && segment_3 =="temperance"} class="active"{/if} title="Temperance">Temperance</a></li>
-				<li><a href="/resources/detail/air"{if segment_2 == "detail" && segment_3 =="air"} class="active"{/if} title="Air">Air</a></li>
-				<li><a href="/resources/detail/rest"{if segment_2 == "detail" && segment_3 =="rest"} class="active"{/if} title="Rest">Rest</a></li>
-				<li><a href="/resources/detail/trust"{if segment_2 == "detail" && segment_3 =="trust"} class="active"{/if} title="Trust">Trust</a></li>
-			</ul>
-		</nav>
+		
+			<li class="home{if segment_1 == ""} current{/if}"><a href="{path='site_index'}">&emsp;</a><i></i></li>
+			<li{if segment_1 == "my-health"} class="current"{/if}><a href="{path='my-health'}">My Health</a><i></i></li>
+			<li{if segment_1 == "deals"    } class="current"{/if}><a href="{path='deals'    }">Deals</a><i></i></li>
+			<li{if segment_1 == "events"   } class="current"{/if}><a href="{path='events'   }">Events</a><i></i></li>
+			<li{if segment_1 == "services" } class="current"{/if}><a href="{path='services' }">Services</a><i></i></li>
+			<li{if segment_1 == "resources"} class="current"{/if}><a href="{path='resources'}">Resources</a><i></i></li>
+			<li{if segment_1 == "recipes"  } class="current"{/if}><a href="{path='recipes'  }">Recipes</a><i></i></li>
+			<li{if segment_1 == "questions"} class="current"{/if}><a href="{path='questions'}">Questions</a><i></i></li>
+			
 		{/if}
-			<div class="shadow-left"></div>
-			<div class="shadow-right"></div>
-		</header>
-		<div class="body{if embed:class} {embed:class}{/if}{if segment_2 == 'detail'} detail{/if}"{if embed:microdata} itemscope itemtype="http://schema.org/{embed:microdata}"{/if}>
+		</ul>
+	</nav>
+	{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)}
+	
+	{if:else}
+	<nav class="sub-nav">
+		<ul>
+			<li><a href="{path='resources/detail/nutrition' }"{if segment_2 == "detail" && segment_3 =="nutrition" } class="active"{/if} title="Nutrition"> <span class="emphasis">N</span>utrition</a></li>
+			<li><a href="{path='resources/detail/exercise'  }"{if segment_2 == "detail" && segment_3 =="exercise"  } class="active"{/if} title="Exercise">  <span class="emphasis">E</span>xercise</a></li>
+			<li><a href="{path='resources/detail/water'     }"{if segment_2 == "detail" && segment_3 =="water"     } class="active"{/if} title="Water">     <span class="emphasis">W</span>ater</a></li>
+			<li><a href="{path='resources/detail/sunlight'  }"{if segment_2 == "detail" && segment_3 =="sunlight"  } class="active"{/if} title="Sunlight">  <span class="emphasis">S</span>unlight</a></li>
+			<li><a href="{path='resources/detail/temperance'}"{if segment_2 == "detail" && segment_3 =="temperance"} class="active"{/if} title="Temperance"><span class="emphasis">T</span>emperance</a></li>
+			<li><a href="{path='resources/detail/air'       }"{if segment_2 == "detail" && segment_3 =="air"       } class="active"{/if} title="Air">       <span class="emphasis">A</span>ir</a></li>
+			<li><a href="{path='resources/detail/rest'      }"{if segment_2 == "detail" && segment_3 =="rest"      } class="active"{/if} title="Rest">      <span class="emphasis">R</span>est</a></li>
+			<li><a href="{path='resources/detail/trust'     }"{if segment_2 == "detail" && segment_3 =="trust"     } class="active"{/if} title="Trust">     <span class="emphasis">T</span>rust</a></li>
+		</ul>
+	</nav>
+	{/if}
+		<div class="shadow-left"></div>
+		<div class="shadow-right"></div>
+	</header>
+	<div class="body{if embed:class} {embed:class}{/if}{if segment_2 == 'detail'} detail{/if}"{if embed:microdata} itemscope itemtype="http://schema.org/{embed:microdata}"{/if}>

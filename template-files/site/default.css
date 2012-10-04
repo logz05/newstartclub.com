@@ -1,5 +1,5 @@
 /* ==|== primary styles =====================================================
-	 Author: Cavell L. Blood | 2011-11-14
+	 Author: Cavell L. Blood | 2012-09-25
 ============================================================================= */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
@@ -8,7 +8,40 @@ body {
 	background-repeat: repeat-x;
 	background-color: #A7C7EF;
 	padding: 0 20px;
-	width: 800px;
+}
+
+.dev-notice b {
+	position: fixed;
+	z-index: 1001;
+	background-color: #FFDC1A;
+	background-image: -webkit-repeating-linear-gradient(-45deg, transparent, transparent 35px, black 35px, black 70px);
+	display: block;
+}
+#te {
+	right: 0;
+	top: 0;
+	left: 0;
+	height: 20px;
+	box-shadow: 0 0 10px;
+}
+#be {
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 20px;
+	box-shadow: 0 0 10px;
+}
+#re {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 20px;
+}
+#le {
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 20px;
 }
 
 /* Header
@@ -17,7 +50,9 @@ body {
 	position: relative;
 	z-index: 2;
 }
-.header a { text-decoration: none; }
+.header a {
+	text-decoration: none;
+}
 .super-nav a:hover {
 	color: #000;
 	text-decoration: underline;
@@ -27,23 +62,24 @@ body {
 	margin: 20px 0 15px 0;
 	display: block;
 	position: relative;
+	font-size: 11px;
+	line-height: 14px;
+	color: #00385D;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .super-nav li {
 	display: inline;
 	margin-right: 15px;
 }
-.super-nav a,
-.super-nav h5 {
-	font-size: 11px;
-	line-height: 14px;
+.super-nav a {
 	color: #00385D;
 	display: inline-block;
 	margin: 0;
-	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .masthead {
 	width: 800px;
 	background-image: url(/assets/css/images/header.png);
+	background-repeat: no-repeat;
 	height: 225px;
 	border-top-left-radius: 14px;
 	border-top-right-radius: 14px;
@@ -127,7 +163,9 @@ body {
 }
 .main-nav li:first-child,
 .main-nav.sponsors li:first-child,
-.main-nav.sponsors.profit li:first-child { margin-left:0; }
+.main-nav.sponsors.profit li:first-child { 
+	margin-left:0;
+}
 .main-nav.sponsors {
 	background-color: #FF4B28;
 	background-image:-moz-linear-gradient(top, #FF4F2D 0%,#FF7155 52%, #FF4B28 52%, #FF4B28 100%); /* FF3.6+ */
@@ -198,7 +236,7 @@ body {
 .main-nav a:active,
 .main-nav.sponsors a:active { text-shadow: rgba(255, 255, 255, 1) 0 0 12px; }
 
-.header .sub-nav {
+.sub-nav {
 	position: relative;
 	background-color: #EEE;
 	border-bottom: 1px solid #c1c1c1;
@@ -210,38 +248,41 @@ body {
 	   -moz-box-shadow: 0 -16px 5px -15px #CCC inset;
 	        box-shadow: 0 -16px 5px -15px #CCC inset;
 }
-.header .sub-nav.resources ul {
+.sub-nav.resources ul {
 	margin-left: 85px;
 }
-.header .sub-nav li {
+.sub-nav li {
 	display: inline-block;
 	margin-left: 25px;
 	padding-left: 25px;
 	border-left: 1px solid #AAA;
 }
-.ie8 .header .sub-nav li {
+.ie8 .sub-nav li {
 	margin-left: 22px;
 	padding-left: 23px;
 }
-.ie7 .header .sub-nav li {
+.ie7 .sub-nav li {
 	display: inline;
 	margin-left: 24px;
 }
-.header .sub-nav li:first-child {
+.sub-nav li:first-child {
 	margin-left: 0;
 	border-left: 0;
 	padding-left: 0;
 }
-.ie7 .header .sub-nav li:first-child {
+.ie7 .sub-nav li:first-child {
 	margin-right: 23px;
 }
-.header .sub-nav a {
+.sub-nav a {
 	color: #999;
 	padding: 7px 0;
 }
-.header .sub-nav a.active,
-.header .sub-nav a:hover,
-.header .sub-nav a:focus {
+.sub-nav .emphasis {
+	text-decoration: underline;
+}
+.sub-nav a.active,
+.sub-nav a:hover,
+.sub-nav a:focus {
 	color: #333;
 	outline: none;
 }
@@ -285,12 +326,22 @@ body {
 
 /* Typography
 ========================================================================== */
-.body h1 {
+.heading h1 {
 	letter-spacing: -1px;
 	font-size: 36px;
-	margin: 0;
 	line-height: 1.2;
 	font-family: "Helvetica Neue", 'Open Sans', Helvetica, Arial, "Lucida Grande", sans-serif;
+	margin: 0;
+	position: relative;
+	z-index: 1;
+}
+.heading h2 {
+	font-size: 16px;
+	margin: 4px 0;
+	padding: 0;
+	font-weight: 500;
+	color: #777;
+	font-family: 'Open Sans' sans-serif;
 }
 .post {
 	font-size: 14px;
@@ -447,6 +498,7 @@ a.link-more {
 	position: absolute;
 	right: 40px;
 	top: 20px;
+	z-index: 2;
 	text-align: right;
 	font-weight: bold;
 	font-style: normal;
@@ -502,9 +554,6 @@ a.link-more {
 .ie7 .heading h1[data-icon]:before,
 .ie8 .heading h1[data-icon]:before {
 	margin-right: 0;
-}
-.detail .heading h1 {
-	position: relative;
 }
 
 /* Alert Boxes
@@ -627,10 +676,18 @@ ul.tabs-content > li.active { display: block; }
 .post .image {
 	border-width: 8px;
 	float: left;
-	margin: 0 18px 15px 0;
+	margin: 0 16px 8px 0;
 	-webkit-box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
 	-moz-box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
 	box-shadow: rgba(0,0,0,0.4) 0px 1px 3px;
+}
+.post .entry-details {
+	text-align: center;
+	padding: 0 20px 10px 0;
+	float: left;
+}
+.post .entry-details .image {
+	margin: 0;
 }
 
 /* Breadcrumb Trail
@@ -685,11 +742,12 @@ ul.tabs-content > li.active { display: block; }
 .link-icon[data-icon]:after,
 .heading h1[data-icon]:before,
 li.deal .details:before,
-li.deal .show-coupon span:after,
+.show-coupon span:after,
 .tags [data-icon]:before,
 .news li.entry h2:before,
 .coupon i,
-.bar:after {
+.bar:after,
+.icon.after:after {
 	font-family: 'Pictos Custom', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-style: normal !important;
@@ -751,8 +809,12 @@ li.deal .show-coupon span:after,
 
 /* Sidebar
 -------------------------------------------------------------------------- */
-.sidebar { color: #535353; }
-.sidebar .FB_UI_Hidden { width: 50px !important; }
+.sidebar {
+	color: #535353;
+}
+.sidebar .FB_UI_Hidden {
+	width: 50px !important;
+}
 .sidebar .fb_iframe_widget { 
 	margin-top: 8px;
 }
@@ -775,16 +837,12 @@ li.deal .show-coupon span:after,
 }
 .sidebar ul li {
 	font-size: 11px;
-	margin: 0 0 2px 18px;
+	margin: 0 0 2px 8px;
 	list-style-type: none;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
-.sidebar ul li a {
-	display: block;
-	text-indent: -10px;
-}
 .sidebar ul.bullets {
-	margin-top: 10px;
+	margin: 10px 0 0 18px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 .sidebar ul.bullets li {
@@ -801,8 +859,28 @@ li.deal .show-coupon span:after,
 .sidebar .filter-heading {
 	cursor: pointer;
 }
-.sidebar dl { margin-bottom: 12px; }
-.sidebar dt { font-weight: bold; }
+.sidebar .listing a {
+	display: inline-block;
+	text-indent: -10px;
+	padding-left: 8px;
+}
+.filter-list li {
+	text-indent: -10px;
+	padding-left: 8px;
+}
+.filter-list .active {
+	font-weight: bold;
+}
+.filter-list .count {
+	color: #bbb;
+	font-weight: normal;
+}
+.sidebar dl {
+ margin-bottom: 12px;
+}
+.sidebar dt {
+	font-weight: bold;
+}
 .sidebar dd {
 	margin: 0 0 5px 0;
 	padding-left: 5px;
@@ -975,7 +1053,7 @@ li.deal .show-coupon span:after,
 }
 .reveal-modal.deals {
 	width: 550px;
-	margin-left: -305px;
+	margin-left: -310px;
 	border-radius: 15px;
 	-webkit-border-radius: 15px;
 	-moz-border-radius: 15px;
@@ -1033,7 +1111,8 @@ li.deal .show-coupon span:after,
 
 /* Section Listing Styles
 ========================================================================== */
-.listing {
+.listing,
+.sidebar .listing {
 	margin: 0;
 	padding: 0;
 }
@@ -1044,8 +1123,15 @@ li.deal .show-coupon span:after,
 	border-top: 1px dashed #DDD;
 	list-style-type: none;
 }
+.sidebar .listing > li {
+	margin: 5px 0 0 0;
+	padding: 5px 0 0 15px;
+}
 .listing > li:first-child {
 	border-top: 0;
+}
+.sidebar .listing > li:first-child {
+	padding-top: 0;
 }
 .listing > li:hover .image img,
 .listing > li:hover .image div {
@@ -1057,30 +1143,11 @@ li.deal .show-coupon span:after,
 	-webkit-transform: translateY(1px);
 	-moz-transform: translateY(1px);
 }
-.listing li p {
+.listing > li p {
 	margin: 0 0;
 	font-size: 12px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	line-height: 19px;
-}
-.listing li.pagination {
-	text-align: center;
-	margin-top: 12px;
-	border-top: 0;
-	padding: 10px 0 0;
-}
-.listing li.pagination a, .pagination strong {
-	padding: 5px 8px;
-	border-color: #eee;
-	border-width: 1px;
-	border-style: solid;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	text-decoration: none;
-}
-.listing li.pagination p a:hover {
-	text-decoration: none;
 }
 .edit-this {
 	position: absolute;
@@ -1104,6 +1171,27 @@ h2 .edit-this { /* This one is used for entry listings */
 }
 li:hover .edit-this,
 h1:hover .edit-this { opacity: 1.0; }
+
+/* Pagination
+========================================================================== */
+.pagination {
+	text-align: center;
+	margin: 16px 0 0;
+}
+.pagination a,
+.pagination strong {
+	padding: 5px 8px;
+	border-color: #eee;
+	border-width: 1px;
+	border-style: solid;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-decoration: none;
+}
+.pagination a:hover {
+	text-decoration: none;
+}
 
 /* Comment Styles
 ========================================================================== */
@@ -1310,7 +1398,7 @@ h1:hover .edit-this { opacity: 1.0; }
 }
 .home .sidebar .resources { margin: 10px 0 0; }
 .home .resources .see-more {
-	margin: 4px 0 7px 18px;
+	margin: 4px 0 7px 0;
 	font-weight: bold;
 	font-style: italic;
 	font-size: 12px;
@@ -1338,7 +1426,7 @@ h1:hover .edit-this { opacity: 1.0; }
 }
 .home .events li.event h3 { padding: 0; }
 .home .news h4 { margin: 12px 0; }
-.home .my_health h2 { text-align: center; }
+.home .my-health h2 { text-align: center; }
 .home .deals .title {
 	text-align: center;
 	margin: 5px 0 0;
@@ -1352,60 +1440,60 @@ h1:hover .edit-this { opacity: 1.0; }
 	color: #555;
 }
 
-/* My Health | http://newstartclub.com/my_health
+/* My Health | http://newstartclub.com/my-health
 -------------------------------------------------------------------------- */
-.my_health .heading h1[data-icon]:before {
+.my-health .heading h1[data-icon]:before {
 	font-size: 52px;
 	top: 8px;
 }
-.my_health #gauge {
+.my-health #gauge {
 	background: url(/assets/css/images/my_health_gauge.png) no-repeat top center;
 	width: 190px;
 	height: 122px;
 	margin-top: 10px;
 	margin-bottom: -20px;
 }
-.my_health #gauge + p { margin: 0 0 10px; }
-.my_health #calculator table {
+.my-health #gauge + p { margin: 0 0 10px; }
+.my-health #calculator table {
 	width: 245px;
 	float: left;
 	margin: 0 0 12px;
 }
-.my_health #calculator ul {
+.my-health #calculator ul {
 	margin: 6px 0 0;
 	padding: 0;
 }
-.my_health #calculator li {
+.my-health #calculator li {
 	margin: 0 0 6px 5px;
 	list-style-type: none;
 	font-size: 12px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
-.my_health #calculator .grid12-23 label {
+.my-health #calculator .grid12-23 label {
 	font-weight: normal;
 }
-.my_health #calculator h2 { 
+.my-health #calculator h2 { 
 	font-size: 20px;
 	margin: 16px 0 4px;
 	line-height: 1.2;
 }
-.my_health #calculator p {
+.my-health #calculator p {
 	font-size: 12px;
 	line-height: 20px;
 	color: #555;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	margin: 0 16px 0 0px;
 }
-.my_health #calculator #calculate {
+.my-health #calculator #calculate {
 	margin: 20px 0 0;
 	font-size: 18px;
 }
 @-moz-document url-prefix() {
-	.my_health #calculator #calculate span { padding: 6px 15px 3px; }
+	.my-health #calculator #calculate span { padding: 6px 15px 3px; }
 }
-.my_health #calculator table th,
-.my_health #calculator table td { border: 0; }
-.my_health .right .total-score {
+.my-health #calculator table th,
+.my-health #calculator table td { border: 0; }
+.my-health .right .total-score {
 	font-size: 90px;
 	text-align: center;
 	font-weight: bold;
@@ -1414,13 +1502,13 @@ h1:hover .edit-this { opacity: 1.0; }
 	margin-top: 6px;
 }
 @-moz-document url-prefix() {
-	.my_health .sidebar .total-score,
-	.home .my_health h3.total-score {
+	.my-health .sidebar .total-score,
+	.home .my-health h3.total-score {
 		line-height: 48px;
 		margin-top: 22px;
 	}
 }
-.my_health h3.total-score {
+.my-health h3.total-score {
 	font-size: 90px;
 	text-align: center;
 	font-weight: bold;
@@ -1428,16 +1516,16 @@ h1:hover .edit-this { opacity: 1.0; }
 	line-height: 70px;
 	margin: 6px 0 0;
 }
-.my_health h3.total-score a { color: #71626a; }
-.my_health h3.total-score a:hover {
+.my-health h3.total-score a { color: #71626a; }
+.my-health h3.total-score a:hover {
 	color: #41323b;
 	text-decoration: none;
 }
-.my_health #history a.graphic:hover { text-decoration: none; }
-.my_health #health-score-history {
+.my-health #history a.graphic:hover { text-decoration: none; }
+.my-health #health-score-history {
 	top: -15px;
 }
-.my_health #history h3 {
+.my-health #history h3 {
 	font-weight: bold;
 	font-size: 108px;
 	line-height: 1;
@@ -1445,38 +1533,38 @@ h1:hover .edit-this { opacity: 1.0; }
 	text-align: center;
 	border-bottom: 4px solid;
 }
-.my_health #history h3 span {
+.my-health #history h3 span {
 	font-size: 24px;
 	display: block;
 }
-.my_health #history .table-stats {
+.my-health #history .table-stats {
 	display: none;
 	overflow: auto;
 	width: 100%;
 	border-bottom: 4px solid;
 }
-.my_health #history table { width: 100%; }
-.my_health #history table td {
+.my-health #history table { width: 100%; }
+.my-health #history table td {
 	padding: 6px 10px;
 	border-right: 1px dotted #DDD;
 	border-bottom: 1px solid #DDD;
 	font-size: 14px
 }
-.my_health #history table td:first-child { border-left: 1px dotted #DDD; }
-.my_health #history table thead { border-bottom: 3px solid #DDD; }
-.my_health #history table thead td {
+.my-health #history table td:first-child { border-left: 1px dotted #DDD; }
+.my-health #history table thead { border-bottom: 3px solid #DDD; }
+.my-health #history table thead td {
 	border-right: none;
 	border-left: none;
 	font-weight: bold;
 	text-align: center;
 	font-size: 12px;
 }
-.my_health #history table td.total {
+.my-health #history table td.total {
 	text-align: right;
 	font-weight: bold;
 }
-.my_health #history tbody tr:nth-child(odd) td { background-color: #F4F4F4; }
-.my_health #total-score {
+.my-health #history tbody tr:nth-child(odd) td { background-color: #F4F4F4; }
+.my-health #total-score {
 	font-size: 108px;
 	text-align: left;
 	font-weight: bold;
@@ -1486,142 +1574,142 @@ h1:hover .edit-this { opacity: 1.0; }
 	margin: 10px 0;
 	border-radius: 8px;
 }
-.my_health #results-chart {
+.my-health #results-chart {
 	left: -8px;
 	top: -30px;
 	height: 200px;
 }
-.my_health #recommendations li { margin: 4px 0 0; }
-.my_health #chart-legend li {
+.my-health #recommendations li { margin: 4px 0 0; }
+.my-health #chart-legend li {
 	margin: 0;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 11px;
 }
-.my_health #chart-legend .strong { 
+.my-health #chart-legend .strong { 
 	font-weight: bold;
 	font-size: 12px;
 }
-.my_health #chart-legend .strong .bullet {
+.my-health #chart-legend .strong .bullet {
 	font-size: 26px;
 	line-height: 24px;
 	left: -1px;
 	position: relative;
 }
-.my_health .bullet {
+.my-health .bullet {
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 26px;
 	display: inline-block;
 	height: 18px;
 }
-#locations.reveal-modal.my_health	 {
+#locations.reveal-modal.my-health	 {
 	width: 330px;
 	margin-left: -195px;
 	padding: 30px;
 }
-#locations.reveal-modal.my_health .scroll-box {
+#locations.reveal-modal.my-health .scroll-box {
 	height: 330px;
 	overflow-y: scroll;
 	box-shadow: 0 -8px 6px -7px rgba(0, 0, 0, .1) inset;
 }
-#locations.reveal-modal.my_health p {
+#locations.reveal-modal.my-health p {
 	font-weight: normal;
 	line-height: 18px;
 }
-#locations.reveal-modal.my_health table { width: 100%; }
-#locations.reveal-modal.my_health tr:hover { background-color: #f7eaf4; }
-#locations.reveal-modal.my_health tr { border-top: 1px dashed #ddd; }
-#locations.reveal-modal.my_health tr:first-child { border-top: none; }
-.my_health.reveal-modal h2 { font-size: 18px; }
-.my_health.reveal-modal h3 { font-size: 16px; }
-.my_health .post .vimeoBadge img {
+#locations.reveal-modal.my-health table { width: 100%; }
+#locations.reveal-modal.my-health tr:hover { background-color: #f7eaf4; }
+#locations.reveal-modal.my-health tr { border-top: 1px dashed #ddd; }
+#locations.reveal-modal.my-health tr:first-child { border-top: none; }
+.my-health.reveal-modal h2 { font-size: 18px; }
+.my-health.reveal-modal h3 { font-size: 16px; }
+.my-health .post .vimeoBadge img {
 	border: 6px solid #fff;
 	margin: 0;
 }
-.my_health .post .vimeoBadge .clip { margin: 0 22px 0 0; }
-.my_health .post .vimeoBadge .caption {
+.my-health .post .vimeoBadge .clip { margin: 0 22px 0 0; }
+.my-health .post .vimeoBadge .caption {
 	text-align: center;
 	padding: 5px 6px 15px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
-.my_health .post .vimeoBadge .caption a { cursor: pointer; }
+.my-health .post .vimeoBadge .caption a { cursor: pointer; }
 
 /* COLORS */
-.my_health .bar, .my_health .heading .icon { background-color: #f438a5; }
-.my_health .post p.footnote:target {
+.my-health .bar, .my-health .heading .icon { background-color: #f438a5; }
+.my-health .post p.footnote:target {
 	border-color: #F438A5;
 	background-color: #FFF0F9;
 }
-.my_health a,
-.my_health .post .vimeoBadge a,
-.my_health table label,
-.my_health.reveal-modal h2,
-.my_health .heading h1[data-icon]:before {
+.my-health a,
+.my-health .post .vimeoBadge a,
+.my-health table label,
+.my-health.reveal-modal h2,
+.my-health .heading h1[data-icon]:before {
 	color: #f438a5;
 }
-.my_health a:hover { color: #c60c78; }
-.my_health #total-score.one {
+.my-health a:hover { color: #c60c78; }
+.my-health #total-score.one {
 	background-color: #dcebc3;
 	border-color: #8dbe38;
 	color: #8dbe38;
 }
-.my_health #total-score.two {
+.my-health #total-score.two {
 	background-color: #CDE0FF;
 	border-color: #5D83DA;
 	color: #5D83DA;
 }
-.my_health #total-score.three {
+.my-health #total-score.three {
 	background-color: #FFFFDB;
 	border-color: #ECE90E;
 	color: #ECE90E;
 }
-.my_health #total-score.four {
+.my-health #total-score.four {
 	background-color: #FFF5D6;
 	border-color: #F2B32F;
 	color: #F2B32F;
 }
-.my_health #total-score.five {
+.my-health #total-score.five {
 	background-color: #FFE3DE;
 	border-color: #D24C4D;
 	color: #D24C4D;
 }
-.my_health #history h3.one {
+.my-health #history h3.one {
 	background-color: #dcebc3;
 	color: #8dbe38;
 }
-.my_health #history h3.two {
+.my-health #history h3.two {
 	background-color: #CDE0FF;
 	color: #5D83DA;
 }
-.my_health #history h3.three {
+.my-health #history h3.three {
 	background-color: #FFFFDB;
 	color: #ECE90E;
 }
-.my_health #history h3.four {
+.my-health #history h3.four {
 	background-color: #FFF5D6;
 	color: #F2B32F;
 }
-.my_health #history h3.five {
+.my-health #history h3.five {
 	background-color: #FFE3DE;
 	color: #D24C4D;
 }
-.my_health #history .table-stats.one { border-bottom-color: #8dbe38; }
-.my_health #history .table-stats.two { border-bottom-color: #5D83DA; }
-.my_health #history .table-stats.three { border-bottom-color: #ECE90E; }
-.my_health #history .table-stats.four { border-bottom-color: #F2B32F; }
-.my_health #history .table-stats.five { border-bottom-color: #D24C4D; }
-.my_health .bullet.one { color: #8dbe38; }
-.my_health .bullet.two { color: #5D83DA; }
-.my_health .bullet.three { color: #ECE90E; }
-.my_health .bullet.four { color: #F2B32F; }
-.my_health .bullet.five { color: #D24C4D; }
+.my-health #history .table-stats.one { border-bottom-color: #8dbe38; }
+.my-health #history .table-stats.two { border-bottom-color: #5D83DA; }
+.my-health #history .table-stats.three { border-bottom-color: #ECE90E; }
+.my-health #history .table-stats.four { border-bottom-color: #F2B32F; }
+.my-health #history .table-stats.five { border-bottom-color: #D24C4D; }
+.my-health .bullet.one { color: #8dbe38; }
+.my-health .bullet.two { color: #5D83DA; }
+.my-health .bullet.three { color: #ECE90E; }
+.my-health .bullet.four { color: #F2B32F; }
+.my-health .bullet.five { color: #D24C4D; }
 
-/* FAQ | http://newstartclub.com/faq
+/* Questions | http://newstartclub.com/questions
 -------------------------------------------------------------------------- */
-.faq .heading h1[data-icon]:before {
+.questions .heading h1[data-icon]:before {
 	top: 3px;
 }
-.faq li.question h2 {
+.questions li.question h2 {
 	font-size: 24px;
 	font-weight: bold;
 	position: absolute;
@@ -1629,30 +1717,30 @@ h1:hover .edit-this { opacity: 1.0; }
 	left: 0;
 	margin: 0;
 }
-.faq li.question h3 {
+.questions li.question h3 {
 	font-size: 16px;
 	font-weight: bold;
 	margin: 0;
 }
-.faq li.question h3 a { padding: 2px 0; }
-.faq li.question h3,
-.faq .listing li.question .answer {
+.questions li.question h3 a { padding: 2px 0; }
+.questions li.question h3,
+.questions .listing li.question .answer {
 	width: 454px;
 	margin-left: 36px;
 }
-.faq .post .q_block { min-height: 50px; }
-.faq .post #question,
-.faq .post #answer {
+.questions .post .q_block { min-height: 50px; }
+.questions .post #question,
+.questions .post #answer {
 	width: 444px;
 	float: right;
 	position: relative;
 }
-.faq .post #answer { margin-top: 20px; }
-.faq .post h1 {
+.questions .post #answer { /* margin-top: 20px; */ }
+.questions .post h1 {
 	font-size: 19px;
 	font-weight: bold;
 }
-.faq .post .drop-cap {
+.questions .post .drop-cap {
 	font-size: 36px;
 	font-weight: bold;
 	float: left;
@@ -1662,20 +1750,20 @@ h1:hover .edit-this { opacity: 1.0; }
 }
 
 /* COLORS */
-.faq .bar,
-.faq > .icon:hover div { background-color: #4F52A5; }
-.faq .listing li.pagination a:hover {
+.questions .bar,
+.questions > .icon:hover div { background-color: #4F52A5; }
+.questions .pagination a:hover {
 	background-color: #ebecf5;
 	border-color: #4F52A5;
 }
-.faq a,
-.faq .post h1,
-.faq .heading h1[data-icon]:before,
-.faq .main th label,
-.faq .main table .button,
-.faq > .link-icon:hover,
-.faq > .link-icon:hover:after { color: #4F52A5; }
-.faq a:hover { color: #333B8A; }
+.questions a,
+.questions .post h1,
+.questions .heading h1[data-icon]:before,
+.questions .main th label,
+.questions .main table .button,
+.questions > .link-icon:hover,
+.questions > .link-icon:hover:after { color: #4F52A5; }
+.questions a:hover { color: #333B8A; }
 
 
 
@@ -1715,7 +1803,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	margin: 10px 0 10px;
 }
 .recipes .ingredients li {
-	margin-bottom: 8px;
+	margin: 0 0 8px 18px;
 	list-style-type: disc;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 11px;
@@ -1724,9 +1812,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	font-weight: bold;
 	font-size: 13px;
 	margin-bottom: 0;
-}
-.recipes .ingredients ul + p {
-	margin: 18px 0 0;
+	line-height: 13px;
 }
 .recipes .ingredients li a {
 	display: inline;
@@ -1771,7 +1857,7 @@ h1:hover .edit-this { opacity: 1.0; }
 /* COLORS */
 .recipes > .icon:hover div,
 .recipes .bar { background-color: #87a922; }
-.recipes .listing li.pagination a:hover {
+.recipes .pagination a:hover {
 	background-color: #f2f5e6;
 	border-color: #87a922;
 }
@@ -1916,7 +2002,14 @@ h1:hover .edit-this { opacity: 1.0; }
 	text-align: center;
 	margin-left: 16px;
 }
-.resources #related-entries ul li:first-child { margin-left: 0; }
+.resources #related-entries ul li:nth-child(4n+1) {
+	margin-left: 0;
+}
+.ie7 .resources #related-entries ul li,
+.ie8 .resources #related-entries ul li {
+	margin-left: 40px;
+	margin-top: 20px;
+}
 .resources #related-entries li .title {
 	font-size: 12px;
 	font-weight: bold;
@@ -1943,7 +2036,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	border-color: #87a922;
 	background-color: #EAF4CA;
 }
-.resources .listing li.pagination a:hover {
+.resources .pagination a:hover {
 	background-color: #f2f5e6;
 	border-color: #87a922;
 }
@@ -1955,61 +2048,53 @@ h1:hover .edit-this { opacity: 1.0; }
 .resources a:hover,
 .resources li a:hover { color: #5b7316; }
 
-/* Partners | http://newstartclub.com/partners
+/* Services | http://newstartclub.com/services
 -------------------------------------------------------------------------- */
-.partners .heading h1[data-icon]:before {
+.services .heading h1[data-icon]:before {
 	top: 9px;
 	font-size: 60px;
 }
-.partners li.partner { position: relative; }
-.partners li.partner img,
-.partners .partner img { float: left; }
-.partners .list .image img {
+.services li.partner { position: relative; }
+.services li.partner img,
+.services .partner img { float: left; }
+.services .list .image img {
 	border: 5px solid #fff;
 	padding: 0;
 	margin: 0;
 }
-.partners li.partner .info {
+.services li.partner .info {
 	width: 365px;
 	margin-left: 125px;
 }
-.partners li.partner h2 {
+.services li.partner h2 {
 	font-weight: bold;
 	font-size: 16px;
 	margin: 0 0 4px;
 	position: relative;
 }
-.partners .post .bio {
+.services .post .bio {
 	width: 256px;
 	float: right;
 }
-.partners .post .bio p:first-child { margin-top: 0; }
+.services .post .bio p:first-child { margin-top: 0; }
 
 /* COLORS */
-.partners .bar { background-color: #00687A; }
-.partners .listing li.pagination a:hover {
+.services .bar { background-color: #00687A; }
+.services .pagination a:hover {
 	background-color: #e3eef0;
 	border-color: #00687A;
 }
-.partners a,
-.partners .heading h1[data-icon]:before,
-.partners > .link-icon:hover,
-.partners > .link-icon:hover:after,
-.body.partners table th label { color: #00687A; }
-.partners a:hover { color: #004C5E; }
+.services a,
+.services .heading h1[data-icon]:before,
+.services > .link-icon:hover,
+.services > .link-icon:hover:after,
+.body.services table th label { color: #00687A; }
+.services a:hover { color: #004C5E; }
 
 /* Events | http://newstartclub.com/events
 -------------------------------------------------------------------------- */
 .events .heading h1[data-icon]:before {
 	top: 1px;
-}
-.events .heading h2 {
-	font-size: 16px;
-	margin: 4px 0;
-	padding: 0;
-	font-weight: 500;
-	color: #777;
-	font-family: 'Open Sans' sans-serif;
 }
 .events li.event { position: relative; }
 @-webkit-keyframes eventTarget {
@@ -2182,9 +2267,10 @@ h1:hover .edit-this { opacity: 1.0; }
 
 /* COLORS */
 .events .bar,
-.events > .icon:hover div,
-.events .pagination a:hover { background-color: #FFB637; }
-.events .listing li.pagination a:hover {
+.events > .icon:hover div { 
+	background-color: #FFB637;
+}
+.events .pagination a:hover {
 	background-color: #fff7e9;
 	border-color: #FFB637;
 }
@@ -2222,14 +2308,14 @@ table.events a,
 	display: inline-block;
 	line-height: 28px;
 }
-.locations li.location h3 {
+.locations li.location .address {
 	font-weight: bold;
 	color: #535353;
 	font-size: 14px;
 	margin: 0;
 }
 .locations li.location h2,
-.locations li.location h3 { padding-left: 113px; }
+.locations li.location .address { padding-left: 113px; }
 .locations .location p { margin: 10px 0 0 0; }
 .locations li.location .image div {
 	width: 90px;
@@ -2309,7 +2395,7 @@ span#loading {
 .locations .bar,
 .home .sponsor-admin .bar,
 .locations > .icon:hover div { background-color: #FF4B28; }
-.locations .listing li.pagination a:hover {
+.locations .pagination a:hover {
 	background-color: #ffebe7;
 	border-color: #FF4B28;
 }
@@ -2338,7 +2424,7 @@ li.deal .expires {
 	font-weight: bold;
 	font-style: italic;
 }
-li.deal .show-coupon {
+.show-coupon {
 	background-color: #649C55;
 	border: 0;
 	padding: 3px;
@@ -2352,17 +2438,18 @@ li.deal .show-coupon {
 	-moz-transition: background-color 0.2s ease-in-out;
 	transition: background-color 0.2s ease-in-out;
 }
-li.deal .show-coupon:hover {
+.show-coupon:hover {
 	color: #fff;
 	background-color: #145C00;
 	text-decoration: none;
 }
-li.deal .show-coupon span {
+.show-coupon span {
 	padding: 1px 6px;
 	border: 1px dashed #fff;
 	display: block;
+	color: #fff;
 }
-li.deal .show-coupon span:after {
+.show-coupon span:after {
 	line-height: 1;
 	margin-left: 5px;
 }
@@ -2377,6 +2464,11 @@ li.deal.independant .details {
 	width: 364px;
 	float: left;
 }
+.deals .instructions {
+	margin: 10px 0;
+	font-style: italic;
+}
+/*
 li.deal.dependant h2 {
 	font-size: 17px;
 	margin: 0 0 4px;
@@ -2394,6 +2486,7 @@ li.deal.dependant .details {
 .ie8 li.deal.dependant .details {
 	padding-left: 0;
 }
+*/
 .view-coupon {
 	width: 580px;
 	text-align: center;
@@ -2460,6 +2553,11 @@ li.deal.dependant .details {
 	font-style: italic;
 	line-height: 16px;
 }
+.coupon .instructions,
+.coupon .terms {
+	padding-left: 10px;
+	padding-right: 10px;
+}
 .coupon .sponsor,
 .coupon .url {
 	text-transform: uppercase;
@@ -2478,9 +2576,10 @@ li.deal.dependant .details {
 }
 
 /* COLORS */
-.deals .bar,
-.deals .pagination a:hover { background-color: #1A7D00; }
-.deals .listing li.pagination a:hover {
+.deals .bar {
+	background-color: #1A7D00;
+}
+.deals .pagination a:hover {
 	background-color: #eef7fc;
 	border-color: #1A7D00;
 }
@@ -2540,7 +2639,7 @@ li.deal .details:before,
 	left: 3px;
 	top: 2px;
 }
-.news li.entry.partners h2::before {
+.news li.entry.services h2::before {
 	font-size: 26px;
 	top: 4px;
 	left: 1px;
@@ -2572,9 +2671,10 @@ li.deal .details:before,
 
 /* COLORS */
 .news .bar,
-.news > .icon:hover div,
-.news .pagination a:hover { background-color: #63B3E1; }
-.news .listing li.pagination a:hover {
+.news > .icon:hover div {
+	background-color: #63B3E1;
+}
+.news .pagination a:hover {
 	background-color: #eef7fc;
 	border-color: #63B3E1;
 }
@@ -2723,7 +2823,7 @@ li.deal .details:before,
 	right: 10px;
 	top: 3px;
 	font-size: 22px;
-	opacity: 0;
+	opacity: 0.4;
 	-webkit-transition: opacity 0.3s ease-in-out;
 	-moz-transition: opacity 0.3s ease-in-out;
 	transition: opacity 0.3s ease-in-out;

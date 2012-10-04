@@ -1,4 +1,4 @@
- {exp:weblog:entries weblog="resources" limit="500" category="146" dynamic="off" disable="member_data|categories"}
+ {exp:channel:entries channel="resources" limit="500" category="146" dynamic="no" disable="member_data|categories"}
           <li class="resource">
             <a href="{url_title_path='resources/detail'}" class="image">
               {if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
@@ -6,4 +6,4 @@
             </a>
             <span class="title"><a href="{url_title_path='resources/detail'}">{title} - Entry ID {entry_id}</a></span>
           </li>
-        {/exp:weblog:entries}
+        {/exp:channel:entries}

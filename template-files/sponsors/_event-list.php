@@ -1,8 +1,8 @@
-{exp:weblog:entries weblog="events" sort="asc" orderby="date" limit="1" dynamic="off" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
+{exp:channel:entries channel="events" sort="asc" orderby="date" limit="1" dynamic="no" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
 	{if no_results}<p>You don&rsquo;t have any active events. Click <a href="/sponsors/add-event">here</a> to add a new event.</p>{/if}
-{/exp:weblog:entries}
+{/exp:channel:entries}
 <ul class="listing entries">
-{exp:weblog:entries weblog="events" sort="desc" orderby="edit_date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
+{exp:channel:entries channel="events" sort="desc" orderby="edit_date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic_parameters="orderby|limit|sort"}
 	<li>
 		<script type="text/javascript">
 			function confirmation_{entry_id}() {
@@ -26,8 +26,8 @@
 					<p>
 						{!-- Check if event is only on one date and time is set --}
 						{if ("{entry_date format='%d'}" == "{expiration_date format='%d'}") && "{event_start_time}"}
-							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
-							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+							<span class="start-time">{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date  format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
@@ -44,8 +44,8 @@
 						
 						{!-- Check to see if repeating event --}
 						{if ("{entry_date format='%d'}" != "{expiration_date format='%d'}") && "{event_start_time}"}
-							<span class="start-time">{exp:nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
-							{if event_end_time} to <span class="end-time">{exp:nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
+							<span class="start-time">{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}</span>{if event_end_time ==""},{/if}
+							{if event_end_time} to <span class="end-time">{exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date format="%j"}</span> to 
 							<span class="month">{entry_date format="%F"}</span>
@@ -85,7 +85,7 @@
 				</dd>
 				<dt>Event URL</dt>
 				<dd>
-					<p><a href="http://newstartclub.com/event/{entry_id}" target="_blank">http://newstartclub.com/event/{entry_id}</a></p>
+					<p><a href="{path='event/{entry_id}'}" target="_blank">{path='event/{entry_id}'}</a></p>
 				</dd>
 			</dl>
 		</div>
@@ -97,7 +97,7 @@
 				<input type="hidden" name="URI" value="/sponsors/edit-events" />
 				<input type="hidden" name="return_url" value="/sponsors/edit-events" />
 				<input type="hidden" name="author_id" value="{author_id}" />
-				<input type="hidden" name="weblog_id" value="28" />
+				<input type="hidden" name="channel_id" value="2" />
 				<input type="hidden" name="status" value="closed" />
 				<input type="hidden" name="site_id" value="4" />
 			</div>
@@ -107,5 +107,5 @@
 		</form>
 	</li>
 {paginate}{if "{total_pages}" != 1}<p>Page {current_page} of {total_pages} pages {pagination_links}</p>{/if}{/paginate}
-{/exp:weblog:entries}
+{/exp:channel:entries}
 </ul>

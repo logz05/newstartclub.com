@@ -2,42 +2,42 @@
 	class="locations"
 	map="yes"
 	title="
-			{exp:weblog:entries weblog='locations' url_title='{segment_3}' limit='1'}
+			{exp:channel:entries channel='locations' url_title='{segment_3}' limit='1'}
 				{title}
-			{/exp:weblog:entries}"
+			{/exp:channel:entries}"
 }
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/locations">Locations</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='locations'}">Locations</a></li>
 </ul>
-{exp:weblog:entries weblog="locations" limit="1" require_entry="yes"}
+{exp:channel:entries channel="locations" limit="1" require_entry="yes"}
 {if no_results || segment_4 !=""}{redirect="404"}{/if}
 <div class="heading clearfix">
-	<h1>{embed="embeds/_edit-this" weblog_id="{weblog_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h1>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post">
 				<dl>
-					{if location_address != ""}<dt>Address:</dt>
-					<dd>{location_address}<br />{if location_address2}{location_address2}<br />{/if}{location_city}, {location_state} {location_zip}</dd>{/if}
-					{if location_telephone != ""}<dt>Phone:</dt>
+					<dt>Address:</dt>
+					<dd>{location_address}<br />{location_city}, {location_state} {location_zip}</dd>
+					{if location_telephone}<dt>Phone:</dt>
 					<dd>{location_telephone}</dd>{/if}
-					{if location_website != ""}<dt>Website:</dt>
+					{if location_website}<dt>Website:</dt>
 					<dd><a href="http://{location_website}/">{location_website}</a></dd>{/if}
 				</dl>
 				<p class="button-wrap directions">
 					{if logged_out}
-						<a href="/signin" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
+						<a href="{path='signin'}" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
 					{if:else}
 						<a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
 					{/if}
 				</p>
-			{/exp:weblog:entries}
+			{/exp:channel:entries}
 			{if logged_out}
-				<p>Directions are based on your <a href="/signin" data-reveal-id="signin-modal">member profile</a>.</p>
+				<p>Directions are based on your <a href="{path='signin'}" data-reveal-id="signin-modal">member profile</a>.</p>
 			{if:else}
-				<p>Directions are based on your <a href="/settings">member profile</a>.</p>
+				<p>Directions are based on your <a href="{path='settings'}">member profile</a>.</p>
 			{/if}
 		</div>
 	</div>
@@ -45,11 +45,11 @@
 		<header class="bar">Contact Person</header>
 		{if logged_out}
 			<p class="button-wrap">
-				<a href="/signin" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
+				<a href="{path='signin'}" class="super small secondary button" data-reveal-id="signin-modal-contact"><span>View Contact Information</span></a>
 			</p>
 		{/if}
 		{if logged_in}
-			{exp:weblog:entries weblog="locations" limit="1"}
+			{exp:channel:entries channel="locations" limit="1"}
 				<dl>
 					<dt>Name:</dt>
 					<dd>{location_contact_name}</dd>
@@ -58,9 +58,9 @@
 					<dt>Email:</dt>
 					<dd><a href="mailto:{location_contact_email}" title="{location_contact_email}">{location_contact_email}</a></dd>
 				</dl>
-			{/exp:weblog:entries}
+			{/exp:channel:entries}
 		{/if}
-		{exp:weblog:entries weblog="locations" limit="1"}
+		{exp:channel:entries channel="locations" limit="1"}
 			{if location_type=="profit"}
 				<header class="bar">Active Deals</header>
 				{embed="locations/_detail-deals"}
@@ -68,7 +68,7 @@
 				<header class="bar">Upcoming Events</header>
 				{embed="locations/_detail-events"}
 			{/if}
-		{/exp:weblog:entries}
+		{/exp:channel:entries}
 	</div>
 </div>
 <div id="map-area">
@@ -94,8 +94,8 @@
 // End Spin.js parameters
 </script>
 <div id="directions"></div>
-{exp:weblog:entries weblog="locations" limit="1"}
+{exp:channel:entries channel="locations" limit="1"}
 <input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />
-{/exp:weblog:entries}
+{/exp:channel:entries}
 {exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
 {embed="embeds/_doc-bottom" sim="contact|directions"}

@@ -19,9 +19,9 @@ $sponsID = 'SELECT m_field_id_26 FROM exp_member_data WHERE member_id = "'.$memb
 $sponsResults = $db->fetch($sponsID);
 $promo = $sponsResults['0']['0'];
 
-$zipResults = 'SELECT title, field_id_340, entry_date FROM exp_weblog_titles
- INNER JOIN exp_weblog_data
- ON exp_weblog_titles.entry_id = exp_weblog_data.entry_id
+$zipResults = 'SELECT title, field_id_340, entry_date FROM exp_channel_titles
+ INNER JOIN exp_channel_data
+ ON exp_channel_titles.entry_id = exp_channel_data.entry_id
  
 WHERE expiration_date > UNIX_TIMESTAMP()
 AND field_id_340 = "'.$zip.'"';
@@ -31,12 +31,12 @@ $results = $db->fetch($zipResults);
 $zipEntries = count($results);
 
 
-$sponsQuery = 'SELECT DISTINCT title, field_id_340, entry_date, cat_id, exp_weblog_titles.entry_id FROM exp_weblog_titles
- INNER JOIN exp_weblog_data
- ON exp_weblog_titles.entry_id = exp_weblog_data.entry_id
+$sponsQuery = 'SELECT DISTINCT title, field_id_340, entry_date, cat_id, exp_channel_titles.entry_id FROM exp_channel_titles
+ INNER JOIN exp_channel_data
+ ON exp_channel_titles.entry_id = exp_channel_data.entry_id
  
  INNER JOIN exp_category_posts
- ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
+ ON exp_channel_titles.entry_id = exp_category_posts.entry_id
  
 WHERE expiration_date > UNIX_TIMESTAMP()
 AND cat_id = '.$promo.'';
@@ -48,18 +48,18 @@ $sponsEntries = count($results);
 
 
 <section class="section events">
-	<header class="bar" data-icon="e"><a href="/events">Upcoming Events</a></header>
+	<header class="bar" data-icon="e"><a href="{path='events'}">Upcoming Events</a></header>
 	<ul class="listing">
 	<?php
 	
 	if($zipEntries > 0){
 	 
-		echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" search:event_zip="'.$zip.'" show_future_entries="yes" limit="2"}';
+		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" search:event_zip="'.$zip.'" show_future_entries="yes" limit="2"}';
 	
 	} elseif($sponsEntries > 0){
-		echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" category="'.$promo.'" show_future_entries="yes" limit="2"}';
+		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" category="'.$promo.'" show_future_entries="yes" limit="2"}';
 	} else {
-		echo '{exp:weblog:entries weblog="events" sort="asc" orderby="date" show_future_entries="yes" limit="2"}';
+		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="2"}';
 	}
 	?>
 
@@ -73,7 +73,7 @@ $sponsEntries = count($results);
 					<span class="time">
 						{!-- Check if event is only on one date and time is set --}
 						{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}"}
-							{exp:nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
+							{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
 						{/if}
 						
 						{!-- Check if event is only on one date and time is NOT set --}
@@ -90,11 +90,11 @@ $sponsEntries = count($results);
 			</h2>
 			<h3><a href="/events/location/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
 			<p class="details">
-				{exp:trunchtml chars="150" threshold="150" inline="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
-					{exp:html_strip}{exp:textile}{event_description}{/exp:textile}{/exp:html_strip}
-				{/exp:trunchtml}
+				{exp:eehive_hacksaw chars="150" append="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
+					{event_description}
+				{/exp:eehive_hacksaw}
 			</p>
 		</li>
-	{/exp:weblog:entries}
+	{/exp:channel:entries}
 	</ul>
 </section>

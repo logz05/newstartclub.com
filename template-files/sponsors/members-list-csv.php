@@ -145,11 +145,11 @@ UNION DISTINCT
     INNER JOIN exp_user_category_posts
     ON exp_members.member_id = exp_user_category_posts.member_id
     
-    INNER JOIN exp_weblog_titles
-    ON member_relations.related_id = exp_weblog_titles.entry_id
+    INNER JOIN exp_channel_titles
+    ON member_relations.related_id = exp_channel_titles.entry_id
     
     INNER JOIN exp_category_posts
-    ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
+    ON exp_channel_titles.entry_id = exp_category_posts.entry_id
     
     JOIN exp_member_data
   	ON exp_member_data.member_id = exp_members.member_id
@@ -186,11 +186,11 @@ if($_GET['entry_id'] != ""){
 	  INNER JOIN exp_member_data
 	  ON exp_members.member_id = exp_member_data.member_id
 	  
-	  INNER JOIN exp_weblog_titles
-	  ON member_relations.related_id = exp_weblog_titles.entry_id
+	  INNER JOIN exp_channel_titles
+	  ON member_relations.related_id = exp_channel_titles.entry_id
 	  
 	  INNER JOIN exp_category_posts
-	  ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
+	  ON exp_channel_titles.entry_id = exp_category_posts.entry_id
 	  
 	WHERE member_relations.related_id = '.$entry_id.'
 	AND exp_category_posts.cat_id = '.$number.'

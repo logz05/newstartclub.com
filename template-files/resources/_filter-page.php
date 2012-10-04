@@ -4,8 +4,8 @@
 }
 {embed="embeds/_rss-feed"}
 <ul class="trail">
-	<li><a href="/">Home</a></li>
-	<li><a href="/resources">Resources</a></li>
+	<li><a href="{path='site_index'}">Home</a></li>
+	<li><a href="{path='resources'}">Resources</a></li>
 </ul>
 <div class="heading clearfix">
 	{if segment_3 == ''}
@@ -21,7 +21,7 @@
 	<div class="main left">
 		{if segment_3 == '' || segment_3_category_id == ''}
 			<p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
-			<p>Please choose from a category on the right or click <a href="/resources">here</a> to see our latest resources.</p>
+			<p>Please choose from a category on the right or click <a href="{path='resources'}">here</a> to see our latest resources.</p>
 		{if:else}
 			{embed="resources/_page-listing" category="{segment_3_category_id}" orderby="date" sort="desc"}
 		{/if}

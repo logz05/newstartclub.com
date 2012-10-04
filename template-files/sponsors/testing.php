@@ -22,11 +22,11 @@ SELECT
     INNER JOIN exp_member_data
     ON exp_members.member_id = exp_member_data.member_id
     
-    INNER JOIN exp_weblog_titles
-    ON member_relations.related_id = exp_weblog_titles.entry_id
+    INNER JOIN exp_channel_titles
+    ON member_relations.related_id = exp_channel_titles.entry_id
     
     INNER JOIN exp_category_posts
-    ON exp_weblog_titles.entry_id = exp_category_posts.entry_id
+    ON exp_channel_titles.entry_id = exp_category_posts.entry_id
     
   WHERE member_relations.related_id = 950
   AND exp_category_posts.cat_id = 357
@@ -48,8 +48,8 @@ function send_emails($mailing_list, $subject, $custom_message, $event, $rsvp_lis
   // To send HTML mail, the Content-type header must be set
   $headers  = 'MIME-Version: 1.0' . "\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-  $headers .= 'From: {exp:weblog:categories show="357" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories} <club@newstart.com>' . "\r\n";
-  $headers .= 'Reply-To: {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
+  $headers .= 'From: {exp:channel:categories show="357" weblog="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
+  $headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
   
   $clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');
   
@@ -91,7 +91,7 @@ for ($i = 0; $i < count($mailing_list); $i++)
       $message .= nl2br($custom_message);
       $message .= '
                     <br /><br />
-                    {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}<br />{exp:weblog:categories show="357" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+                    {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="357" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
                     <a href="http://newstartclub.com" style="color:#87A621;">newstartclub.com</a></span>
                   </td>
                 </tr>
@@ -124,7 +124,7 @@ for ($i = 0; $i < count($mailing_list); $i++)
 function show_form($listTotal)
 {
   print '<div class="heading clearfix">
-            <h1>Hi! {exp:weblog:entries weblog="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries} (&nbsp;'. $listTotal .'&nbsp;)</h1>
+            <h1>Hi! {exp:channel:entries channel="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}{title}{/exp:channel:entries} (&nbsp;'. $listTotal .'&nbsp;)</h1>
         </div>
         <div class="grid23 clearfix">
           <div class="left">
@@ -141,8 +141,8 @@ function show_form($listTotal)
                 <tr>
                   <th></th>
                   <td>
-                    <input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event &ldquo;{exp:weblog:entries weblog="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="off" status="open|closed"}{title}{/exp:weblog:entries}&rdquo;." />
-                    <textarea name="rsvp_list" class="hidden"><br />You can update your RSVP list <a href="{path=events}" style="font-size:10px;color:#548DEA;font-family:verdana;">here</a>.</textarea>
+                    <input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event &ldquo;{exp:channel:entries channel="events" entry_id="{segment_3}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}{title}{/exp:channel:entries}&rdquo;." />
+                    <textarea name="rsvp_list" class="hidden"><br />You can update your RSVP list <a href="http://newstartclub.com/events" style="font-size:10px;color:#548DEA;font-family:verdana;">here</a>.</textarea>
                     <p class="button-wrap">
                       <button type="submit" class="super green button"><span>Send Email</span></button>
                     </p>
@@ -154,8 +154,8 @@ function show_form($listTotal)
           <div class="sidebar right">
             <header class="bar">Email Signature</header>
             <p>The following digital signature will be added to your message:</p>
-            <p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
-            {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+            <p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
+            {exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
             <a href="http://newstartclub.com/">newstartclub.com</a></p>
           </div>
         </div><!-- /.grid23 -->';

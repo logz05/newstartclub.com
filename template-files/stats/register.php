@@ -2,7 +2,7 @@
 	class="{class}"
 	title="Create an Account"
 }
-{assign_variable:class="members"}
+{preload_replace:class="members"}
 <div class="heading clearfix">
 	<h1>Create an Account</h1>
 </div>
@@ -16,12 +16,12 @@
 			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
 		</div>
 	</noscript>
-	<?php if (isset($_POST['memberAge'])) { ?>
+	<?php if (isset($_POST['member_age'])) { ?>
 		<div class="alert-box warning">
 			<p>Please fill out the fields below to save your health score results.</p>
 		</div>
 	<?php } ?>
-{exp:user:register group_id="9" return="update-profile" required="firstName|lastName|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}
+{exp:user:register group_id="9" return="update-profile" required="member_first_name|member_last_name|username|password|password_confirm|zipCode" form:class="clearfix" form:id="register"}
 <script type="text/javascript">
 
 function getZIP (form) {
@@ -42,16 +42,16 @@ function getZIP (form) {
 </script>
 	<table>
 		<tr>
-			<th scope="row" width="140"><label for="firstName" class="req"><span class="req">* </span>First Name</label></th>
+			<th scope="row" width="140"><label for="member_first_name" class="req"><span class="req">* </span>First Name</label></th>
 			<td>
-				<input type="text" class="input" name="firstName" id="firstName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+				<input type="text" class="input" name="member_first_name" id="member_first_name" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
 				<input type="text" class="hidden" value="" name="jsFirstName" />
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="lastName" class="req"><span class="req">* </span>Last Name</label></th>
+			<th scope="row"><label for="member_last_name" class="req"><span class="req">* </span>Last Name</label></th>
 			<td>
-				<input type="text" class="input" name="lastName" id="lastName" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
+				<input type="text" class="input" name="member_last_name" id="member_last_name" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
 				<input type="text" class="hidden" value="" name="jsLastName" />
 			</td>
 		</tr>
@@ -132,7 +132,7 @@ function getZIP (form) {
 			<td>
 				<p id="terms-conditions">
 					<input class="checkbox" type="checkbox" name="terms_and_conditions">
-					<span>I agree to the <a href="/about/terms-of-use">terms</a> and <a href="/about/privacy-policy">conditions</a> which include receiving a quarterly eNewsletter.</span>
+					<span>I agree to the <a href="{path='about/terms-of-use'}">terms</a> and <a href="{path='about/privacy-policy'}">conditions</a> which include receiving a quarterly eNewsletter.</span>
 				</p>
 			</td>
 		</tr>
@@ -149,21 +149,21 @@ function getZIP (form) {
 	{select_member_groups} 
 	<input type="checkbox" value="{group_id}" checked="checked" />{group_title}
 	{/select_member_groups}
-	<?php if (isset($_POST['memberAge'])) { ?>
+	<?php if (isset($_POST['member_age'])) { ?>
 		<div class="hidden">
-			<input class="hidden" type="hidden" name="memberAge" value="<?php echo $_POST['memberAge']; ?>" />
-			<input class="hidden" type="hidden" name="memberWeight" value="<?php echo $_POST['memberWeight']; ?>" />
+			<input class="hidden" type="hidden" name="member_age" value="<?php echo $_POST['member_age']; ?>" />
+			<input class="hidden" type="hidden" name="member_weight" value="<?php echo $_POST['member_weight']; ?>" />
 			<input class="hidden" type="hidden" name="memberHeightFeet" value="<?php echo $_POST['memberHeightFeet']; ?>" />
-			<input class="hidden" type="hidden" name="memberHeightInches" value="<?php echo $_POST['memberHeightInches']; ?>" />
-			<input class="hidden" type="hidden" name="memberWaistSize" value="<?php echo $_POST['memberWaistSize']; ?>" />
-			<input class="hidden" type="hidden" name="memberSleep" value="<?php echo $_POST['memberSleep']; ?>" />
-			<input class="hidden" type="hidden" name="memberExercise" value="<?php echo $_POST['memberExercise']; ?>" />
-			<input class="hidden" type="hidden" name="memberAlcohol" value="<?php echo $_POST['memberAlcohol']; ?>" />
-			<input class="hidden" type="hidden" name="memberSmoking" value="<?php echo $_POST['memberSmoking']; ?>" />
-			<input class="hidden" type="hidden" name="memberDiet" value="<?php echo $_POST['memberDiet']; ?>" />
-			<input class="hidden" type="hidden" name="memberNutrition" value="<?php echo $_POST['memberNutrition']; ?>" />
-			<input class="hidden" type="hidden" name="memberEmotional" value="<?php echo $_POST['memberEmotional']; ?>" />
-			<input class="hidden" type="hidden" name="memberScoreTotal" value="<?php echo $_POST['memberScoreTotal']; ?>" />
+			<input class="hidden" type="hidden" name="member_height_in" value="<?php echo $_POST['member_height_in']; ?>" />
+			<input class="hidden" type="hidden" name="member_waist_in" value="<?php echo $_POST['member_waist_in']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_sleep" value="<?php echo $_POST['member_score_sleep']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_exercise" value="<?php echo $_POST['member_score_exercise']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_alcohol" value="<?php echo $_POST['member_score_alcohol']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_smoking" value="<?php echo $_POST['member_score_smoking']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_diet" value="<?php echo $_POST['member_score_diet']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_nutrition" value="<?php echo $_POST['member_score_nutrition']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_emotional" value="<?php echo $_POST['member_score_emotional']; ?>" />
+			<input class="hidden" type="hidden" name="member_score_total" value="<?php echo $_POST['member_score_total']; ?>" />
 			<input class="hidden" type="hidden" name="memberScoreHistory" value='<?php echo stripslashes($_POST['memberScoreHistory']); ?>' />
 		</div>
 	<?php } ?>

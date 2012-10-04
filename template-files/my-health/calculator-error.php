@@ -20,7 +20,7 @@
     <h1>Calculator Error</h1>
     <p>An error occured while calculating your health score and the form must be reset.</p>
     <p class="button-wrap">
-      <a href="/my_health/calculator" class="super green button"><span>Reset</span></a>
+      <a href="/my-health/calculator" class="super green button"><span>Reset</span></a>
     </p>
   </div>
 </div>

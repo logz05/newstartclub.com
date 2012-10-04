@@ -8,8 +8,8 @@
 
 	function initialize() {
 				
-		var locations = [{exp:weblog:entries weblog="locations" status="open" backspace="1"}
-			["{title}", "{location_address} {location_city}, {location_state} {location_zip}"],{/exp:weblog:entries}
+		var locations = [{exp:channel:entries channel="locations" status="open" backspace="1"}
+			["{title}", "{location_address} {location_city}, {location_state} {location_zip}"],{/exp:channel:entries}
 		];
 		
 		setTimeout( function() {

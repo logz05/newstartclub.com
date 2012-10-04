@@ -8,12 +8,10 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<ul class="listing">
-			{embed="events/_event-listitem"}
-		</ul>
+		{embed="events/_page-listing"}
 	</div>
 	<div class="sidebar right">
 		{embed="events/_sidebar"}
 	</div>
-</div><!--/.grid23-->
+</div>
 {embed="embeds/_doc-bottom"}

@@ -188,7 +188,7 @@ function commentsHistoryTable($days)
 	
 }
 
-function memberAges($rangeLow, $rangeHigh)
+function member_ages($rangeLow, $rangeHigh)
 {
 	$db = new DBconnect();
 	
@@ -510,7 +510,7 @@ function memberAges($rangeLow, $rangeHigh)
 								
 								GROUP BY interest
 								ORDER BY total DESC, interest ASC"}
-								{exp:weblog:categories weblog="sponsors" style="linear" show="{interest}"}['{category_name}', {total}],{/exp:weblog:categories}{/exp:query}
+								{exp:channel:categories weblog="sponsors" style="linear" show="{interest}"}['{category_name}', {total}],{/exp:channel:categories}{/exp:query}
 					]);
 	
 					var options = {
@@ -559,9 +559,9 @@ function memberAges($rangeLow, $rangeHigh)
 							
 							GROUP BY interest
 							ORDER BY total DESC, interest ASC"}
-						<tr>{exp:weblog:categories weblog="sponsors" style="linear" show="{interest}"}
+						<tr>{exp:channel:categories weblog="sponsors" style="linear" show="{interest}"}
 							<td>{category_name}</td>
-							<td class="total">{total}</td>{/exp:weblog:categories}
+							<td class="total">{total}</td>{/exp:channel:categories}
 						</tr>
 					{/exp:query}
 				</table>
@@ -682,7 +682,7 @@ function memberAges($rangeLow, $rangeHigh)
 		</div>
 		
 		<div class="locations">
-			<h1>{exp:query sql="SELECT COUNT(*) AS total FROM exp_weblog_titles WHERE exp_weblog_titles.weblog_id = 31"}{total}{/exp:query} Total Locations</h1>
+			<h1>{exp:query sql="SELECT COUNT(*) AS total FROM exp_channel_titles WHERE exp_channel_titles.channel_id = 3"}{total}{/exp:query} Total Locations</h1>
 			
 			<script type="text/javascript">
 			 google.load('visualization', '1', {'packages': ['geochart']});
@@ -691,7 +691,7 @@ function memberAges($rangeLow, $rangeHigh)
 				function drawMarkersMap() {
 				var data = google.visualization.arrayToDataTable([
 					['Sponsor Name',	'Location', 'Members'],
-				{exp:weblog:entries weblog="locations" sort="asc"}
+				{exp:channel:entries channel="locations" sort="asc"}
 					{exp:query
 						sql="
 							SELECT count(member_id) AS total FROM (
@@ -725,7 +725,7 @@ function memberAges($rangeLow, $rangeHigh)
 										FROM exp_member_data
 											WHERE m_field_id_7 = {location_zip}
 							) a" limit="1"}
-						['{title}', '{location_city}, {location_state}', {total}],{/exp:query}{/exp:weblog:entries}
+						['{title}', '{location_city}, {location_state}', {total}],{/exp:query}{/exp:channel:entries}
 				]);
 		
 				var options = {
@@ -765,7 +765,7 @@ function memberAges($rangeLow, $rangeHigh)
 						<td>Total Members</td>
 					</tr>
 				</thead>
-				{exp:weblog:entries weblog="locations" sort="asc"}
+				{exp:channel:entries channel="locations" sort="asc"}
 					{exp:query
 						sql="
 							SELECT count(member_id) AS total FROM (
@@ -805,7 +805,7 @@ function memberAges($rangeLow, $rangeHigh)
 							<td class="total">{total}</td>
 						</tr>
 					{/exp:query}
-				{/exp:weblog:entries}
+				{/exp:channel:entries}
 			</table>
 		</div>
 		
@@ -818,7 +818,7 @@ function memberAges($rangeLow, $rangeHigh)
 					<td>RSVPs</td>
 				</tr>
 			</thead>
-			{exp:weblog:entries weblog="events" show_expired="no" show_future_entries="yes"}
+			{exp:channel:entries channel="events" show_expired="no" show_future_entries="yes"}
 				<tr class="{switch='odd|even'}">
 					<td>{entry_id}</td>
 					<td><a href="{url_title_path='events/detail'}">{title}</a></td>
@@ -829,7 +829,7 @@ function memberAges($rangeLow, $rangeHigh)
 						<td class="total">{total}</td>
 				{/exp:query}
 				</tr>
-			{/exp:weblog:entries}
+			{/exp:channel:entries}
 		</table>		
 		
 		

@@ -28,7 +28,7 @@
         <td>
           <input type="password" class="input" name="password" />
           <input type="hidden" class="hidden" name="delete-account-email" value="{email}" />
-          <input type="hidden" class="hidden" name="delete-account-name" value="{exp:user:stats}{firstName} {lastName}{/exp:user:stats}" />
+          <input type="hidden" class="hidden" name="delete-account-name" value="{exp:user:stats}{member_first_name} {member_last_name}{/exp:user:stats}" />
         </td>
       </tr>
     </table>

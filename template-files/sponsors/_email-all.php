@@ -10,10 +10,10 @@ require_once('dbconnect.php');
 $db = new DBconnect();
 $queryAll = '
 	SELECT 
-		exp_member_data.member_id,
+		exp_members.member_id,
 		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name
 		
 		FROM exp_member_data
 		
@@ -28,10 +28,10 @@ $queryAll = '
 UNION DISTINCT
 						
 	SELECT
-		member_relations.member_id,
+		exp_members.member_id,
 		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name
 		
 		FROM member_relations
 	
@@ -49,10 +49,10 @@ UNION DISTINCT
 UNION DISTINCT
 						
 	SELECT 
-		exp_member_data.member_id,
+		exp_members.member_id,
 		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name
 		
 		FROM exp_member_data
 			JOIN exp_members
@@ -75,8 +75,8 @@ function send_emails($mailing_list, $subject, $custom_message)
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-	$headers .= 'From: {exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories} <club@newstart.com>' . "\r\n";
-	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
+	$headers .= 'From: {exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
+	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
 	
 	$clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');
 	
@@ -152,7 +152,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 											$message .= 'Dear '. $mailing_list[$i][2] .',<br />';
 											$message .= $custom_message;
 											$message .= '
-											<p style="color:#010101;">{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
 											<a href="http://newstartclub.com/location/{embed:sponsor_number}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_number}</a></p>
 											</td>
 										</tr>
@@ -179,7 +179,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 				<tr>
 					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">
 						You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.<br />
-						You can update your status <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
+						You can update your status <a href="http://newstartclub.com/settings" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
 					</td>
 				</tr>
 			</table>
@@ -221,7 +221,7 @@ function show_form($listTotal)
 									<th></th>
 									<td>
 										<textarea name="full_list" class="hidden">You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.</textarea>
-										<textarea name="full_list_settings" class="hidden"><br />You can update your status <a href="{path=settings}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
+										<textarea name="full_list_settings" class="hidden"><br />You can update your status <a href="{path=\'settings\'}" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
 										</p>
@@ -229,15 +229,15 @@ function show_form($listTotal)
 								</tr>
 							</table>
 						</form>
-					</div><!-- /.left -->
+					</div>
 					<div class="sidebar right">
 						<header class="bar">Email Signature</header>
 						<p>The following digital signature will be added to your message:</p>
-						<p><strong>{exp:user:stats dynamic="off"}{firstName} {lastName}{/exp:user:stats}</strong><br />
+						<p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
 						{exp:weblog:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
-						<a href="http://newstartclub.com/location/{embed:sponsor_number}">newstartclub.com/location/{embed:sponsor_number}</a></p>
+						<a href="{path=\'location/{embed:sponsor_number}\'}">newstartclub.com/location/{embed:sponsor_number}</a></p>
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
 function show_done($listRecipients)
@@ -259,13 +259,13 @@ function show_done($listRecipients)
 						
 			print '</ul>
 						<p class="button-wrap">
-							<a href="/sponsors/email-members" class="super red button"><span>Back to Member List</span></a>
+							<a href="{path=\'sponsors/email-members\'}" class="super red button"><span>Back to Member List</span></a>
 						</p>
 					</div>
-				</div><!-- /.left -->
+				</div>
 					<div class="sidebar right">
 					</div>
-				</div><!-- /.grid23 -->';
+				</div>';
 }
 
 if (isset($_POST['custom_message'])) { show_done($queryResultsAll); } else { show_form($queryCountAll); } 

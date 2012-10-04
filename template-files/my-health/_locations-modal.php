@@ -1,4 +1,4 @@
-<div id="locations" class="reveal-modal my_health">
+<div id="locations" class="reveal-modal my-health">
   <h2><strong>NEWSTART&reg; Lifestyle Program Locations</strong></h2>
   <hr>
   <div class="scroll-box">
