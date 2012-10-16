@@ -1,7 +1,7 @@
 <section class="section">
 	<header class="bar">Search</header>
 	
-	{exp:search:advanced_form result_page="/resources/search" weblog="resources" results="9"}
+	{exp:search:advanced_form result_page="/resources/search" channel="resources" results="9"}
 	<input type="hidden" name="search_in" value="everywhere">
 	<input id="query" name="keywords" type="search" class="input" placeholder="Search Resources">
 	<p><a href="#" class="advanced-search">Advanced Search</a></p>

@@ -1,6 +1,6 @@
 </div><!-- /.body -->
 <footer class="footer">
-	<p>A FREE community service of <a href="http://newstart.com">NEWSTART&reg;</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
+	<p>A FREE community service of <a href="//newstart.com">NEWSTART&reg;</a>. &copy; 2010-{current_time format="%Y"}. All Rights Reserved.</p>
 	<p>
 		<a href="{path='about/privacy-policy'}">Privacy Policy</a> |
 		<a href="{path='about/terms-of-use'}">Terms of Use</a> |
@@ -138,7 +138,7 @@
 	<script src="/ckeditor/ckeditor.js"></script>
 	{if segment_2 == "add-deal" || segment_2 == "edit-deal"}
 	<script type="text/javascript">
-			CKEDITOR.replace( 'field_id_375',
+			CKEDITOR.replace( 'deal_instructions',
 			{
 				customConfig : '/ckeditor-custom/config_custom.js',
 				toolbar: 'SponsorToolbar'
@@ -147,7 +147,7 @@
 	{/if}
 	{if segment_2 == "add-event" || segment_2 == "edit-event"}
 	<script type="text/javascript">
-			CKEDITOR.replace( 'field_id_35',
+			CKEDITOR.replace( 'event_description',
 			{
 				customConfig : '/ckeditor-custom/config_custom.js',
 				toolbar: 'SponsorToolbar'

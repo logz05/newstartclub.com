@@ -1,5 +1,8 @@
 <?php 
 
+$path = ini_get('include_path');
+ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
+
 require_once('dbconnect.php');
 
 $db = new DBconnect();
@@ -14,7 +17,7 @@ $recipeResults = $db->fetch($recipeQuery);
 
 $videoIDs = '';
 
-for ($i = 0; $i <= 4; $i++ ) {
+for ($i = 0; $i < 4; $i++ ) {
 	$videoIDs .= $videoResults[$i][0];
 	
 	if ($i != 4) {
@@ -25,7 +28,7 @@ for ($i = 0; $i <= 4; $i++ ) {
 
 $articleIDs = '';
 
-for ($i = 0; $i <= 4; $i++ ) {
+for ($i = 0; $i < 4; $i++ ) {
 	
 	$articleIDs .= $articleResults[$i][0];
 	
@@ -37,7 +40,7 @@ for ($i = 0; $i <= 4; $i++ ) {
 
 $recipeIDs = '';
 
-for ($i = 0; $i <= 4; $i++ ) {
+for ($i = 0; $i < 4; $i++ ) {
 	
 	$recipeIDs .= $recipeResults[$i][0];
 	

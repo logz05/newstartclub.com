@@ -13,41 +13,42 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 
+{exp:channel:entries channel="locations" limit="12" sort="desc" paginate="bottom" dynamic="no" search:location_type="=profit" search:location_state="={segment_3}"}
+	{if count == 1}
 		<ul class="listing">
-		{exp:channel:entries channel="locations" limit="12" sort="desc" paginate="bottom" dynamic="no" search:location_type="=profit" search:location_state="={segment_3}"}
-			{reverse_related_entries orderby="expiration_date" sort="asc"}
+	{/if}
+		{exp:playa:parents channel="deals"}
 			<li class="deal independant clearfix">
 				<h2><a href="{url_title_path='deals/detail'}">{title}</a>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}</h2>
 				<a href="{url_title_path='deals/detail'}" class="image">
-				{categories show_group="24"}
-					{exp:ce_img:single src="{category_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
-				{/categories}
+				{deal_location}
+					{exp:ce_img:single src="{location_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+				{/deal_location}
 				</a>
 				<div class="details">
 					<p>
-						{exp:trunchtml chars="125" inline="&hellip;"}
-							{exp:html_strip}{deal_instructions}{/exp:html_strip}
-						{/exp:trunchtml}
+						{exp:eehive_hacksaw chars="125" append="&hellip;"}
+							{deal_instructions}
+						{/exp:eehive_hacksaw}
 						<a class='link-more' href="{url_title_path='deals/detail'}">more&raquo;</a>
 					</p>
 					<p class="expires">{if expiration_date}Expires: {expiration_date format="%m/%d/%y"}{/if}</p>
 					{if logged_out}
-						<a class="show-coupon" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
+						<a class="show-coupon" href="{path='signin'}" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
 					{if:else}
 						<a class="show-coupon" href="{url_title_path='deals/detail'}" data-reveal-id="modal-coupon-{entry_id}"><span data-icon="p">Show coupon code</span></a>
 					{/if}
 				</div>
 			</li>
-			{/reverse_related_entries}
-			{paginate}
-				{if "{total_pages}" > 1}
-					<li class="pagination">
-						<p>{pagination_links}</p>
-					</li>
-				{/if}
-			{/paginate}
-		{/exp:channel:entries}
+		{/exp:playa:parents}
+	{paginate}
+		<p class="pagination">{pagination_links}</p>
+	{/paginate}
+	{if count == total_results}
 		</ul>
+	{/if}
+{/exp:channel:entries}
+
 	</div>
 	{embed="deals/_sidebar"}
 </div>

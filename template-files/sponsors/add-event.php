@@ -1,6 +1,6 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title="Sponsorship Program | Create a new event"
+	title="Create a new event"
 	add="datepicker/datepicker"
 }
 <div class="heading clearfix">
@@ -10,64 +10,60 @@
 	<div class="main events left">
 	<h2>Event Information</h2>
 {exp:user:stats dynamic="off"}
-{exp:weblog:entry_form channel="events" return="/sponsors/edit-events" category="{member_admin_id}"}
+{exp:safecracker channel="events" return="sponsors/edit-events"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
 			<td><input type="text" class="input" name="title" id="title" value="{title}" size="36" maxlength="100" onkeyup="liveUrlTitle();" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_25">* Start Date</label></th>
+			<th scope="row"><label for="entry_datepicker">* Start Date</label></th>
 			<td>
 				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{current_time format='%m/%d/%Y'}" size="20"/>
 				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{current_time format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_26">* End Date</label></th>
+			<th scope="row"><label for="expiration_datepicker">* End Date</label></th>
 			<td>
 				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="" size="20"/>
 				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_33">Start Time</label></th>
+			<th scope="row"><label for="event_start_time">Start Time</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_33" class="input" name="field_id_33" value="" maxlength="128" size="25" /><br>
-				<p class="instructions">Format time as 24 hour time.<br>
-					12:00am = 00:00, 11:59pm = 23:59<br>
-					<em>If all day event leave this field blank.</em></p>
+				<div class="select-input">{field:event_start_time}</div>
+				<p class="instructions">If event is an all day event leave this field blank.</p>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="field_id_34">End Time</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_34" class="input" name="field_id_34" value="" maxlength="128" size="25" /><br>
-				<p class="instructions">Format time as 24 hour time.<br>
-					12:00am = 00:00, 11:59pm = 23:59<br>
-					<em>If all day event leave this field blank.</em></p>
+				<div class="select-input">{field:event_end_time}</div>
+				<p class="instructions">If event is an all day event leave this field blank.</p>
 			</td>
 		</tr>
 		{exp:channel:entries channel="locations" limit="1" category="{member_admin_id}"}
 		<tr>
-			<th scope="row"><label for="field_id_341">Name</label></th>
+			<th scope="row"><label for="event_location_name">Name</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_341" class="input" name="field_id_341" value="{title}" maxlength="256" size="40" />
+				<input type="text" dir="ltr" id="event_location_name" class="input" name="event_location_name" value="{title}" maxlength="256" size="40" />
 				<p class="instructions">Name of the event location.</p>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_337">* Address</label></th>
-			<td><input type="text" dir="ltr" id="field_id_337" class="input" name="field_id_337" value="{location_address}" maxlength="256" size="30" /><br></td>
+			<th scope="row"><label for="event_address">* Address</label></th>
+			<td><input type="text" dir="ltr" id="event_address" class="input" name="event_address" value="{location_address}" maxlength="256" size="30" /><br></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_338">* City</label></th>
-			<td><input type="text" dir="ltr" id="field_id_338" class="input" name="field_id_338" value="{location_city}" maxlength="256" size="25" /><br></td>
+			<th scope="row"><label for="event_city">* City</label></th>
+			<td><input type="text" dir="ltr" id="event_city" class="input" name="event_city" value="{location_city}" maxlength="256" size="25" /><br></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_339">* State</label></th>
+			<th scope="row"><label for="event_state">* State</label></th>
 			<td>
-				<select name="field_id_339" class="input"> 
+				<select name="event_state" class="input"> 
 					<option value="--"{if location_state=="--"} selected="selected"{/if}>Select State</option>
 					<option value="AL"{if location_state=="AL"} selected="selected"{/if}>Alabama</option>
 					<option value="AK"{if location_state=="AK"} selected="selected"{/if}>Alaska</option>
@@ -126,14 +122,14 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_340">*&nbsp;Zip Code</label></th>
-			<td><input type="text" dir="ltr" id="field_id_340" class="input" name="field_id_340" value="{location_zip}" maxlength="9" size="5" /><br></td>
+			<th scope="row"><label for="event_zip">*&nbsp;Zip Code</label></th>
+			<td><input type="text" dir="ltr" id="event_zip" class="input" name="event_zip" value="{location_zip}" maxlength="9" size="5" /><br></td>
 		</tr>
 		{/exp:channel:entries}
 		<tr>
-			<th scope="row"><label for="field_id_35">*&nbsp;Description</label></th>
+			<th scope="row"><label for="event_description">*&nbsp;Description</label></th>
 			<td>
-				<textarea id="field_id_35" class="input" name="field_id_35" dir="ltr" cols="34" rows="12"></textarea>
+				<textarea id="event_description" class="input" name="event_description" dir="ltr" cols="34" rows="12"></textarea>
 				<p class="instructions">Should include event description, contact information, registration instructions, etc.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
@@ -158,6 +154,7 @@
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="370" /> <span>Stop Smoking</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="366" /> <span>Vegetarian Cooking</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="368" /> <span>Weight Management</span></label></li>
+					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>
 				</ul>
 			</td>
 		</tr>
@@ -171,9 +168,9 @@
 			</td>
 		</tr>
 	</table>
-{/exp:weblog:entry_form}
+{/exp:safecracker}
 {/exp:user:stats}
-</div><!-- /.left -->
+</div>
 <div class="right sidebar">
 	<header class="bar">Add Events</header>
 		<p>To view or edit an event, click <a href="/sponsors/edit-event">here</a>.</p>

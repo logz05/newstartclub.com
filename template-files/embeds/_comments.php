@@ -1,6 +1,6 @@
 <div class="the-comments" itemscope itemtype="http://schema.org/AggregateRating">
 	<header class="bar"  data-icon="B">Comments
-		{exp:comment:entries sort="asc" limit="1" weblog="{embed:channel}"}
+		{exp:comment:entries sort="asc" limit="1" channel="{embed:channel}"}
 			{if no_results}(&thinsp;<span itemprop="reviewCount">0</span>&thinsp;){/if}
 			(&thinsp;<span itemprop="reviewCount">{total_comments}</span>&thinsp;)
 		{/exp:comment:entries}
@@ -13,7 +13,7 @@
 		</span>
 	</header>
 	<ol class="comments listing">
-		{exp:comment:entries sort="asc" limit="20" weblog="{embed:channel}"}
+		{exp:comment:entries sort="asc" limit="20" channel="{embed:channel}"}
 		<li id="c_{comment_id}" class="comment {switch="even|odd"}">
 			<h3 class="meta">
 				<strong><a href="#c_{comment_id}" title="Permalink this comment">{count}</a></strong>
@@ -58,7 +58,7 @@
 			<li>&lt;code&gt;my code&lt;/code&gt;</li>
 		</ul>
 		<p>Your comment will be moderated and will be deleted if commenters only leave a keyword, if sites linked are commercial in nature and not related to the entry, or if the comment simply doesn&rsquo;t add substance to the discussion.</p>
-		{exp:comment:form weblog="{embed:channel}" preview="{embed:channel}/detail"}
+		{exp:comment:form channel="{embed:channel}" preview="{embed:channel}/detail"}
 		<table>
 		{exp:user:stats dynamic="off"}
 			<tr>

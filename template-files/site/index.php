@@ -43,7 +43,7 @@ require_once ( 'utilities.php' );
 				{embed="site/featured-resources"}
 			</section>
 			
-			{embed="site/local-events"}
+			{embed="site/local-events" member_id="{exp:user:stats dynamic="no"}{member_id}{/exp:user:stats}"}
 			
 			<section class="section news">
 				<header class="bar" data-icon="h"><a href="{path='news'}">Latest Updates</a></header>
@@ -162,7 +162,7 @@ require_once ( 'utilities.php' );
 				<ul>
 					<?php
 						$categories = array(
-						{exp:channel:categories weblog="resources" style="linear" show_empty="no" category_group="17" backspace="1"}
+						{exp:channel:categories channel="resources" style="linear" show_empty="no" category_group="17" backspace="1"}
 							'{count}' => '<li><a href="{path=\'resources/health-condition/{category_url_title}\'}">{category_name}</a></li>',
 						{/exp:channel:categories}
 						);
@@ -176,7 +176,7 @@ require_once ( 'utilities.php' );
 				<ul>
 					<?php
 						$categories = array(
-						{exp:channel:categories weblog="resources" style="linear" show_empty="no" category_group="19" backspace="1"}
+						{exp:channel:categories channel="resources" style="linear" show_empty="no" category_group="19" backspace="1"}
 							'{count}' => '<li><a href="{path=\'resources/living-better/{category_url_title}\'}">{category_name}</a></li>',
 						{/exp:channel:categories}
 						);
@@ -190,7 +190,7 @@ require_once ( 'utilities.php' );
 				<ul>
 					<?php
 						$categories = array(
-						{exp:channel:categories weblog="recipes" style="linear" show_empty="no" category_group="39" backspace="1"}
+						{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="39" backspace="1"}
 							'{count}' => '<li><a href="{path=\'recipes/type/{category_url_title}\'}">{category_name}</a></li>',
 						{/exp:channel:categories}
 						);
@@ -249,7 +249,7 @@ require_once ( 'utilities.php' );
 							<li><a href="{path='sponsors/add-deal'}">&raquo; Add Deals</a></li>
 							<li><a href="{path='sponsors/edit-deals'}">&raquo; Edit Deals</a></li>
 						{if:else}
-							<li><a href="{path='sponsors/add-event'}">&raquo; Add Event</a></li>
+							<li><a href="{path='sponsors/add-event'}">&raquo; Add Events</a></li>
 							<li><a href="{path='sponsors/edit-events'}">&raquo; Edit Events</a></li>
 						{/if}
 						{/exp:channel:categories}

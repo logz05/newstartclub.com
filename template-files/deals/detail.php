@@ -93,7 +93,7 @@
 {deal_location}
 <input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />{/deal_location}
 {/exp:channel:entries}
-{exp:member:custom_profile_data}<input id="map-start" value="{address} {city}, {state} {zipCode}" />{/exp:member:custom_profile_data}
+{exp:user:stats dynamic="no"}<input id="map-start" value="{member_address} {member_city}, {member_state} {member_zip}" />{/exp:user:stats}
 {embed="embeds/_doc-bottom"
 	sim="coupon|directions"
 	show-coupons='{exp:channel:entries channel="deals" show_future_entries="yes"}{entry_id}{/exp:channel:entries}'

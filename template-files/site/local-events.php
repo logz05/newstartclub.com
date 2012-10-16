@@ -1,37 +1,34 @@
 <?php 
 
 $path = ini_get('include_path');
-ini_set('include_path', $path . ':/mnt/stor7-wc2-dfw1/530872/582181/www.newstartclub.com/web/content/lib');
+ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
 
 require_once('dbconnect.php');
 
 $db = new DBconnect();
 
-global $SESS;
-$member = $SESS->userdata['member_id'];
-
-$zipSql = 'SELECT m_field_id_7 FROM exp_member_data WHERE member_id = "'.$member.'"';
+$zipSql = 'SELECT m_field_id_6 FROM exp_member_data WHERE member_id = "{embed:member_id}"';
 $results = $db->fetch($zipSql);
 $zip = $results['0']['0'];
 
 
-$sponsID = 'SELECT m_field_id_26 FROM exp_member_data WHERE member_id = "'.$member.'"';
+$sponsID = 'SELECT m_field_id_26 FROM exp_member_data WHERE member_id = "{embed:member_id}"';
 $sponsResults = $db->fetch($sponsID);
 $promo = $sponsResults['0']['0'];
 
-$zipResults = 'SELECT title, field_id_340, entry_date FROM exp_channel_titles
+$zipResults = 'SELECT title, field_id_11, entry_date FROM exp_channel_titles
  INNER JOIN exp_channel_data
  ON exp_channel_titles.entry_id = exp_channel_data.entry_id
  
 WHERE expiration_date > UNIX_TIMESTAMP()
-AND field_id_340 = "'.$zip.'"';
+AND field_id_11 = "'.$zip.'"';
 
 $results = $db->fetch($zipResults);
 
 $zipEntries = count($results);
 
 
-$sponsQuery = 'SELECT DISTINCT title, field_id_340, entry_date, cat_id, exp_channel_titles.entry_id FROM exp_channel_titles
+$sponsQuery = 'SELECT DISTINCT title, field_id_11, entry_date, cat_id, exp_channel_titles.entry_id FROM exp_channel_titles
  INNER JOIN exp_channel_data
  ON exp_channel_titles.entry_id = exp_channel_data.entry_id
  
@@ -72,8 +69,8 @@ $sponsEntries = count($results);
 					<span class="year">{entry_date format="%Y"}</span>
 					<span class="time">
 						{!-- Check if event is only on one date and time is set --}
-						{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}"}
-							{exp:low_nice_date date="{event_start_time}" format="%g:%i %a"}{if event_end_time} - {exp:low_nice_date date="{event_end_time}" format="%g:%i %a"}{/if}
+						{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" != "0"}
+							{event_start_time format="%g:%i %a"}{if event_end_time != "0"} - {event_end_time format="%g:%i %a"}{/if}
 						{/if}
 						
 						{!-- Check if event is only on one date and time is NOT set --}
@@ -88,7 +85,7 @@ $sponsEntries = count($results);
 					</span>
 				</span>
 			</h2>
-			<h3><a href="/events/location/{event_state}/{event_city}">{event_city}, {event_state}</a></h3>
+			<h3><a href="{path='events/location/{event_state}/{event_city}'}">{event_city}, {event_state}</a></h3>
 			<p class="details">
 				{exp:eehive_hacksaw chars="150" append="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
 					{event_description}

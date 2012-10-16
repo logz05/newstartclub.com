@@ -2,7 +2,7 @@
 	class="sponsors"
 	title='Edit {exp:channel:entries channel="deals" url_title="{segment_3}" limit="1"}&ldquo;{title}&rdquo;{/exp:channel:entries}'
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 
 <ul class="trail">

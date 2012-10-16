@@ -7,7 +7,7 @@
 	}
 {/if}
 
-{exp:channel:entries channel="deals" sort="desc" orderby="edit_date" paginate="bottom" limit="10" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic="no"}
+{exp:channel:entries channel="deals" sort="desc" orderby="edit_date" paginate="bottom" limit="20" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic="no"}
 {if no_results}<p>You don&rsquo;t have any active deals. Click <a href="{path='sponsors/add-deal'}">here</a> to add a new deal.</p>{/if}
 
 {if count == 1}
@@ -16,7 +16,7 @@
 	<li>
 		<h2>{title}</h2>
 		<div class="edit-entry">
-			<a href="{url_title_path='sponsors/edit-deal'}" title="Edit &ldquo;{title}&rdquo;"><i class="icon after" data-icon="s"></i></a>
+			<a href="{path='sponsors/edit-deal/{entry_id}'}" title="Edit &ldquo;{title}&rdquo;"><i class="icon after" data-icon="s"></i></a>
 			<a href="{path='sponsors/edit-deals/delete/{entry_id}'}" title="Delete&hellip;" onclick="javascript: if (!confirm('Are you sure you want to delete the deal below? \n\n \u201C{title}\u201D \n\n You can\u2019t undo this action. Click OK to delete.')) return false;"><i class="icon after" data-icon="C"></i></a>
 		</div>
 		<div class="details">
@@ -41,7 +41,4 @@
 {if count == total_results}
 	</ul>
 {/if}
-{paginate}
-	<p class="pagination">{pagination_links}</p>
-{/paginate}
 {/exp:channel:entries}

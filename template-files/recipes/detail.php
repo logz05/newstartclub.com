@@ -32,10 +32,10 @@
 		<ul class="tags">
 			<li data-icon="r">Tags:</li>
 			{categories show_group="not 22"}
-				{if category_group == "22"}<li><a href="{site_url}resources/language/{category_url_title}/">{category_name}</a></li>{/if}
-				{if category_group == "39"}<li><a href="{site_url}recipes/type/{category_url_title}/" itemprop="recipeCategory">{category_name}</a></li>{/if}
-				{if category_group == "42"}<li><a href="{site_url}recipes/sensitivity/{category_url_title}/">{category_name}</a></li>{/if}
-				{if category_group == "43"}<li><a href="{site_url}recipes/ethnic/{category_url_title}/" itemprop="recipeCuisine">{category_name}</a></li>{/if}
+				{if category_group == "22"}<li><a href="{site_url}/resources/language/{category_url_title}/">{category_name}</a></li>{/if}
+				{if category_group == "39"}<li><a href="{site_url}/recipes/type/{category_url_title}/" itemprop="recipeCategory">{category_name}</a></li>{/if}
+				{if category_group == "42"}<li><a href="{site_url}/recipes/sensitivity/{category_url_title}/">{category_name}</a></li>{/if}
+				{if category_group == "43"}<li><a href="{site_url}/recipes/ethnic/{category_url_title}/" itemprop="recipeCuisine">{category_name}</a></li>{/if}
 			{/categories}
 		</ul>
 		

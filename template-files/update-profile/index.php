@@ -20,7 +20,7 @@ function send_emails($fname, $lname, $email, $password)
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Welcome Email</title>
+<title>Welcome to the Club!</title>
 <meta name="viewport" content="width=740">
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <style type="text/css">
@@ -79,8 +79,8 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 										</tr>
 										<tr>
 											<td style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.5; font-size:16px; color:#010101;">
-											<p>Hi ';
-						$message .= $fname .' '. $lname;
+											<p>Dear ';
+						$message .= $fname;
 						$message .= ',</p>
 									<p>As a registered member, you now have access to:</p>
 									 <ul>
@@ -121,7 +121,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
 				<tr>
 					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">
-						A FREE community service of <a href="http://newstart.com/" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART&reg;</a>. &copy;'. date("Y") .'. All Rights Reserved.
+						A FREE community service of <a href="http://newstart.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART&reg;</a>. &copy;'. date("Y") .'. All Rights Reserved.
 					</td>
 				</tr>
 			</table>
@@ -140,7 +140,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	{if member_welcome_email !="1"}
 		<?php
 		
-			send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION["jsPassword"]);
+			send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION['jsPassword']);
 			
 			//Update member profile to show that email has been sent.
 			$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";

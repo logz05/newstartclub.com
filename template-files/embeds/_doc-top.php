@@ -65,7 +65,22 @@
 		<nav class="super-nav">
 			<ul>
 				{if logged_in}
-					<li>Hi, <strong>{exp:user:stats dynamic="off"}<?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?>{/exp:user:stats}</strong></li>
+					<li>Hi,
+					{exp:user:stats dynamic="off"}
+						{!--<span class="has-tip">
+							<span class="tooltip bottom">
+								<i class="nub"></i>
+								{exp:channel:entries channel='locations' category='{member_admin_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}
+									{title}
+									Promo Code: {member_admin_id}
+									Zip Code: {location_zip}
+								{/exp:channel:entries}
+							</span>
+						</span>--}
+							<strong><?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?></strong>
+						
+					{/exp:user:stats}
+					</li>
 				{/if}
 				{if group_id == '1' && segment_1 == "sponsors"}
 					{exp:user:stats dynamic="off"}

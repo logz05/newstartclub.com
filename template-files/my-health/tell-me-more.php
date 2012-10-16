@@ -13,34 +13,47 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post">
-			<p><img alt="NEWSTART Lifestyle Club" class="image" height="120" src="/assets/images/my_health/request_info.jpg" width="240">Our NEWSTART® physicians and staff have extensive experience treating a variety of health conditions without the use of drugs. If you would like to know how we can help you, please take a moment to tell us about your condition and our friendly NEWSTART® staff will contact you shortly.</p>
+			<p><img alt="NEWSTART Lifestyle Club" class="image" height="120" src="{site_url}/assets/images/my-health/request_info.jpg" width="240">Our NEWSTART&reg; physicians and staff have extensive experience treating a variety of health conditions without the use of drugs. If you would like to know how we can help you, please take a moment to tell us about your condition and our friendly NEWSTART&reg; staff will contact you shortly.</p>
 			<p>Take control of your future, learn today what we can do for you! It’s completely confidential and <span class="caps">FREE</span>.</p>
-			<form method="post" action="/my-health/request-sent/" class="clearafter request-info">
+			{exp:freeform:form
+				form_name="tell_me_more"
+				required="ff_first_name|ff_last_name|ff_email"
+				admin_notify="cblood@weimar.org"
+				admin_bcc_notify="club@newstart.com"
+				return="my-health/request-sent"
+			}
+				
 				<table>
 					{exp:user:stats}
 					<tr>
-						<th scope="row"><label for="name">Name</label></th>
-						<td><input type="text" class="input" name="name" id="name" value="{member_first_name} {member_last_name}" size="28" /></td>
+						<th scope="row"><label for="ff_first_name">First Name</label></th>
+						<td><input type="text" class="input" name="ff_first_name" id="ff_first_name" value="{member_first_name}" size="20" /></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="email">Email</label></th>
-						<td><input type="text" class="input" name="email" id="email" value="{email}" size="28" /></td>
+						<th scope="row"><label for="ff_last_name">Last Name</label></th>
+						<td><input type="text" class="input" name="ff_last_name" id="ff_last_name" value="{member_last_name}" size="22" /></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="phone">Phone</label></th>
-						<td><input type="text" class="input" id="phone" name="phone" value="{phone}" size="15" /></td>
+						<th scope="row"><label for="ff_email">Email</label></th>
+						<td><input type="text" class="input" name="ff_email" id="ff_email" value="{email}" size="28" /></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="zipCode">Zip Code</label></th>
+						<th scope="row"><label for="ff_phone">Phone</label></th>
+						<td><input type="text" class="input" id="ff_phone" name="ff_phone" value="{member_phone}" size="15" /></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="ff_zip_code">Zip Code</label></th>
 						<td>
-							<input type="text" class="input" id="zipCode" name="zipCode" value="{zipCode}" size="7" />
-							<input type="hidden" name="member_age" value="{member_age}" />
+							<input type="text" class="input" id="ff_zip_code" name="ff_zip_code" value="{member_zip}" size="7" />
+							<input type="hidden" name="ff_age" value="{member_age}" />
+							<input type="hidden" name="ff_health_score" value="{member_score_total}" />
+							<input type="hidden" name="ff_address" value="{member_address}, {member_city}, {member_state} {member_zip}" />
 						</td>
 					</tr>
 					{/exp:user:stats}
 					<tr>
-						<th scope="row"><label for="custom-message">Message</label></th>
-						<td><textarea class="input" cols="36" rows="6" name="custom-message" onfocus="if(this.value=='Short description of your condition (optional)')this.value='';" onblur="if(this.value=='')this.value='Short description of your condition (optional)';">Short description of your condition (optional)</textarea></td>
+						<th scope="row"><label for="ff_message">Message</label></th>
+						<td><textarea class="input" cols="36" rows="6" name="ff_message" onfocus="if(this.value=='Short description of your condition (optional)')this.value='';" onblur="if(this.value=='')this.value='Short description of your condition (optional)';">Short description of your condition (optional)</textarea></td>
 					</tr>
 					<tr>
 						<th scope="row"></th>
@@ -52,7 +65,8 @@
 						</td>
 					</tr>
 				</table>
-			</form>
+			 
+			{/exp:freeform:form}
 		</div>
 	</div>
 	<div class="sidebar right">

@@ -510,7 +510,7 @@ function member_ages($rangeLow, $rangeHigh)
 								
 								GROUP BY interest
 								ORDER BY total DESC, interest ASC"}
-								{exp:channel:categories weblog="sponsors" style="linear" show="{interest}"}['{category_name}', {total}],{/exp:channel:categories}{/exp:query}
+								{exp:channel:categories channel="sponsors" style="linear" show="{interest}"}['{category_name}', {total}],{/exp:channel:categories}{/exp:query}
 					]);
 	
 					var options = {
@@ -559,7 +559,7 @@ function member_ages($rangeLow, $rangeHigh)
 							
 							GROUP BY interest
 							ORDER BY total DESC, interest ASC"}
-						<tr>{exp:channel:categories weblog="sponsors" style="linear" show="{interest}"}
+						<tr>{exp:channel:categories channel="sponsors" style="linear" show="{interest}"}
 							<td>{category_name}</td>
 							<td class="total">{total}</td>{/exp:channel:categories}
 						</tr>

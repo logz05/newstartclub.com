@@ -183,7 +183,7 @@ function getZIP (form) {
 			<td>
 				<p id="terms-conditions">
 					<input class="checkbox" type="checkbox" name="accept_terms">
-					<span>I agree to the <a href="{path='about/terms-of-use'}">terms</a> and <a href="{path='about/privacy-policy'}">conditions</a> which include receiving a quarterly eNewsletter.</span>
+					<span>I agree to the <a href="{path='about/terms-of-use'}">terms</a> and <a href="{path='about/privacy-policy'}">conditions</a> which include receiving a monthly eNewsletter.</span>
 				</p>
 			</td>
 		</tr>

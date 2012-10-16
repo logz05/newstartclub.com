@@ -184,7 +184,7 @@ function send_emails($mailing_list, $subject, $custom_message, $interest, $inter
   $message .= nl2br($custom_message);
   $message .= '
                 <br /><br />
-                {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}<br />{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}{/exp:user:stats}<br />
+                {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}<br />{exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories}{/exp:user:stats}<br />
                 <a href="http://newstartclub.com">newstartclub.com</a></span>
               </td>
             </tr>
@@ -218,7 +218,7 @@ function send_emails($mailing_list, $subject, $custom_message, $interest, $inter
   // To send HTML mail, the Content-type header must be set
   $headers  = 'MIME-Version: 1.0' . "\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-  $headers .= 'From: {exp:user:stats dynamic="off"}{exp:channel:categories show="{embed:embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories} <{username}>{/exp:user:stats}' . "\r\n";
+  $headers .= 'From: {exp:user:stats dynamic="off"}{exp:channel:categories show="{embed:embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <{username}>{/exp:user:stats}' . "\r\n";
   
   array_push($mailing_list, 'club@newstart.com');
   

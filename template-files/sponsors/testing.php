@@ -48,7 +48,7 @@ function send_emails($mailing_list, $subject, $custom_message, $event, $rsvp_lis
   // To send HTML mail, the Content-type header must be set
   $headers  = 'MIME-Version: 1.0' . "\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-  $headers .= 'From: {exp:channel:categories show="357" weblog="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
+  $headers .= 'From: {exp:channel:categories show="357" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
   $headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
   
   $clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');

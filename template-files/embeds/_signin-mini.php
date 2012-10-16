@@ -24,7 +24,7 @@
 			<td>
 				<div class="button-wrap">
 					<button type="submit" class="super green button"><span>Sign In</span></button>
-					<a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
+					<a class="forgot-pass" href="{path='forgot-password'}">Forgot your password?</a>
 				</div>
 			</td>
 		</tr>

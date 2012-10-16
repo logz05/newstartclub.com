@@ -17,7 +17,7 @@ $db->query($query);
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Invite Members"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 {preload_replace:sponsor_title="{exp:user:stats dynamic='off'}{exp:channel:categories show='{member_admin_id}' weblog='locations' style='linear'}{category_name}{/exp:channel:categories}{/exp:user:stats}"}
 	<div class="heading clearfix">

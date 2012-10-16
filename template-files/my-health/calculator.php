@@ -11,9 +11,6 @@ require_once ( 'utilities.php' );
 <?php
 if (isset($_POST['member_age']))
 {
-	global $SESS;
-	$user_id = $SESS->userdata['member_id'];
-	$member_id = $user_id;
 	
 	$fields = array(
 			"member_age" => "m_field_id_8",
@@ -91,8 +88,9 @@ if (isset($_POST['member_age']))
 		}
 		$sql .= "$name='$value'";
 	}
-	$sql .= " where member_id=$member_id;";
-	
+	{exp:user:stats dynamic="off"}
+	$sql .= " where member_id={member_id}";
+	{/exp:user:stats}
 	$db = new DBconnect();
 	
 	$db->query($sql);

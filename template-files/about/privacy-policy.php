@@ -12,16 +12,16 @@
 	<div class="main left">
 		<div class="post">
 			<h2>What information do we collect?</h2>
-			<p>We collect information from you when you register on our site, subscribe to our newsletter or fill out a form. </p>
+			<p>We collect information from you when you register on our site, subscribe to our newsletter or fill out a form.</p>
 			<p>When subscribing or registering on our site, as appropriate, you may be asked to enter your: name, e-mail address, mailing address, and phone number as well as information about your health habits and height and weight.. You may, however, visit our site anonymously.</p>
 			<h2>What do we use your information for?</h2>
-			<p>Any of the information we collect from you may be used in one of the following ways: </p>
+			<p>Any of the information we collect from you may be used in one of the following ways:</p>
 			<ul>
 				<li>To provide you with health information that is tailor-made for your needs.</li>
 				<li>To improve our website</li>
 				<li>To send periodic emails about updates you may be interested in and about approved health events in your local area.</li>
 			</ul>
-			<p><strong>The email address you provide may be used to send you information and updates, quarterly newsletters, or service information, etc.</strong></p>
+			<p><strong>The email address you provide may be used to send you information and updates, monthly newsletters, or service information, etc.</strong></p>
 			<p>Note: If at any time you would like to unsubscribe from receiving future emails, we include detailed unsubscribe instructions in each email.</p>
 			<h2>Do we use cookies?</h2>
 			<p>Yes. Cookies are small files that a site or its service provider transfers to your computer&#8217;s hard drive through your Web browser (if you allow) that enables the sites or service providers systems to recognize your browser and capture and remember certain information.</p>
@@ -33,9 +33,9 @@
 			<h2>Your Consent</h2>
 			<p>By using our site, you consent to our privacy policy.</p>
 			<h2>Changes to our Privacy Policy</h2>
-			<p>If we decide to change our privacy policy, we will post those changes on this page. </p>
+			<p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 			<h2>Contacting Us</h2>
-			<p>If there are any questions regarding this privacy policy you may contact us using the information below. </p>
+			<p>If there are any questions regarding this privacy policy you may contact us using the information below.</p>
 			<p><span id='eeEncEmail_1QKtmTtju2'>.(JavaScript must be enabled to view this email address)</span><script type="text/javascript">
 			//<![CDATA[
 			var l=new Array();

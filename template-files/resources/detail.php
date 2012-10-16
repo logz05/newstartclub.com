@@ -27,7 +27,7 @@
 					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
 					{resource_buy_options}
 						<div class="button-wrap">
-							<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}</span></a>
+							<a href="//{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}</span></a>
 						</div>
 					{/resource_buy_options}
 				</div>
@@ -35,7 +35,9 @@
 			{if:elseif resource_type == "video"}
 				{if logged_out}
 					<a href="{path='signin'}" data-reveal-id="signin-modal-video">
-						<div id="video-overlay" style="height:{if resource_aspect_ratio == "widescreen"}276{if:elseif resource_aspect_ratio == "standard"}368{/if}px;"></div>
+						{resource_video_options}
+							<div id="video-overlay" style="height:{if aspect_ratio == "widescreen"}276{if:elseif aspect_ratio == "standard"}368{/if}px;"></div>
+						{/resource_video_options}
 					</a>
 				{/if}
 				{exp:ce_img:single src="{resource_thumb}" max_width="490" attributes='alt="{title}" title="{title}" class="video-preview"'}
@@ -56,12 +58,12 @@
 		<ul class="tags">
 			<li data-icon="r">Tags:</li>
 			{categories show_group="not 22"}
-				{if category_group == "17"}<li><a href="{path='resources/health-condition/{category_url_title}'}">{category_name}</a></li>{/if}
-				{if category_group == "18"}<li><a href="{path='resources/series/{category_url_title}'          }">{category_name}</a></li>{/if}
-				{if category_group == "19"}<li><a href="{path='resources/living-better/{category_url_title}'   }">{category_name}</a></li>{/if}
-				{if category_group == "20"}<li><a href="{path='resources/media/{category_url_title}'           }">{category_name}</a></li>{/if}
-				{if category_group == "21"}<li><a href="{path='resources/partner/{category_url_title}'         }">{category_name}</a></li>{/if}
-				{if category_group == "22"}<li><a href="{path='resources/language/{category_url_title}'        }">{category_name}</a></li>{/if}
+				{if category_group == "17"}<li><a href="{site_url}/resources/health-condition/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "18"}<li><a href="{site_url}/resources/series/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "19"}<li><a href="{site_url}/resources/living-better/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "20"}<li><a href="{site_url}/resources/media/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "21"}<li><a href="{site_url}/resources/partner/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "22"}<li><a href="{site_url}/resources/language/{category_url_title}">{category_name}</a></li>{/if}
 			{/categories}
 		</ul>
 		{exp:playa:children field="resource_related"}

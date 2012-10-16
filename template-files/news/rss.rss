@@ -1,5 +1,5 @@
-{preload_replace:master_weblog_name="resources|locations|services|recipes|questions|deals"}
-{exp:rss:feed channel="{master_weblog_name}" show_expired="yes"}
+{preload_replace:master_channel_name="resources|locations|services|recipes|questions|deals"}
+{exp:rss:feed channel="{master_channel_name}" show_expired="yes"}
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0"
 		xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -10,13 +10,13 @@
 		<title>{exp:xml_encode}{site_name} News{/exp:xml_encode}</title>
 		<link>{site_url}{exp:xml_encode}?utm_source=News&utm_medium=RSS{/exp:xml_encode}</link>
 		<description>The latest updates from the {site_name}</description>
-		<dc:language>{weblog_language}</dc:language>
+		<dc:language>{channel_language}</dc:language>
 		<dc:rights>Copyright {gmt_date format="%Y"}</dc:rights>
 		<pubDate>{gmt_date format="%D, %d %M %Y %H:%i:%s %T"}</pubDate>
 
 		<atom:link href="{site_url}news/rss" rel="self" type="application/rss+xml" />
 		
-{exp:channel:entries channel="{master_weblog_name}" limit="25" rdf="off" dynamic_start="on" disable="member_data|trackbacks" status="open" show_expired="yes"}
+{exp:channel:entries channel="{master_channel_name}" limit="25" rdf="off" dynamic_start="on" disable="member_data|trackbacks" status="open" show_expired="yes"}
 		<item>
 			{if channel_short_name == "questions"}
 			<title>{exp:xml_encode protect_entities="yes"}{question_question}{/exp:xml_encode}</title>
@@ -27,16 +27,22 @@
 			<guid isPermaLink="false">{title_permalink="site/index"}#id:{entry_id}#date:{gmt_entry_date format="%H:%i"}</guid>
 			<description>
 				<![CDATA[
-					{if resource_thumb}
-						{exp:ce_img:pair src="{resource_thumb}" max_width="300" max_height="225" crop="yes"}
-						<img src="http://newstartclub.com{made}" />
+					{if resource_image}
+						{exp:ce_img:pair src="{resource_image}" max_width="300" max_height="225" crop="yes"}
+						<img src="{site_url}{made}" />
+						{/exp:ce_img:pair}
+					{/if}
+					{if recipe_image}
+						{exp:ce_img:pair src="{recipe_image}" max_width="300" max_height="225" crop="yes"}
+						<img src="{site_url}{made}" />
 						{/exp:ce_img:pair}
 					{/if}
 					{deal_instructions}
-					{resource_description}
-					{if event_description}{exp:textile}{exp:xml_encode protect_entities="yes"}{event_description}{/exp:xml_encode}{/exp:textile}{/if}
-					{partner_bio}
-					{qa_answer}
+					{resource_body}
+					{recipe_instructions}
+					{if event_description}{exp:xml_encode protect_entities="yes"}{event_description}{/exp:xml_encode}{/if}
+					{service_bio}
+					{question_response}
 					{location_description}
 					{if channel_short_name == "locations"}
 					<dl>

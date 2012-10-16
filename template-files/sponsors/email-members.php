@@ -2,7 +2,7 @@
 	class="sponsors"
 	title="Email Members"
 	admin_id="{exp:user:stats dynamic='off'}{member_admin_id}{/exp:user:stats}"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 	{if segment_3 != ""}
 		<ul class="trail">

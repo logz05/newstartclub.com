@@ -17,17 +17,17 @@
 	{/if}
 		<div class="details">
 			<p class="description">
-				{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='/recipes/detail/{url_title}'>more&raquo;</a>"}
+				{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='{url_title_path='recipes/detail'}'>more&raquo;</a>"}
 					{recipe_instructions}
 				{/exp:eehive_hacksaw}
 			</p>
 			<ul class="tags">
 				<li data-icon="r">Tags:</li>
 				{categories show_group="not 22"}
-					{if category_group == "22"}<li><a href="{site_url}recipes/language/{category_url_title}/">{category_name}</a></li>{/if}
-					{if category_group == "39"}<li><a href="{site_url}recipes/type/{category_url_title}/">{category_name}</a></li>{/if}
-					{if category_group == "42"}<li><a href="{site_url}recipes/sensitivity/{category_url_title}/">{category_name}</a></li>{/if}
-					{if category_group == "43"}<li><a href="{site_url}recipes/ethnic/{category_url_title}/">{category_name}</a></li>{/if}
+					{if category_group == "22"}<li><a href="{site_url}/recipes/language/{category_url_title}">{category_name}</a></li>{/if}
+					{if category_group == "39"}<li><a href="{site_url}/recipes/type/{category_url_title}">{category_name}</a></li>{/if}
+					{if category_group == "42"}<li><a href="{site_url}/recipes/sensitivity/{category_url_title}">{category_name}</a></li>{/if}
+					{if category_group == "43"}<li><a href="{site_url}/recipes/ethnic/{category_url_title}">{category_name}</a></li>{/if}
 				{/categories}
 			</ul>
 		</div>

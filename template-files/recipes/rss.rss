@@ -7,9 +7,9 @@
 		<channel>
 		
 		<title>{exp:xml_encode}{site_name} Recipes{if segment_4} | {segment_4_category_name}{/if}{/exp:xml_encode}</title>
-		<link>{site_url}{segment_1}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{exp:xml_encode}?utm_source={weblog_name}&utm_medium=RSS{/exp:xml_encode}</link>
+		<link>{site_url}{segment_1}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{exp:xml_encode}?utm_source={channel_name}&utm_medium=RSS{/exp:xml_encode}</link>
 		<description>The latest {segment_1} from the {site_name}</description>
-		<dc:language>{weblog_language}</dc:language>
+		<dc:language>{channel_language}</dc:language>
 		<dc:creator>club@newstart.com</dc:creator>
 		<dc:rights>Copyright {gmt_date format="%Y"}</dc:rights>
 		<pubDate>{gmt_date format="%D, %d %M %Y %H:%i:%s %T"}</pubDate>

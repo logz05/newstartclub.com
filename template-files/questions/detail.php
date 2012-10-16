@@ -20,7 +20,7 @@
 			<div id="answer">
 				<span class="drop-cap">A.</span>
 					{question_response}
-<!-- 					<p>Response by {question_responder}<a href="{url_title_path='services/detail'}">{title}</a>{/question_responder}</p> -->
+				<p>Response by {question_responder}<a href="{url_title_path='services/detail'}">{title}</a>{/question_responder}</p>
 			</div>
 		</div>
 		{embed="embeds/_comments" channel="{channel_short_name}"}

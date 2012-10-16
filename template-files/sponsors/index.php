@@ -62,7 +62,7 @@
 	</div>
 {if:else}
 	{exp:user:stats dynamic="off"}
-		{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}
+		{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}
 		<div class="heading clearfix">
 			<h1>{category_name}</h1>
 		</div>

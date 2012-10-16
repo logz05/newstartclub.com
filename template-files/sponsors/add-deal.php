@@ -2,7 +2,7 @@
 	class="sponsors"
 	title="Create a new deal"
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" weblog="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 <div class="heading clearfix">
 	<h1>Create a new deal</h1>
@@ -103,7 +103,7 @@
 	{if logged_in_member_id == 1}
 	<section class="section mysection" style="display:none;">
 		<header class="bar">Fade In</header>
-		<p>This was loaded 2 seconds after the page was ready.</p>
+		<p>This was loaded 2 seconds after the page was ready. Might use a fade in for forms to show that it's loading.</p>
 	</section>
 	<section class="section">
 		<header class="bar">Test</header>

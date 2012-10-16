@@ -17,7 +17,7 @@
 		</title>
 		<link>{site_url}{exp:xml_encode}?utm_source=Events&utm_medium=RSS&utm_campaign={if segment_3 == "sponsors"}{segment_4_category_url}{if:else}Events{/if}{/exp:xml_encode}</link>
 		<description>The latest events from the {site_name}</description>
-		<dc:language>{weblog_language}</dc:language>
+		<dc:language>{channel_language}</dc:language>
 		<dc:rights>Copyright {gmt_date format="%Y"}</dc:rights>
 		<pubDate>{gmt_date format="%D, %d %M %Y %H:%i:%s %T"}</pubDate>
 
