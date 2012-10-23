@@ -1,5 +1,9 @@
 <header class="bar">Search</header>
+<<<<<<< HEAD
 {exp:search:advanced_form result_page="{path='news/search'}" channel="resources|services|events|locations|recipes|questions" results="25" show_expired="yes"}
+=======
+{exp:search:advanced_form result_page="news/search" channel="resources|services|events|locations|recipes|questions" results="25" show_expired="yes"}
+>>>>>>> Removing leftover instances of weblog and updating to channel
 <input type="hidden" name="search_in" value="everywhere">
 <input id="query" name="keywords" type="search" class="input" placeholder="Search News">
 <p><a href="#" class="advanced-search">Advanced Search</a></p>

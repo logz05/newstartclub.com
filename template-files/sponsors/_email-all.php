@@ -152,7 +152,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 											$message .= 'Dear '. $mailing_list[$i][2] .',<br />';
 											$message .= $custom_message;
 											$message .= '
-											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
+											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
 											<a href="http://newstartclub.com/location/{embed:sponsor_number}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_number}</a></p>
 											</td>
 										</tr>

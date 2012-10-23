@@ -64,7 +64,7 @@
 	{exp:user:stats dynamic="off"}
 		{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}
 		<div class="heading clearfix">
-			<h1>{category_name}</h1>
+			<h1 data-icon="O">{category_name}</h1>
 		</div>
 		{/exp:channel:categories}
 	{/exp:user:stats}
