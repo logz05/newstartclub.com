@@ -1,12 +1,12 @@
-<ul class="listing">
 {exp:channel:entries channel="deals" limit="12" orderby="expiration_date" sort="asc" paginate="bottom" dynamic="no" show_future_entries="yes" {embed:parameters}}
 {if no_results}
-	<li>
-		<p><em>{segment_3_category_name} has no active deals.</em></p>
-		<div class="button-wrap">
-			<a href="{path='deals'}" class="super secondary button"><span>View All Deals</span></a>
-		</div>
-	</li>
+	<p><em>{segment_3_category_name} has no active deals.</em></p>
+	<div class="button-wrap">
+		<a href="{path='deals'}" class="super secondary button"><span>View All Deals</span></a>
+	</div>
+{/if}
+{if count == 1}
+	<ul class="listing">
 {/if}
 	<li class="deal independant clearfix">
 		<h2><a href="{url_title_path='deals/detail'}">{title}</a>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}</h2>
@@ -31,11 +31,9 @@
 		</div>
 	</li>
 	{paginate}
-		{if "{total_pages}" > 1}
-			<li class="pagination">
-				<p>{pagination_links}</p>
-			</li>
-		{/if}
+		<p class="pagination">{pagination_links}</p>
 	{/paginate}
+	{if count == total_results}
+		</ul>
+	{/if}
 {/exp:channel:entries}
-</ul>

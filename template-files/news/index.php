@@ -15,8 +15,10 @@ require_once ( 'utilities.php' );
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
+{exp:channel:entries channel="resources|events|services|locations|recipes|questions|deals" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="no" show_expired="yes"}
+	{if count == 1}
 		<ul class="listing">
-		{exp:channel:entries channel="resources|events|services|locations|recipes|questions|deals" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="no" show_expired="yes"}
+	{/if}
 			<li class="entry {channel_short_name}">
 				{if channel_short_name == "resources"}<h2 data-icon="d">{/if}
 				{if channel_short_name == "services" }<h2 data-icon="a">{/if}
@@ -37,15 +39,14 @@ require_once ( 'utilities.php' );
 					<span class="entry-date">{entry_date format="%D, %M %j, %Y	%g:%i%a %T"}</span>
 				</div>
 			</li>
-			{paginate}
-				{if "{total_pages}" > 1}
-					<li class="pagination">
-						<p>{pagination_links}</p>
-					</li>
-				{/if}
-			{/paginate}
-		{/exp:channel:entries}
+	{if count == total_results}
 		</ul>
+	{/if}
+	
+	{paginate}
+		<p class="pagination">{pagination_links}</p>
+	{/paginate}
+{/exp:channel:entries}
 	</div>
 	<div class="sidebar right">
 		{embed="news/_sidebar"}
