@@ -1,7 +1,9 @@
-<ul class="listing">
 {exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="9" paginate="bottom" dynamic="no" {embed:parameters}}
 {if no_results}
 	<p>There are currently no upcoming events.</p>
+{/if}
+{if count == 1}
+	<ul class="listing">
 {/if}
 	<li class="event" id="{entry_date format='%Y-%m-%d'}">
 		<h2>
@@ -12,17 +14,21 @@
 				<span class="year">{entry_date format="%Y"}</span>
 				<span class="time">
 					{!-- Check if event is only on one date and time is set --}
+<<<<<<< HEAD
 					{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" != "0"}
+=======
+					{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
+>>>>>>> Fixed time display conditionals
 						{event_start_time format="%g:%i %a"}{if event_end_time != "0"} - {event_end_time format="%g:%i %a"}{/if}
 					{/if}
 					
 					{!-- Check if event is only on one date and time is NOT set --}
-					{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" == ""}
+					{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0"}
 						All Day
 					{/if}
 					
 					{!-- Check to see if repeating event --}
-					{if "{entry_date format='%d'}" != "{expiration_date format='%d'}"}
+					{if '{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}'}
 						{entry_date format="%M %j"} - {expiration_date format="%M %j"}
 					{/if}
 				</span>
@@ -35,12 +41,11 @@
 			{/exp:eehive_hacksaw}
 		</p>
 	</li>
-	{paginate}
-		{if "{total_pages}" > 1}
-			<li class="pagination">
-				<p>{pagination_links}</p>
-			</li>
-		{/if}
-	{/paginate}
+{if count == total_results}
+	</ul>
+{/if}
+
+{paginate}
+	<p class="pagination">{pagination_links}</p>
+{/paginate}
 {/exp:channel:entries}
-</ul>
