@@ -18,7 +18,10 @@
 			{exp:freeform:form
 				form_name="tell_me_more"
 				required="ff_first_name|ff_last_name|ff_email"
+<<<<<<< HEAD
 				admin_notify="cblood@weimar.org"
+=======
+>>>>>>> Updated to use FreeForm module
 				admin_bcc_notify="club@newstart.com"
 				return="my-health/request-sent"
 			}
