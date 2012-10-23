@@ -46,6 +46,10 @@
 		{if:elseif segment_1 == "partners"}
 			<h1>Partners have moved!</h1>
 			<p>But no worries! <strong>You can now find them under Services:</strong> <a href="{path='services'}">{site_url}services</a></p>
+		{if:elseif segment_2 == "detail" && segment_4}
+			<h1>Oops!</h1>
+			<p>Looks like you got the wrong link!</p>
+			<p><strong>Try this one instead:</strong><br><a href="{path='{segment_1}/detail/{segment_3}'}">{site_url}/{segment_1}/detail/{segment_3}</a></p>
 		{if:else}
 			<h1>404</h1>
 			<p>We could not find the page you requested.</p>
