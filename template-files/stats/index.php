@@ -221,12 +221,12 @@ function member_ages($rangeLow, $rangeHigh)
 <div class="grid23 clearfix">
 	<div class="main left">
 		<span id="total-members">
-			{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_members WHERE group_id = '9'"}
+			{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_members WHERE group_id = '5' OR group_id = '6'"}
 				{total} Total Members
 			{/exp:query}
 		</span>
 		<div class="post">
-			<p>{exp:query sql="SELECT CONCAT(m_field_id_3, ' ', m_field_id_4) AS full_name, CONCAT(m_field_id_9, ', ', m_field_id_10) AS location FROM exp_member_data
+			<p>{exp:query sql="SELECT CONCAT(m_field_id_1, ' ', m_field_id_2) AS full_name, CONCAT(m_field_id_4, ', ', m_field_id_5) AS location FROM exp_member_data
 						
 						INNER JOIN exp_members
 						ON exp_member_data.member_id = exp_members.member_id
@@ -234,8 +234,8 @@ function member_ages($rangeLow, $rangeHigh)
 						ORDER BY join_date DESC LIMIT 1"}Welcome our newest member, <strong>{full_name}</strong> from {location}!{/exp:query}</p>
 			<ul>
 				<li>{exp:query sql="SELECT count(member_id) AS total FROM exp_members WHERE last_activity > (UNIX_TIMESTAMP()-2592000)"}In the last month <strong>{total} members have interacted with the site</strong>.{/exp:query}</li>
-				<li>The <strong>average health score</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_24),2) AS average_health_score FROM exp_member_data WHERE m_field_id_24 !='' AND m_field_id_24 > -1000"}<strong>{average_health_score}</strong>{/exp:query}.</li>
-				<li>The <strong>average age</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_13)) AS average_age FROM exp_member_data WHERE m_field_id_13 !=''"}<strong>{average_age}</strong>{/exp:query} years old.</li>
+				<li>The <strong>average health score</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_22),2) AS average_health_score FROM exp_member_data WHERE m_field_id_22 !='' AND m_field_id_22 > -1000"}<strong>{average_health_score}</strong>{/exp:query}.</li>
+				<li>The <strong>average age</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_8)) AS average_age FROM exp_member_data WHERE m_field_id_8 !=''"}<strong>{average_age}</strong>{/exp:query} years old.</li>
 				<li>{exp:query sql="SELECT count(*) AS comments, (
 															SELECT count(DISTINCT email) AS total FROM exp_comments 
 																				
@@ -245,7 +245,7 @@ function member_ages($rangeLow, $rangeHigh)
 															) AS commenters FROM exp_comments AS a"}<strong>{comments} comments</strong> have been contributed by <strong>{commenters} commenters</strong>.{/exp:query}
 				
 				</li>
-				<li>{exp:query sql="SELECT m_field_id_3 AS first_name, count(email) AS total FROM exp_comments 
+				<li>{exp:query sql="SELECT m_field_id_1 AS first_name, count(email) AS total FROM exp_comments 
 	
 						INNER JOIN exp_member_data
 						ON exp_comments.author_id = exp_member_data.member_id
@@ -269,10 +269,10 @@ function member_ages($rangeLow, $rangeHigh)
 			data.addRows([
 			{exp:query
 				sql="
-				SELECT CONCAT(m_field_id_9, ', ', m_field_id_10) AS location, COUNT(*) AS total FROM exp_member_data
-					WHERE m_field_id_10 != ''
-					AND m_field_id_10 != '--'
-					AND m_field_id_9 != ''
+				SELECT CONCAT(m_field_id_4, ', ', m_field_id_5) AS location, COUNT(*) AS total FROM exp_member_data
+					WHERE m_field_id_5 != ''
+					AND m_field_id_5 != '--'
+					AND m_field_id_4 != ''
 					
 					GROUP BY location
 					ORDER BY total DESC, location ASC
@@ -306,13 +306,13 @@ function member_ages($rangeLow, $rangeHigh)
 			data.addRows([
 			{exp:query
 				sql="
-				SELECT m_field_id_10, COUNT(*) AS total FROM exp_member_data
-					WHERE m_field_id_10 != ''
-					AND m_field_id_10 != '--'
+				SELECT m_field_id_5, COUNT(*) AS total FROM exp_member_data
+					WHERE m_field_id_5 != ''
+					AND m_field_id_5 != '--'
 					
-					GROUP BY m_field_id_10
+					GROUP BY m_field_id_5
 					ORDER BY total DESC" backspace="1"}
-				["{m_field_id_10}", {total}],{/exp:query}
+				["{m_field_id_5}", {total}],{/exp:query}
 			]);
 	
 			var options = {
@@ -338,12 +338,12 @@ function member_ages($rangeLow, $rangeHigh)
 			data.addRows([
 			{exp:query
 				sql="
-				SELECT CONCAT(m_field_id_9, ', ', m_field_id_10) AS location, count(*) AS total FROM (
-					SELECT member_id, m_field_id_9, m_field_id_10 FROM exp_member_data
+				SELECT CONCAT(m_field_id_4, ', ', m_field_id_5) AS location, count(*) AS total FROM (
+					SELECT member_id, m_field_id_4, m_field_id_5 FROM exp_member_data
 					
-					WHERE m_field_id_10 != ''
-					AND m_field_id_10 != '--'
-					AND m_field_id_9 != ''
+					WHERE m_field_id_5 != ''
+					AND m_field_id_5 != '--'
+					AND m_field_id_4 != ''
 					
 					ORDER BY member_id DESC
 					
@@ -576,14 +576,14 @@ function member_ages($rangeLow, $rangeHigh)
 						data.addColumn('string', 'Age Range');
 						data.addColumn('number', 'Total');
 						data.addRows([
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 19 AND m_field_id_13 >= 13"}['13-19',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 29 AND m_field_id_13 >= 20"}['20-29',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 39 AND m_field_id_13 >= 30"}['30-39',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 49 AND m_field_id_13 >= 40"}['40-49',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 59 AND m_field_id_13 >= 50"}['50-59',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 69 AND m_field_id_13 >= 60"}['60-69',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 79 AND m_field_id_13 >= 70"}['70-79',{total}]{/exp:query},
-							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 100 AND m_field_id_13 >= 80"}['80-100',{total}]{/exp:query}
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 19 AND m_field_id_8 >= 13"}['13-19',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 29 AND m_field_id_8 >= 20"}['20-29',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 39 AND m_field_id_8 >= 30"}['30-39',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 49 AND m_field_id_8 >= 40"}['40-49',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 59 AND m_field_id_8 >= 50"}['50-59',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 69 AND m_field_id_8 >= 60"}['60-69',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 79 AND m_field_id_8 >= 70"}['70-79',{total}]{/exp:query},
+							{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 100 AND m_field_id_8 >= 80"}['80-100',{total}]{/exp:query}
 						]);
 		
 						var options = {
@@ -608,14 +608,14 @@ function member_ages($rangeLow, $rangeHigh)
 				</a>
 				<div class="table-stats">
 					<table>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 19 AND m_field_id_13 >= 13"}<td>13-19</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 29 AND m_field_id_13 >= 20"}<td>20-29</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 39 AND m_field_id_13 >= 30"}<td>30-39</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 49 AND m_field_id_13 >= 40"}<td>40-49</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 59 AND m_field_id_13 >= 50"}<td>50-59</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 69 AND m_field_id_13 >= 60"}<td>60-69</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 79 AND m_field_id_13 >= 70"}<td>70-79</td><td class="total">{total}</td>{/exp:query}</tr>
-						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_13 <= 100 AND m_field_id_13 >= 80"}<td>80-100</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 19 AND m_field_id_8 >= 13"}<td>13-19</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 29 AND m_field_id_8 >= 20"}<td>20-29</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 39 AND m_field_id_8 >= 30"}<td>30-39</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 49 AND m_field_id_8 >= 40"}<td>40-49</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 59 AND m_field_id_8 >= 50"}<td>50-59</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 69 AND m_field_id_8 >= 60"}<td>60-69</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 79 AND m_field_id_8 >= 70"}<td>70-79</td><td class="total">{total}</td>{/exp:query}</tr>
+						<tr>{exp:query sql="SELECT COUNT(member_id) AS total FROM exp_member_data WHERE m_field_id_8 <= 100 AND m_field_id_8 >= 80"}<td>80-100</td><td class="total">{total}</td>{/exp:query}</tr>
 					</table>
 				</div>
 			</div>
@@ -628,9 +628,9 @@ function member_ages($rangeLow, $rangeHigh)
 						data.addColumn('number', 'Total');
 						data.addRows([
 							{exp:query sql="
-								SELECT m_field_id_31 AS referral, COUNT(*) AS total FROM exp_member_data
-									WHERE m_field_id_31 != ''
-									AND m_field_id_31 != 'Select One'
+								SELECT m_field_id_25 AS referral, COUNT(*) AS total FROM exp_member_data
+									WHERE m_field_id_25 != ''
+									AND m_field_id_25 != 'Select One'
 									
 									GROUP BY referral 
 									ORDER BY total DESC, referral ASC"}
@@ -657,17 +657,17 @@ function member_ages($rangeLow, $rangeHigh)
 					<div id="referral-chart"></div>
 					<h3>
 						{exp:query sql="
-							SELECT COUNT(m_field_id_31) AS total FROM exp_member_data
-								WHERE m_field_id_31 != ''
-								AND m_field_id_31 != 'Select One'"}{total}{/exp:query}
+							SELECT COUNT(m_field_id_25) AS total FROM exp_member_data
+								WHERE m_field_id_25 != ''
+								AND m_field_id_25 != 'Select One'"}{total}{/exp:query}
 					<span>Referrals</span></h3>
 				</a>
 				<div class="table-stats">
 					<table>
 					{exp:query sql="
-						SELECT m_field_id_31 AS referral, COUNT(*) AS total FROM exp_member_data
-							WHERE m_field_id_31 != ''
-							AND m_field_id_31 != 'Select One'
+						SELECT m_field_id_25 AS referral, COUNT(*) AS total FROM exp_member_data
+							WHERE m_field_id_25 != ''
+							AND m_field_id_25 != 'Select One'
 							
 							GROUP BY referral 
 							ORDER BY total DESC, referral ASC"}
@@ -845,10 +845,10 @@ function member_ages($rangeLow, $rangeHigh)
 			<h2>Top 10 Cities</h2>
 			<ul>
 				{exp:query sql="
-					SELECT CONCAT(m_field_id_9, ', ', m_field_id_10) AS location, COUNT(*) AS total FROM exp_member_data
-					WHERE m_field_id_10 != ''
-					AND m_field_id_10 != '--'
-					AND m_field_id_9 != ''
+					SELECT CONCAT(m_field_id_4, ', ', m_field_id_5) AS location, COUNT(*) AS total FROM exp_member_data
+					WHERE m_field_id_5 != ''
+					AND m_field_id_5 != '--'
+					AND m_field_id_4 != ''
 					
 					GROUP BY location
 					ORDER BY total DESC, location ASC
@@ -859,47 +859,22 @@ function member_ages($rangeLow, $rangeHigh)
 			<h2>Top 10 States</h2>
 			<ul>
 				{exp:query sql="
-					SELECT m_field_id_10, COUNT(*) AS total 
+					SELECT m_field_id_5, COUNT(*) AS total 
 						FROM exp_member_data 
 						
-						WHERE m_field_id_10 != '' 
-						AND m_field_id_10 != '--'
+						WHERE m_field_id_5 != '' 
+						AND m_field_id_5 != '--'
 						
-					GROUP BY m_field_id_10 
+					GROUP BY m_field_id_5 
 					ORDER BY total DESC
 					
 					LIMIT 10 
 				" limit="10"}
-					<li><a href="http://maps.google.com/maps?q={m_field_id_10}" title="Google map of {m_field_id_10}" target="_blank">{m_field_id_10} (&nbsp;{total}&nbsp;)</a></li>
+					<li><a href="http://maps.google.com/maps?q={m_field_id_5}" title="Google map of {m_field_id_5}" target="_blank">{m_field_id_5} (&nbsp;{total}&nbsp;)</a></li>
 				{/exp:query}
 			</ul>
 			<h2>Newsletter</h2>
-			<ul>
-				<li>April 2012
-					<ul>
-						<li><a href="http://email.symplur.com/t/r-E5AB5CEBA5F272B0" target="_blank">Email</a></li>
-						<li><a href="http://email.symplur.com/reports/wv/r/E5AB5CEBA5F272B0" target="_blank">World View</a></li>
-					</ul>
-				</li>
-				<li>Winter 2012 (2)
-					<ul>
-						<li><a href="http://email.symplur.com/t/r-B6399183C6D6900B" target="_blank">Email</a></li>
-						<li><a href="http://email.symplur.com/reports/wv/r/B6399183C6D6900B" target="_blank">World View</a></li>
-					</ul>
-				</li>
-				<li>Winter 2012 (1)
-					<ul>
-						<li><a href="http://email.symplur.com/t/r-AAEEDD6FC16C2CE6" target="_blank">Email</a></li>
-						<li><a href="http://email.symplur.com/reports/wv/r/AAEEDD6FC16C2CE6" target="_blank">World View</a></li>
-					</ul>
-				</li>
-				<li>Fall 2011
-					<ul>
-						<li><a href="http://email.symplur.com/t/r-C1DEF0ABEB2C3FD3" target="_blank">Email</a></li>
-						<li><a href="http://email.symplur.com/reports/wv/r/C1DEF0ABEB2C3FD3" target="_blank">World View</a></li>
-					</ul>
-				</li>
-			</ul>
+			<p>Insert MailChimp Code Here</p>
 	</div>
 </div>
 {embed="embeds/_doc-bottom"}
