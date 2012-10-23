@@ -29,5 +29,50 @@
 		</tr>
 	</table>
 </div>
+{if member_id == 1}
+<section class="section filters">
+	<header class="bar">Filter</header>
+	<h2 class="health-conditions filter-heading">Health Conditions<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list health-condition">
+	{exp:channel:categories channel="questions" style="linear" show_empty="no" category_group="17"}
+		{exp:query sql="
+			SELECT COUNT(cat_id) AS total FROM exp_category_posts
+			JOIN exp_channel_titles
+			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
+			WHERE cat_id = {category_id} AND channel_id = 5
+			"}
+		<li><a href="{path='questions/health-condition/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		{/exp:query}
+	{/exp:channel:categories}
+	</ul>
 	
+	<h2 class="living-better filter-heading">Living Better<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list living-better">
+	{exp:channel:categories channel="questions" style="linear" show_empty="no" category_group="19"}
+		{exp:query sql="
+			SELECT COUNT(cat_id) AS total FROM exp_category_posts
+			JOIN exp_channel_titles
+			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
+			WHERE cat_id = {category_id} AND channel_id = 5
+			"}
+		<li><a href="{path='questions/living-better/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		{/exp:query}
+	{/exp:channel:categories}
+	</ul>
+	
+	<h2 class="partners filter-heading">Partners<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list partner">
+	{exp:channel:categories channel="questions" style="linear" show_empty="no" category_group="21"}
+	{exp:query sql="
+		SELECT COUNT(cat_id) AS total FROM exp_category_posts
+		JOIN exp_channel_titles
+		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
+		WHERE cat_id = {category_id} AND channel_id = 5
+		"}
+		<li><a href="{path='questions/partner/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		{/exp:query}
+	{/exp:channel:categories}
+	</ul>
+</section>
+{/if}
 {/exp:search:advanced_form}
