@@ -239,6 +239,36 @@ require_once ( 'utilities.php' );
 			</section>
 			
 			{exp:user:stats dynamic="off"}
+			
+			<?php
+
+			$zipCode = "{exp:channel:entries channel="locations" search:location_zip="{member_zip}" limit="1"}{location_zip}{/exp:channel:entries}";
+			$promoCode = "{exp:channel:entries channel="locations" category="{member_promo_code}" limit="1"}{url_title}{/exp:channel:entries}";
+
+			if ($zipCode) { ?>
+			
+			{exp:channel:entries channel="locations" search:location_zip="{member_zip}" limit="1"}
+				<section class="section locations">
+					<header class="bar" data-icon="f"><a href="{path='locations'}">Featured Location</a></header>
+					<a href="{url_title_path='locations/detail'}" title="{title}">
+						<div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
+					</a>
+					<p><a href="{url_title_path='locations/detail'}" title="{title}">{title}</a></p>
+				</section>
+			{/exp:channel:entries}
+			
+		<?php } else if ($promoCode) { ?>
+			{exp:channel:entries channel="locations" category="{promo_code}" limit="1"}
+				<section class="section locations">
+					<header class="bar" data-icon="f"><a href="{path='locations'}">Featured Location</a></header>
+					<a href="{url_title_path='locations/detail'}" title="{title}">
+						<div class="location-map" style="background-image: url({exp:valid_url}http://maps.google.com/maps/api/staticmap?center={location_address}+{location_city}+{location_state}&zoom=7&markers=size:med%7C{location_address}+{location_city}+{location_state}&size=180x125&sensor=false&key=ABQIAAAAF-2CpS0wqiEdGgvg2d1hGRTGCIkugz-UOgj4gO0cudB8rdAkEhQSlPrUNc_decH5dHcFVu0pRuGwSg{/exp:valid_url});"></div>
+					</a>
+					<p><a href="{url_title_path='locations/detail'}" title="{title}">{title}</a></p>
+				</section>
+			{/exp:channel:entries}
+		<?php } ?>
+			
 		
 			{if member_group == "1" || member_group == "6"}
 				<section class="section sponsor-admin">
