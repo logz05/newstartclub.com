@@ -69,17 +69,21 @@ $sponsEntries = count($results);
 					<span class="year">{entry_date format="%Y"}</span>
 					<span class="time">
 						{!-- Check if event is only on one date and time is set --}
+<<<<<<< HEAD
 						{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" != "0"}
+=======
+						{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
+>>>>>>> Updated to use new field names
 							{event_start_time format="%g:%i %a"}{if event_end_time != "0"} - {event_end_time format="%g:%i %a"}{/if}
 						{/if}
 						
 						{!-- Check if event is only on one date and time is NOT set --}
-						{if "{entry_date format='%d'}" == "{expiration_date format='%d'}" && "{event_start_time}" == ""}
+						{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0"}
 							All Day
 						{/if}
 						
 						{!-- Check to see if repeating event --}
-						{if "{entry_date format='%d'}" != "{expiration_date format='%d'}"}
+						{if '{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}'}
 							{entry_date format="%M %j"} - {expiration_date format="%M %j"}
 						{/if}
 					</span>
