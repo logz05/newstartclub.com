@@ -68,7 +68,7 @@
 				<li>FREE membership</li>
 			</ul>
 			<p class="button-wrap">
-				<a href="/register" class="super red button"><span>Register</span></a>
+				<a href="{path='register'}" class="super red button"><span>Join</span></a>
 			</p>
 		</div>
 	</div>
