@@ -473,6 +473,14 @@ a[rel="footnote"]:after {
 	position: relative;
 	font-weight: normal;
 }
+<<<<<<< HEAD
+=======
+.missing-ref {
+	visibility: hidden;
+	line-height: 0;
+	margin: 0;
+}
+>>>>>>> Style changes
 .post ul,
 .post ol {
 	padding: 0 28px;
@@ -1308,7 +1316,7 @@ h1:hover .edit-this { opacity: 1.0; }
 
 /* Specific Page Styles
 ========================================================================== */
-/* Home | http://newstartclub.com/
+/* $Home | http://newstartclub.com/
 -------------------------------------------------------------------------- */
 .home #intro-heading {
 	margin-bottom: 4px;
@@ -1470,8 +1478,21 @@ h1:hover .edit-this { opacity: 1.0; }
 .home .link-icon:hover:after {
 	color: #555;
 }
+.home .location-map {
+	width: 180px;
+	height: 125px;
+	border: 5px solid #fff;
+	background-repeat: no-repeat;
+	-webkit-transition: -webkit-box-shadow 0.2s ease-in-out;
+	-webkit-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+	-moz-box-shadow: rgba(0,0,0,0.2) 0px 1px 3px;
+}
+.home .location-map:active {
+	-webkit-transform: translateY(1px);
+	-moz-transform: translateY(1px);
+}
 
-/* My Health | http://newstartclub.com/my-health
+/* $my-health | http://newstartclub.com/my-health
 -------------------------------------------------------------------------- */
 .my-health .heading h1[data-icon]:before {
 	font-size: 52px;
@@ -1800,7 +1821,7 @@ h1:hover .edit-this { opacity: 1.0; }
 
 
 
-/* Recipes | http://newstartclub.com/recipes
+/* $recipes | http://newstartclub.com/recipes
 -------------------------------------------------------------------------- */
 .recipes .heading h1[data-icon]:before {
 	top: 2px;
@@ -1900,7 +1921,7 @@ h1:hover .edit-this { opacity: 1.0; }
 .recipes a:hover,
 .recipes li a:hover { color: #5b7316; }
 
-/* $Resources | http://newstartclub.com/resources
+/* $resources | http://newstartclub.com/resources
 -------------------------------------------------------------------------- */
 .resources .heading h1[data-icon]:before {
 	
@@ -2124,7 +2145,7 @@ h1:hover .edit-this { opacity: 1.0; }
 .body.services table th label { color: #00687A; }
 .services a:hover { color: #004C5E; }
 
-/* Events | http://newstartclub.com/events
+/* $events | http://newstartclub.com/events
 -------------------------------------------------------------------------- */
 .events .heading h1[data-icon]:before {
 	top: 1px;
@@ -2327,7 +2348,7 @@ table.events a,
 .events a:hover,
 .rsvp-list a:hover { color: #EC9306; } /* FDA507 */
 
-/* Locations | http://newstartclub.com/locations
+/* $locations | http://newstartclub.com/locations
 -------------------------------------------------------------------------- */
 .locations .heading h1[data-icon]:before {
 	top: 2px;
@@ -2449,7 +2470,7 @@ span#loading {
 
 
 
-/* Deals | http://newstartclub.com/deals
+/* $deals | http://newstartclub.com/deals
 -------------------------------------------------------------------------- */
 .deals .heading h1[data-icon]:before {
 	top: 7px;
@@ -2633,7 +2654,7 @@ li.deal .details:before,
 
 
 
-/* News | http://newstartclub.com/news
+/* $news | http://newstartclub.com/news
 -------------------------------------------------------------------------- */
 .news .heading h1[data-icon]:before {
 	top: 3px;
@@ -2792,13 +2813,17 @@ li.deal .details:before,
 .members .heading h1[data-icon]:before { color: #777 }
 .members a:hover { color: #333 }
 
-/* Sponsors | http://newstartclub.com/sponsors
+/* $sponsors | http://newstartclub.com/sponsors
 -------------------------------------------------------------------------- */
 .main-nav.sponsors li { margin-left: 26px; }
 .main-nav.sponsors.profit li { margin-left: 30px; }
 .sponsors #sponsor-id-switch { 
 	margin-top: 15px;
 	border-top: 1px dashed #DDD;
+}
+.sponsors .heading h1[data-icon]:before {
+	top: 7px;
+	font-size: 52px;
 }
 .sponsors #sponsor-id-switch h5 {
 	margin: 0;
@@ -3029,7 +3054,8 @@ li.deal .details:before,
 .sponsors > .link-icon:hover,
 .sponsors > .link-icon:hover:after,
 .sponsors .has-tip:hover,
-.sponsors th label { color: #FF4B28; }
+.sponsors th label,
+.sponsors .heading h1[data-icon]:before { color: #FF4B28; }
 .sponsors a:hover,
 .sponsors a:hover span.arrow { color: #CF0B00; }
 .sponsors .pagination a:hover {
