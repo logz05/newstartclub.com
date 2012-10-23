@@ -32,7 +32,8 @@
 			{/if}
 			
 			<header class="bar"><a href="{url_title_path='services/detail'}">{title}</a></header>
-			<p>{service_bio}</p>
+			{service_bio}
+			<p><a href="{url_title_path='questions/partner'}">View questions by {title}</a></p>
 			
 			{if count == total_results}
 				</section>
