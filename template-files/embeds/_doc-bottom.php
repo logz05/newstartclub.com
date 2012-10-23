@@ -5,7 +5,8 @@
 		<a href="{path='about/privacy-policy'}">Privacy Policy</a> |
 		<a href="{path='about/terms-of-use'}">Terms of Use</a> |
 		<a href="{path='locations'}">Locations</a> |
-		<a href="{path='news'}">Blog</a>
+		<a href="{path='news'}">Blog</a> |
+		<a href="http://newstart.com/store">Store</a>
 	</p>
 </footer>
 {embed="embeds/_signin-mini"}
