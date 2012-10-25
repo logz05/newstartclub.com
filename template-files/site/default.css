@@ -463,7 +463,7 @@ a[rel="footnote"]:after {
 .references li:target p {
 	border-left: 5px solid;
 	border-right: 5px solid;
-	padding: 5px 10px 9px 62px;
+	padding: 5px 10px 5px 62px;
 	margin-left: -68px;
 	width: 468px;
 }
@@ -473,14 +473,11 @@ a[rel="footnote"]:after {
 	position: relative;
 	font-weight: normal;
 }
-<<<<<<< HEAD
-=======
 .missing-ref {
 	visibility: hidden;
 	line-height: 0;
 	margin: 0;
 }
->>>>>>> Style changes
 .post ul,
 .post ol {
 	padding: 0 28px;

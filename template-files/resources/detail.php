@@ -26,17 +26,11 @@
 				<div class="entry-details">
 					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
 					{resource_buy_options}
-<<<<<<< HEAD
-						<div class="button-wrap">
-							<a href="//{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}</span></a>
-						</div>
-=======
 						{if text == "book" || text == "mag"}
 							<div class="button-wrap">
 								<a href="//{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}</span></a>
 							</div>
 						{/if}
->>>>>>> Fixed "Buy" button from showing when there is no link
 					{/resource_buy_options}
 				</div>
 				{resource_body}
