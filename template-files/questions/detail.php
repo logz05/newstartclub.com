@@ -10,19 +10,24 @@
 {if no_results || segment_4 !=""}
 	{redirect="404"}
 {/if}
+<div class="heading clearfix">
+	<h1>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+</div>
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post clearfix">
-			<div id="question">
-				<span class="drop-cap">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}Q.</span>
-				<h1>{question_question}</h1>
-			</div>
-			<div id="answer">
-				<span class="drop-cap">A.</span>
-					{question_response}
-				<p>Response by {question_responder}<a href="{url_title_path='services/detail'}">{title}</a>{/question_responder}</p>
-			</div>
+			<h2 class="question"><span class="drop-cap">Q.</span> {exp:eehive_hacksaw}{question_question}{/exp:eehive_hacksaw}</h2>
+			<span class="drop-cap answer">A.</span>
+			{question_response}
 		</div>
+		<ul class="tags">
+			<li data-icon="r">Tags:</li>
+			{categories show_group="not 22"}
+				{if category_group == "17"}<li><a href="{site_url}/questions/health-condition/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "19"}<li><a href="{site_url}/questions/living-better/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "21"}<li><a href="{site_url}/questions/partner/{category_url_title}">{category_name}</a></li>{/if}
+			{/categories}
+		</ul>
 		{embed="embeds/_comments" channel="{channel_short_name}"}
 	</div>
 	<div class="sidebar right">
