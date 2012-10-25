@@ -9,13 +9,18 @@ require_once 'member_relations.php';
 
 $db = new DBconnect();
 
-global $SESS;
-$member = $SESS->userdata['member_id'];
-
-$results = Member_Relations::get("SELECT * FROM member_relations WHERE relation_type='deal' AND member_id=$member AND cat_id={categories show_group='24'}{category_id}{/categories} AND related_id={entry_id}");
+$results = Member_Relations::get("SELECT * FROM member_relations WHERE relation_type='deal' AND member_id={exp:user:stats dynamic='no'}{member_id}{/exp:user:stats} AND cat_id={categories show_group='24'}{category_id}{/categories} AND related_id={entry_id}");
 
 if ( count($results) == 0) {
-	Member_Relations::add(new Member_Relation('deal', $member, {entry_id}, {categories show_group="24"}{category_id}{/categories}));
+
+	// Save results to DB
+	$sql = "INSERT INTO member_relations (relation_type, member_id, related_id, cat_id) ";
+	
+	{exp:user:stats dynamic="no"}
+	$sql .= "VALUES ('deal', {member_id}, {entry_id}, {categories show_group='24'}{category_id}{/categories})";
+	{/exp:user:stats}
+	
+	$db->query($sql);
 }
 
 ?>
