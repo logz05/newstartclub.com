@@ -47,7 +47,70 @@ function listMembers($name = "all") {
 	$query = '';
 	
 	switch ($name) {
-		case "category":
+		case "interest":
+			$query = '
+				SELECT 
+					exp_member_data.member_id,
+					exp_member_data.m_field_id_1 AS first_name,
+					exp_member_data.m_field_id_2 AS last_name,
+					exp_member_data.m_field_id_3 AS address,
+					exp_member_data.m_field_id_4 AS city,
+					exp_member_data.m_field_id_5 AS state,
+					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_7 AS phone_number,
+					exp_member_data.m_field_id_22 AS health_score,
+					exp_member_data.m_field_id_23 AS score_history,
+					exp_members.username,
+					exp_members.join_date
+				FROM exp_members
+					INNER JOIN exp_user_category_posts
+					ON exp_members.member_id = exp_user_category_posts.member_id
+					
+					INNER JOIN exp_member_data
+					ON exp_members.member_id = exp_member_data.member_id
+					
+					WHERE exp_user_category_posts.cat_id = {segment_4}
+						AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
+				
+			UNION DISTINCT
+			
+				SELECT DISTINCT
+					exp_member_data.member_id,
+					exp_member_data.m_field_id_1 AS first_name,
+					exp_member_data.m_field_id_2 AS last_name,
+					exp_member_data.m_field_id_3 AS address,
+					exp_member_data.m_field_id_4 AS city,
+					exp_member_data.m_field_id_5 AS state,
+					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_7 AS phone_number,
+					exp_member_data.m_field_id_22 AS health_score,
+					exp_member_data.m_field_id_23 AS score_history,
+					exp_members.username,
+					exp_members.join_date
+					
+				FROM exp_members
+					INNER JOIN member_relations
+					ON exp_members.member_id = member_relations.member_id
+					
+					INNER JOIN exp_user_category_posts
+					ON exp_members.member_id = exp_user_category_posts.member_id
+					
+					INNER JOIN exp_channel_titles
+					ON member_relations.related_id = exp_channel_titles.entry_id
+					
+					INNER JOIN exp_category_posts
+					ON exp_channel_titles.entry_id = exp_category_posts.entry_id
+					
+					JOIN exp_member_data
+					ON exp_member_data.member_id = exp_members.member_id
+						
+					WHERE exp_category_posts.cat_id = {embed:sponsor_number}
+					AND exp_user_category_posts.cat_id = {segment_4}
+					
+					ORDER BY member_id DESC';
+		break;
+		
+		case "more-info":
 			$query = '
 				SELECT 
 					exp_member_data.member_id,
@@ -325,20 +388,10 @@ function listMembers($name = "all") {
 }
 
 ?>
+{!-- Select the correct query based on segment --}
+<?php $memberData = listMembers("{segment_3}"); ?>
+<!-- {if (segment_3 == 'interest' || segment_3 == 'more-info')}category{if:else}{segment_3}{/if} -->
 
-{if (segment_3 == 'interest' || segment_3 == 'more-info') && segment_4}
-	<?php $memberData = listMembers("category"); ?>
-	
-{if:elseif segment_3 == 'event' && segment_4}
-	<?php $memberData = listMembers("event"); ?>
-	
-{if:elseif segment_3 == 'deal' && segment_4}
-	<?php $memberData = listMembers("deal"); ?>
-	
-{if:else}
-	<?php $memberData = listMembers(); ?>
-	
-{/if}
 
 
 
