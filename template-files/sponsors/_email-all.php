@@ -13,15 +13,7 @@ $queryAll = '
 		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
 		exp_member_data.m_field_id_2 AS last_name,
-		exp_member_data.m_field_id_3 AS address,
-		exp_member_data.m_field_id_4 AS city,
-		exp_member_data.m_field_id_5 AS state,
-		exp_member_data.m_field_id_6 AS zip_code,
-		exp_member_data.m_field_id_7 AS phone_number,
-		exp_member_data.m_field_id_22 AS health_score,
-		exp_member_data.m_field_id_23 AS score_history,
-		exp_members.username,
-		exp_members.join_date
+		exp_members.username
 		
 		FROM exp_member_data
 		
@@ -39,15 +31,7 @@ UNION DISTINCT
 		member_relations.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
 		exp_member_data.m_field_id_2 AS last_name,
-		exp_member_data.m_field_id_3 AS address,
-		exp_member_data.m_field_id_4 AS city,
-		exp_member_data.m_field_id_5 AS state,
-		exp_member_data.m_field_id_6 AS zip_code,
-		exp_member_data.m_field_id_7 AS phone_number,
-		exp_member_data.m_field_id_22 AS health_score,
-		exp_member_data.m_field_id_23 AS score_history,
-		exp_members.username,
-		exp_members.join_date
+		exp_members.username
 		
 	FROM member_relations
 	
@@ -68,15 +52,7 @@ UNION DISTINCT
 		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
 		exp_member_data.m_field_id_2 AS last_name,
-		exp_member_data.m_field_id_3 AS address,
-		exp_member_data.m_field_id_4 AS city,
-		exp_member_data.m_field_id_5 AS state,
-		exp_member_data.m_field_id_6 AS zip_code,
-		exp_member_data.m_field_id_7 AS phone_number,
-		exp_member_data.m_field_id_22 AS health_score,
-		exp_member_data.m_field_id_23 AS score_history,
-		exp_members.username,
-		exp_members.join_date
+		exp_members.username
 
 	FROM exp_member_data
 		
@@ -101,11 +77,10 @@ function send_emails($mailing_list, $subject, $custom_message)
 	$headers	= 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
 	$headers .= 'From: {exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
-	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats} <{exp:user:stats dynamic="off"}{username}{/exp:user:stats}>' . "\r\n";
-	
-	$clubEmail = array(0, 'club@newstart.com', 'NEWSTART Lifestyle', 'Club');
+	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name} <{username}>{/exp:user:stats}' . "\r\n";
 	
 	//Add club@newstart.com so that we can see all e-mails sent out.
+	$clubEmail = array(0, 'NEWSTART Lifestyle Club', '', 'club@newstart.com');
 	array_push($mailing_list, $clubEmail);
 	
 for ($i = 0; $i < count($mailing_list); $i++)
@@ -174,7 +149,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 										</tr>
 										<tr>
 											<td style="font-family:\'Helvetica Neue\', Arial, Helvetica, sans-serif; font-weight: normal; line-height: 1.5; font-size:16px; color:#010101;">';
-											$message .= 'Dear '. $mailing_list[$i][2] .',<br />';
+											$message .= 'Dear '. $mailing_list[$i][1] .',<br />';
 											$message .= $custom_message;
 											$message .= '
 											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
@@ -217,7 +192,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	
 		// Mail it
 		//$headers .= 'To: $member' . "\n";
-		mail($mailing_list[$i][1], stripslashes($subject), stripslashes($message), $headers);
+		mail($mailing_list[$i][3], stripslashes($subject), stripslashes($message), $headers);
 	}
 
 }
@@ -279,7 +254,7 @@ function show_done($listRecipients)
 						
 						for ($i = 0; $i < count($listRecipients); $i++)
 						{
-							print '<li><strong>'. $listRecipients[$i][2] .' '. $listRecipients[$i][3] .'</strong> ('. $listRecipients[$i][1] .')</li>';
+							print '<li><strong>'. $listRecipients[$i][1] .' '. $listRecipients[$i][2] .'</strong> ('. $listRecipients[$i][3] .')</li>';
 						}
 						
 			print '</ul>
