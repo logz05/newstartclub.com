@@ -10,44 +10,44 @@ require_once('dbconnect.php');
 $db = new DBconnect();
 $queryCat = '
 	SELECT 
-		exp_members.member_id,
-		exp_members.username,
+		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
-		exp_member_data.m_field_id_2 AS last_name
-
-		FROM exp_members
-			INNER JOIN exp_user_category_posts
-			ON exp_members.member_id = exp_user_category_posts.member_id
-			
-			INNER JOIN exp_member_data
-			ON exp_members.member_id = exp_member_data.member_id
-			
-			WHERE exp_user_category_posts.cat_id = {segment_4}
-				AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_members.username
+		
+	FROM exp_members
+		INNER JOIN exp_user_category_posts
+		ON exp_members.member_id = exp_user_category_posts.member_id
+		
+		INNER JOIN exp_member_data
+		ON exp_members.member_id = exp_member_data.member_id
+		
+		WHERE exp_user_category_posts.cat_id = {segment_4}
+			AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
 	
 UNION DISTINCT
 
-	SELECT 
-		exp_members.member_id,
-		exp_members.username,
+	SELECT DISTINCT
+		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
-		exp_member_data.m_field_id_2 AS last_name
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_members.username
 		
-		FROM exp_members
-			INNER JOIN member_relations
-			ON exp_members.member_id = member_relations.member_id
-			
-			INNER JOIN exp_user_category_posts
-			ON exp_members.member_id = exp_user_category_posts.member_id
-			
-			INNER JOIN exp_channel_titles
-			ON member_relations.related_id = exp_channel_titles.entry_id
-			
-			INNER JOIN exp_category_posts
-			ON exp_channel_titles.entry_id = exp_category_posts.entry_id
-			
-			JOIN exp_member_data
-			ON exp_member_data.member_id = exp_members.member_id
+	FROM exp_members
+		INNER JOIN member_relations
+		ON exp_members.member_id = member_relations.member_id
+		
+		INNER JOIN exp_user_category_posts
+		ON exp_members.member_id = exp_user_category_posts.member_id
+		
+		INNER JOIN exp_channel_titles
+		ON member_relations.related_id = exp_channel_titles.entry_id
+		
+		INNER JOIN exp_category_posts
+		ON exp_channel_titles.entry_id = exp_category_posts.entry_id
+		
+		JOIN exp_member_data
+		ON exp_member_data.member_id = exp_members.member_id
 			
 		WHERE exp_category_posts.cat_id = {embed:sponsor_number}
 		AND exp_user_category_posts.cat_id = {segment_4}

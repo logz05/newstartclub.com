@@ -10,21 +10,21 @@ require_once('dbconnect.php');
 $db = new DBconnect();
 $queryEvent = '
 SELECT 
-		exp_member_data.member_id,
-		exp_members.username,
-		exp_member_data.m_field_id_3 AS first_name,
-		exp_member_data.m_field_id_4 AS last_name
-		
-	FROM exp_members
-		INNER JOIN member_relations
-		ON exp_members.member_id = member_relations.member_id
-		
-		INNER JOIN exp_member_data
-		ON exp_members.member_id = exp_member_data.member_id
-		
-	WHERE member_relations.related_id = {segment_4}
-	AND member_relations.cat_id = {embed:sponsor_number}
-	ORDER BY member_id DESC
+	exp_member_data.member_id,
+	exp_member_data.m_field_id_1 AS first_name,
+	exp_member_data.m_field_id_2 AS last_name,
+	exp_members.username
+	
+FROM exp_members
+	INNER JOIN member_relations
+	ON exp_members.member_id = member_relations.member_id
+	
+	INNER JOIN exp_member_data
+	ON exp_members.member_id = exp_member_data.member_id
+	
+WHERE member_relations.related_id = {segment_4}
+AND member_relations.cat_id = {embed:sponsor_number}
+ORDER BY member_id DESC
 			';
 
 $queryResultsEvent = $db->fetch($queryEvent);

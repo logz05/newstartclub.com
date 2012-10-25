@@ -9,11 +9,19 @@ require_once('dbconnect.php');
 //All Members
 $db = new DBconnect();
 $queryAll = '
-	SELECT 
-		exp_members.member_id,
-		exp_members.username,
+	SELECT DISTINCT 
+		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
-		exp_member_data.m_field_id_2 AS last_name
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_member_data.m_field_id_3 AS address,
+		exp_member_data.m_field_id_4 AS city,
+		exp_member_data.m_field_id_5 AS state,
+		exp_member_data.m_field_id_6 AS zip_code,
+		exp_member_data.m_field_id_7 AS phone_number,
+		exp_member_data.m_field_id_22 AS health_score,
+		exp_member_data.m_field_id_23 AS score_history,
+		exp_members.username,
+		exp_members.join_date
 		
 		FROM exp_member_data
 		
@@ -22,45 +30,62 @@ $queryAll = '
 			
 			JOIN exp_members
 			ON exp_members.member_id = exp_member_data.member_id
-		
+	
 		WHERE exp_member_data.m_field_id_26 = {embed:sponsor_number}
-						
+	
 UNION DISTINCT
 						
-	SELECT
-		exp_members.member_id,
-		exp_members.username,
+	SELECT DISTINCT 
+		member_relations.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
-		exp_member_data.m_field_id_2 AS last_name
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_member_data.m_field_id_3 AS address,
+		exp_member_data.m_field_id_4 AS city,
+		exp_member_data.m_field_id_5 AS state,
+		exp_member_data.m_field_id_6 AS zip_code,
+		exp_member_data.m_field_id_7 AS phone_number,
+		exp_member_data.m_field_id_22 AS health_score,
+		exp_member_data.m_field_id_23 AS score_history,
+		exp_members.username,
+		exp_members.join_date
 		
-		FROM member_relations
+	FROM member_relations
 	
-			INNER JOIN exp_category_posts
-			ON exp_category_posts.entry_id = member_relations.related_id
-			
-			JOIN exp_members
-			ON exp_members.member_id = member_relations.member_id
-			
-			JOIN exp_member_data
-			ON exp_member_data.member_id = exp_members.member_id
-	
-		WHERE exp_category_posts.cat_id = {embed:sponsor_number}
+		INNER JOIN exp_category_posts
+		ON exp_category_posts.entry_id = member_relations.related_id
+		
+		JOIN exp_members
+		ON exp_members.member_id = member_relations.member_id
+		
+		JOIN exp_member_data
+		ON exp_member_data.member_id = exp_members.member_id
+
+	WHERE exp_category_posts.cat_id = {embed:sponsor_number}
 						
 UNION DISTINCT
 						
 	SELECT 
-		exp_members.member_id,
-		exp_members.username,
+		exp_member_data.member_id,
 		exp_member_data.m_field_id_1 AS first_name,
-		exp_member_data.m_field_id_2 AS last_name
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_member_data.m_field_id_3 AS address,
+		exp_member_data.m_field_id_4 AS city,
+		exp_member_data.m_field_id_5 AS state,
+		exp_member_data.m_field_id_6 AS zip_code,
+		exp_member_data.m_field_id_7 AS phone_number,
+		exp_member_data.m_field_id_22 AS health_score,
+		exp_member_data.m_field_id_23 AS score_history,
+		exp_members.username,
+		exp_members.join_date
+
+	FROM exp_member_data
 		
-		FROM exp_member_data
-			JOIN exp_members
-			ON exp_members.member_id = exp_member_data.member_id
-			WHERE exp_member_data.m_field_id_7 = {embed:sponsor_zipcode}
-			OR exp_member_data.m_field_id_26 = {embed:sponsor_number}
-			
-	ORDER BY member_id DESC';
+		JOIN exp_members
+		ON exp_members.member_id = exp_member_data.member_id
+		WHERE exp_member_data.m_field_id_6 = {embed:sponsor_zipcode}
+		OR exp_member_data.m_field_id_26 = {embed:sponsor_number}
+								
+ORDER BY member_id DESC';
 
 $queryResultsAll = $db->fetch($queryAll);
 $queryCountAll = count($queryResultsAll);
