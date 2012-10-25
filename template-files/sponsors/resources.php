@@ -43,13 +43,13 @@
 							<li><img src="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-174x119.jpg" class="image" /><a href="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-174x119.jpg">Web Banner (174px x 119px)</a></li>
 							<li>
 								Copy the code below to embed this banner on your website.
-								<textarea cols="52" rows="4" style="width: 96%" onClick="select()" readonly="readonly">&lt;a href='{path='register/{member_admin_id}'}'&gt;&lt;img src='{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-174x119.jpg' alt='{site_name} Web Banner' border='0' /&gt;&lt;/a&gt;</textarea>
+								<textarea cols="52" rows="4" style="width: 96%" onClick="select()" readonly="readonly">&lt;a href='{path='join/{member_admin_id}'}'&gt;&lt;img src='{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-174x119.jpg' alt='{site_name} Web Banner' border='0' /&gt;&lt;/a&gt;</textarea>
 							</li>
 							<li>&nbsp;</li>
 							<li><img src="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-728x90.jpg" class="image" width="450" /><a href="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-728x90.jpg">Web Banner (728px x 90px)</a> Preview above shown scaled down.</li>
 							<li>
 								Copy the code below to embed this banner on your website.
-								<textarea cols="52" rows="4" style="width: 96%" onClick="select()" readonly="readonly">&lt;a href='{path='register/{member_admin_id}'}'&gt;&lt;img src='{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-728x90.jpg' alt='{site_name} Web Banner' border='0' /&gt;&lt;/a&gt;</textarea>
+								<textarea cols="52" rows="4" style="width: 96%" onClick="select()" readonly="readonly">&lt;a href='{path='join/{member_admin_id}'}'&gt;&lt;img src='{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-728x90.jpg' alt='{site_name} Web Banner' border='0' /&gt;&lt;/a&gt;</textarea>
 							</li>
 							<li>&nbsp;</li>
 							<li><img src="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-deals-174x119.jpg" class="image" /><a href="{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-deals-174x119.jpg">Web Banner (174px x 119px)</a></li>
@@ -63,7 +63,6 @@
 								Copy the code below to embed this banner on your website.
 								<textarea cols="52" rows="4" style="width: 96%" onClick="select()" readonly="readonly">&lt;a href='{path='deals'}/sponsor/{exp:channel:categories channel="locations" style="linear" show="{member_admin_id}"}{category_url_title}{/exp:channel:categories}/'&gt;&lt;img src='{site_url}/downloads/sponsor-resources/web-banners/newstart-lifestyle-club-deals-728x90.jpg' alt='{site_name} Deals' border='0' /&gt;&lt;/a&gt;</textarea>
 							</li>
-<!-- 							{member_admin_id} -->
 						</ul>
 					</li>
 					{/exp:user:stats}

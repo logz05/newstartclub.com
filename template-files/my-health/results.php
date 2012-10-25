@@ -263,7 +263,7 @@ function totalScore($score) {
 			<h2>Recommendations</h2>
 			<p><em>Save your score to your profile to view a list of personalized recommendations.</em></p>
 			
-			<form action="{path='register'}" method="post">
+			<form action="{path='join'}" method="post">
 				<div class="hidden">
 					<input class="hidden" type="hidden" name="member_age" value="<?php echo $_POST['member_age']; ?>" />
 					<input class="hidden" type="hidden" name="member_weight" value="<?php echo $_POST['member_weight']; ?>" />

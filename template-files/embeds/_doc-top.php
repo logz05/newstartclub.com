@@ -105,7 +105,7 @@
 						{if segment_1 == 'sponsors'}
 							<a href="{path='sponsors/apply'}" data-reveal-id="signin-modal-sponsor-apply">Apply</a>
 						{if:else}
-							<a href="{path='register'}">Join</a>
+							<a href="{path='join'}">Join</a>
 						{/if}
 					{if:else}
 						<a href="{path='settings'}">Settings</a>

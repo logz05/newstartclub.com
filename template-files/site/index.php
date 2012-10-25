@@ -24,7 +24,7 @@ require_once ( 'utilities.php' );
 	{if logged_out}
 		<div id="intro-heading" class="clearfix">
 			<p class="button-wrap">
-				<a href="{path='register'}" class="giant super green button"><span>Get Started &raquo;</span></a>
+				<a href="{path='join'}" class="giant super green button"><span>Get Started &raquo;</span></a>
 			</p>
 			<h1>Live Well Naturally.</h1>
 		</div>

@@ -54,7 +54,7 @@
 						<td>
 							<div class="button-wrap">
 								<button type="submit" class="super green button"><span>Sign In</span></button>
-								<a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
+								<a class="forgot-pass" href="{path='forgot-password'}">Forgot your password?</a>
 							</div>
 						</td>
 					</tr>
@@ -72,7 +72,7 @@
 					<li>FREE membership</li>
 				</ul>
 				<p class="button-wrap">
-					<a href="/register" class="super red button"><span>Register</span></a>
+					<a href="{path='join'}" class="super red button"><span>Join</span></a>
 				</p>
 			</div>
 		</div>
