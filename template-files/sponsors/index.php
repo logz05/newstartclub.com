@@ -93,17 +93,20 @@
 					<input type="hidden" name="member_zip" value="{member_zip}" />
 					<input type="hidden" name="member_terms_conditions" value="on" />
 					
-					<select name="member_admin_id" class="input" onchange="this.form.submit()">
+					
 					{if member_admin_ids}
+					<select name="member_admin_id" class="input" onchange="this.form.submit()">
 						{exp:channel:categories category_group="24" channel="locations" style="linear" show="{member_admin_ids}"}
 							<option value="{category_id}"{if category_id == member_admin_id} selected="selected"{/if}>{category_name}</option>
 						{/exp:channel:categories}
+					</select>
 					{if:else}
+					<select name="member_admin_id" class="input" onchange="this.form.submit()">
 						{exp:channel:categories category_group="24" channel="locations" style="linear"}
 							<option value="{category_id}"{if category_id == member_admin_id} selected="selected"{/if}>{category_name}</option>
 						{/exp:channel:categories}
-					{/if}
 					</select>
+					{/if}
 					
 					{categories}
 						{category_selected}<input type="hidden" name="category[]" value="{category_id}" />{/category_selected}
