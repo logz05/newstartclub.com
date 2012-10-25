@@ -29,7 +29,6 @@
 		</tr>
 	</table>
 </div>
-{if member_id == 1}
 <section class="section filters">
 	<header class="bar">Filter</header>
 	<h2 class="health-conditions filter-heading">Health Conditions<span class="arrow up"></span><span class="arrow down"></span></h2>
@@ -74,5 +73,4 @@
 	{/exp:channel:categories}
 	</ul>
 </section>
-{/if}
 {/exp:search:advanced_form}
