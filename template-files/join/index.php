@@ -7,8 +7,8 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-	{if group_id==1}
-		<p>You&rsquo;re currently signed in as a Super Admin. To see this form you must log out.</p>
+	{if logged_in}
+		<p>You&rsquo;re currently signed in. To see this form you must log out.</p>
 	{/if}
 	<noscript>
 		<div class="alert-box warning">
