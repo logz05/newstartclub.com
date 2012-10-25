@@ -23,11 +23,7 @@
 	<h1 id="event-title" itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 	<h2>
 		{!-- Check if event is only on one date and time is set --}
-<<<<<<< HEAD
-		{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}" != "0"}
-=======
 		{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
->>>>>>> Fixed time display conditionals
 			<span class="start-time">{event_start_time format="%g:%i %a"}</span>{if event_end_time =="0"},{/if}
 			{if event_end_time != "0"} to <span class="end-time">{event_end_time format="%g:%i %a"}</span>,{/if}
 			<span class="month">{entry_date format="%F"}</span>
@@ -37,11 +33,7 @@
 		{/if}
 		
 		{!-- Check if event is only on one date and time is NOT set --}
-<<<<<<< HEAD
-		{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}" =="0"}
-=======
 		{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" =="0"}
->>>>>>> Fixed time display conditionals
 			<span class="month">{entry_date format="%F"}</span>
 			<span class="day">{entry_date format="%j"}</span>,
 			<span class="year">{expiration_date format="%Y"}</span>
@@ -49,11 +41,7 @@
 		{/if}
 		
 		{!-- Check to see if repeating event --}
-<<<<<<< HEAD
-		{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}"}
-=======
 		{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}"}
->>>>>>> Fixed time display conditionals
 			<span class="start-time">{event_start_time format="%g:%i %a"}</span>{if event_end_time =="0"},{/if}
 			{if event_end_time} to <span class="end-time">{event_end_time format="%g:%i %a"}</span>,{/if}
 			<span class="month">{entry_date format="%F"}</span>
@@ -64,13 +52,8 @@
 			<!-- 3 -->
 		{/if}
 		
-<<<<<<< HEAD
-		{!-- Check to see if repeating event and time is NOT set --}
-		{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
-=======
 		{!-- Check to see if repeating event and time is NOT set and is in the same year--}
 		{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0" && ('{entry_date format="%Y"}' == '{expiration_date format="%Y"}')}
->>>>>>> Fixed time display conditionals
 			<span class="month">{entry_date format="%F"}</span>
 			<span class="day">{entry_date format="%j"}</span> to 
 			<span class="month">{expiration_date format="%F"}</span>
@@ -80,11 +63,7 @@
 		{/if}
 		
 		{!-- Check to see if repeating event, time is NOT set, and event spans years --}
-<<<<<<< HEAD
-		{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
-=======
 		{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
->>>>>>> Fixed time display conditionals
 			<span class="month">{entry_date format="%F"}</span>
 			<span class="day">{entry_date format="%j"}</span>,
 			<span class="year">{entry_date format="%Y"}</span> to 
