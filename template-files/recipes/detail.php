@@ -41,16 +41,16 @@
 		
 		{exp:playa:children field="recipe_related"}
 			{if count == 1}
-			<div id="related-entries">
+			<div class="related-entries">
 				<h2>Related Entries</h2>
 				<ul class="clearfix">
 			{/if}
-					<li>
-						<a href="{url_title_path='recipes/detail'}" class="image">
+					<li class="{switch='one|two|three|four'}">
+						<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
 							{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
-							{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
+							{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
 						</a>
-						<span class="title"><a href="{url_title_path='recipes/detail'}">{title}</a></span>
+						<span class="title"><a href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a></span>
 					</li>
 			{if count == total_results}
 				</ul>

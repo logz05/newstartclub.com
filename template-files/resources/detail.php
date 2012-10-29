@@ -13,7 +13,7 @@
 	<h1>Our recipes have moved!</h1>
 </div>
 <div class="post clearfix">
-	<p>It appears that this link is outdated. But no worries! <strong>You can find your recipe at this link:<br></strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}recipes/detail/{segment_3}</a></p>
+	<p>It appears that this link is outdated. But no worries! <strong>You can find your recipe at this link:<br></strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}/recipes/detail/{segment_3}</a></p>
 </div>
 {/if}
 <div class="heading clearfix">
@@ -70,16 +70,16 @@
 		</ul>
 		{exp:playa:children field="resource_related"}
 		{if count == 1}
-		<div id="related-entries">
+		<div class="related-entries">
 			<h2>Related Entries</h2>
 			<ul class="clearfix">
 		{/if}
-				<li>
-					<a href="{url_title_path='resources/detail'}" class="image">
+				<li class="{switch='one|two|three|four'}">
+					<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
 						{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
-						{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
+						{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}" class="image"'}
 					</a>
-					<span class="title"><a href="{url_title_path='resources/detail'}">{title}</a></span>
+					<span class="title"><a href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a></span>
 				</li>
 		{if count == total_results}
 			</ul>
