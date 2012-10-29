@@ -4,8 +4,8 @@
 	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 <ul class="trail">
-	<li><a href="/sponsors">Home</a></li>
-	<li><a href="/sponsors/email-members">Member List</a></li>
+	<li><a href="{path='sponsors'}">Home</a></li>
+	<li><a href="{path='sponsors/email-members'}">Member List</a></li>
 </ul>
 {preload_replace:sponsor_zipcode="{exp:user:stats dynamic='off'}{exp:channel:entries channel='locations' category='{member_admin_id}' limit='1' status='open|closed' dynamic='off'}{location_zip}{/exp:channel:entries}{/exp:user:stats}"}
 
