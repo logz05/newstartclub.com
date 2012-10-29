@@ -6,13 +6,13 @@ ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/co
 require_once('utilities.php');
 require_once('dbconnect.php');
 
-function resultsPieChart($low, $high) {
+function resultsPieChart($low, $high, $age) {
 	$db = new DBconnect();
 	
 	if ($low == 0) {
-		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 != ""';
+		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 != "" AND m_field_id_8 = '. $age;
 	} else {
-		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 >= '. $low;
+		$querySubTotal = 'SELECT * FROM exp_member_data WHERE m_field_id_22 < '. $high .' AND m_field_id_22 >= '. $low .' AND m_field_id_8 = '. $age;
 	}
 	
 	$subTotal = count($db->fetch($querySubTotal));
@@ -267,7 +267,6 @@ function totalScore($score) {
 				<div class="hidden">
 					<input class="hidden" type="hidden" name="member_age" value="<?php echo $_POST['member_age']; ?>" />
 					<input class="hidden" type="hidden" name="member_weight" value="<?php echo $_POST['member_weight']; ?>" />
-					<input class="hidden" type="hidden" name="memberHeightFeet" value="<?php echo $_POST['memberHeightFeet']; ?>" />
 					<input class="hidden" type="hidden" name="member_height_in" value="<?php echo $_POST['member_height_in']; ?>" />
 					<input class="hidden" type="hidden" name="member_waist_in" value="<?php echo $_POST['member_waist_in']; ?>" />
 					<input class="hidden" type="hidden" name="member_score_sleep" value="<?php echo $_POST['member_score_sleep']; ?>" />
@@ -278,7 +277,7 @@ function totalScore($score) {
 					<input class="hidden" type="hidden" name="member_score_nutrition" value="<?php echo $_POST['member_score_nutrition']; ?>" />
 					<input class="hidden" type="hidden" name="member_score_emotional" value="<?php echo $_POST['member_score_emotional']; ?>" />
 					<input class="hidden" type="hidden" name="member_score_total" value="<?php echo $hsTotal; ?>" />
-					<input class="hidden" type="hidden" name="memberScoreHistory" value='<?php echo $scoreHistory; ?>' />
+					<input class="hidden" type="hidden" name="member_score_history" value='<?php echo $scoreHistory; ?>' />
 				</div>
 				<div class="button-wrap">
 					<button type="submit" class="super green button" id="calculate"><span>Save Score</span></button>
@@ -300,7 +299,7 @@ function totalScore($score) {
 	</div>
 	<div class="sidebar right">
 		<header class="bar">Member Scores</header>
-		<p>Below is a chart of how your score compares with other lifestyle club members who have taken the HealthGauge&trade; test. Move your mouse over the chart to see the percentages.</p>
+		<p>The chart below shows how your score compares with others your age.</p>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 			google.load("visualization", "1", { packages:["corechart"] });
@@ -310,11 +309,13 @@ function totalScore($score) {
 				data.addColumn('string', 'Task');
 				data.addColumn('number', 'Hours per Day');
 				data.addRows([
-					['Very Low',   <?php resultsPieChart(90, 100) ?>],
-					['Low',        <?php resultsPieChart(80, 90) ?>],
-					['Medium',     <?php resultsPieChart(70, 80) ?>],
-					['High',       <?php resultsPieChart(60, 70) ?>],
-					['Very High',  <?php resultsPieChart(0, 60) ?>]
+				{exp:user:stats dynamic="off"}
+					['Very Low',   <?php resultsPieChart(90, 100, {member_age}) ?>],
+					['Low',        <?php resultsPieChart(80, 90, {member_age}) ?>],
+					['Medium',     <?php resultsPieChart(70, 80, {member_age}) ?>],
+					['High',       <?php resultsPieChart(60, 70, {member_age}) ?>],
+					['Very High',  <?php resultsPieChart(0, 60, {member_age}) ?>]
+				{/exp:user:stats}
 				]);
 			
 				var options = {
@@ -322,7 +323,7 @@ function totalScore($score) {
 					colors: ['#8dbe38','#5D83DA','#ECE90E','#F2B32F','#D24C4D'],
 					pieSliceText: 'none',
 					legend: 'none',
-					tooltip: {textStyle: {fontSize: 12}, text: 'percentage'},
+					tooltip: {textStyle: {fontSize: 12}},
 					chartArea: {top:40, left:-10},
 					backgroundColor: 'transparent'
 				};
@@ -331,6 +332,40 @@ function totalScore($score) {
 				chart.draw(data, options);
 			}
 		</script>
+		
+		{if logged_out}
+		<script type="text/javascript">
+			google.load("visualization", "1", { packages:["corechart"] });
+			google.setOnLoadCallback(drawChart);
+			function drawChart() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Task');
+				data.addColumn('number', 'Hours per Day');
+				data.addRows([
+					['Very Low',   <?php resultsPieChart(90, 100, $_POST['member_age']) ?>],
+					['Low',        <?php resultsPieChart(80, 90, $_POST['member_age']) ?>],
+					['Medium',     <?php resultsPieChart(70, 80, $_POST['member_age']) ?>],
+					['High',       <?php resultsPieChart(60, 70, $_POST['member_age']) ?>],
+					['Very High',  <?php resultsPieChart(0, 60, $_POST['member_age']) ?>]
+				]);
+			
+				var options = {
+					width: 325, height: 280,
+					colors: ['#8dbe38','#5D83DA','#ECE90E','#F2B32F','#D24C4D'],
+					pieSliceText: 'none',
+					legend: 'none',
+					tooltip: {textStyle: {fontSize: 12}},
+					chartArea: {top:40, left:-10},
+					backgroundColor: 'transparent'
+				};
+			
+				var chart = new google.visualization.PieChart(document.getElementById('results-chart'));
+				chart.draw(data, options);
+			}
+		</script>
+		
+		{/if}
+		
 		<div id="results-chart"></div>
 		{!--
 		
@@ -350,7 +385,7 @@ function totalScore($score) {
 
 <div class="sidebar right">
 		<header class="bar">Member Scores</header>
-		<p>Below is a chart of how your score compares with other lifestyle club members who have taken the HealthGauge&trade; test. Move your mouse over the chart to see the percentages.</p>
+		<p>The chart below shows how your score compares with others your age.</p>
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript">
 			google.load("visualization", "1", {packages:["corechart"]});
@@ -372,7 +407,7 @@ function totalScore($score) {
 					colors: ['#8dbe38','#5D83DA','#ECE90E','#F2B32F','#D24C4D'],
 					pieSliceText: 'none',
 					legend: 'none',
-					tooltip: {textStyle: {fontSize: 12}, text: 'percentage'},
+					tooltip: {textStyle: {fontSize: 12}, text: 'value'},
 					chartArea: {top:40, left:0},
 					backgroundColor: 'transparent'
 				};
