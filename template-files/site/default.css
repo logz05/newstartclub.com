@@ -1145,7 +1145,11 @@ li.deal .details:before,
 	text-decoration: none;
 } 
 
-/* Section Listing Styles
+
+
+
+
+/* Section Listing
 ========================================================================== */
 .listing,
 .sidebar .listing {
@@ -1212,6 +1216,10 @@ h2 .edit-this { /* This one is used for entry listings */
 li:hover .edit-this,
 h1:hover .edit-this { opacity: 1.0; }
 
+
+
+
+
 /* Pagination
 ========================================================================== */
 .pagination {
@@ -1232,6 +1240,9 @@ h1:hover .edit-this { opacity: 1.0; }
 .pagination a:hover {
 	text-decoration: none;
 }
+
+
+
 
 /* Comment Styles
 ========================================================================== */
@@ -1314,6 +1325,54 @@ h1:hover .edit-this { opacity: 1.0; }
 .the-comments table tbody td {
 	border: 0;
 }
+
+
+
+
+
+/* Related Entries
+========================================================================== */
+.related-entries {
+	border-top: 1px dashed #DDD;
+	padding-top: 8px;
+	margin-top: 16px;
+}
+.related-entries ul {
+	margin: 0;
+	padding: 0;
+}
+.related-entries ul li {
+	list-style: none;
+	background: #FFF;
+	float: left;
+	width: 110px;
+	text-align: center;
+	margin-left: 16px;
+}
+.related-entries ul .one {
+	margin-left: 0;
+}
+.related-entries li .title {
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	margin: 5px 0;
+}
+.related-entries .image {
+	float: none;
+	display: block;
+}
+.related-entries h2 {
+	font-weight: 600;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	color: #535353;
+	margin: 0 0 8px;
+}
+
+
+
+
 
 /* Specific Page Styles
 ========================================================================== */
@@ -1867,41 +1926,6 @@ h1:hover .edit-this { opacity: 1.0; }
 	display: inline;
 	text-indent: 0;
 }
-.recipes #related-entries {
-	border-top: 1px dashed #DDD;
-	padding-top: 8px;
-	margin-top: 16px;
-}
-.recipes #related-entries ul {
-	margin: 0;
-	padding: 0;
-}
-.recipes #related-entries ul li {
-	list-style: none;
-	background: #FFF;
-	float: left;
-	width: 110px;
-	text-align: center;
-	margin-left: 16px;
-}
-.recipes #related-entries ul li:first-child { margin-left: 0; }
-.recipes #related-entries li .title {
-	font-size: 12px;
-	font-weight: bold;
-	display: block;
-	margin: 5px 0;
-}
-.recipes #related-entries .image {
-	float: none;
-	display: block;
-}
-.recipes #related-entries h2 {
-	font-weight: 600;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 18px;
-	color: #535353;
-	margin: 0 0 8px;
-}
 
 /* COLORS */
 .recipes > .icon:hover div,
@@ -2034,48 +2058,6 @@ h1:hover .edit-this { opacity: 1.0; }
 	display: none !important;
 	visibility: hidden;
 }
-.resources #related-entries {
-	border-top: 1px dashed #DDD;
-	padding-top: 8px;
-	margin-top: 16px;
-}
-.resources #related-entries ul {
-	margin: 0;
-	padding: 0;
-}
-.resources #related-entries ul li {
-	list-style: none;
-	background: #FFF;
-	float: left;
-	width: 110px;
-	text-align: center;
-	margin-left: 16px;
-}
-.resources #related-entries ul li:nth-child(4n+1) {
-	margin-left: 0;
-}
-.ie7 .resources #related-entries ul li,
-.ie8 .resources #related-entries ul li {
-	margin-left: 40px;
-	margin-top: 20px;
-}
-.resources #related-entries li .title {
-	font-size: 12px;
-	font-weight: bold;
-	display: block;
-	margin: 5px 0;
-}
-.resources #related-entries .image {
-	float: none;
-	display: block;
-}
-.resources #related-entries h2 {
-	font-weight: 600;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 18px;
-	color: #535353;
-	margin: 0 0 8px;
-}
 
 /* COLORS */
 .resources > .icon:hover div,
@@ -2174,8 +2156,8 @@ h1:hover .edit-this { opacity: 1.0; }
 .events li.event .time { position: absolute; }
 .events li.event .date {
 	width: 112px;
-	right: -7px;
-	top: 10px;
+	right: -118px;
+	top: 0;
 	text-align: center;
 }
 .events li.event .day {
