@@ -1,7 +1,7 @@
 {if logged_out}
 <div id="signin-modal-mini" class="reveal-modal mini">
 	<h2>Sign In</h2>
-	{exp:member:login_form error_page="members/error" return="/{segment_1}{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}{if segment_6}/{segment_6}{/if}{if segment_7}/{segment_7}{/if}"}
+	{exp:member:login_form return=""}
 	<table>
 		<tr>
 			<th scope="row"><label for="email-mini">Email</label></th>
