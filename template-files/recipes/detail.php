@@ -43,7 +43,7 @@
 			{if count == 1}
 			<div class="related-entries">
 				<h2>Related Entries</h2>
-				<ul class="clearfix">
+				<ul class="entry-grid clearfix">
 			{/if}
 					<li class="{switch='one|two|three|four'}">
 						<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
