@@ -86,6 +86,7 @@
 					<li><h3>Station Forms, Instructions, Signs and Handouts</h3>
 						<ul>
 							<li><a href="http://www.newstart.com/store/newstart-health-expo-personal-health-records/">Personal Health Records</a></li>
+							<li><a href="/downloads/sponsor-resources/expo-files/Childrens-Activities.zip">Children&rsquo;s Activities</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/01-Welcome.zip">Welcome</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/02-Sunlight.zip">Sunlight</a></li>
 							<li><a href="/downloads/sponsor-resources/expo-files/03-Nutrition.zip">Nutrition</a></li>
@@ -122,6 +123,7 @@
 					<li><h3>Instructions and Forms</h3>
 						<ul>
 							<li><a href="/downloads/sponsor-resources/common-files/NS-Free-Clinic.zip">Facilitator&rsquo;s Guide</a></li>
+							<li><a href="http://www.adventsource.org/as30/store-productDetails.aspx?ID=36191">Coaching Lasting Lifestyle Change (DVD Set & Facilitators Guide)</a></li>
 						</ul>
 					</li>
 					<li><h3>Lectures</h3>
