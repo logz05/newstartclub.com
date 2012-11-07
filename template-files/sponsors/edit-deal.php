@@ -10,57 +10,55 @@
 	<li><a href="/sponsors/edit-deals">Edit Deals</a></li>
 </ul>
 
-{exp:channel:entries channel="deals" url_title="{segment_3}" limit="1" show_future_entries="yes"}
+{exp:channel:entries channel="deals" entry_id="{segment_3}" limit="1" show_future_entries="yes"}
 <div class="heading clearfix">
 	<h1>Edit &ldquo;{title}&rdquo;</h1>
 </div>
+{/exp:channel:entries}
 <div class="grid23 clearfix">
 	<div class="main deals left">
 	{sn_no-script}
 	<h2>Deal Information</h2>
-{exp:weblog:entry_form weblog="deals" return="/sponsors/edit-deals"}
+{exp:safecracker channel="deals" entry_id="{segment_3}" return="sponsors/edit-deals"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
+			<td><input type="text" class="input" name="title" id="title" value="{title}" size="36" maxlength="100" onkeyup="liveUrlTitle();" /></td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="deal_code">* Coupon Code</label></th>
 			<td>
-				<input type="text" class="input" name="title" id="title" value="{title}" size="36" maxlength="100" />
-				<input type="hidden" name="entry_id" value="{entry_id}" />
+				<input type="text" dir="ltr" id="deal_code" class="input" name="deal_code" value="{deal_code}" maxlength="128" size="25" onBlur="this.value=couponcode(this.value);" /><br>
+				<p class="instructions">Put your coupon code here. Example: <em>SUMMER25</em></p>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_374">* Coupon Code</label></th>
+			<th scope="row"><label for="deal_instructions">* Instructions</label></th>
 			<td>
-				<input type="text" dir="ltr" id="field_id_374" class="input" name="field_id_374" value="{deal_code}" maxlength="128" size="25" onBlur="this.value=couponcode(this.value);" /><br>
-				<p class="instructions">Put your coupon code here. Example: <em>SUMMER12</em></p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><label for="field_id_375">* Instructions</label></th>
-			<td>
-				<textarea id="field_id_375" class="input" name="field_id_375" dir="ltr" cols="34" rows="6">{deal_instructions}</textarea>
+				{field:deal_instructions}
 				<p class="instructions">Should include instructions for how your coupon is to be used.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="entry_date">* Beginning Date</label></th>
 			<td>
-				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{entry_date format='%m/%d/%Y'}" size="20"/>
-				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{entry_date format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
+				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{exp:low_nice_date date='{entry_date}' format='%m/%d/%Y'}" size="20"/>
+				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{entry_date}" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="expiration_date">* Ending Date</label></th>
 			<td>
-				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="{expiration_date format='%m/%d/%Y'}" size="20"/>
-				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="{expiration_date format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
+				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="{exp:low_nice_date date='{expiration_date}' format='%m/%d/%Y'}" size="20"/>
+				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="{expiration_date}" maxlength="128" size="25" />
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="field_id_378">* Terms</label></th>
+			<th scope="row"><label for="deal_terms">* Terms</label></th>
 			<td>
-				<textarea id="field_id_378" class="input" name="field_id_378" dir="ltr" cols="34" rows="5">{deal_terms}</textarea>
+				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" rows="5"></textarea>
 				<p class="instructions">Example: <em>Limit one coupon per customer.</em></p>
-				<input class="checkbox hidden" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" />
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -71,10 +69,11 @@
 				<br>
 				<p class="instructions"><strong>Please select at least one category for your deal.</strong></p>
 				<ul class="inputs">
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="448" {categories show="448"} {if category_id=="448"}checked="checked" {/if}{/categories}/> <span>In-store</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" {categories show="449"} {if category_id=="449"}checked="checked" {/if}{/categories}/> <span>Online</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" {categories show="446"} {if category_id=="446"}checked="checked" {/if}{/categories}/> <span>Product</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" {categories show="447"} {if category_id=="447"}checked="checked" {/if}{/categories}/> <span>Service</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="448" /> <span>In-store</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" /> <span>Online</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" /> <span>Product</span></label></li>
+					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" /> <span>Service</span></label></li>
+					{exp:user:stats dynamic="off"}<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>{/exp:user:stats}
 				</ul>
 			</td>
 		</tr>
@@ -88,8 +87,7 @@
 			</td>
 		</tr>
 	</table>
-{/exp:weblog:entry_form}
-{/exp:channel:entries}
+{/exp:safecracker}
 </div>
 
 <div class="right sidebar">

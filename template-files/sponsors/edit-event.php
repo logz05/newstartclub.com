@@ -26,43 +26,49 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="entry_datepicker">* Start Date</label></th>
+			<th scope="row"><label for="entry_datepicker">* From</label></th>
 			<td>
-				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{exp:low_nice_date date='{entry_date}' format='%m/%d/%Y'}" size="20"/>
-				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{entry_date}" maxlength="128" size="25" />
+				<table>
+					<tr>
+						<td>
+							<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{exp:low_nice_date date='{entry_date}' format='%m/%d/%Y'}" size="14" title="Date. Expected format is month number, day number, year number." />
+							<input type="text" dir="ltr" id="entry_date" readonly="readonly" class="input hidden" name="entry_date" value="{entry_date}" maxlength="128" size="25" />
+						</td>
+						<td>
+							<div class="select-input">{field:event_start_time}</div>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="expiration_datepicker">* End Date</label></th>
+			<th scope="row"><label for="expiration_datepicker">* To</label></th>
 			<td>
-				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="{exp:low_nice_date date='{expiration_date}' format='%m/%d/%Y'}" size="20"/>
-				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="{expiration_date}" maxlength="128" size="25" />
+				<table>
+					<tr>
+						<td>
+							<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="{exp:low_nice_date date='{expiration_date}' format='%m/%d/%Y'}" size="14" title="Date. Expected format is month number, day number, year number." />
+							<input type="text" dir="ltr" id="expiration_date" readonly="readonly" class="input hidden" name="expiration_date" value="{expiration_date}" maxlength="128" size="25" />
+						</td>
+						<td>
+							<div class="select-input">{field:event_end_time}</div>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_start_time">Start Time</label></th>
-			<td>
-				<div class="select-input">{field:event_start_time}</div>
-				<p class="instructions">If event is an all day event leave this field blank.</p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><label for="field_id_34">End Time</label></th>
-			<td>
-				<div class="select-input">{field:event_end_time}</div>
-				<p class="instructions">If event is an all day event leave this field blank.</p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><label for="field_id_341">Name</label></th>
+			<th scope="row"><label for="event_location_name">* Place</label></th>
 			<td>
 				<input type="text" dir="ltr" id="event_location_name" class="input" name="event_location_name" value="{event_location_name}" maxlength="256" size="40" />
-				<p class="instructions">Name of the event location.</p>
+<!-- 				<p class="instructions">Name of the event location.</p> -->
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="event_address">* Address</label></th>
-			<td><input type="text" dir="ltr" id="event_address" class="input" name="event_address" value="{event_address}" maxlength="256" size="30" /><br></td>
+			<td>
+				<textarea dir="ltr" id="event_address" class="input" name="event_address" rows="2">{event_address}</textarea>
+			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="event_city">* City</label></th>
@@ -83,9 +89,9 @@
 			<td><input type="text" dir="ltr" id="event_zip" class="input" name="event_zip" value="{event_zip}" maxlength="9" size="5" /><br></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_description">*&nbsp;Description</label></th>
+			<th scope="row"><label for="event_description">*&nbsp;Details</label></th>
 			<td>
-				<textarea id="event_description" class="input" name="event_description" dir="ltr" cols="34" rows="12">{event_description}</textarea>
+				{field:event_description}
 				<p class="instructions">Should include event description, contact information, registration instructions, etc.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
@@ -117,7 +123,7 @@
 
 <div class="right sidebar">
 	<header class="bar" data-icon="e">Edit Event</header>
-		<p>To view or edit a event, click <a href="{path='sponsors/edit-events'}">here</a>.</p>
+		<p>To view or edit an event, click <a href="{path='sponsors/edit-events'}">here</a>.</p>
 	</div>
 </div>
 {embed="embeds/_doc-bottom" script_add="jquery-ui-1.8.21.custom.min|jquery.maskedinput-1.3.min|sponsors-masking|sponsors"}

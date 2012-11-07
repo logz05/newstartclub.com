@@ -8,53 +8,62 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main events left">
+	{sn_no-script}
 	<h2>Event Information</h2>
-{exp:user:stats dynamic="off"}
+
 {exp:safecracker channel="events" return="sponsors/edit-events"}
 	<table>
 		<tr>
 			<th scope="row"><label for="title">* Title</label></th>
-			<td><input type="text" class="input" name="title" id="title" value="{title}" size="36" maxlength="100" onkeyup="liveUrlTitle();" /></td>
+			<td><input type="text" class="input" name="title" id="title" value="" size="36" maxlength="100" onkeyup="liveUrlTitle();" /></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="entry_datepicker">* Start Date</label></th>
+			<th scope="row"><label for="entry_datepicker">* From</label></th>
 			<td>
-				<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{current_time format='%m/%d/%Y'}" size="20"/>
-				<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{current_time format='%Y-%m-%d %g:%i %A'}" maxlength="128" size="25" />
+				<table>
+					<tr>
+						<td>
+							<input type="text" class="datepicker" id="entry_datepicker" readonly="readonly" value="{current_time format='%m/%d/%Y'}" size="14" title="Date. Expected format is month number, day number, year number."/>
+							<input type="text" dir="ltr" id="entry_date" class="input hidden" name="entry_date" value="{current_time format='%Y-%m-%d 12:00 AM'}" maxlength="128" size="25" />
+						</td>
+						<td>
+							<div class="select-input">{field:event_start_time}</div>
+						</td>
+					</tr>
+				</table>
+				
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="expiration_datepicker">* End Date</label></th>
+			<th scope="row"><label for="expiration_datepicker">* To</label></th>
 			<td>
-				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="" size="20"/>
-				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="" maxlength="128" size="25" />
+				<table>
+					<tr>
+						<td>
+							<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="" size="14" title="Date. Expected format is month number, day number, year number."/>
+							<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="" maxlength="128" size="25" />
+						</td>
+						<td>
+							<div class="select-input">{field:event_end_time}</div>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
-		<tr>
-			<th scope="row"><label for="event_start_time">Start Time</label></th>
-			<td>
-				<div class="select-input">{field:event_start_time}</div>
-				<p class="instructions">If event is an all day event leave this field blank.</p>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"><label for="field_id_34">End Time</label></th>
-			<td>
-				<div class="select-input">{field:event_end_time}</div>
-				<p class="instructions">If event is an all day event leave this field blank.</p>
-			</td>
-		</tr>
+		{exp:user:stats dynamic="off"}
 		{exp:channel:entries channel="locations" limit="1" category="{member_admin_id}"}
 		<tr>
-			<th scope="row"><label for="event_location_name">Name</label></th>
+			<th scope="row"><label for="event_location_name">* Place</label></th>
 			<td>
 				<input type="text" dir="ltr" id="event_location_name" class="input" name="event_location_name" value="{title}" maxlength="256" size="40" />
-				<p class="instructions">Name of the event location.</p>
+<!-- 				<p class="instructions">Name of the event location.</p> -->
 			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="event_address">* Address</label></th>
-			<td><input type="text" dir="ltr" id="event_address" class="input" name="event_address" value="{location_address}" maxlength="256" size="30" /><br></td>
+			<td>
+				<textarea dir="ltr" id="event_address" class="input" name="event_address" rows="2">{location_address}</textarea>
+			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="event_city">* City</label></th>
@@ -125,11 +134,12 @@
 			<th scope="row"><label for="event_zip">*&nbsp;Zip Code</label></th>
 			<td><input type="text" dir="ltr" id="event_zip" class="input" name="event_zip" value="{location_zip}" maxlength="9" size="5" /><br></td>
 		</tr>
-		{/exp:channel:entries}
+	{/exp:channel:entries}
+
 		<tr>
 			<th scope="row"><label for="event_description">*&nbsp;Description</label></th>
 			<td>
-				<textarea id="event_description" class="input" name="event_description" dir="ltr" cols="34" rows="12"></textarea>
+				{field:event_description}
 				<p class="instructions">Should include event description, contact information, registration instructions, etc.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
@@ -168,8 +178,9 @@
 			</td>
 		</tr>
 	</table>
+	{/exp:user:stats}
 {/exp:safecracker}
-{/exp:user:stats}
+
 </div>
 <div class="right sidebar">
 	<header class="bar">Add Events</header>

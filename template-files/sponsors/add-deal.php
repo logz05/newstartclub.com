@@ -28,7 +28,7 @@
 		<tr>
 			<th scope="row"><label for="deal_instructions">* Instructions</label></th>
 			<td>
-				<textarea id="deal_instructions" class="input" name="deal_instructions" dir="ltr" cols="34" rows="6"></textarea>
+				{field:deal_instructions}
 				<p class="instructions">Should include instructions for how your coupon is to be used.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
 			</td>
 		</tr>
@@ -49,7 +49,7 @@
 		<tr>
 			<th scope="row"><label for="deal_terms">* Terms</label></th>
 			<td>
-				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" cols="34" rows="5"></textarea>
+				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" rows="5"></textarea>
 				<p class="instructions">Example: <em>Limit one coupon per customer.</em></p>
 				{exp:user:stats dynamic="off"}
 				<div class="hidden">
