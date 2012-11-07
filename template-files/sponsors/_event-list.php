@@ -23,13 +23,18 @@
 		</div>
 		<div class="details">
 			<dl>
+				<dt>Event URL</dt>
+				<dd>
+					<p><a href="{path='event/{entry_id}'}" target="_blank">{path='event/{entry_id}'}</a></p>
+				</dd>
+				
 				<dt>Event Description</dt>
 				<dd>{event_description}</dd>
 				<dt>Date & Time</dt>
 				<dd>
 					<p>
 						{!-- Check if event is only on one date and time is set --}
-						{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}" != "0"}
+						{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
 							<span class="start-time">{event_start_time format="%g:%i %a"}</span>{if event_end_time =="0"},{/if}
 							{if event_end_time != "0"} to <span class="end-time">{event_end_time format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
@@ -39,7 +44,7 @@
 						{/if}
 						
 						{!-- Check if event is only on one date and time is NOT set --}
-						{if ("{entry_date}" == "{expiration_date}") && "{event_start_time}" =="0"}
+						{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" =="0"}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date format="%j"}</span>,
 							<span class="year">{expiration_date format="%Y"}</span>
@@ -47,7 +52,7 @@
 						{/if}
 						
 						{!-- Check to see if repeating event --}
-						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}"}
+						{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}"}
 							<span class="start-time">{event_start_time format="%g:%i %a"}</span>{if event_end_time =="0"},{/if}
 							{if event_end_time} to <span class="end-time">{event_end_time format="%g:%i %a"}</span>,{/if}
 							<span class="month">{entry_date format="%F"}</span>
@@ -58,8 +63,8 @@
 							<!-- 3 -->
 						{/if}
 						
-						{!-- Check to see if repeating event and time is NOT set --}
-						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" == "{expiration_date format='%Y'}")}
+						{!-- Check to see if repeating event and time is NOT set and is in the same year--}
+						{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0" && ('{entry_date format="%Y"}' == '{expiration_date format="%Y"}')}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date format="%j"}</span> to 
 							<span class="month">{expiration_date format="%F"}</span>
@@ -69,7 +74,7 @@
 						{/if}
 						
 						{!-- Check to see if repeating event, time is NOT set, and event spans years --}
-						{if ("{entry_date}" != "{expiration_date}") && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
+						{if ('{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0" && ("{entry_date format='%Y'}" != "{expiration_date format='%Y'}")}
 							<span class="month">{entry_date format="%F"}</span>
 							<span class="day">{entry_date format="%j"}</span>,
 							<span class="year">{entry_date format="%Y"}</span> to 
@@ -87,10 +92,7 @@
 						{event_city}, {event_state} {event_zip}
 					</p>
 				</dd>
-				<dt>Event URL</dt>
-				<dd>
-					<p><a href="{path='event/{entry_id}'}" target="_blank">{path='event/{entry_id}'}</a></p>
-				</dd>
+				
 				<dt>Categories</dt>
 				<dd>
 					<p>{categories backspace="2" show_group="41"}{category_name}, {/categories}</p>
