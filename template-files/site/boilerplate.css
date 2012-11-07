@@ -201,6 +201,9 @@ input[type=file] {
 	font-size: 12px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
+textarea.input {
+	width: 100%;
+}
 input.datepicker {
 	cursor: pointer;
 }

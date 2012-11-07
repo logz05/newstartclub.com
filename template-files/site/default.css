@@ -10,40 +10,6 @@ body {
 	padding: 0 20px;
 }
 
-.dev-notice b {
-	position: fixed;
-	z-index: 1001;
-	background-color: #FFDC1A;
-	background-image: -webkit-repeating-linear-gradient(-45deg, transparent, transparent 35px, black 35px, black 70px);
-	display: block;
-}
-#te {
-	right: 0;
-	top: 0;
-	left: 0;
-	height: 20px;
-	box-shadow: 0 0 10px;
-}
-#be {
-	right: 0;
-	bottom: 0;
-	left: 0;
-	height: 20px;
-	box-shadow: 0 0 10px;
-}
-#re {
-	top: 0;
-	right: 0;
-	bottom: 0;
-	width: 20px;
-}
-#le {
-	top: 0;
-	left: 0;
-	bottom: 0;
-	width: 20px;
-}
-
 /* Header
 ========================================================================== */
 .header {
@@ -838,7 +804,7 @@ li.deal .details:before,
 	line-height: 20px;
 	position: absolute;
 	right: 6px;
-	top: 6px;
+	top: 4px;
 }
 .bar:first-child { margin-top: 0; }
 .bar a { color: #fff !important; }
@@ -1169,9 +1135,13 @@ li.deal .details:before,
 }
 .listing > li:first-child {
 	border-top: 0;
+	padding-top: 0;
 }
 .sidebar .listing > li:first-child {
 	padding-top: 0;
+}
+.listing > li .image {
+	float: left;
 }
 .listing > li:hover .image img,
 .listing > li:hover .image div {
@@ -1193,6 +1163,12 @@ li.deal .details:before,
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	line-height: 19px;
 }
+
+
+
+
+/* Edit This
+========================================================================== */
 .edit-this {
 	position: absolute;
 	top: 0px;
@@ -1335,32 +1311,7 @@ h1:hover .edit-this { opacity: 1.0; }
 .related-entries {
 	border-top: 1px dashed #DDD;
 	padding-top: 8px;
-	margin-top: 16px;
-}
-.related-entries ul {
-	margin: 0;
-	padding: 0;
-}
-.related-entries ul li {
-	list-style: none;
-	background: #FFF;
-	float: left;
-	width: 110px;
-	text-align: center;
-	margin-left: 16px;
-}
-.related-entries ul .one {
-	margin-left: 0;
-}
-.related-entries li .title {
-	font-size: 12px;
-	font-weight: bold;
-	display: block;
-	margin: 5px 0;
-}
-.related-entries .image {
-	float: none;
-	display: block;
+	margin-top: 12px;
 }
 .related-entries h2 {
 	font-weight: 600;
@@ -1368,6 +1319,33 @@ h1:hover .edit-this { opacity: 1.0; }
 	font-size: 18px;
 	color: #535353;
 	margin: 0 0 8px;
+}
+
+.entry-grid {
+	margin: 0;
+	padding: 0;
+}
+.entry-grid li {
+	list-style: none;
+	background: #FFF;
+	float: left;
+	width: 110px;
+	text-align: center;
+	margin-left: 16px;
+}
+.entry-grid .one {
+	margin-left: 0;
+	clear: both;
+}
+.entry-grid .title {
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+	margin: 5px 0 10px;
+}
+.entry-grid .image {
+	float: none;
+	display: block;
 }
 
 
@@ -1474,27 +1452,6 @@ h1:hover .edit-this { opacity: 1.0; }
 .home .sponsor-admin .bar[data-icon]:after {
 	font-size: 26px;
 }
-.home .resources ul {
-	margin: 0;
-	padding: 0;
-}
-.home .resources li.resource:first-child { margin-left: 0px; }
-.home .resources li.resource {
-	float: left;
-	width: 110px;
-	margin-left: 16px;
-	list-style-type: none;
-	text-align: center;
-}
-.home .resources .image { margin: 0 0 4px; }
-.home .resources li.resource span.title {
-	font-weight: bold;
-	font-size: 11px;
-	text-align: center;
-	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
-	line-height: 14px;
-	display: inline-block;
-}
 .home .sidebar .resources { margin: 10px 0 0; }
 .home .resources .see-more {
 	margin: 4px 0 7px 0;
@@ -1508,22 +1465,22 @@ h1:hover .edit-this { opacity: 1.0; }
 	margin: 0;
 	padding: 0;
 }
-.home .events li {
+.home .event {
 	padding: 0;
 }
-.home .events li:first-child {
+.home .event:first-child {
 	padding: 0 0 7px;
 }
 .home .events li:first-child .date {
 	top: 4px;
 }
-.home li.event .details {
+.home .event .details {
 	margin: 0 0;
 	font-size: 12px;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	line-height: 19px;
 }
-.home .events li.event h3 { padding: 0; }
+.home .events .event h3 { padding: 0; }
 .home .news h4 { margin: 12px 0; }
 .home .my-health h2 { text-align: center; }
 .home .deals .title {
@@ -1948,7 +1905,6 @@ h1:hover .edit-this { opacity: 1.0; }
 }
 .resources .image {
 	position: relative;
-	float: left;
 }
 .resources .image:hover .play { background: url(/assets/css/images/play-icon-hover.png) no-repeat scroll center center transparent; }
 .resources .image .play {
@@ -2217,7 +2173,7 @@ h1:hover .edit-this { opacity: 1.0; }
 	font-size: 12px;
 	line-height: 18px;
 }
-#rsvp-list li.rsvp {
+.rsvp-list .rsvp {
 	margin: 0;
 	padding: 6px 8px;
 	text-indent: 0;
@@ -2225,36 +2181,29 @@ h1:hover .edit-this { opacity: 1.0; }
 	position: relative;
 	border-top: 1px dashed #eee;
 }
-#rsvp-list li.rsvp:hover {
+.rsvp-list .rsvp:hover {
 	background-color: #fff0d6;
 }
-#rsvp-list li.rsvp:first-child {
+.rsvp-list .rsvp:first-child {
 	border-top: 0;
 }
-#rsvp-list li.rsvp span.date {
+.rsvp-list .date {
 	font-weight: bold;
 	display: block;
 }
-#rsvp-list a {
-	display: inline;
-	text-indent: 0;
-}
-#rsvp-list li.rsvp .event-name { margin-top: 3px; }
-#rsvp-list li.rsvp form {
+.rsvp-list .close {
+	font-weight: bold;
 	position: absolute;
+	right: 6px;
 	top: 3px;
-	right: 2px;
-}
-#rsvp-list li.rsvp button {
-	color: #bbb;
-	background-color: transparent;
+	text-decoration: none;
 	font-size: 12px;
-	border: 0;
+	display: none;
 }
-#rsvp-list li.rsvp:hover button {
-	color: #FFB637;
+.rsvp-list .rsvp:hover .close {
+	display: block;
 }
-#rsvp-list li.rsvp button:active {
+.rsvp-list .rsvp button:active {
 	-webkit-transform: translateY(1px);
 	-moz-transform: translateY(1px);
 	color: #777;
@@ -2502,7 +2451,7 @@ li.deal.independant .details {
 	width: 364px;
 	float: left;
 }
-.deals .instructions {
+.deals .deal-instructions {
 	margin: 10px 0;
 	font-style: italic;
 }
@@ -2675,7 +2624,7 @@ li.deal .details:before,
 	line-height: 20px;
 	position: absolute;
 	left: 3px;
-	top: 2px;
+	top: -1px;
 }
 .news li.entry.services h2::before {
 	font-size: 26px;
@@ -2793,8 +2742,8 @@ li.deal .details:before,
 
 /* $sponsors | http://newstartclub.com/sponsors
 -------------------------------------------------------------------------- */
-.main-nav.sponsors li { margin-left: 26px; }
-.main-nav.sponsors.profit li { margin-left: 30px; }
+.main-nav.sponsors li { margin-left: 28px; }
+.main-nav.sponsors.profit li { margin-left: 32px; }
 .sponsors #sponsor-id-switch { 
 	margin-top: 15px;
 	border-top: 1px dashed #DDD;
@@ -2927,7 +2876,7 @@ li.deal .details:before,
 	font-size: 11px;
 	position: absolute;
 	right: 10px;
-	top: 8px;
+	top: 6px;
 	color: #888;
 }
 .sponsors .listing li p {
