@@ -9,22 +9,26 @@ require_once('dbconnect.php');
 //Event Members
 $db = new DBconnect();
 $queryEvent = '
-SELECT 
-	exp_member_data.member_id,
-	exp_member_data.m_field_id_1 AS first_name,
-	exp_member_data.m_field_id_2 AS last_name,
-	exp_members.username
-	
-FROM exp_members
-	INNER JOIN member_relations
-	ON exp_members.member_id = member_relations.member_id
-	
-	INNER JOIN exp_member_data
-	ON exp_members.member_id = exp_member_data.member_id
-	
-WHERE member_relations.related_id = {segment_4}
-AND member_relations.cat_id = {embed:sponsor_number}
-ORDER BY member_id DESC
+	SELECT 
+		exp_member_data.member_id,
+		exp_member_data.m_field_id_1 AS first_name,
+		exp_member_data.m_field_id_2 AS last_name,
+		exp_members.username
+		
+	FROM exp_member_data
+		
+		INNER JOIN exp_members
+		ON exp_member_data.member_id = exp_members.member_id
+		
+		INNER JOIN exp_channel_titles
+		ON exp_member_data.member_id = exp_channel_titles.author_id
+		
+		INNER JOIN exp_playa_relationships
+		ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+		
+	WHERE exp_playa_relationships.child_entry_id = {segment_4}
+	AND exp_channel_titles.channel_id = 10
+	ORDER BY exp_member_data.member_id DESC
 			';
 
 $queryResultsEvent = $db->fetch($queryEvent);
@@ -156,8 +160,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 </html>';
 	
 		// Mail it
-		//$headers .= 'To: $member' . "\n";
-		mail($mailing_list[$i][1], stripslashes($subject), stripslashes($message), $headers);
+		mail($mailing_list[$i][3], stripslashes($subject), stripslashes($message), $headers);
 	}
 
 }
@@ -185,7 +188,7 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event &ldquo;{exp:channel:entries channel="events" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}events/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>{title}</a>&rdquo;.{/exp:channel:entries}" />
+										<input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event {exp:channel:entries channel="events" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}events/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>{title}</a>.{/exp:channel:entries}" />
 										<textarea name="rsvp_list" class="hidden"><br />You can update your RSVP list <a href="http://newstartclub.com/events" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
