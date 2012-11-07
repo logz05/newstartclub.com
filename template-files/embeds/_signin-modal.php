@@ -27,7 +27,7 @@
 			{if embed:modal-role == "coupon"}
 				<h3>You must sign in to view this coupon code.</h3>
 			{/if}
-			{exp:member:login_form error_page="members/error" return="/{segment_1}{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}{if segment_5}/{segment_5}{/if}{if segment_6}/{segment_6}{/if}{if segment_7}/{segment_7}{/if}"}
+			{exp:member:login_form return=""}
 			<table>
 				<tr>
 					<th scope="row"><label for="email">Email</label></th>
@@ -50,7 +50,7 @@
 					<td>
 						<div class="button-wrap">
 							<button type="submit" class="super green button"><span>Sign In</span></button>
-							<a class="forgot-pass" href="/forgot-password">Forgot your password?</a>
+							<a class="forgot-pass" href="{path='forgot-password'}">Forgot your password?</a>
 						</div>
 					</td>
 				</tr>
