@@ -62,7 +62,6 @@
 		
 	{/exp:channel:entries}
 {/if}
-
 <script src="{site_url}/assets/js/jquery.reveal.js"></script>
 <script src="{site_url}/assets/js/common.js"></script>
 
