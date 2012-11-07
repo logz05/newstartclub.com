@@ -72,7 +72,7 @@ if ( count($results) == 0) {
 				<div class="sponsor">{categories show_group="24"}{category_name}{/categories}</div>
 				<div class="deal-title">{title}</div>
 				<div class="code">Coupon code: <span>{deal_code}</span></div>
-				<div class="instructions">
+				<div class="deal-instructions">
 					{deal_instructions}
 					<p class="valid">Valid from {entry_date format="%F %j%S, %Y"}{if expiration_date} to {expiration_date format="%F %j%S, %Y"}{/if}</p>
 				</div>

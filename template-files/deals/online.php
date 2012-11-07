@@ -133,7 +133,7 @@ body {
 	<body>
 		{related_entries id="deal_location"}
 		<header class="header-bar">
-			<div class="instructions">
+			<div class="deal-instructions">
 				<a href="http://{location_website}" class="close" title="Remove frame">&times;</a>
 				<h1>Your coupon code has been copied to the clipboard. When you check out on the store's website, paste the code in the promo code field.</h1>
 				<p>To paste, right click for the edit menu. For the PC keyboard shortcut, use Ctrl + V. On a Mac, use Cmd + V.</p>

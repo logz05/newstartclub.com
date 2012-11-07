@@ -32,7 +32,7 @@
 			{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" class="image" itemprop="image"'}
 			<span itemprop="description">{location_description}</span>
 			{/deal_location}
-			<div class="instructions">{deal_instructions}</div>
+			<div class="deal-instructions">{deal_instructions}</div>
 			{if logged_out}
 				<a class="show-coupon" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
 			{if:else}
