@@ -15,28 +15,44 @@
 {if no_results}
 	{redirect="404"}
 {/if}
-{if segment_4}
+{!--{if segment_4 != "delete-rsvp"}
 	{redirect="404"}
-{/if}
-<div class="heading clearfix">
+{/if}--}
+<hgroup class="heading clearfix">
 
 	<h1 id="event-title" itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
-	<h2>
+	<h2><time pubdate datetime="{gmt_entry_date format='{DATE_W3C}'}">
 		{!-- Check if event is only on one date and time is set --}
 		{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
-			<span class="start-time">{event_start_time format="%g:%i %a"}</span>{if event_end_time =="0"},{/if}
-			{if event_end_time != "0"} to <span class="end-time">{event_end_time format="%g:%i %a"}</span>,{/if}
-			<span class="month">{entry_date format="%F"}</span>
-			<span class="day">{entry_date format="%j"}</span>,
-			<span class="year">{expiration_date format="%Y"}</span>
+			<span class="-time"></span>
+			{event_start_time format="%g:%i %a"}{if event_end_time =="0"},{/if}
+			
+			{if event_end_time != "0"} to {event_end_time format="%g:%i %a"},{/if}
+			{entry_date format="%F %j, %Y"}
+			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+			<script src="{site_url}/assets/js/moment.min.js"></script>
+			<script type="text/javascript">
+				
+				moment.calendar = {
+					lastDay : '[Yesterday from]',
+					sameDay : '[Today from]',
+					nextDay : '[Tomorrow from] LT',
+					lastWeek : '[Last] dddd [from] LT',
+					nextWeek : 'dddd [from] LT',
+					sameElse : 'LT, MMMM Do, YYYY'
+				};
+				
+				var time = moment.unix({gmt_entry_date format='%U'}).calendar();
+				$('.time').prepend(time);
+				
+			</script>
 			<!-- 1 -->
 		{/if}
 		
 		{!-- Check if event is only on one date and time is NOT set --}
 		{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" =="0"}
-			<span class="month">{entry_date format="%F"}</span>
-			<span class="day">{entry_date format="%j"}</span>,
-			<span class="year">{expiration_date format="%Y"}</span>
+			
+			{entry_date format="%F %j, %Y"}
 			<!-- 2 -->
 		{/if}
 		
@@ -71,11 +87,11 @@
 			<span class="day">{expiration_date format="%j"}</span>,
 			<span class="year">{expiration_date format="%Y"}</span>
 			<!-- 5 -->
-		{/if}in <?php echo '<a href="{path="events/location/' . strtolower("{event_state}/{event_city}") . '"}">{event_city}, {event_state}</a>'; ?>
+		{/if}</time>in <?php echo '<a href="{path="events/location/' . strtolower("{event_state}/{event_city}") . '"}">{event_city}, {event_state}</a>'; ?>
 	</h2>
 	<meta itemprop="startDate" content="{entry_date format="%Y-%m-%d"}{if event_start_time}T{exp:low_nice_date date='{event_start_time}' format='%H:%i'}{/if}">
 	<a href="http://newstartclub.com" rel="publisher"></a>
-</div>
+</hgroup>
 <div class="grid23 clearfix">
 	<div class="main left">
 		{if expiration_date < current_time }
@@ -84,10 +100,12 @@
 			</div>
 		{/if}
 		<div class="post">
+			<span itemprop="description">
+				{event_description}
+			</span>
 			
-			<span itemprop="description">{event_description}</span>
-			{if current_time < expiration_date}<p><em>Add this event to your <a href="#event-title">RSVP list</a> to attend!</em></p>{/if}
-			{if current_time < expiration_date}{embed="events/_add-event-button" member_id="{logged_in_member_id}" entry_id="{entry_id}" cat_id="{categories show_group='24'}{category_id}{/categories}"}{/if}
+			{embed="events/_add-rsvp" entry_id="{entry_id}" expiration_date="{expiration_date}"}
+	
 			<dl>
 				<dt>Sponsored by:</dt>
 				<dd>
@@ -112,7 +130,7 @@
 			</div>
 			<p>Directions are based on your <a href="{path='settings'}">member profile</a>.</p>
 			
-		</div><!--/#entry-->
+		</div>
 	</div>
 	<div class="sidebar right">
 		<header class="bar">RSVP List</header>

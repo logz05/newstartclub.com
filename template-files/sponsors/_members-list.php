@@ -177,28 +177,32 @@ function listMembers($name = "all") {
 			$query = '
 				SELECT 
 					exp_member_data.member_id,
-						exp_member_data.m_field_id_1 AS first_name,
-						exp_member_data.m_field_id_2 AS last_name,
-						exp_member_data.m_field_id_3 AS address,
-						exp_member_data.m_field_id_4 AS city,
-						exp_member_data.m_field_id_5 AS state,
-						exp_member_data.m_field_id_6 AS zip_code,
-						exp_member_data.m_field_id_7 AS phone_number,
-						exp_member_data.m_field_id_22 AS health_score,
-						exp_member_data.m_field_id_23 AS score_history,
-						exp_members.username,
-						exp_members.join_date
+					exp_member_data.m_field_id_1 AS first_name,
+					exp_member_data.m_field_id_2 AS last_name,
+					exp_member_data.m_field_id_3 AS address,
+					exp_member_data.m_field_id_4 AS city,
+					exp_member_data.m_field_id_5 AS state,
+					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_7 AS phone_number,
+					exp_member_data.m_field_id_22 AS health_score,
+					exp_member_data.m_field_id_23 AS score_history,
+					exp_members.username,
+					exp_members.join_date
 					
-				FROM exp_members
-					INNER JOIN member_relations
-					ON exp_members.member_id = member_relations.member_id
+				FROM exp_member_data
 					
-					INNER JOIN exp_member_data
-					ON exp_members.member_id = exp_member_data.member_id
+					INNER JOIN exp_members
+					ON exp_member_data.member_id = exp_members.member_id
 					
-				WHERE member_relations.related_id = {segment_4}
-				AND member_relations.cat_id = {embed:sponsor_number}
-				ORDER BY member_id DESC';
+					INNER JOIN exp_channel_titles
+					ON exp_member_data.member_id = exp_channel_titles.author_id
+					
+					INNER JOIN exp_playa_relationships
+					ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+					
+				WHERE exp_playa_relationships.child_entry_id = {segment_4}
+				AND exp_channel_titles.channel_id = 10
+				ORDER BY exp_member_data.member_id DESC';
 		break;
 		
 		case "deal":
@@ -258,8 +262,8 @@ function listMembers($name = "all") {
 				
 			UNION DISTINCT
 									
-				SELECT DISTINCT 
-					member_relations.member_id,
+				SELECT 
+					exp_member_data.member_id,
 					exp_member_data.m_field_id_1 AS first_name,
 					exp_member_data.m_field_id_2 AS last_name,
 					exp_member_data.m_field_id_3 AS address,
@@ -272,18 +276,22 @@ function listMembers($name = "all") {
 					exp_members.username,
 					exp_members.join_date
 					
-				FROM member_relations
-				
-					INNER JOIN exp_category_posts
-					ON exp_category_posts.entry_id = member_relations.related_id
+				FROM exp_member_data
 					
-					JOIN exp_members
-					ON exp_members.member_id = member_relations.member_id
-					
-					JOIN exp_member_data
+					INNER JOIN exp_members
 					ON exp_member_data.member_id = exp_members.member_id
-			
-				WHERE exp_category_posts.cat_id = {embed:sponsor_number}
+					
+					INNER JOIN exp_channel_titles
+					ON exp_member_data.member_id = exp_channel_titles.author_id
+					
+					INNER JOIN exp_playa_relationships
+					ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+					
+					INNER JOIN exp_category_posts
+					ON exp_playa_relationships.child_entry_id = exp_category_posts.entry_id
+					
+				WHERE exp_channel_titles.channel_id = 10
+				AND exp_category_posts.cat_id = {embed:sponsor_number}
 									
 			UNION DISTINCT
 									
@@ -471,9 +479,7 @@ function listMembers($name = "all") {
 					<h2 class="filter-heading event">Events<span class="arrow up"></span><span class="arrow down"></span></h2>
 					<ul class="filter-list event">
 					{/if}
-					{exp:query sql="SELECT COUNT(*) AS total FROM member_relations WHERE related_id = {entry_id} AND cat_id = {embed:sponsor_number}"}
-						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/event/{entry_id}'}" title="{title}">{title}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
-					{/exp:query}
+						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/event/{entry_id}'}" title="{title}">{title}</a><span class="count">&nbsp;(&nbsp;{exp:playa:total_parents}&nbsp;)</span></li>
 					
 					{if count == total_results}
 					</ul>
