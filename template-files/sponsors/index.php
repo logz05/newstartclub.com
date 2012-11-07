@@ -78,7 +78,7 @@
 					<li><a href="{path='sponsors/add-event'}">Add an event <span class="arrow">&rarr;</span></a></li>
 					<li><a href="{path='sponsors/edit-events'}">Edit your events <span class="arrow">&rarr;</span></a></li>
 				{/if}
-				<li><a href="{path='sponsors/invite'}">Invite members to be part of the club <span class="arrow">&rarr;</span></a></li>
+				<li><a href="{path='sponsors/add-members'}">Invite people to be part of the club <span class="arrow">&rarr;</span></a></li>
 				<li><a href="{path='sponsors/email-members'}">Email your members <span class="arrow">&rarr;</span></a></li>
 				<li><a href="{path='sponsors/resources'}">Get resources <span class="arrow">&rarr;</span></a></li>
 			</ul>

@@ -9,12 +9,12 @@ require_once('utilities.php');
 ?>
 {embed="embeds/_doc-top" 
 	class="sponsors"
-	title="Invite Members"
+	title="Add Members"
 	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 {preload_replace:sponsor_title="{exp:user:stats dynamic='off'}{exp:channel:categories show='{member_admin_id}' weblog='locations' style='linear'}{category_name}{/exp:channel:categories}{/exp:user:stats}"}
 	<div class="heading clearfix">
-		<h1>Invite Members</h1>
+		<h1>Add Members</h1>
 	</div>
 	<div class="grid23 clearfix">
 		
@@ -80,7 +80,7 @@ require_once('utilities.php');
 				search:sponsor_id="{member_admin_id}"
 			}
 			{if "{freeform:absolute_count}" == 1}
-			<h2>Pending Invitations ( {freeform:total_results} )</h2>
+			<h2>Pending Members ( {freeform:total_results} )</h2>
 				<ul class="listing">
 			{/if}
 				
@@ -99,14 +99,14 @@ require_once('utilities.php');
 		</div>
 		
 		<div class="sidebar right">
-			<header class="bar">Invite Members</header>
+			<header class="bar">Add Members</header>
 			<p>You can invite members to join the club by sending a personal message from your email client or by using the form provided.</p>
 			<p>Members will be added to your <a href="{path='sponsors/email-members'}">member list</a> when they use the following link or when they use promo code <strong>{member_admin_id}</strong>:
-			<p><a href="{path='join/{member_admin_id}'}">{site_url}<br />join/{member_admin_id}</a></p>
+			<p><a href="{path='join/{member_admin_id}'}">{site_url}/join/{member_admin_id}</a></p>
 			{if "{sponsor_type}" == "profit"}
-				<p>Alternatively, contacts can be added to your member list when print one of your deals. Invitations with no response will expire after 21 days.</p>
+				<p>Alternatively, contacts can be added to your member list when print one of your deals.</p>
 			{if:else}
-				<p>Alternatively, contacts can be added to your member list when they RSVP to one of your events. Invitations with no response will expire after 21 days.</p>
+				<p>Alternatively, contacts can be added to your member list when they RSVP to one of your events.</p>
 			{/if}
 		</div>
 		{/exp:user:stats}
