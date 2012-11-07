@@ -283,7 +283,7 @@ require_once ( 'utilities.php' );
 							<li><a href="{path='sponsors/edit-events'}">&raquo; Edit Events</a></li>
 						{/if}
 						{/exp:channel:categories}
-							<li><a href="{path='sponsors/invite'}">&raquo; Invite Members</a></li>
+							<li><a href="{path='sponsors/add-members'}">&raquo; Add Members</a></li>
 							<li><a href="{path='sponsors/email-members'}">&raquo; Email Members</a></li>
 							<li><a href="{path='sponsors/resources'}">&raquo; Get Resources</a></li>
 						</ul>
