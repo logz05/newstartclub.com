@@ -21,6 +21,9 @@
 		</div>
 		<div class="details">
 			<dl>
+				<dt>Deal URL</dt>
+				<dd><a href="{path='deal/{entry_id}'}" target="_blank">{path='deal/{entry_id}'}</a></dd>
+				
 				<dt>Coupon Code</dt>
 				<dd>{deal_code}</dd>
 				
@@ -33,8 +36,10 @@
 				<dt>Terms</dt>
 				<dd>{deal_terms}</dd>
 				
-				<dt>Deal URL</dt>
-				<dd><a href="{path='deal/{entry_id}'}" target="_blank">{path='deal/{entry_id}'}</a></dd>
+				<dt>Categories</dt>
+				<dd>
+					<p>{categories backspace="2" show_group="45"}{category_name}, {/categories}</p>
+				</dd>
 			</dl>
 		</div>
 	</li>
