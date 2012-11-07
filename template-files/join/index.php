@@ -10,11 +10,7 @@
 	{if logged_in}
 		<p>You&rsquo;re currently signed in. To see this form you must log out.</p>
 	{/if}
-	<noscript>
-		<div class="alert-box warning">
-			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-		</div>
-	</noscript>
+	{sn_no-script}
 	<?php if (isset($_POST['member_age'])) { ?>
 		<div class="alert-box warning">
 			<p>Please fill out the fields below to save your health score results.</p>

@@ -9,11 +9,7 @@
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-	<noscript>
-		<div class="alert-box warning">
-			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-		</div>
-	</noscript>
+	{sn_no-script}
 	<h2>Deal Information</h2>
 
 {exp:safecracker channel="deals" return="sponsors/edit-deals"}

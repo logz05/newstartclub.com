@@ -21,11 +21,7 @@
 	
 	?>
 	
-	<noscript>
-		<div class="alert-box warning">
-			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-		</div>
-	</noscript>
+	{sn_no-script}
 	
 {exp:user:edit form:class="clearfix" form:name="settings" form:id="settings" return="settings" error_page="members/error" password_required="y" dynamic="no"}
 		<h2 class="first">Subjects you are interested in:</h2>

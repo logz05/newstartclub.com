@@ -37,11 +37,7 @@ function getZIP (form) {
 </script>
           
 	<h2>Sponsor Information</h2>
-	<noscript>
-		<div class="alert-box warning">
-			<p>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</p>
-		</div>
-	</noscript>
+	{sn_no-script}
 	<table>
 		<tr>
 			<th scope="row" width="150px"><label for="sponsorName" class="req"><span class="req">* </span>Sponsor Name</label></th>
