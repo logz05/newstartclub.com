@@ -132,7 +132,7 @@
 				<li{if segment_2 == "add-event"  } class="current"{/if}><a href="{path='sponsors/add-event'  }">Add Events</a><i></i></li>
 				<li{if segment_2 == "edit-events"} class="current"{/if}><a href="{path='sponsors/edit-events'}">Edit Events</a><i></i></li>
 			{/if}
-			<li{if segment_2 == "invite"                                    } class="current"{/if}><a href="{path='sponsors/invite'       }">Invite Members</a><i></i></li>
+			<li{if segment_2 == "add-members"                               } class="current"{/if}><a href="{path='sponsors/add-members'  }">Add Members</a><i></i></li>
 			<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="{path='sponsors/email-members'}">Email Members</a><i></i></li>
 			<li{if segment_2 == "resources"                                 } class="current"{/if}><a href="{path='sponsors/resources'    }">Resources</a><i></i></li>
 			
