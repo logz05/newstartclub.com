@@ -135,23 +135,25 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	// Mail it
 	mail($email, 'Welcome to the Club!', stripslashes($message), $headers);
 }
-?>
+
 {exp:user:stats dynamic="off"}
-	{if member_welcome_email !="1"}
-		<?php
+
+	if($_SESSION['member_welcome_email'] == 0) {
+
+		send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION['jsPassword']);
 		
-			send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION['jsPassword']);
-			
-			//Update member profile to show that email has been sent.
-			$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";
-			
-			$db->query($query);
-			
-			$db = null; // force the class destructor to run
+		//Update member profile to show that email has been sent.
+		$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";
 		
-		?>
-	{/if}
+		$db->query($query);
+		
+		$db = null; // force the class destructor to run
+		
+		$_SESSION['member_welcome_email'] = 1;
+		
+	}
 {/exp:user:stats}
+?>
 
 {embed="embeds/_doc-top" 
 	class="members"
@@ -179,7 +181,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 					<h3>Emotional and social health:</h3>
 					<ul>
 						{categories group_id="15" orderby="category_order"}{category_selected}checked="checked"{/category_selected}
-						{category_body}<li><label><input type="checkbox" name="category[]" class="input checkbox" alue="{category_id}" {selected} /><span>{category_description}</span></label></li>
+						{category_body}<li><label><input type="checkbox" name="category[]" class="input checkbox" value="{category_id}" {selected} /><span>{category_description}</span></label></li>
 						{/category_body}{/categories}
 					</ul>
 				</div>

@@ -8,7 +8,7 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 	{if logged_in}
-		<p>You&rsquo;re currently signed in. To see this form you must log out.</p>
+		{redirect="update-profile"}
 	{/if}
 	{sn_no-script}
 	<?php if (isset($_POST['member_age'])) { ?>
