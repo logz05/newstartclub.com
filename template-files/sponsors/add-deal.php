@@ -2,7 +2,13 @@
 	class="sponsors"
 	title="Create a new deal"
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="
+		{exp:user:stats dynamic='off'}
+			{exp:channel:entries channel="locations" category='{member_sponsor_id}'}
+				{location_type}
+			{/exp:channel:entries}
+		{/exp:user:stats}
+		"
 }
 <div class="heading clearfix">
 	<h1>Create a new deal</h1>
@@ -54,7 +60,7 @@
 				{exp:user:stats dynamic="off"}
 				<div class="hidden">
 				{exp:query sql="
-					SELECT entry_id FROM exp_category_posts WHERE cat_id = {member_admin_id} LIMIT 1
+					SELECT entry_id FROM exp_category_posts WHERE cat_id = {member_sponsor_id} LIMIT 1
 				"}
 					<input type="hidden" name="deal_location[selections][]" value="{entry_id}">
 				{/exp:query}
@@ -73,7 +79,7 @@
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" /> <span>Online</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" /> <span>Product</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" /> <span>Service</span></label></li>
-					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>
+					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_sponsor_id}" checked="checked" /> <span>{member_sponsor_id}</span></label></li>
 				{/exp:user:stats}
 				</ul>
 			</td>

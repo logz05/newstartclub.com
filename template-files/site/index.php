@@ -274,15 +274,15 @@ require_once ( 'utilities.php' );
 				<section class="section sponsor-admin">
 					<header class="bar" data-icon="O"><a href="{path='sponsors'}">Sponsor Admin</a></header>
 						<ul>
-						{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}
-						{if sponsor_type == "profit"}
+						{exp:channel:entries channel="locations" category="{member_sponsor_id}"}
+						{if location_type == "profit"}
 							<li><a href="{path='sponsors/add-deal'}">&raquo; Add Deals</a></li>
 							<li><a href="{path='sponsors/edit-deals'}">&raquo; Edit Deals</a></li>
 						{if:else}
 							<li><a href="{path='sponsors/add-event'}">&raquo; Add Events</a></li>
 							<li><a href="{path='sponsors/edit-events'}">&raquo; Edit Events</a></li>
 						{/if}
-						{/exp:channel:categories}
+						{/exp:channel:entries}
 							<li><a href="{path='sponsors/add-members'}">&raquo; Add Members</a></li>
 							<li><a href="{path='sponsors/email-members'}">&raquo; Email Members</a></li>
 							<li><a href="{path='sponsors/resources'}">&raquo; Get Resources</a></li>
