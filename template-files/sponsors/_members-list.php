@@ -441,7 +441,7 @@ function listMembers($name = "all") {
 		 
 	<div class="grid23 clearfix">
 		<div class="main left">
-			<p>Click on a member to see more information about them or click <a href="{path='sponsors/invite'}">here</a> to invite new members.</p>
+			<p>Click on a member to view more information or <a href="{path='sponsors/add-members'}">add new members</a>.</p>
 			<p>To email your members, click the button below or choose one of the filters on the right.</p>
 			<p class="button-wrap">
 				<a href="{path='sponsors/send-email/{segment_3}/{segment_4}'}" class="super secondary button"><span>Email Members</span></a>
@@ -466,7 +466,7 @@ function listMembers($name = "all") {
 					{/if}
 					
 					{exp:query sql="SELECT COUNT(*) AS total FROM member_relations WHERE related_id = {entry_id} AND cat_id = {embed:sponsor_number}"}
-						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/deal/{entry_id}'}" title="{title}">{title}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/deal/{entry_id}'}" title="{title}">{exp:eehive_hacksaw chars="30" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 					{/exp:query}
 					
 					{if count == total_results}
@@ -479,8 +479,7 @@ function listMembers($name = "all") {
 					<h2 class="filter-heading event">Events<span class="arrow up"></span><span class="arrow down"></span></h2>
 					<ul class="filter-list event">
 					{/if}
-						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/event/{entry_id}'}" title="{title}">{title}</a><span class="count">&nbsp;(&nbsp;{exp:playa:total_parents}&nbsp;)</span></li>
-					
+						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/event/{entry_id}'}" title="{title}">{exp:eehive_hacksaw chars="30" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a><span class="count">&nbsp;(&nbsp;{exp:playa:total_parents}&nbsp;)</span></li>
 					{if count == total_results}
 					</ul>
 					{/if}

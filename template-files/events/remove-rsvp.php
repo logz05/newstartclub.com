@@ -1,9 +1,10 @@
 {exp:delete:delete_entry entry_id="{segment_3}"}
-{if segment_1 == ""}
+
+{if "{exp:page_history:get page='1'}" == "index"}
 <?php
 
 header("HTTP/1.1 301 Moved Permanently");
-header("Location: /");
+header("Location: http://newstartclub.com");
 exit();
 
 ?>
@@ -11,7 +12,7 @@ exit();
 <?php
 
 header("HTTP/1.1 301 Moved Permanently");
-header("Location: /{exp:page_history:get page='1'}");
+header("Location: http://newstartclub.com/{exp:page_history:get page='1'}");
 exit();
 
 ?>
