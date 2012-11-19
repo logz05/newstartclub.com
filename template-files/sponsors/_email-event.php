@@ -188,7 +188,7 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<input type="hidden" name="event" value="You are receiving this e-mail because you are planing to attend the event {exp:channel:entries channel="events" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}events/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>{title}</a>.{/exp:channel:entries}" />
+										<textarea name="event" class="hidden">You are receiving this e-mail because you are planning to attend the event {exp:channel:entries channel="events" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}/events/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>&ldquo;{title}&rdquo;</a>.{/exp:channel:entries}</textarea>
 										<textarea name="rsvp_list" class="hidden"><br />You can update your RSVP list <a href="http://newstartclub.com/events" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>

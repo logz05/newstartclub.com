@@ -36,7 +36,7 @@ if (isset($_POST['custom_message']))
 	send_emails($queryResultsDeal, $_POST['email_subject'], $_POST['custom_message']);
 }
 
-function send_emails($mailing_list, $subject, $custom_message)
+function send_emails($mailing_list, $subject, $custom_message, $deal)
 {
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
@@ -142,9 +142,9 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			<!--BEGIN FOOTER-->
 			<table width="550" border="0" cellspacing="0" cellpadding="0" align="center" style="margin:0 auto">
 				<tr>
-					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">
-						You are receiving this e-mail because you are a member of the <a href="http://newstartclub.com" style="font-size:10px;color:#204C74; text-decoration:underline;">NEWSTART Lifestyle Club</a>.<br />
-						You can update your status <a href="http://newstartclub.com/settings" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
+					<td style="padding:15px 20px 0 20px; font-family: \'Lucida Grande\', \'Lucida Sans Unicode\', Verdana, sans-serif !important; font-size:10px; line-height: 1.34em; color:#204C74" align="center">';
+						$message .= $deal;
+						$message .= '<br>You can view all deals <a href="http://newstartclub.com/deals" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.
 					</td>
 				</tr>
 			</table>
@@ -185,6 +185,7 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
+										<textarea name="deal" class="hidden">You are receiving this e-mail because you are interested in the deal {exp:channel:entries channel="deals" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}/deals/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>&ldquo;{title}&rdquo;</a>.{/exp:channel:entries}</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
 										</p>

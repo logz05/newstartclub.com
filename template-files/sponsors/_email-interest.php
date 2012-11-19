@@ -213,7 +213,7 @@ function show_form($listTotal)
 								<tr>
 									<th></th>
 									<td>
-										<textarea name="interest" class="hidden">You are receiving this e-mail because you are interested in &ldquo;{exp:channel:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories}&rdquo;.</textarea>
+										<textarea name="interest" class="hidden">You are receiving this e-mail because you are interested in "{exp:channel:categories weblog="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories}".</textarea>
 										<textarea name="interest_line" class="hidden"><br />You can update your preferences <a href="http://newstartclub.com/settings" style="font-size:10px;color:#204C74; text-decoration:underline;">here</a>.</textarea>
 										<p class="button-wrap">
 											<button type="submit" class="super green button"><span>Send Email</span></button>
