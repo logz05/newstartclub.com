@@ -261,7 +261,7 @@ function totalScore($score) {
 			<p>According to your health score, you have a	 <?php echo round((100 - $hsTotal), 1); ?>% risk of developing a lifestyle related disease such as heart disease, cancer, or diabetes.</p>
 				
 			<h2>Recommendations</h2>
-			<p><em>Save your score to your profile to view a list of personalized recommendations.</em></p>
+			<p><em>Join the NEWSTART Lifestyle Club to view a list of personalized recommendations.</em></p>
 			
 			<form action="{path='join'}" method="post">
 				<div class="hidden">
@@ -280,7 +280,7 @@ function totalScore($score) {
 					<input class="hidden" type="hidden" name="member_score_history" value='<?php echo $scoreHistory; ?>' />
 				</div>
 				<div class="button-wrap">
-					<button type="submit" class="super green button" id="calculate"><span>Save Score</span></button>
+					<button type="submit" class="super green button" id="calculate"><span>Create an Account</span></button>
 				</div>
 			</form>
 			</div>

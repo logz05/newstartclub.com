@@ -11,11 +11,7 @@
 		{redirect="update-profile"}
 	{/if}
 	{sn_no-script}
-	<?php if (isset($_POST['member_age'])) { ?>
-		<div class="alert-box warning">
-			<p>Please fill out the fields below to save your health score results.</p>
-		</div>
-	<?php } ?>
+
 {exp:user:register group_id="5" return="update-profile" required="member_first_name|member_last_name|username|password|password_confirm|member_zip" form:class="clearfix" form:id="register"}
 <script type="text/javascript">
 
