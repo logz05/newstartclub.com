@@ -5,11 +5,11 @@
 		{exp:channel:entries channel="recipes" url_title="{segment_3}"}
 			<meta property="og:title" content="{title}"/>
 			<meta property="og:site_name" content="{site_name}"/>
-			<meta property="og:url" content="{title_permalink='recipes/detail'}"/>
+			<meta property="og:url" content="{url_title_path='recipes/detail'}"/>
 			<meta property="og:type" content="food"/>
-			<meta property="og:image" content="{site_url}{resource_thumb}"/>
-			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_description}{/exp:eehive_hacksaw}"/>
-			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_description}{/exp:eehive_hacksaw}"/>
+			<meta property="og:image" content="{recipe_image}"/>
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{recipe_instructions}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{recipe_instructions}{/exp:eehive_hacksaw}"/>
 		{/exp:channel:entries}
 	'
 	title="{exp:low_title:entry url_title='{segment_3}' channel='recipes'}"
