@@ -96,7 +96,7 @@
 	<div class="main left">
 		{if expiration_date < current_time }
 			<div class="alert-box warning">
-				<p>This event has already passed. To see a list of upcoming events click <strong><a href="{path='events'}">here</a></strong></p>
+				<p>This event has already passed. View list of upcoming events <strong><a href="{path='events'}">here</a></strong></p>
 			</div>
 		{/if}
 		<div class="post">
@@ -104,7 +104,9 @@
 				{event_description}
 			</span>
 			
+			{if expiration_date > current_time}
 			{embed="events/_add-rsvp" entry_id="{entry_id}" expiration_date="{expiration_date}"}
+			{/if}
 	
 			<dl>
 				<dt>Sponsored by:</dt>
