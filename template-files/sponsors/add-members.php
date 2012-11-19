@@ -10,9 +10,15 @@ require_once('utilities.php');
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Add Members"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="
+		{exp:user:stats dynamic='off'}
+			{exp:channel:entries channel="locations" category='{member_sponsor_id}'}
+				{location_type}
+			{/exp:channel:entries}
+		{/exp:user:stats}
+		"
 }
-{preload_replace:sponsor_title="{exp:user:stats dynamic='off'}{exp:channel:categories show='{member_admin_id}' weblog='locations' style='linear'}{category_name}{/exp:channel:categories}{/exp:user:stats}"}
+{preload_replace:sponsor_title="{exp:user:stats dynamic='off'}{exp:channel:categories show='{member_sponsor_id}' weblog='locations' style='linear'}{category_name}{/exp:channel:categories}{/exp:user:stats}"}
 	<div class="heading clearfix">
 		<h1>Add Members</h1>
 	</div>
@@ -51,10 +57,10 @@ require_once('utilities.php');
 								<th></th>
 								<td>
 							{exp:user:stats dynamic="off"}
-								<input type="hidden" name="location_name" id="location_name" value="{exp:channel:categories show='{member_admin_id}' channel='locations' style='linear'}{category_name}{/exp:channel:categories}" />
+								<input type="hidden" name="location_name" id="location_name" value="{exp:channel:categories show='{member_sponsor_id}' channel='locations' style='linear'}{category_name}{/exp:channel:categories}" />
 								<input type="hidden" name="sponsor_full_name" value="{member_first_name} {member_last_name}" />
 								<input type="hidden" name="ff_sender_email" value="{email}" />
-								<input type="hidden" name="sponsor_id" value="{member_admin_id}" />
+								<input type="hidden" name="sponsor_id" value="{member_sponsor_id}" />
 							{/exp:user:stats}
 									<p class="button-wrap">
 										<button type="submit" class="super secondary button"><span>Invite Member</span></button>
@@ -77,7 +83,7 @@ require_once('utilities.php');
 				date_end="today"
 				orderby="entry_date"
 				sort="desc"
-				search:sponsor_id="{member_admin_id}"
+				search:sponsor_id="{member_sponsor_id}"
 			}
 			{if "{freeform:absolute_count}" == 1}
 			<h2>Pending Members ( {freeform:total_results} )</h2>
@@ -101,8 +107,8 @@ require_once('utilities.php');
 		<div class="sidebar right">
 			<header class="bar">Add Members</header>
 			<p>You can invite members to join the club by sending a personal message from your email client or by using the form provided.</p>
-			<p>Members will be added to your <a href="{path='sponsors/email-members'}">member list</a> when they use the following link or when they use promo code <strong>{member_admin_id}</strong>:
-			<p><a href="{path='join/{member_admin_id}'}">{site_url}/join/{member_admin_id}</a></p>
+			<p>Members will be added to your <a href="{path='sponsors/email-members'}">member list</a> when they use the following link or when they use promo code <strong>{member_sponsor_id}</strong>:
+			<p><a href="{path='join/{member_sponsor_id}'}">{site_url}/join/{member_sponsor_id}</a></p>
 			{if "{sponsor_type}" == "profit"}
 				<p>Alternatively, contacts can be added to your member list when print one of your deals.</p>
 			{if:else}

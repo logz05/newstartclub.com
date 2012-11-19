@@ -51,7 +51,7 @@
 			</td>
 		</tr>
 		{exp:user:stats dynamic="off"}
-		{exp:channel:entries channel="locations" limit="1" category="{member_admin_id}"}
+		{exp:channel:entries channel="locations" limit="1" category="{member_sponsor_id}"}
 		<tr>
 			<th scope="row"><label for="event_location_name">* Place</label></th>
 			<td>
@@ -164,7 +164,7 @@
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="370" /> <span>Stop Smoking</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="366" /> <span>Vegetarian Cooking</span></label></li>
 					<li><label><input class="checkbox" type="checkbox" name="category[]" value="368" /> <span>Weight Management</span></label></li>
-					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>
+					<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_sponsor_id}" checked="checked" /> <span>{member_sponsor_id}</span></label></li>
 				</ul>
 			</td>
 		</tr>

@@ -2,7 +2,7 @@
 	class="sponsors"
 	title='Edit {exp:channel:entries channel="events" entry_id="{segment_3}" limit="1" show_future_entries="yes"}&ldquo;{title}&rdquo;{/exp:channel:entries}'
 	add="datepicker/datepicker"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_sponsor_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 
 <ul class="trail">
@@ -105,7 +105,7 @@
 				<ul class="inputs">
 				{categories}{if '{category_group_id}' == '41'}<li><label><input class="checkbox" type="checkbox" name="category[]" value="{category_id}" {checked}/> <span>{category_name}</span></label></li>{/if}
 				{/categories}
-				{exp:user:stats dynamic="off"}<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_admin_id}" checked="checked" /> <span>{member_admin_id}</span></label></li>{/exp:user:stats}
+				{exp:user:stats dynamic="off"}<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_sponsor_id}" checked="checked" /> <span>{member_sponsor_id}</span></label></li>{/exp:user:stats}
 				</ul>
 			</td>
 		</tr>

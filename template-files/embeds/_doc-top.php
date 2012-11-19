@@ -70,9 +70,9 @@
 						{!--<span class="has-tip">
 							<span class="tooltip bottom">
 								<i class="nub"></i>
-								{exp:channel:entries channel='locations' category='{member_admin_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}
+								{exp:channel:entries channel='locations' category='{member_sponsor_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}
 									{title}
-									Promo Code: {member_admin_id}
+									Promo Code: {member_sponsor_id}
 									Zip Code: {location_zip}
 								{/exp:channel:entries}
 							</span>
@@ -84,7 +84,7 @@
 				{/if}
 				{if group_id == '1' && segment_1 == "sponsors"}
 					{exp:user:stats dynamic="off"}
-					<li>{exp:channel:entries channel='locations' category='{member_admin_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{member_admin_id} | {location_zip}{/exp:channel:entries}</li>
+					<li>{exp:channel:entries channel='locations' category='{member_sponsor_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{member_sponsor_id} | {location_zip}{/exp:channel:entries}</li>
 					{/exp:user:stats}
 				{/if}
 				{if segment_1 != "sponsors" && (member_group == 1 || member_group == 6)}<li><a href="{path='sponsors'}">Sponsor Admin</a></li>{/if}
@@ -123,14 +123,14 @@
 		<ul>
 		{!-- If the logged in member is in the Sponsor member group and on the Sponsor section of the site then show the sponsor nav bar. Else show regular nav bar. --}
 		{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)}
-		
+
 			<li class="home{if segment_1 == "sponsors" && segment_2 == ""} current{/if}"><a href="{path='sponsors'}">&emsp;</a><i></i></li>
 			{if embed:sponsor_type == "profit"}
 				<li{if segment_2 == "add-deal"                              } class="current"{/if}><a href="{path='sponsors/add-deal'  }">Add Deals</a><i></i></li>
 				<li{if segment_2 == "edit-deals" || segment_2 == "edit-deal"} class="current"{/if}><a href="{path='sponsors/edit-deals'}">Edit Deals</a><i></i></li>
 			{if:else}
 				<li{if segment_2 == "add-event"  } class="current"{/if}><a href="{path='sponsors/add-event'  }">Add Events</a><i></i></li>
-				<li{if segment_2 == "edit-events"} class="current"{/if}><a href="{path='sponsors/edit-events'}">Edit Events</a><i></i></li>
+				<li{if segment_2 == "edit-events" || segment_2 == "edit-event"} class="current"{/if}><a href="{path='sponsors/edit-events'}">Edit Events</a><i></i></li>
 			{/if}
 			<li{if segment_2 == "add-members"                               } class="current"{/if}><a href="{path='sponsors/add-members'  }">Add Members</a><i></i></li>
 			<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="{path='sponsors/email-members'}">Email Members</a><i></i></li>

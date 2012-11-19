@@ -16,14 +16,16 @@
 			</div>
 		</noscript>
 	
-		{embed="sponsors/_event-list" sponsor_number="{member_admin_id}"}
+		{embed="sponsors/_event-list" sponsor_number="{member_sponsor_id}"}
 	
 	</div>
 	<div class="right sidebar">
 		<header class="bar" data-icon="e">Edit Events</header>
 		<p>To see more about an event click on the event title.</p>
-		<p>To add a new event, click <a href="{path='sponsors/add-event'}">here</a>.</p>
-		<p>Click {exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}<a href="/events/sponsor/{category_url_title}">here</a>{/exp:channel:categories} to see your active events.</p>
+		<ul class="bullets">
+			<li><a href="{path='sponsors/add-event'}">Add a new event</a></li>
+			<li>{exp:channel:categories show="{member_sponsor_id}" channel="locations" style="linear"}<a href="{site_url}/events/sponsor/{category_url_title}">View my active events</a>{/exp:channel:categories}</li>
+		</ul>
 	</div>
 	{/exp:user:stats}
 </div>

@@ -6,12 +6,12 @@
 	title="Sponsorship Program"
 	sponsor_type="
 		{exp:user:stats dynamic='off'}
-			{exp:channel:categories show='{member_admin_id}' channel='locations' style='linear'}
-				{sponsor_type}
-			{/exp:channel:categories}
+			{exp:channel:entries channel="locations" category='{member_sponsor_id}'}
+				{location_type}
+			{/exp:channel:entries}
 		{/exp:user:stats}
 		"
-	admin_id="{exp:user:stats dynamic='off'}{member_admin_id}{/exp:user:stats}"
+	admin_id="{exp:user:stats dynamic='off'}{member_sponsor_id}{/exp:user:stats}"
 }
 {if logged_out || (member_group != 1 && member_group != 6)}
 	<div class="heading clearfix">
@@ -62,22 +62,23 @@
 	</div>
 {if:else}
 	{exp:user:stats dynamic="off"}
-		{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}
+		{exp:channel:entries channel="locations" category='{member_sponsor_id}'}
 		<div class="heading clearfix">
-			<h1 data-icon="O">{category_name}</h1>
+			<h1 data-icon="O">{title}</h1>
 		</div>
-		{/exp:channel:categories}
-	{/exp:user:stats}
 	<div class="grid23 clearfix">
 		<div class="main left">
 			<ul id="nav-list">
-				{if "{sponsor_type}" == "profit"}
+				{if "{location_type}" == "profit"}
 					<li><a href="{path='sponsors/add-deal'}">Add a deal <span class="arrow">&rarr;</span></a></li>
 					<li><a href="{path='sponsors/edit-deals'}">Edit your deals <span class="arrow">&rarr;</span></a></li>
 				{if:else}
 					<li><a href="{path='sponsors/add-event'}">Add an event <span class="arrow">&rarr;</span></a></li>
 					<li><a href="{path='sponsors/edit-events'}">Edit your events <span class="arrow">&rarr;</span></a></li>
 				{/if}
+				
+		{/exp:channel:entries}
+	{/exp:user:stats}
 				<li><a href="{path='sponsors/add-members'}">Invite people to be part of the club <span class="arrow">&rarr;</span></a></li>
 				<li><a href="{path='sponsors/email-members'}">Email your members <span class="arrow">&rarr;</span></a></li>
 				<li><a href="{path='sponsors/resources'}">Get resources <span class="arrow">&rarr;</span></a></li>
@@ -86,24 +87,24 @@
 				<a href="{site_url}/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super secondary button"><span>Quick Start Guide &raquo;</span></a>
 			</div>
 			{exp:user:edit form:name="sponsor-id-switch" form:id="sponsor-id-switch" return="sponsors" password_required="n" dynamic="no"}
-				{if member_admin_ids || group_id == 1}
-				<label for="member_admin_id"><h5>Change Sponsor</h5></label>
+				{if member_sponsor_ids || group_id == 1}
+				<label for="member_sponsor_id"><h5>Change Sponsor</h5></label>
 					<input type="hidden" name="member_first_name" value="{member_first_name}" />
 					<input type="hidden" name="member_last_name" value="{member_last_name}" />
 					<input type="hidden" name="member_zip" value="{member_zip}" />
 					<input type="hidden" name="member_terms_conditions" value="on" />
 					
 					
-					{if member_admin_ids}
-					<select name="member_admin_id" class="input" onchange="this.form.submit()">
-						{exp:channel:categories category_group="24" channel="locations" style="linear" show="{member_admin_ids}"}
-							<option value="{category_id}"{if category_id == member_admin_id} selected="selected"{/if}>{category_name}</option>
+					{if member_sponsor_ids}
+					<select name="member_sponsor_id" class="input" onchange="this.form.submit()">
+						{exp:channel:categories category_group="24" channel="locations" style="linear" show="{member_sponsor_ids}"}
+							<option value="{category_id}"{if category_id == member_sponsor_id} selected="selected"{/if}>{category_name}</option>
 						{/exp:channel:categories}
 					</select>
 					{if:else}
-					<select name="member_admin_id" class="input" onchange="this.form.submit()">
+					<select name="member_sponsor_id" class="input" onchange="this.form.submit()">
 						{exp:channel:categories category_group="24" channel="locations" style="linear"}
-							<option value="{category_id}"{if category_id == member_admin_id} selected="selected"{/if}>{category_name}</option>
+							<option value="{category_id}"{if category_id == member_sponsor_id} selected="selected"{/if}>{category_name}</option>
 						{/exp:channel:categories}
 					</select>
 					{/if}
@@ -131,13 +132,13 @@
 					ON exp_member_data.member_id = exp_members.member_id
 
 					WHERE group_id = '6'
-					AND (m_field_id_28 = '{member_admin_id}' OR m_field_id_29 LIKE '%{member_admin_id}%')
+					AND (m_field_id_28 = '{member_sponsor_id}' OR m_field_id_29 LIKE '%{member_sponsor_id}%')
 					ORDER BY full_name ASC
 					"}
 					<li><span class="has-tip"><span class="tooltip top"><i class="nub"></i>{user_email}</span>{full_name}</span></li>
 				{/exp:query}
 			</ul>
-			<p>To add or remove users from this account, send your request to the address below. Please include each user&rsquo;s email address and reference promo code <strong>{member_admin_id}</strong>. Users must be members of the NEWSTART Lifestyle Club.</p>
+			<p>To add or remove users from this account, send your request to the address below. Please include each user&rsquo;s email address and reference promo code <strong>{member_sponsor_id}</strong>. Users must be members of the NEWSTART Lifestyle Club.</p>
 			<p>For questions or comments about this service, please call 530-422-7993 or email <a href="mailto:club@newstart.com">club@newstart.com</a></p>
 			<div class="button-wrap">
 				<a href="{path='site_index'}" class="super red button"><span>Club Home</span></a>

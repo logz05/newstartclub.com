@@ -1,7 +1,7 @@
 {embed="embeds/_doc-top" 
 	class="sponsors"
 	title="Sponsorship Program | Refer"
-	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_admin_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
+	sponsor_type="{exp:user:stats dynamic="off"}{exp:channel:categories show="{member_sponsor_id}" channel="locations" style="linear"}{sponsor_type}{/exp:channel:categories}{/exp:user:stats}"
 }
 <ul class="trail">
 	<li><a href="{path='sponsors'}">Home</a></li>
