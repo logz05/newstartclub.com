@@ -809,6 +809,8 @@ function member_ages($rangeLow, $rangeHigh)
 			</table>
 		</div>
 		
+	{exp:channel:entries channel="events" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
+		{if count == 1}
 		<h2>Events</h2>
 		<table class="events">
 			<thead>
@@ -818,19 +820,16 @@ function member_ages($rangeLow, $rangeHigh)
 					<td>RSVPs</td>
 				</tr>
 			</thead>
-			{exp:channel:entries channel="events" show_expired="no" show_future_entries="yes"}
-				<tr class="{switch='odd|even'}">
-					<td>{entry_id}</td>
-					<td><a href="{url_title_path='events/detail'}">{title}</a></td>
-				{exp:query sql="
-					SELECT count(*) AS total
-						FROM member_relations
-						WHERE member_relations.related_id = {entry_id} ORDER BY related_id asc"}
-						<td class="total">{total}</td>
-				{/exp:query}
-				</tr>
-			{/exp:channel:entries}
-		</table>		
+		{/if}
+			<tr class="{switch='odd|even'}">
+				<td>{entry_id}</td>
+				<td><a href="{url_title_path='events/detail'}">{title}</a></td>
+				<td class="total">{exp:playa:total_parents}</td>
+			</tr>
+		{if count == total_results}
+		</table>
+		{/if}
+	{/exp:channel:entries}
 		
 		
 		<h2>Pages Shared on Facebook</h2>
