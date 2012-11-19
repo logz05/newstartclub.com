@@ -22,19 +22,7 @@
 <div class="grid23 clearfix">
 	<div class="main left">
 			<div class="post {resource_type} clearfix">
-			{if resource_type == "article"}
-				<div class="entry-details">
-					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image"'}
-					{resource_buy_options}
-						{if text == "book" || text == "mag"}
-							<div class="button-wrap">
-								<a href="http://{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}</span></a>
-							</div>
-						{/if}
-					{/resource_buy_options}
-				</div>
-				{resource_body}
-			{if:elseif resource_type == "video"}
+			{if resource_type == "video"}
 				{if logged_out}
 					<a href="{path='signin'}" data-reveal-id="signin-modal-video">
 						{resource_video_options}
@@ -55,6 +43,16 @@
 						<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button left"><span>{if text == "dvd"}Buy the DVD{/if}</span></a>
 					</div>
 				{/resource_buy_options}
+			{if:else}
+				<div class="entry-details">
+					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image {resource_type}"'}
+					{resource_buy_options}
+						<div class="button-wrap">
+							<a href="http://{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}{if text == "dvd"}Buy the DVD{/if}</span></a>
+						</div>
+					{/resource_buy_options}
+				</div>
+				{resource_body}
 			{/if}
 			</div>
 		<ul class="tags">
