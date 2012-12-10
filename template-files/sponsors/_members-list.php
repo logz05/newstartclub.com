@@ -221,17 +221,20 @@ function listMembers($name = "all") {
 					exp_members.username,
 					exp_members.join_date
 					
-				FROM exp_members
-					JOIN member_relations
-					ON exp_members.member_id = member_relations.member_id
+				FROM exp_member_data
 					
-					JOIN exp_member_data
-					ON exp_members.member_id = exp_member_data.member_id
+					INNER JOIN exp_members
+					ON exp_member_data.member_id = exp_members.member_id
 					
-				WHERE member_relations.related_id = {segment_4}
-				AND member_relations.cat_id = {embed:sponsor_number}
-				
-				ORDER BY member_id DESC';
+					INNER JOIN exp_channel_titles
+					ON exp_member_data.member_id = exp_channel_titles.author_id
+					
+					INNER JOIN exp_playa_relationships
+					ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+					
+				WHERE exp_playa_relationships.child_entry_id = {segment_4}
+				AND exp_channel_titles.channel_id = 10
+				ORDER BY exp_member_data.member_id DESC';
 		break;
 		
 		default:
@@ -464,11 +467,7 @@ function listMembers($name = "all") {
 					<h2 class="filter-heading deal">Deals<span class="arrow up"></span><span class="arrow down"></span></h2>
 					<ul class="filter-list deal">
 					{/if}
-					
-					{exp:query sql="SELECT COUNT(*) AS total FROM member_relations WHERE related_id = {entry_id} AND cat_id = {embed:sponsor_number}"}
-						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/deal/{entry_id}'}" title="{title}">{exp:eehive_hacksaw chars="30" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
-					{/exp:query}
-					
+						<li{if segment_4 == entry_id} class="active"{/if}><a href="{path='sponsors/email-members/deal/{entry_id}'}" title="{title}">{exp:eehive_hacksaw chars="30" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a><span class="count">&nbsp;(&nbsp;{exp:playa:total_parents}&nbsp;)</span></li>
 					{if count == total_results}
 					</ul>
 					{/if}
