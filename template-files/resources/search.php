@@ -19,7 +19,11 @@
 				{if resource_image}
 					<a href="{url_title_path='resources/detail'}" class="image">
 						{if resource_type == "video"}<span class="play"><i></i></span>{/if}
-						{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+						{if resource_type == "product"}
+							{exp:ce_img:single src="{resource_image}" max_width="100" attributes='alt="{title}" title="{title}" class="product"'}
+						{if:else}
+							{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}" class="{resource_type}"'}
+						{/if}
 					</a>
 				{if:else}
 					<a href="{url_title_path='resources/detail'}"><div class="resource-placeholder"></div></a>
