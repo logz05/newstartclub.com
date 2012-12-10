@@ -1,7 +1,8 @@
 /* ==|== primary styles =====================================================
 	 Author: Cavell L. Blood | 2012-09-25
 ============================================================================= */
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');
+@import url('http://newstartclub.com/?css=site/boilerplate');
 
 body {
 	background-image: url(/assets/css/images/background-gradient-texture.png);
@@ -10,8 +11,12 @@ body {
 	padding: 0 20px;
 }
 
-/* Header
-========================================================================== */
+
+
+
+
+/* $header
+-------------------------------------------------------------------------- */
 .header {
 	position: relative;
 	z-index: 2;
@@ -253,8 +258,34 @@ body {
 	outline: none;
 }
 
-/* Footer
-========================================================================== */
+
+
+
+
+/* $body
+-------------------------------------------------------------------------- */
+.body {
+	background: white;
+	-webkit-border-radius: 0 0 15px 15px;
+	-moz-border-radius: 0 0 15px 15px;
+	border-radius: 0 0 15px 15px;
+	line-height: 1.4;
+	padding: 25px 40px 40px 40px;
+	margin-bottom: 10px;
+	position: relative;
+	min-height: 300px;
+	width: 720px;
+	-webkit-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
+	-moz-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
+	box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
+}
+
+
+
+
+
+/* $footer
+-------------------------------------------------------------------------- */
 .footer {
 	font-size: 12px;
 	color: #548DEA;
@@ -272,26 +303,12 @@ body {
 .footer a:hover { color: #25529A; }
 .footer p { margin-bottom: 6px; }
 
-/* Body
-========================================================================== */
-.body {
-	background: white;
-	-webkit-border-radius: 0 0 15px 15px;
-	-moz-border-radius: 0 0 15px 15px;
-	border-radius: 0 0 15px 15px;
-	line-height: 1.4;
-	padding: 25px 40px 40px 40px;
-	margin-bottom: 10px;
-	position: relative;
-	min-height: 300px;
-	width: 720px;
-	-webkit-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
-	-moz-box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
-	box-shadow: 0 1px 3px rgba(19, 69, 129, 0.5);
-}
 
-/* Typography
-========================================================================== */
+
+
+
+/* $typography
+-------------------------------------------------------------------------- */
 .heading h1 {
 	letter-spacing: -1px;
 	font-size: 36px;
@@ -368,6 +385,39 @@ ul.tabs-content p:first-child,
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 12px;
 }
+.post ul li,
+.post ol li { margin: 4px 0 0; }
+.post ul li:first-child,
+.post ol li:first-child { margin-top: 0; }
+.post ol li ol li { list-style-type: lower-alpha; }
+.post dl { margin-top: 10px; }
+.post dl p:first-child { margin-top: 0; }
+.post dt {
+	font-size: 16px;
+	font-weight: bold;
+}
+.post dd {
+	font-size: 14px;
+	margin: 0 0 5px;
+	padding-left: 6px;
+}
+.post .narrow {
+	float: right;
+}
+.post .narrow ol,
+.post .narrow ul {
+	margin: 10px 0 0 0;
+	padding: 0 0 0 28px;
+}
+.post .narrow ol:first-child,
+.post .narrow ul:first-child { margin: 0; }
+
+
+
+
+
+/* $footnotes
+-------------------------------------------------------------------------- */
 .post sup.footnote {
 	margin-right: 3px;
 	font-size: 9px;
@@ -454,22 +504,6 @@ ul.inputs {
 	margin: 0;
 	padding: 0;
 }
-.post ul li,
-.post ol li { margin: 4px 0 0; }
-.post ul li:first-child,
-.post ol li:first-child { margin-top: 0; }
-.post ol li ol li { list-style-type: lower-alpha; }
-.post dl { margin-top: 10px; }
-.post dl p:first-child { margin-top: 0; }
-.post dt {
-	font-size: 16px;
-	font-weight: bold;
-}
-.post dd {
-	font-size: 14px;
-	margin: 0 0 5px;
-	padding-left: 6px;
-}
 .body .sidebar h2 + p {
 	margin-top: 4px;
 }
@@ -522,7 +556,11 @@ a.link-more {
 }
 .link-icon:hover { text-decoration: none; }
 
-/* Search
+
+
+
+
+/* $search
 -------------------------------------------------------------------------- */
 #query {
 	-webkit-border-radius: 13px;
@@ -547,7 +585,11 @@ a.link-more {
 #searchform input.radio { margin-left: 7px; }
 #searchform input.radio:first-child { margin-left: 0; }
 
-/* Section Heading Icon
+
+
+
+
+/* $section heading icon
 -------------------------------------------------------------------------- */
 .heading h1[data-icon]:before {
 	font-size: 42px;
@@ -1255,15 +1297,14 @@ h1:hover .edit-this { opacity: 1.0; }
 	margin: 4px 0;
 	line-height: 25px;
 }
-.comments .meta,
-.comment-preview .meta {
+.comments .meta {
 	font-size: 16px;
 	font-weight: normal;
+	position: relative;
 	padding: 0 0 8px 40px;
 	margin: 0;
 }
-.comments h3 strong,
-.comment-preview h3 strong {
+.comments h3 strong{
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 1;
@@ -1272,14 +1313,13 @@ h1:hover .edit-this { opacity: 1.0; }
 	text-align: center;
 	width: 40px;
 }
-.comments .date,
-.comment-preview .date {
+.comments .date {
 	color: #aaa;
 	font-size: 11px;
 	line-height: 1;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	position: absolute;
-	top: 15px;
+	top: 6px;
 	right: 8px;
 }
 .comment-form p,
@@ -1340,23 +1380,45 @@ h1:hover .edit-this { opacity: 1.0; }
 	list-style: none;
 	background: #FFF;
 	float: left;
-	width: 110px;
 	text-align: center;
 	margin-left: 16px;
+}
+.entry-grid.three-wide li {
+	width: 152px;
+}
+.entry-grid.four-wide li {
+	width: 110px;
 }
 .entry-grid .one {
 	margin-left: 0;
 	clear: both;
 }
 .entry-grid .title {
-	font-size: 12px;
+	
+}
+.entry-grid .head {
 	font-weight: bold;
 	display: block;
+}
+.entry-grid.three-wide .title {
+	font-size: 13px;
+	margin: 8px 0 16px;
+}
+.entry-grid.four-wide .title {
+	font-size: 12px;
 	margin: 5px 0 10px;
+}
+.entry-grid .subhead {
+	font-size: 11px;
+	font-family: Verdana, sans-serif;
+	color: #888;
 }
 .entry-grid .image {
 	float: none;
 	display: block;
+}
+.entry-grid.three-wide .image img {
+	border-width: 8px;
 }
 
 
@@ -1864,17 +1926,9 @@ h1:hover .edit-this { opacity: 1.0; }
 	width: 364px;
 	float: left;
 }
-.recipes .post.recipe .description {
+.recipes .narrow {
 	width: 256px;
-	float: right;
 }
-.recipes .post.recipe ol,
-.recipes .post.recipe ul {
-	margin: 10px 0 0 0;
-	padding: 0 0 0 28px;
-}
-.recipes .post.recipe ol:first-child,
-.recipes .post.recipe ul:first-child { margin: 0; }
 .recipes .ingredients ul {
 	margin: 10px 0 10px;
 }
@@ -1969,16 +2023,11 @@ h1:hover .edit-this { opacity: 1.0; }
 	float: left;
 }
 .resources .post blockquote {
-	margin-left: 10px;
-	margin-right: 20px;
+	margin: 1em 1.5em;
 	color: #777;
 	font-style: italic;
 	border-left: 1px solid #BBB;
 	padding-left: 9px;
-}
-.resources .post blockquote p {
-	font-size: 13px;
-	line-height: 19px;
 }
 .resources .post h1 {
 	font-size: 1.75em;
@@ -2007,6 +2056,9 @@ h1:hover .edit-this { opacity: 1.0; }
 .resources .post.article .post-details img {
 	float: none;
 	margin-bottom: 0;
+}
+.resources .narrow {
+	width: 270px;
 }
 .resources #video-overlay {
 	width:490px;
