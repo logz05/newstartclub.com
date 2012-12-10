@@ -9,21 +9,28 @@
 <div class="heading clearfix">
 	<h1>Search Results</h1>
 </div>
-<div class="post">
-	<p>Your search for <strong>&ldquo;{exp:search:keywords}&rdquo;</strong> found {exp:search:total_results}{total_results}{/exp:search:total_results} result{if "{exp:search:total_results}" != 1}s{/if}.</p>
-</div>
 <div class="grid23 clearfix">
 	<div class="main left">
+		<p>Your search for <strong>&ldquo;{exp:search:keywords}&rdquo;</strong> found {exp:search:total_results}{total_results}{/exp:search:total_results} result{if "{exp:search:total_results}" != 1}s{/if}.</p>
 		<ul class="listing">
 		{exp:search:search_results}
 			<li class="question">
-				<h2>Q.</h2>
-				<h3><a href="{url_title_path='questions/detail'}">{exp:eehive_hacksaw}{question_question}{/exp:eehive_hacksaw}</a></h3>
-				<p class="answer">
-					{exp:eehive_hacksaw chars="120" append="&hellip; <a class='link-more' href='{url_title_path='questions/detail'}'>more&raquo;</a>"}
-						{question_response}
-					{/exp:eehive_hacksaw}
-				</p>
+				<h2><span class="drop-cap">Q.</span> <a href="{url_title_path='questions/detail'}">{exp:eehive_hacksaw}{question_question}{/exp:eehive_hacksaw}</a>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}</h2>
+				<div class="details">
+					<p class="answer">
+						{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='{url_title_path='questions/detail'}'>more&raquo;</a>"}
+							{question_response}
+						{/exp:eehive_hacksaw}
+					</p>
+					<ul class="tags">
+						<li data-icon="r">Tags:</li>
+						{categories show_group="not 22"}
+							{if category_group == "17"}<li><a href="{site_url}/questions/health-condition/{category_url_title}/">{category_name}</a></li>{/if}
+							{if category_group == "19"}<li><a href="{site_url}/questions/living-better/{category_url_title}/">{category_name}</a></li>{/if}
+							{if category_group == "21"}<li><a href="{site_url}/questions/partner/{category_url_title}/">{category_name}</a></li>{/if}
+						{/categories}
+					</ul>
+				</div>
 			</li>
 		{/exp:search:search_results}
 		{if paginate}

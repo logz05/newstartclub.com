@@ -32,7 +32,7 @@
 			{/if}
 			{if logged_in}
 				<dl>
-					{exp:channel:entries channel="services" sort="asc" limit="1"}
+					{exp:channel:entries channel="services" limit="1"}
 						{if service_phone}
 							<dt>Phone:</dt>
 							<dd>{service_phone}</dd>
@@ -43,18 +43,34 @@
 						{service_city}, {service_state} {service_zip}</dd>
 						{/if}
 							<dt>Specialty:</dt>
-							<dd>{categories backspace="2"}<a href="/services/specialty/{category_url_title}/">{category_name}</a>, {/categories}</dd>
+							<dd>{categories backspace="2" show_group="not 21"}<a href="{site_url}/services/specialty/{category_url_title}">{category_name}</a>, {/categories}</dd>
 					{/exp:channel:entries}
 				</dl>
 			{/if}
 			{if segment_3_category_id}
 			{exp:channel:entries channel="resources" dynamic="no" limit="1" category="{segment_3_category_id}"}
 				<p>
-					<a href="/resources/partner/{segment_3}">View Resources by {segment_3_category_name}</a>
+					<a href="{path='resources/partner/{segment_3}'}">View Resources by {segment_3_category_name}</a>
 				</p>
 			{/exp:channel:entries}
+			{/if}
+			
+			{if logged_out}
+			<p class="button-wrap">
+				<a href="{path='signin'}" class="super small secondary button" data-reveal-id="signin-modal-question"><span>Ask a question</span></a>
+			</p>
+			{if:else}
+			<p class="button-wrap">
+			{exp:channel:entries channel="services" limit="1"}
+				{categories show_group="21"}
+					<a href="{site_url}/questions/ask/{category_url_title}/{category_id}" class="super small secondary button">
+						<span>Ask a question</span>
+					</a>
+				{/categories}
+			{/exp:channel:entries}
+			</p>
 			{/if}
 		</section>
 	</div>
 </div>
-{embed="embeds/_doc-bottom" sim="contact"}
+{embed="embeds/_doc-bottom" sim="contact|question"}

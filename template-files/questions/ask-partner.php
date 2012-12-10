@@ -1,17 +1,20 @@
 {embed="embeds/_doc-top" 
 	class="questions"
-	title="Question Sent"
+	title="Choose Partner"
 }
 <ul class="trail">
 	<li><a href="{path='site_index'}">Home</a></li>
 	<li><a href="{path='questions'}">Questions</a></li>
 </ul>
 <div class="heading clearfix">
-	<h1>Question Sent</h1>
+	<h1>Choose Partner</h1>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-		<p>Your question has been submitted. A copy of your message has been sent to your email. One of our {site_name} <a href="{path='services'}">partners</a> will review it shortly.</p>
+		<p>Choose one of our partners below to answer your question.</p>
+		{embed="questions/_partner-list"
+			cat_ids='{exp:user:users group_id="6" dynamic="off" search:member_partner_id="IS_NOT_EMPTY" backspace="1"}{member_partner_id}|{/exp:user:users}'
+		}
 	</div>
 	<div class="sidebar right">
 		<section class="section">

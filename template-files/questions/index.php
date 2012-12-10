@@ -15,4 +15,4 @@
 		{embed="questions/_sidebar"}
 	</div>
 </div>
-{embed="embeds/_doc-bottom"}
+{embed="embeds/_doc-bottom" sim="question"}

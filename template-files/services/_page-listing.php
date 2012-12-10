@@ -1,4 +1,4 @@
-{exp:channel:entries channel="services" sort="asc" limit="9" orderby="partner_last_name" paginate="bottom" disable="member_data|trackbacks" dynamic="no" {embed:parameters}}
+{exp:channel:entries channel="services" sort="asc" limit="9" orderby="service_last_name" paginate="bottom" disable="member_data|trackbacks" dynamic="no" {embed:parameters}}
 {if count == 1}
 	<ul class="listing">
 {/if}
