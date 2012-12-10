@@ -84,6 +84,19 @@
 				</ul>
 			</td>
 		</tr>
+		{if member_id == 1}
+		<tr>
+			<th scope="row">
+				<label for="status">Status</label>
+			</th>
+			<td>
+				<select name="status" id="status" class="input">
+					<option value="open">Active</option>
+					<option value="draft">Draft</option>
+				</select>
+			</td>
+		</tr>
+		{/if}
 		<tr>
 			<th></th>
 			<td>

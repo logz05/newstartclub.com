@@ -1,29 +1,4 @@
-{exp:channel:entries channel="deals" require_entry="yes" limit="1" show_expired="yes" show_future_entries="yes"}
-
-<?php
-
-$path = ini_get('include_path');
-ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/content/lib');
-
-require_once 'member_relations.php';
-
-$db = new DBconnect();
-
-$results = Member_Relations::get("SELECT * FROM member_relations WHERE relation_type='deal' AND member_id={exp:user:stats dynamic='no'}{member_id}{/exp:user:stats} AND cat_id={categories show_group='24'}{category_id}{/categories} AND related_id={entry_id}");
-
-if ( count($results) == 0) {
-
-	// Save results to DB
-	$sql = "INSERT INTO member_relations (relation_type, member_id, related_id, cat_id) ";
-	
-	{exp:user:stats dynamic="no"}
-	$sql .= "VALUES ('deal', {member_id}, {entry_id}, {categories show_group='24'}{category_id}{/categories})";
-	{/exp:user:stats}
-	
-	$db->query($sql);
-}
-
-?>
+{exp:channel:entries channel="deals" require_entry="yes" show_expired="yes" show_future_entries="yes"}
 
 <!doctype html>
 <html lang="en" class="no-js">
@@ -52,7 +27,6 @@ if ( count($results) == 0) {
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
 	<script src="/assets/js/common.js"></script>
-	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
 	<link rel="stylesheet" href="{stylesheet='site/default'}" type="text/css" />	
 	<link href="/assets/css/icons.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript">
@@ -80,8 +54,13 @@ if ( count($results) == 0) {
 				<div class="url"><span>newstartclub.com/deal/{entry_id}</span></div>
 				<i>t</i>
 			</div>
+			<div class="button-wrap"><!-- Hi -->
+				<a href="{site_url}/{exp:page_history:get page='1'}" class="super small secondary button print-coupon"><span>Back</span></a>
+			</div>
 		</div>
 	</div>
 </div>
 </body>
-</html>{/exp:channel:entries}
+</html>
+
+{/exp:channel:entries}

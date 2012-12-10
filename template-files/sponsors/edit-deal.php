@@ -4,7 +4,7 @@
 	add="datepicker/datepicker"
 	sponsor_type="
 		{exp:user:stats dynamic='off'}
-			{exp:channel:entries channel="locations" category='{member_sponsor_id}'}
+			{exp:channel:entries channel="locations" category='{member_sponsor_id}' dynamic='no'}
 				{location_type}
 			{/exp:channel:entries}
 		{/exp:user:stats}
@@ -12,8 +12,8 @@
 }
 
 <ul class="trail">
-	<li><a href="/sponsors">Home</a></li>
-	<li><a href="/sponsors/edit-deals">Edit Deals</a></li>
+	<li><a href="{path='sponsors'}">Home</a></li>
+	<li><a href="{path='sponsors/edit-deals'}">Edit Deals</a></li>
 </ul>
 
 {exp:channel:entries channel="deals" entry_id="{segment_3}" limit="1" show_future_entries="yes"}
@@ -62,7 +62,7 @@
 		<tr>
 			<th scope="row"><label for="deal_terms">* Terms</label></th>
 			<td>
-				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" rows="5"></textarea>
+				<textarea id="deal_terms" class="input" name="deal_terms" dir="ltr" rows="5">{deal_terms}</textarea>
 				<p class="instructions">Example: <em>Limit one coupon per customer.</em></p>
 				</div>
 			</td>
@@ -75,14 +75,30 @@
 				<br>
 				<p class="instructions"><strong>Please select at least one category for your deal.</strong></p>
 				<ul class="inputs">
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="448" /> <span>In-store</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="449" /> <span>Online</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="446" /> <span>Product</span></label></li>
-					<li><label><input class="checkbox" type="checkbox" name="category[]" value="447" /> <span>Service</span></label></li>
+					{categories}
+						{if '{category_group_id}' == '45'}
+							<li><label><input class="checkbox" type="checkbox" name="category[]" value="{category_id}" {checked}/> <span>{category_name}</span></label></li>
+						{/if}
+					{/categories}
 					{exp:user:stats dynamic="off"}<li class="hidden"><label><input class="checkbox" type="checkbox" name="category[]" value="{member_sponsor_id}" checked="checked" /> <span>{member_sponsor_id}</span></label></li>{/exp:user:stats}
 				</ul>
 			</td>
 		</tr>
+		{if member_id == 1}
+		<tr>
+			<th scope="row">
+				<label for="status">Status</label>
+			</th>
+			<td>
+				{exp:channel:entries channel="deals" show_future_entries="yes" status="open|draft"}
+				<select name="status" id="status" class="input">
+					<option value="open" {if status == 'open'}selected="selected"{/if}>Active</option>
+					<option value="draft" {if status == 'draft'}selected="selected"{/if}>Draft</option>
+				</select>
+				{/exp:channel:entries}
+			</td>
+		</tr>
+		{/if}
 		<tr>
 			<th></th>
 			<td>
