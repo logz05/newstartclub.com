@@ -872,8 +872,14 @@ function member_ages($rangeLow, $rangeHigh)
 					<li><a href="http://maps.google.com/maps?q={m_field_id_5}" title="Google map of {m_field_id_5}" target="_blank">{m_field_id_5} (&nbsp;{total}&nbsp;)</a></li>
 				{/exp:query}
 			</ul>
-			<h2>Newsletter</h2>
-			<p>Insert MailChimp Code Here</p>
+			<h2>Newsletters</h2>
+			<style type="text/css">
+			<!--
+			.display_archive {font-family: verdana; font-size: 11px;}
+			.campaign {margin: 5px;}
+			//-->
+			</style>
+			<script language="javascript" src="http://us1.campaign-archive1.com/generate-js/?u=f62eb1c3def2a47eba065c05e&fid=47353&show=10" type="text/javascript"></script>
 	</div>
 </div>
 {embed="embeds/_doc-bottom"}
