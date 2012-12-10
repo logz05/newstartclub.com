@@ -27,12 +27,11 @@
 	<div class="main left">
 		<div class="post recipe clearfix">
 			{exp:ce_img:single src="{recipe_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image" itemprop="image"'}
-			<div class="description" itemprop="recipeInstructions">{recipe_instructions}</div>
+			<div class="narrow" itemprop="recipeInstructions">{recipe_instructions}</div>
 		</div>
 		<ul class="tags">
 			<li data-icon="r">Tags:</li>
 			{categories show_group="not 22"}
-				{if category_group == "22"}<li><a href="{site_url}/resources/language/{category_url_title}/">{category_name}</a></li>{/if}
 				{if category_group == "39"}<li><a href="{site_url}/recipes/type/{category_url_title}/" itemprop="recipeCategory">{category_name}</a></li>{/if}
 				{if category_group == "42"}<li><a href="{site_url}/recipes/sensitivity/{category_url_title}/">{category_name}</a></li>{/if}
 				{if category_group == "43"}<li><a href="{site_url}/recipes/ethnic/{category_url_title}/" itemprop="recipeCuisine">{category_name}</a></li>{/if}
@@ -43,14 +42,16 @@
 			{if count == 1}
 			<div class="related-entries">
 				<h2>Related Entries</h2>
-				<ul class="entry-grid clearfix">
+				<ul class="entry-grid four-wide clearfix">
 			{/if}
 					<li class="{switch='one|two|three|four'}">
 						<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
 							{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
 							{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
 						</a>
-						<span class="title"><a href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a></span>
+						<div class="title">
+							<a class="head" href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a>
+						</div>
 					</li>
 			{if count == total_results}
 				</ul>

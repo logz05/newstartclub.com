@@ -48,11 +48,15 @@
 					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image {resource_type}"'}
 					{resource_buy_options}
 						<div class="button-wrap">
-							<a href="http://{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}{if text == "dvd"}Buy the DVD{/if}</span></a>
+							<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}{if text == "dvd"}Buy the DVD{/if}</span></a>
 						</div>
 					{/resource_buy_options}
 				</div>
-				{resource_body}
+				{if resource_type == "product"}
+					<div class="narrow">{resource_body}</div>
+				{if:else}
+					{resource_body}
+				{/if}
 			{/if}
 			</div>
 		<ul class="tags">
@@ -63,21 +67,22 @@
 				{if category_group == "19"}<li><a href="{site_url}/resources/living-better/{category_url_title}">{category_name}</a></li>{/if}
 				{if category_group == "20"}<li><a href="{site_url}/resources/media/{category_url_title}">{category_name}</a></li>{/if}
 				{if category_group == "21"}<li><a href="{site_url}/resources/partner/{category_url_title}">{category_name}</a></li>{/if}
-				{if category_group == "22"}<li><a href="{site_url}/resources/language/{category_url_title}">{category_name}</a></li>{/if}
 			{/categories}
 		</ul>
 		{exp:playa:children field="resource_related"}
 		{if count == 1}
 		<div class="related-entries">
 			<h2>Related Entries</h2>
-			<ul class="entry-grid clearfix">
+			<ul class="entry-grid four-wide clearfix">
 		{/if}
 				<li class="{switch='one|two|three|four'}">
 					<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
-						{if resource_display_style == "video"}<span class="play"><i></i></span>{/if}
+						{if resource_type == "video"}<span class="play"><i></i></span>{/if}
 						{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
 					</a>
-					<span class="title"><a href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a></span>
+					<div class="title">
+						<a class="head" href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a>
+					</div>
 				</li>
 		{if count == total_results}
 			</ul>
