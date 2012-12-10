@@ -13,7 +13,7 @@
 				<h3>You must sign in to leave a comment.</h3>
 			{/if}
 			{if embed:modal-role == "question"}
-				<h3>You must sign in to submit a question.</h3>
+				<h3>You must sign in to ask a question.</h3>
 			{/if}
 			{if embed:modal-role == "contact"}
 				<h3>You must sign in to view contact information.</h3>
