@@ -22,7 +22,7 @@
 	{/if}
 		<div class="details">
 			<p class="description">
-				{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='/resources/detail/{url_title}'>more&raquo;</a>"}
+				{exp:eehive_hacksaw chars="200" append="&hellip; <a class='link-more' href='{site_url}/resources/detail/{url_title}'>more&raquo;</a>"}
 					{resource_body}
 				{/exp:eehive_hacksaw}
 			</p>

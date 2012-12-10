@@ -20,7 +20,6 @@
 	{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
 	{if segment_1 == "events" && segment_2 != "detail"   }<link rel="alternate" type="application/rss+xml" title="{site_name} Events"    href="events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
 
-	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
 	<link rel="stylesheet" href="{stylesheet='site/default'    }" type="text/css" />
 	<link rel="stylesheet" href="{stylesheet='site/icons'      }" type="text/css" />
 {if embed:add}
@@ -67,18 +66,7 @@
 				{if logged_in}
 					<li>Hi,
 					{exp:user:stats dynamic="off"}
-						{!--<span class="has-tip">
-							<span class="tooltip bottom">
-								<i class="nub"></i>
-								{exp:channel:entries channel='locations' category='{member_sponsor_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}
-									{title}
-									Promo Code: {member_sponsor_id}
-									Zip Code: {location_zip}
-								{/exp:channel:entries}
-							</span>
-						</span>--}
-							<strong><?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?></strong>
-						
+						<strong><?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?></strong>
 					{/exp:user:stats}
 					</li>
 				{/if}

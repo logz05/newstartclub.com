@@ -56,11 +56,13 @@
 					</script>
 				{/if}
 			{/categories}
-			<a href="{url_title_path='deals/coupon'}" class="super secondary button print-coupon" target="_blank"><span>Print</span></a></div>
+			
+			{embed="deals/_print-button" entry_id="{entry_id}"}
+			</div>
+	{/exp:channel:entries}
 			<a class="close-modal close">&times;</a>
 		</div>
 		
-	{/exp:channel:entries}
 {/if}
 <script src="{site_url}/assets/js/jquery.reveal.js"></script>
 <script src="{site_url}/assets/js/common.js"></script>

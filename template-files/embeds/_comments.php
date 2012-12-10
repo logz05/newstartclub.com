@@ -30,7 +30,7 @@
 	{exp:comment:preview}
 		<div class="comment-preview">
 			<header class="bar">Comment Preview</header>
-			<ol>
+			<ol class="comments listing">
 				<li class="comment">
 					<h3 class="meta">
 						<strong>*</strong>
