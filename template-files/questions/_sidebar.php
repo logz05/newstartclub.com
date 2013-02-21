@@ -1,16 +1,16 @@
 <section class="section">
 	<header class="bar">Health Questions</header>
-	<a href="{path='questions'}">
-		<img src="http://newstartclub.com/assets/images/questions/ask-doctor.jpg" width="190" />
+	
+	<a href="{path='questions/ask'}"{if logged_out} data-reveal-id="signin-modal-question"{/if}>
+		<img src="{site_url}/assets/images/questions/ask-doctor.jpg" width="190" />
 	</a>
+	
 	<h2>Have a health concern?</h2>
+	
 	<p>Ask one of our {site_name} <a href="{path='services'}">health professionals</a>.</p>
+	
 	<p class="button-wrap">
-		{if logged_out}
-			<a href="{path='signin'}" class="super secondary button" data-reveal-id="signin-modal-question"><span>Ask Now</span></a>
-		{if:else}
-			<a href="{path='questions/ask'}" class="super secondary button"><span>Ask Now</span></a>
-		{/if}
+		<a href="{path='questions/ask'}" class="super secondary button"{if logged_out} data-reveal-id="signin-modal-question"{/if}><span>Ask Now</span></a>
 	</p>
 </section>
 

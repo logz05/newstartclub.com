@@ -44,7 +44,7 @@
 				<table>
 					<tr>
 						<th scope="row"><label for="email">Email</label></th>
-						<td><input type="email" class="input" id="email" name="username" value="" size="23" autocapitalize="off" /></td>
+						<td><input type="email" class="input" id="email" name="username" value="" placeholder="example@me.com" size="23" autocapitalize="off" /></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="password">Password</label></th>
@@ -79,7 +79,7 @@
 					<li>FREE membership</li>
 				</ul>
 				<p class="button-wrap">
-					<a href="{path='join'}" class="super red button"><span>Register</span></a>
+					<a href="{path='join'}" class="super red button"><span>Join</span></a>
 				</p>
 			</div>
 		</div>

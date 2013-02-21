@@ -6,15 +6,16 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
 	<title>{if embed:title}{embed:title} | {site_name}{if:else}{site_name}{/if}</title>
 	<![if !IEMobile]>
-	<meta name="viewport" content="width=860;" />
+	<meta name="viewport" content="width=860" />
 	<![endif]>
 	
-	<meta name="author" content="{site_name}">
+	<meta property="og:site_name" content="{site_name}"/>
 	{if embed:meta}{embed:meta}{/if}
 	<meta property="fb:admins" content="696875904" />
+	
 	{if segment_1 == "news"                              }<link rel="alternate" type="application/rss+xml" title="{site_name} News"      href="{path='news/rss'}" />{/if}
 	{if segment_1 == "faq" && segment_2 != "detail"      }<link rel="alternate" type="application/rss+xml" title="{site_name} FAQ"       href="{path='faq/rss' }" />{/if}
 	{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
@@ -26,10 +27,11 @@
 	<?php 
 		$splitcontents = explode('|', '{embed:add}');
 		foreach($splitcontents as $file) {
-			echo "\t".'<link rel="stylesheet" href="/assets/css/'.$file.'.css" type="text/css" />'."\n";
+			echo "\t".'<link rel="stylesheet" href="{site_url}/assets/css/'.$file.'.css" type="text/css" />'."\n";
 		} 
 	?>
 {/if}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 	<script src="{site_url}/assets/js/modernizr-custom-2.6.1.js"></script>
 
 	{if embed:map}{embed="embeds/_google-maps"}{/if}
@@ -70,11 +72,15 @@
 					{/exp:user:stats}
 					</li>
 				{/if}
+				
 				{if group_id == '1' && segment_1 == "sponsors"}
+				
 					{exp:user:stats dynamic="off"}
 					<li>{exp:channel:entries channel='locations' category='{member_sponsor_id}' limit='1' dynamic='no' status='open|closed' disable="categories|member_data|pagination|trackbacks"}{member_sponsor_id} | {location_zip}{/exp:channel:entries}</li>
 					{/exp:user:stats}
+					
 				{/if}
+				
 				{if segment_1 != "sponsors" && (member_group == 1 || member_group == 6)}<li><a href="{path='sponsors'}">Sponsor Admin</a></li>{/if}
 				{if segment_1 == "sponsors" && (member_group == 1 || member_group == 6)}<li><a href="{path='site_index'}">Main Site</a></li>{/if}
 				<li>
@@ -120,9 +126,9 @@
 				<li{if segment_2 == "add-event"  } class="current"{/if}><a href="{path='sponsors/add-event'  }">Add Events</a><i></i></li>
 				<li{if segment_2 == "edit-events" || segment_2 == "edit-event"} class="current"{/if}><a href="{path='sponsors/edit-events'}">Edit Events</a><i></i></li>
 			{/if}
-			<li{if segment_2 == "add-members"                               } class="current"{/if}><a href="{path='sponsors/add-members'  }">Add Members</a><i></i></li>
-			<li{if segment_2 == "email-members" || segment_2 == "send-email"} class="current"{/if}><a href="{path='sponsors/email-members'}">Email Members</a><i></i></li>
-			<li{if segment_2 == "resources"                                 } class="current"{/if}><a href="{path='sponsors/resources'    }">Resources</a><i></i></li>
+			<li{if segment_2 == "add-members"                                                                                       } class="current"{/if}><a href="{path='sponsors/add-members'  }">Add Members</a><i></i></li>
+			<li{if segment_2 == "email-members" || segment_2 == "send-email" || segment_2 == "refer" || segment_2 == "referral-sent"} class="current"{/if}><a href="{path='sponsors/email-members'}">Email Members</a><i></i></li>
+			<li{if segment_2 == "resources"                                                                                         } class="current"{/if}><a href="{path='sponsors/resources'    }">Resources</a><i></i></li>
 			
 		{if:else}
 		

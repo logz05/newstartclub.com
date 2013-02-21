@@ -64,7 +64,7 @@
 	}
 ?>
 		</ul>
-		<h2 class="filter-heading">Event Type<span class="arrow up"></span><span class="arrow down"></span></h2>
+		<h2 class="filter-heading">Event Types<span class="arrow up"></span><span class="arrow down"></span></h2>
 		<ul class="filter-list type">
 			{exp:channel:categories channel="events" style="linear" show_empty="no" show_future_entries="yes" category_group="41"}
 				<li><a href="{path='events/type/{category_url_title}'}">{category_name}</a></li>

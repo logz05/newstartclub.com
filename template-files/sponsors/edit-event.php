@@ -10,7 +10,7 @@
 	<li><a href="{path='sponsors/edit-events'}">Edit Events</a></li>
 </ul>
 
-{exp:safecracker channel="events" entry_id="{segment_3}" preserve_checkboxes="yes" return="sponsors/edit-events"}
+{exp:safecracker channel="events" entry_id="{segment_3}" preserve_checkboxes="yes" include_jquery="no" return="sponsors/edit-events"}
 <div class="heading clearfix">
 	<h1>Edit &ldquo;{title}&rdquo;</h1>
 </div>
@@ -87,6 +87,12 @@
 		<tr>
 			<th scope="row"><label for="event_zip">*&nbsp;Zip Code</label></th>
 			<td><input type="text" dir="ltr" id="event_zip" class="input" name="event_zip" value="{event_zip}" maxlength="9" size="5" /><br></td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="event_image">*&nbsp;Image</label></th>
+			<td>
+				{field:event_image}
+			</td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="event_description">*&nbsp;Details</label></th>

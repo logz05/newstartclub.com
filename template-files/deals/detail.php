@@ -1,18 +1,16 @@
-{exp:channel:entries channel="deals" show_future_entries="yes" require_entry="yes"}
+{exp:channel:entries channel="deals" show_future_entries="yes" show_expired="yes" require_entry="yes"}
 {if no_results || segment_4 !=""}{redirect="404"}{/if}
 
 {embed="embeds/_doc-top" 
 	class="deals"
 	map="yes"
-	title="{title}
-	"
+	title="{title}"
 	microdata="offer"
 	meta='
 			<meta property="og:title" content="{title}"/>
-			<meta property="og:site_name" content="{site_name}"/>
 			<meta property="og:url" content="{title_permalink='deals/detail'}"/>
 			<meta property="og:type" content="article"/>
-			<meta property="og:image" content="http://newstartclub.com{categories show_group="24"}{category_image}{/categories}"/>
+			<meta property="og:image" content="{deal_location}{location_image}{/deal_location}"/>
 			<meta property="og:description" content="{exp:eehive_hacksaw chars="200" append="&hellip;"}{deal_instructions}{/exp:eehive_hacksaw}"/>
 			<meta name="description" content="{exp:eehive_hacksaw chars="200" append="&hellip;"}{deal_instructions}{/exp:eehive_hacksaw}"/>
 	'
@@ -21,26 +19,43 @@
 	<li><a href="{path='site_index'}">Home</a></li>
 	<li><a href="{path='deals'}">Deals</a></li>
 </ul>
-<div class="heading clearfix">
+
+<div class="heading">
 	<h1 itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 	<h2>Valid from {entry_date format="%F %j%S, %Y"}{if expiration_date} to {expiration_date format="%F %j%S, %Y"}{/if} at {categories show_group="24"}<a href="/locations/detail/{category_url_title}">{category_name}</a>{/categories}</h2>
 </div>
+
 <div class="grid23 clearfix">
 	<div class="main left">
 		<div class="post">
-			{deal_location}
-			{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" class="image" itemprop="image"'}
-			<span itemprop="description">{location_description}</span>
-			{/deal_location}
-			<div class="deal-instructions">{deal_instructions}</div>
-			{if logged_out}
-				<a class="show-coupon" href="/signin" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
-			{if:else}
-				<a class="show-coupon" href="{url_title_path='deals/detail'}" data-reveal-id="modal-coupon-{entry_id}"><span data-icon="p">Show coupon code</span></a>
+			{if expiration_date < current_time }
+				<div class="alert-box warning">
+					<i class="i"></i><p>This deal has expired. <a href="{path='deals'}">View active deals</a></p>
+				</div>
 			{/if}
 			{deal_location}
+			<figure class="figure  figure--main  right">
+				{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" itemprop="image"'}
+			</figure>
+			
+			<span itemprop="description">{location_description}</span>
+			{/deal_location}
+			
+			<dl class="post-details">
+				<dt>Offer:</dt>
+				<dd class="deal-instructions">{deal_instructions}</dd>
+			</dl>
+			
+			{if expiration_date > current_time }
+				{if logged_out}
+					<a class="show-coupon" href="{path='signin'}" data-reveal-id="signin-modal-coupon"><span data-icon="p">Show coupon code</span></a>
+				{if:else}
+					<a class="show-coupon" href="{url_title_path='deals/detail'}" data-reveal-id="modal-coupon-{entry_id}"><span data-icon="p">Show coupon code</span></a>
+				{/if}
+			{/if}
 			<dl>
 				<dt>Location:</dt>
+				{deal_location}
 				<dd itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 					<p><a href="{url_title_path='locations/detail'}">{title}</a><br />
 						<span itemprop="streetAddress">{location_address}</span><br />
@@ -50,6 +65,7 @@
 					<p>{if location_telephone}<span itemprop="telephone">{location_telephone}</span><br>{/if}{if location_website}<span itemprop="url">{location_website}</span>{/if}</p>
 					{/if}
 				</dd>
+				{/deal_location}
 			</dl>
 			<div class="button-wrap clearfix">
 				{if logged_out}
@@ -59,7 +75,6 @@
 				{/if}
 			</div>
 			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
-			{/deal_location}
 		</div>
 	</div>
 	<div class="sidebar right">

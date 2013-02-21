@@ -3,7 +3,7 @@
 		{if logged_in}
 			<li>Hi,
 			{exp:user:stats dynamic="off"}
-				<strong><?php echo ucwords(strtolower("{member_first_name} {member_last_name}")); ?></strong>
+				<strong>{exp:stringy:upperfirst}{member_first_name} {member_last_name}{/exp:stringy:upperfirst}</strong>
 			{/exp:user:stats}
 			</li>
 		{/if}

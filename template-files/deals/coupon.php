@@ -24,7 +24,7 @@
 		})();
 	</script>
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="/assets/js/libs/modernizr-2.0.6.min.js"></script>
 	<script src="/assets/js/common.js"></script>
 	<link rel="stylesheet" href="{stylesheet='site/default'}" type="text/css" />	
@@ -54,7 +54,7 @@
 				<div class="url"><span>newstartclub.com/deal/{entry_id}</span></div>
 				<i>t</i>
 			</div>
-			<div class="button-wrap"><!-- Hi -->
+			<div class="button-wrap">
 				<a href="{site_url}/{exp:page_history:get page='1'}" class="super small secondary button print-coupon"><span>Back</span></a>
 			</div>
 		</div>

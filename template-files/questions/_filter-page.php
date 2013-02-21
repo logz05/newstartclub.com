@@ -30,4 +30,4 @@
 		{embed="questions/_sidebar" channel="questions"}
 	</div>
 </div>
-{embed="embeds/_doc-bottom"}
+{embed="embeds/_doc-bottom" sim="question"}

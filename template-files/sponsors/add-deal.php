@@ -50,6 +50,11 @@
 			<td>
 				<input type="text" class="datepicker" id="expiration_datepicker" readonly="readonly" value="" size="20"/>
 				<input type="text" dir="ltr" id="expiration_date" class="input hidden" name="expiration_date" value="" maxlength="128" size="25" />
+				{exp:user:stats dynamic="off"}
+					{exp:channel:entries channel="locations" limit="1" category="{member_sponsor_id}"}
+					<input type="text" class="input hidden" id="deal_state" name="deal_state" value="{location_state}" />
+					{/exp:channel:entries}
+				{/exp:user:stats}
 			</td>
 		</tr>
 		<tr>

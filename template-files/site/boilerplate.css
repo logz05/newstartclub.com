@@ -164,7 +164,8 @@ input[type=tel],
 input[type=email],
 input[type=password],
 input[type=search],
-textarea.input {
+textarea.input,
+.input {
 	display: inline-block;
 	margin: 8px 0;
 	padding: 3px;
@@ -226,7 +227,8 @@ input[type=email]:focus,
 input[type=password]:focus,
 input[type=file]:focus,
 input[type=search]:focus,
-textarea.input:focus {
+textarea.input:focus,
+.input:focus {
 	outline: none;
 	border-color: #A7C7EF;
 	-webkit-box-shadow: 0 0 5px #A7C7EF, 0 1px 1px #ccc inset;
@@ -251,6 +253,7 @@ form .readonly {
 	background: none;
 	border: 0;
 	margin: 0.5em 0;
+	display: block;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 18px;
 	-moz-box-shadow: 0;
@@ -296,9 +299,14 @@ form table td code {
 }
 form table td .instructions {
 	font-size: 11px;
-	line-height: 16px;
+	line-height: 1.5;
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 	margin: 0 0 8px;
+}
+form table td .instructions.agreement {
+	font-size: 12px;
+	margin-top: 10px;
+	font-style: italic;
 }
 
 /* Buttons
@@ -310,7 +318,7 @@ p.button-wrap a:hover, div.button-wrap a:hover { text-decoration: none; }
 	background-color: #222;
 	display: inline-block;
 	padding: 5px 15px 6px;
-	margin-left: 8px;
+	margin-right: 8px;
 	color: #fff !important;
 	font-size: 13px;
 	font-weight: bold;
@@ -332,9 +340,11 @@ p.button-wrap a:hover, div.button-wrap a:hover { text-decoration: none; }
 	width: auto;
 	-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(75%, transparent), to(rgba(255, 255, 255, 0.3)));
 }
+/*
 .button:first-child {
 	margin-left: 0;
 }
+*/
 button::-moz-focus-inner { border: 0; padding: 0; }
 .button:hover,
 .button.hover {
@@ -344,6 +354,7 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 	-webkit-transition: background-color 0.15s ease-in-out;
 	-moz-transition: background-color 0.15s ease-in-out;
 	transition: background-color 0.15s ease-in-out;
+	text-decoration: none;
 }
 .button:active,
 .button.active {

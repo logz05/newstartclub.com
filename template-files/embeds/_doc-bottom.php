@@ -25,7 +25,7 @@
 {if "{embed:show-coupons}"}
 <script type="text/javascript" src="{site_url}/assets/js/jquery.zclip.min.js"></script>
 
-	{exp:channel:entries channel="deals" entry_id="{embed:show-coupons}" show_expired="yes" show_future_entries="yes" orderby="date" sort="asc" dynamic="no"}
+	{exp:channel:entries channel="deals" entry_id="{embed:show-coupons}" show_future_entries="yes" orderby="date" sort="asc" dynamic="no"}
 		<div id="modal-coupon-{entry_id}" class="deals reveal-modal">
 			<div class="coupon post">
 				<div class="sponsor">{categories show_group="24"}{category_name}{/categories}</div>
@@ -59,13 +59,14 @@
 			
 			{embed="deals/_print-button" entry_id="{entry_id}"}
 			</div>
-	{/exp:channel:entries}
 			<a class="close-modal close">&times;</a>
 		</div>
+	{/exp:channel:entries}
 		
 {/if}
 <script src="{site_url}/assets/js/jquery.reveal.js"></script>
-<script src="{site_url}/assets/js/common.js"></script>
+{!-- <script src="{site_url}/assets/js/common.js"></script> --}
+<script src="{path='js/application'}"></script>
 
 {if "{embed:script_add}"}
 	<?php $splitcontents = explode('|', '{embed:script_add}');
@@ -74,57 +75,44 @@
 	} ?>
 {/if}
 
-
-{if segment_1 && (segment_2 == "" || (segment_2 <= "P9999" && segment_2 >= "P0"))}
+{if segment_1 == "sponsors" && segment_3}
 	<script type="text/javascript">
 	$(document).ready(function(){
-		//Toggle list
+		
+		//Hide all lists except the one for the current section
+		$(".sidebar h2").children(".arrow").toggle();
+		$(".sidebar ul.filter-list").not(".filter-list.{segment_3}").hide();
+		$(".sidebar h2.{segment_3}").children(".arrow").toggle();
+		
+		//Toggle lists
 		$(".sidebar h2").click(function(){
 			$(this).next("ul").slideToggle(400)
 			$(this).children(".arrow").toggle()
 			return false;
 		});
+	
 	});
 	</script>
-{if:else}
-	{if segment_1 == "sponsors" && segment_3}
-		<script type="text/javascript">
-		$(document).ready(function(){
-			
-			//Hide all lists except the one for the current section
-			$(".sidebar h2").children(".arrow").toggle();
-			$(".sidebar ul.filter-list").not(".filter-list.{segment_3}").hide();
-			$(".sidebar h2.{segment_3}").children(".arrow").toggle();
-			
-			//Toggle lists
-			$(".sidebar h2").click(function(){
-				$(this).next("ul").slideToggle(400)
-				$(this).children(".arrow").toggle()
-				return false;
-			});
+{if:elseif segment_1 != "sponsors" && segment_2}
+	<script type="text/javascript">
+	$(document).ready(function(){
 		
-		});
-		</script>
-	{if:elseif segment_1 != "sponsors" && segment_1 !=""}
-		<script type="text/javascript">
-		$(document).ready(function(){
-			
-			//Hide all lists except the one for the current section
-			$(".sidebar h2").children(".arrow").toggle();
-			$(".sidebar ul.filter-list").not(".filter-list.{segment_2}").hide();
-			$(".sidebar h2.{segment_2}").children(".arrow").toggle();
-			
-			//Toggle lists
-			$(".sidebar h2").click(function(){
-				$(this).next("ul").slideToggle(400)
-				$(this).children(".arrow").toggle()
-				return false;
-			});
+		//Hide all lists except the one for the current section
+		$(".sidebar h2").children(".arrow").toggle();
+		$(".sidebar ul.filter-list").not(".filter-list.{segment_2}").hide();
+		$(".sidebar h2.{segment_2}").children(".arrow").toggle();
 		
+		//Toggle lists
+		$(".sidebar h2").click(function(){
+			$(this).next("ul").slideToggle(400)
+			$(this).children(".arrow").toggle()
+			return false;
 		});
-		</script>
-	{/if}
+	
+	});
+	</script>
 {/if}
+
 
 {if segment_2 == "send-email"}
 	<script src="/ckeditor/ckeditor.js"></script>
@@ -137,25 +125,6 @@
 	</script>
 {/if}
 {if segment_2 == "add-deal" || segment_2 == "add-event" || segment_2 == "edit-deal" || segment_2 == "edit-event"}
-	<script src="/ckeditor/ckeditor.js"></script>
-	{if segment_2 == "add-deal" || segment_2 == "edit-deal"}
-	<script type="text/javascript">
-			CKEDITOR.replace( 'deal_instructions',
-			{
-				customConfig : '/ckeditor-custom/config_custom.js',
-				toolbar: 'SponsorToolbar'
-			});
-	</script>
-	{/if}
-	{if segment_2 == "add-event" || segment_2 == "edit-event"}
-	<script type="text/javascript">
-			CKEDITOR.replace( 'event_description',
-			{
-				customConfig : '/ckeditor-custom/config_custom.js',
-				toolbar: 'SponsorToolbar'
-			});
-	</script>
-	{/if}
 	<script type="text/javascript">
 	
 	$( "#entry_datepicker" ).datepicker({

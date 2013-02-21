@@ -97,5 +97,5 @@
 {exp:channel:entries channel="locations" limit="1"}
 <input id="map-end" value="{location_address} {location_city}, {location_state} {location_zip}" />
 {/exp:channel:entries}
-{exp:user:stats dynamic="no"}<input id="map-start" value="{member_address} {member_city}, {member_state} {member_zip}" />{/exp:user:stats}
+{exp:user:stats dynamic="no"}<input id="map-start" value="{member_address} {member_city}, {member_state} {member_zip} {member_country}" />{/exp:user:stats}
 {embed="embeds/_doc-bottom" sim="contact|directions"}

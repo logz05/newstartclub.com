@@ -37,7 +37,7 @@
 <section class="section filters">
 	<header class="bar">Filter</header>
 	
-	<h2 class="type filter-heading">Recipe Type<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<h2 class="type filter-heading">Recipe Types<span class="arrow up"></span><span class="arrow down"></span></h2>
 	<ul class="filter-list type">
 	{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="39"}
 	{exp:query sql="
@@ -45,13 +45,14 @@
 		JOIN exp_channel_titles
 		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 		WHERE cat_id = {category_id} AND channel_id = 6
+		AND exp_channel_titles.status = 'open'
 		"}
 		<li><a href="{path='recipes/type/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
 	{/exp:channel:categories}
 	</ul>
 	
-	<h2 class="sensitivity filter-heading">Food Sensitivity<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<h2 class="sensitivity filter-heading">Food Sensitivities<span class="arrow up"></span><span class="arrow down"></span></h2>
 	<ul class="filter-list sensitivity">
 	{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="42"}
 	{exp:query sql="
@@ -59,13 +60,14 @@
 		JOIN exp_channel_titles
 		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 		WHERE cat_id = {category_id} AND channel_id = 6
+		AND exp_channel_titles.status = 'open'
 		"}
 		<li><a href="{path='recipes/sensitivity/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
 	{/exp:channel:categories}
 	</ul>
 	
-	<h2 class="ethnic filter-heading">Ethnic<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<h2 class="ethnic filter-heading">Ethnicities<span class="arrow up"></span><span class="arrow down"></span></h2>
 	<ul class="filter-list ethnic">
 	{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="43"}
 	{exp:query sql="
@@ -73,8 +75,24 @@
 		JOIN exp_channel_titles
 		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 		WHERE cat_id = {category_id} AND channel_id = 6
+		AND exp_channel_titles.status = 'open'
 		"}
-		<li><a href="{path='recipes/ethnic/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		<li><a href="{path='recipes/ethnicity/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		{/exp:query}
+	{/exp:channel:categories}
+	</ul>
+	
+	<h2 class="partner filter-heading">Partners<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list partner">
+	{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="21"}
+	{exp:query sql="
+		SELECT COUNT(cat_id) AS total FROM exp_category_posts
+		JOIN exp_channel_titles
+		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
+		WHERE cat_id = {category_id} AND channel_id = 6
+		AND exp_channel_titles.status = 'open'
+		"}
+		<li><a href="{path='recipes/partner/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
 	{/exp:channel:categories}
 	</ul>

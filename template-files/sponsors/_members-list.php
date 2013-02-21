@@ -239,32 +239,6 @@ function listMembers($name = "all") {
 		
 		default:
 			$query = '
-				SELECT DISTINCT 
-					exp_member_data.member_id,
-					exp_member_data.m_field_id_1 AS first_name,
-					exp_member_data.m_field_id_2 AS last_name,
-					exp_member_data.m_field_id_3 AS address,
-					exp_member_data.m_field_id_4 AS city,
-					exp_member_data.m_field_id_5 AS state,
-					exp_member_data.m_field_id_6 AS zip_code,
-					exp_member_data.m_field_id_7 AS phone_number,
-					exp_member_data.m_field_id_22 AS health_score,
-					exp_member_data.m_field_id_23 AS score_history,
-					exp_members.username,
-					exp_members.join_date
-					
-					FROM exp_member_data
-					
-						INNER JOIN exp_category_posts
-						ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
-						
-						JOIN exp_members
-						ON exp_members.member_id = exp_member_data.member_id
-				
-					WHERE exp_member_data.m_field_id_26 = {embed:sponsor_number}
-				
-			UNION DISTINCT
-									
 				SELECT 
 					exp_member_data.member_id,
 					exp_member_data.m_field_id_1 AS first_name,
@@ -341,14 +315,15 @@ function listMembers($name = "all") {
 	{
 	
 		$buffer .= '
-			<li id="'. $results[$i][0] .'">
-				<h2>'. $results[$i][10] .'</h2>
-				<div class="date" data-icon="Y">
+			<li class="member--data">
+				<h2 class="member--name">'. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'</h2>
+				<div class="date">
 					<span class="timeago">'. distanceOfTimeInWords( $results[$i][11] , {current_time}, true) .'</span>
 					<span class="join-date">'. date( "D, M j, Y	 g:ia T", ( $results[$i][11] - 21600 ) ) .'</span>
 				</div>
+				<a href="{site_url}/sponsors/refer/'. $results[$i][0] .'/{embed:sponsor_number}" class="i  member--refer" data-icon="u" title="Refer '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .' to NEWSTART"></a>
 				<div class="details">
-					<p>'. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'<br />';
+					<p>';
 					//Street Address
 					if ($results[$i][3])
 					{
@@ -374,17 +349,24 @@ function listMembers($name = "all") {
 					{ 
 						$buffer .= '<p><strong>Phone:</strong> '. $results[$i][7] .'</p>';
 					}
+					
+					//Email
+					if ($results[$i][10])
+					{ 
+						$buffer .= '<p><strong>Email:</strong> <a href="mailto:'. $results[$i][10] .'" title="Email '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'">'. $results[$i][10] .'</a></p>';
+					}
+					
 					if ($results[$i][8])
 					{
 						if ($scoreHistory = unserialize($results[$i][9])) {
 						
-							krsort($scoreHistory);
+							//ksort($scoreHistory);
 						
 							$buffer .= '<p><strong>Health Score:</strong> ';
 							foreach ($scoreHistory as $key => $value)
 							{
 								$date = explode("-", $key);
-								$buffer .= '<span class="has-tip"><span class="tooltip top health-score"><i class="nub"></i>'. date( "F j, Y", mktime(0, 0, 0, $date[1], $date[2], $date[0]) ) .'</span>'. $value .'</span>';
+								$buffer .= '<span class="health-score  has-tip"><span class="tooltip top"><i class="nub"></i>'. date( "F j, Y", mktime(0, 0, 0, $date[1], $date[2], $date[0]) ) .'</span>'. $value .'</span>';
 							}
 							$buffer .= '</p>';
 						}
@@ -427,7 +409,7 @@ function listMembers($name = "all") {
 		
 		
 		
-		<div class="heading clearfix"> 
+		<div class="heading  clearfix"> 
 			{if (segment_3 == 'interest' || segment_3 == 'more-info') && segment_4}
 				<h1>{exp:channel:categories channel="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
 				
@@ -442,20 +424,23 @@ function listMembers($name = "all") {
 			{/if}
 		</div>
 		 
-	<div class="grid23 clearfix">
-		<div class="main left">
+	<div class="grid23  clearfix">
+		<div class="main  left">
+			
 			<p>Click on a member to view more information or <a href="{path='sponsors/add-members'}">add new members</a>.</p>
 			<p>To email your members, click the button below or choose one of the filters on the right.</p>
 			<p class="button-wrap">
 				<a href="{path='sponsors/send-email/{segment_3}/{segment_4}'}" class="super secondary button"><span>Email Members</span></a>
 			</p>
 			<div class="row-header clearfix">
-				<div class="left"><strong>Username</strong> ( <span class="exp-col exp">show details</span><span class="exp-col col" style="display:none;">hide details</span> )</div>
+				<div class="left"><strong>Name</strong> ( <span class="exp-col exp">show details</span><span class="exp-col col" style="display:none;">hide details</span> )</div>
 				<div class="right"><strong>Join Date</strong></div>
 			</div>
-			<ul class="listing">
+			
+			<ul class="post-list">
 				<?php print $memberData["member-list"]; ?>
 			</ul>
+		
 		</div>
 		
 		<div class="sidebar right">

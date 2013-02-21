@@ -1,6 +1,18 @@
 {embed="embeds/_doc-top" 
 	class="resources"
 	title="{exp:low_title:entry url_title='{segment_3}' channel='resources'}"
+	microdata="article"
+	meta='
+		{exp:channel:entries channel="resources" url_title="{segment_3}"}
+			<meta property="og:title" content="{title}"/>
+			<meta property="og:url" content="{url_title_path='resources/detail'}"/>
+			<meta property="og:type" content="article"/>
+			<meta property="og:image" content="{resource_image}"/>
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_body}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{resource_body}{/exp:eehive_hacksaw}"/>
+			<meta name="keywords" content="{categories show_group="not 22" backspace="1"}{category_name},{/categories}">
+		{/exp:channel:entries}
+	'
 }
 <ul class="trail">
 	<li><a href="{path='site_index'}">Home</a></li>
@@ -9,24 +21,24 @@
 {exp:channel:entries channel="resources" limit="1" require_entry="yes"}
 {if segment_4 !="" || segment_2 == ""}{redirect="404"}{/if}
 {if no_results}
-<div class="heading clearfix">
+<div class="heading  clearfix">
 	<h1>Our recipes have moved!</h1>
 </div>
-<div class="post clearfix">
+<div class="post  clearfix">
 	<p>It appears that this link is outdated. But no worries! <strong>You can find your recipe at this link:<br></strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}/recipes/detail/{segment_3}</a></p>
 </div>
 {/if}
-<div class="heading clearfix">
+<div class="heading  clearfix">
 	<h1>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
 </div>
-<div class="grid23 clearfix">
-	<div class="main left">
-			<div class="post {resource_type} clearfix">
+<div class="grid23  clearfix">
+	<div class="main  left">
+			<div class="post  {resource_type}  clearfix">
 			{if resource_type == "video"}
 				{if logged_out}
 					<a href="{path='signin'}" data-reveal-id="signin-modal-video">
 						{resource_video_options}
-							<div id="video-overlay" style="height:{if aspect_ratio == "widescreen"}276{if:elseif aspect_ratio == "standard"}368{/if}px;"></div>
+							<div class="video-overlay" style="height:{if aspect_ratio == "widescreen"}276{if:elseif aspect_ratio == "standard"}368{/if}px;"></div>
 						{/resource_video_options}
 					</a>
 				{/if}
@@ -39,19 +51,21 @@
 				{resource_body}
 				
 				{resource_buy_options}
-					<div class="button-wrap clearfix">
-						<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button left"><span>{if text == "dvd"}Buy the DVD{/if}</span></a>
+					<div class="button-wrap  clearfix">
+						<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super  green  button  left"><span>{if text == "dvd"}Buy the DVD{/if}</span></a>
 					</div>
 				{/resource_buy_options}
 			{if:else}
-				<div class="entry-details">
-					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="image {resource_type}"'}
+				<figure class="figure  figure--main  left">
+					{exp:ce_img:single src="{resource_image}" max_width="200" attributes='alt="{title}" title="{title}" class="{resource_type}"'}
 					{resource_buy_options}
-						<div class="button-wrap">
-							<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super green button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}{if text == "dvd"}Buy the DVD{/if}</span></a>
-						</div>
+						<figcaption>
+							<div class="button-wrap">
+								<a href="{exp:eehive_hacksaw}{url}{/exp:eehive_hacksaw}" target="_blank" class="super  green  button"><span>{if text == "book"}Buy the Book{/if}{if text == "mag"}Buy the Magazine{/if}{if text == "dvd"}Buy the DVD{/if}</span></a>
+							</div>
+						</figcaption>
 					{/resource_buy_options}
-				</div>
+				</figure>
 				{if resource_type == "product"}
 					<div class="narrow">{resource_body}</div>
 				{if:else}
@@ -73,16 +87,18 @@
 		{if count == 1}
 		<div class="related-entries">
 			<h2>Related Entries</h2>
-			<ul class="entry-grid four-wide clearfix">
+			<ul class="entry-grid  four-wide  clearfix">
 		{/if}
 				<li class="{switch='one|two|three|four'}">
-					<a href="{path='{channel_short_name}/detail/{url_title}'}" class="image">
-						{if resource_type == "video"}<span class="play"><i></i></span>{/if}
-						{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
-					</a>
-					<div class="title">
-						<a class="head" href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a>
-					</div>
+					<figure class="figure  figure__grid">
+						<a href="{path='{channel_short_name}/detail/{url_title}'}">
+							{if resource_type == "video"}<span class="play"><i></i></span>{/if}
+							{exp:ce_img:single src="{resource_image}{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+						</a>
+						<figcaption>
+							<a href="{path='{channel_short_name}/detail/{url_title}'}">{title}</a>
+						</figcaption>
+					</figure>
 				</li>
 		{if count == total_results}
 			</ul>
@@ -93,12 +109,15 @@
 		{embed="embeds/_comments" channel="resources"}
 	
 	</div>
-	<div class="sidebar right">
+	<div class="sidebar  right">
 		{exp:playa:children field="resource_author"}
 		{if count == 1}
 		<section class="section">
 		{/if}
 			<header class="bar"><a href="{url_title_path='services/detail'}">{title}</a></header>
+			<figure class="figure  figure--small  left">
+				<a href="{url_title_path='services/detail'}">{exp:ce_img:single src="{service_image}" max_width="64" max_height="64" crop="yes" attributes='alt="{title}" title="{title}"'}</a>
+			</figure>
 			{service_bio}
 			<p><a href="{url_title_path='resources/partner'}">View resources by {title}</a></p>
 		{if count == total_results}

@@ -6,13 +6,28 @@
 		<li>Lifestyle counseling</li>
 		<li>Natural treatments</li>
 	</ul> 
-	<p>If you are interested in becoming a club partner, <a href="{path='partners/apply'}">apply here</a>.</p>
+	<p>To find out how your practice can be listed as a {site_name} service, <a href="{path='partners'}">click here</a>.</p>
 </section>
 
 <section class="section filters">
 	<header class="bar">Filter</header>
-		<h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
-		<ul class="filter-list state">
+	<h2 class="filter-heading">Specialties<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list specialty">
+	{exp:channel:categories channel="services" style="linear" show_empty="no" category_group="40"}
+		{exp:query sql="
+			SELECT COUNT(cat_id) AS total FROM exp_category_posts
+			JOIN exp_channel_titles
+			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
+			WHERE cat_id = {category_id} AND channel_id = 8
+			AND exp_channel_titles.status = 'open'
+			"}
+		<li><a href="{path='services/specialty/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
+		{/exp:query}
+	{/exp:channel:categories}
+	</ul>
+	
+	<h2 class="filter-heading">State<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<ul class="filter-list state">
 	<?php
 	
 		$state_list = array(
@@ -27,11 +42,5 @@
 	
 	
 	?>
-	</ul>
-	<h2 class="filter-heading">Specialty<span class="arrow up"></span><span class="arrow down"></span></h2>
-	<ul class="filter-list specialty">
-	{exp:channel:categories channel="services" style="linear" show_empty="no" category_group="40"}
-		<li><a href="{path='services/specialty/{category_url_title}'}">{category_name}</a></li>
-	{/exp:channel:categories}
 	</ul>
 </section>

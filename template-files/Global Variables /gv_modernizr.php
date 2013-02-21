@@ -1,1 +1,1 @@
-<script src="{site_url}/assets/js/modernizr-custom-2.6.1.js"></script>
+<script src="{site_url}/assets/js/modernizr-2.6.2.min.js"></script>

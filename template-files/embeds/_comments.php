@@ -1,8 +1,8 @@
 <div class="the-comments" itemscope itemtype="http://schema.org/AggregateRating">
 	<header class="bar"  data-icon="B">Comments
 		{exp:comment:entries sort="asc" limit="1" channel="{embed:channel}"}
-			{if no_results}(&thinsp;<span itemprop="reviewCount">0</span>&thinsp;){/if}
-			(&thinsp;<span itemprop="reviewCount">{total_comments}</span>&thinsp;)
+			{if no_results}(&thinsp;<span itemprop="reviewCount">0</span>&thinsp;)<meta itemprop="interactionCount" content="UserComments:0" />{/if}
+			(&thinsp;<span itemprop="reviewCount">{total_comments}</span>&thinsp;)<meta itemprop="interactionCount" content="UserComments:{total_comments}" />
 		{/exp:comment:entries}
 		<span class="leave-cmt">
 			{if logged_in}

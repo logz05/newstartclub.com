@@ -136,24 +136,37 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 	mail($email, 'Welcome to the Club!', stripslashes($message), $headers);
 }
 
+?>
+
 {exp:user:stats dynamic="off"}
 
-	if($_SESSION['member_welcome_email'] == 0) {
+<?php 
 
-		send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION['jsPassword']);
-		
-		//Update member profile to show that email has been sent.
-		$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";
-		
-		$db->query($query);
-		
-		$db = null; // force the class destructor to run
-		
-		$_SESSION['member_welcome_email'] = 1;
+	if( isset($_SESSION['member_welcome_email']) && (isset($_SESSION['jsPassword'])) ){
+	
+		if( $_SESSION['member_welcome_email'] == 0){
+
+			send_emails('{member_first_name}', '{member_last_name}', '{username}', $_SESSION['jsPassword']);
+			
+			//Update member profile to show that email has been sent.
+			$query = "UPDATE exp_member_data SET m_field_id_24 = 1 WHERE member_id = {member_id}";
+			
+			$db->query($query);
+			
+			$db = null; // force the class destructor to run
+			
+			$_SESSION['member_welcome_email'] = 1;
+			
+		}
 		
 	}
-{/exp:user:stats}
 ?>
+
+{if member_welcome_email}
+	{redirect="settings"}
+{/if}
+
+{/exp:user:stats}
 
 {embed="embeds/_doc-top" 
 	class="members"

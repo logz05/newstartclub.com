@@ -1,6 +1,17 @@
 {embed="embeds/_doc-top" 
 	class="questions"
 	title="{exp:low_title:entry url_title='{segment_3}' channel='questions'}"
+	meta='
+		{exp:channel:entries channel="questions" url_title="{segment_3}"}
+			<meta property="og:title" content="{exp:eehive_hacksaw}{question_question}{/exp:eehive_hacksaw}"/>
+			<meta property="og:site_name" content="{site_name}"/>
+			<meta property="og:url" content="{url_title_path='questions/detail'}"/>
+			<meta property="og:type" content="article"/>
+			<meta property="og:image" content="{site_url}/assets/css/images/icon-questions.png"/>
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{question_response}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{question_response}{/exp:eehive_hacksaw}"/>
+		{/exp:channel:entries}
+	'
 }
 <ul class="trail">
 	<li><a href="{path='site_index'}">Home</a></li>

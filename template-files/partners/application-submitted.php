@@ -1,18 +1,32 @@
-{embed="embeds/_doc-top" 
-	class="services"
-	title="Partnership Application"
-}
-<ul class="trail">
-	<li><a href="{path='site_index'}">Home</a></li>
-	<li><a href="{path='{segment_1}'}">Partners</a></li>
-</ul>
-<div class="heading clearfix">
-	<h1>
-		Partnership Application
-	</h1>
-</div>
-<div class="grid23 clearfix">
-	<div class="left">
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=860;" />
+
+	<title>Partnership Application Submitted | {site_name}</title>
+	
+	<meta name="author" content="{site_name}">
+	
+	<!--Google Analytics-->
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-12179773-3']);
+		_gaq.push(['_trackPageview']);
+	
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
+	<link rel="stylesheet" href="{stylesheet='site/standalone'}" type="text/css" />	
+</head>
+<body class="small">
+	<div class="body">
 		<h1>Application Sent!</h1>
 		<p>Thank you for submitting a partnership application!</p>
 		<p>A {site_name} representative will contact you after your application has been reviewed.</p>
@@ -20,9 +34,6 @@
 			<a href="{site_url}" class="super green button"><span>Home</span></a>
 		</p>
 	</div>
-	<div class="sidebar right">
-		<header class="bar">Partnership Application</header>
-		<p>{site_name} partners must be individuals that abide by and promote the principles of the <a href="http://newstart.com">NEWSTART&reg;</a> acronym and should be in harmony with the teachings of the Seventh-day Adventist Church. We reserve the right to deny or revoke partnership.</p>
-	</div>
 </div>
-{embed="embeds/_doc-bottom"}
+</body>
+</html>

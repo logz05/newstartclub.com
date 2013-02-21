@@ -114,18 +114,27 @@ require_once ( 'utilities.php' );
 		{if logged_in}
 		
 			<section class="section deals">
+			
 				<header class="bar" data-icon="n"><a href="{path='deals'}">Featured Deal</a></header>
+				
 				{exp:channel:entries channel="deals" limit="1" show_future_entries="yes"}
-				<a href="{url_title_path='deals/detail'}" class="image">
-				{deal_location}
-					{exp:ce_img:single src="{location_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
-				{/deal_location}
-				</a>
-				<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+				
+				<figure class="figure">
+					<a href="{url_title_path='deals/detail'}">
+						{deal_location}
+							{exp:ce_img:single src="{location_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
+						{/deal_location}
+					</a>
+					<figcaption>
+						<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+					</figcaption>
+				</figure>
+				
 				{/exp:channel:entries}
+				
 			</section>
 			
-			<section class="section members">
+			<section class="section  members">
 				<header class="bar" data-icon="j"><a href="{path='settings'}">My Interests</a></header>
 					<ul>
 						{exp:user:stats}{categories group_id="14|15"}
@@ -134,29 +143,38 @@ require_once ( 'utilities.php' );
 						{/exp:user:stats}
 					</ul>
 					<p class="button-wrap">
-						<a href="{path='settings'}" class="super small secondary button"><span>Update my interests</span></a>
+						<a href="{path='settings'}" class="super  small  secondary  button"><span>Update my interests</span></a>
 					</p>
 			</section>
-			<section class="section events">
+			<section class="section  events">
 				<header class="bar" data-icon="e"><a href="{path='events'}">RSVP List</a></header>
 				{embed="events/_rsvp-list"}
 			</section>
 		{/if}
 		
 		{if logged_out}
-			<section class="section deals">
+			<section class="section  deals">
+			
 				<header class="bar" data-icon="n"><a href="{path='deals'}">Featured Deal</a></header>
+				
 				{exp:channel:entries channel="deals" limit="1" show_future_entries="yes"}
-				<a href="{url_title_path='deals/detail'}" class="image">
-				{categories show_group="24"}
-					{exp:ce_img:single src="{category_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
-				{/categories}
-				</a>
-				<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+				
+				<figure class="figure">
+					<a href="{url_title_path='deals/detail'}">
+						{deal_location}
+							{exp:ce_img:single src="{location_image}" max_width="180" max_height="125" crop="yes" attributes='alt="{title}" title="{title}"'}
+						{/deal_location}
+					</a>
+					<figcaption>
+						<a class="title" href="{url_title_path='deals/detail'}">{title}</a>
+					</figcaption>
+				</figure>
+				
 				{/exp:channel:entries}
+				
 			</section>
 			
-			<section class="section resources">
+			<section class="section  resources">
 				<header class="bar" data-icon="d"><a href="{path='resources'}">Resource Topics</a></header>
 				<h2>Health Conditions</h2>
 				<ul>

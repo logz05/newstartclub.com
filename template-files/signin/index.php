@@ -37,7 +37,7 @@
 				<table>
 					<tr>
 						<th scope="row"><label for="email">Email</label></th>
-						<td><input type="email" class="input" id="email" name="username" value="" size="23" autocapitalize="off" /></td>
+						<td><input type="email" class="input" id="email" name="username" value="" placeholder="example@me.com" size="23" autocapitalize="off" /></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="password">Password</label></th>

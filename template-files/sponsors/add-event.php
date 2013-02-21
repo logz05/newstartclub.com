@@ -137,6 +137,10 @@
 	{/exp:channel:entries}
 
 		<tr>
+			<th scope="row"><label for="event_image">*&nbsp;Image</label></th>
+			<td>{field:event_image}</td>
+		</tr>
+		<tr>
 			<th scope="row"><label for="event_description">*&nbsp;Description</label></th>
 			<td>
 				{field:event_description}

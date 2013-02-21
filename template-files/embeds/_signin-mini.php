@@ -5,7 +5,7 @@
 	<table>
 		<tr>
 			<th scope="row"><label for="email-mini">Email</label></th>
-			<td><input type="email" class="input" id="email-mini" name="username" value="" size="20" autocapitalize="off" /></td>
+			<td><input type="email" class="input" id="email-mini" name="username" value="" placeholder="example@me.com" size="20" autocapitalize="off" /></td>
 		</tr>
 		<tr>
 			<th scope="row"><label for="password">Password</label></th>

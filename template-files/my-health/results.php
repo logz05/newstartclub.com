@@ -215,14 +215,14 @@ function totalScore($score) {
 				{if member_score_exercise != "13" }<li><a href="{path='resources/living-better/exercise'}">Exercise regularly</a></li>{/if}
 				{if member_score_smoking != "11"  }<li><a href="{path='resources/health-condition/addictions'}">Don&rsquo;t smoke</a></li>{/if}
 				{if member_score_alcohol != "11"  }<li><a href="{path='resources/health-condition/addictions'}">Don&rsquo;t drink alcohol</a></li>{/if}
-				{if member_score_diet != "11"     }<li><a href="{path='resources/detail/10-day-meal-plan'}">Eat whole plant foods every day</a></li>{/if}
-				{if member_score_nutrition != "10"}<li><a href="{path='resources/detail/10-day-meal-plan'}">Avoid refined sugars and oils</a></li>{/if}
+				{if member_score_diet != "11"     }<li><a href="{path='recipes/detail/10-day-meal-plan'}">Eat whole plant foods every day</a></li>{/if}
+				{if member_score_nutrition != "10"}<li><a href="{path='recipes/detail/10-day-meal-plan'}">Avoid refined sugars and oils</a></li>{/if}
 				{if member_score_emotional != "11"}<li><a href="{path='resources/living-better/emotional-wellbeing'}">Boost your EQ</a></li>{/if}
 				<?php if ( $hsWeight > $hsHealthyWeightHigh || $hsWeight < $hsHealthyWeightLow ) { ?>
-					<li><a href="{path='resources/health-conditions/obesity'}">Maintain a healthy weight between <?php echo $hsHealthyWeightLow . '-' . $hsHealthyWeightHigh . ' lbs.'; ?></a></li>
+					<li><a href="{path='resources/health-condition/obesity'}">Maintain a healthy weight between <?php echo $hsHealthyWeightLow . '-' . $hsHealthyWeightHigh . ' lbs.'; ?></a></li>
 				<?php } ?>
 				<?php if ( ($hsWaistSize / $hsHeightInches ) < 0.4 || ($hsWaistSize / $hsHeightInches ) > 0.5 ) { ?>
-					<li><a href="{path='resources/health-conditions/obesity'}">Maintain a healthy waist size between <?php echo round($hsHeightInches * 0.4) . '-' . round($hsHeightInches * 0.5) . ' in.'; ?></a></li>
+					<li><a href="{path='resources/health-condition/obesity'}">Maintain a healthy waist size between <?php echo round($hsHeightInches * 0.4) . '-' . round($hsHeightInches * 0.5) . ' in.'; ?></a></li>
 				<?php } ?>
 				<?php if ( {member_score_total} < 70 ) { ?>
 					<li><a href="http://www.newstart.com">Consider attending a NEWSTART&reg; Lifestyle Program</a></li>

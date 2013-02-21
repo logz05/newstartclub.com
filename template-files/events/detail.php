@@ -1,6 +1,21 @@
 {embed="embeds/_doc-top" 
 	class="events"
 	microdata="event"
+	meta='
+		{exp:channel:entries channel="events" url_title="{segment_3}" show_future_entries="yes" show_expired="yes"}
+			<meta property="og:title" content="{title}"/>
+			<meta property="og:site_name" content="{site_name}"/>
+			<meta property="og:url" content="{url_title_path='events/detail'}"/>
+			<meta property="og:type" content="article"/>
+			{if event_image}
+				<meta property="og:image" content="{event_image}"/>
+			{if:else}
+				<meta property="og:image" content="{site_url}/assets/css/images/icon-events.png"/>
+			{/if}
+			<meta property="og:description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{event_description}{/exp:eehive_hacksaw}"/>
+			<meta name="description" content="{exp:eehive_hacksaw chars="300" append="&hellip;"}{event_description}{/exp:eehive_hacksaw}"/>
+		{/exp:channel:entries}
+	'
 	map="yes"
 	title="
 		{exp:channel:entries channel="events" url_title="{segment_3}" show_future_entries="yes" show_expired="yes" limit=1}
@@ -96,19 +111,23 @@
 	<div class="main left">
 		{if expiration_date < current_time }
 			<div class="alert-box warning">
-				<p>This event has already passed. View list of upcoming events <strong><a href="{path='events'}">here</a></strong></p>
+				<i class="i"></i><p>This event has already passed. <a href="{path='events'}">View upcoming events</a></p>
 			</div>
 		{/if}
 		<div class="post">
-			<span itemprop="description">
+			{if event_image}
+				<figure class="figure  figure--main  right">
+					{exp:ce_img:single src="{event_image}" max_width="200" attributes='alt="{title}" itemprop="image"'}
+				</figure>
+			{/if}
+			<span class="event_description" itemprop="description">
 				{event_description}
 			</span>
-			
-			{if expiration_date > current_time}
-			{embed="events/_add-rsvp" entry_id="{entry_id}" expiration_date="{expiration_date}"}
-			{/if}
 	
-			<dl>
+			<dl class="post-details">
+				{if expiration_date > current_time}
+					{embed="events/_add-rsvp" entry_id="{entry_id}" expiration_date="{expiration_date}"}
+				{/if}
 				<dt>Sponsored by:</dt>
 				<dd>
 					{categories show_group="24"}

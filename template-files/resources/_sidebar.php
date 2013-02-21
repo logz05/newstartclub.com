@@ -44,6 +44,7 @@
 			JOIN exp_channel_titles
 			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 			WHERE cat_id = {category_id} AND channel_id = 7
+			AND exp_channel_titles.status = 'open'
 			"}
 		<li><a href="{path='resources/health-condition/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
@@ -58,13 +59,14 @@
 			JOIN exp_channel_titles
 			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 			WHERE cat_id = {category_id} AND channel_id = 7
+			AND exp_channel_titles.status = 'open'
 			"}
 		<li><a href="{path='resources/living-better/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
 	{/exp:channel:categories}
 	</ul>
 	
-	<h2 class="media filter-heading">Media Type<span class="arrow up"></span><span class="arrow down"></span></h2>
+	<h2 class="media filter-heading">Media Types<span class="arrow up"></span><span class="arrow down"></span></h2>
 	<ul class="filter-list media">
 	{exp:channel:categories channel="resources" style="linear" show_empty="no" category_group="20"}
 	{exp:query sql="
@@ -72,6 +74,7 @@
 		JOIN exp_channel_titles
 		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 		WHERE cat_id = {category_id} AND channel_id = 7
+		AND exp_channel_titles.status = 'open'
 		"}
 		<li><a href="{path='resources/media/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
@@ -86,6 +89,7 @@
 			JOIN exp_channel_titles
 			ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 			WHERE cat_id = {category_id} AND channel_id = 7
+			AND exp_channel_titles.status = 'open'
 			"}
 		<li><a href="{path='resources/series/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}
@@ -100,6 +104,7 @@
 		JOIN exp_channel_titles
 		ON exp_category_posts.entry_id = exp_channel_titles.entry_id
 		WHERE cat_id = {category_id} AND channel_id = 7
+		AND exp_channel_titles.status = 'open'
 		"}
 		<li><a href="{path='resources/partner/{category_url_title}'}">{category_name}</a><span class="count">&nbsp;(&nbsp;{total}&nbsp;)</span></li>
 		{/exp:query}

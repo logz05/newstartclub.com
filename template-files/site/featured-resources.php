@@ -76,31 +76,35 @@ for ($i = 0; $i < 4; $i++ ) {
 	{/exp:channel:entries}
 </div>
 
-<h2 class="section-heading">Videos <span>( <a href="{path='resources/media/video'}">view all</a> )</span></h2>
+<h2 class="section-heading">Videos <span>( <a href="{path='resources/media/videos'}">view all</a> )</span></h2>
 <ul class="entry-grid four-wide clearfix">
 	{exp:channel:entries channel="resources" entry_id="<?php echo $videoIDs; ?>" dynamic="no" disable="member_data|categories" limit="4"}
 		<li class="{switch='one|two|three|four'}">
-			<a href="{url_title_path='resources/detail'}" class="image">
-				{if resource_type == "video"}<span class="play"><i></i></span>{/if}
-				{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
-			</a>
-			<div class="title">
-				<a class="head" href="{url_title_path='resources/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
-			</div>
+			<figure class="figure  figure__grid">
+				<a href="{url_title_path='resources/detail'}">
+					<span class="play"><i></i></span>
+					{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+				</a>
+				<figcaption>
+					<a href="{url_title_path='resources/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
+				</figcaption>
+			</figure>
 		</li>
 	{/exp:channel:entries}
 </ul>
 
-<h2 class="section-heading">Articles <span>( <a href="{path='resources/media/article'}">view all</a> )</span></h2>
+<h2 class="section-heading">Articles <span>( <a href="{path='resources/media/articles'}">view all</a> )</span></h2>
 <ul class="entry-grid four-wide clearfix">
 {exp:channel:entries channel="resources" entry_id="<?php echo $articleIDs; ?>" dynamic="no" disable="member_data|categories" limit="4"}
 	<li class="{switch='one|two|three|four'}">
-		<a href="{url_title_path='resources/detail'}" class="image">
-			{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
-		</a>
-		<div class="title">
-			<a class="head" href="{url_title_path='resources/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
-		</div>
+		<figure class="figure  figure__grid">
+			<a href="{url_title_path='resources/detail'}">
+				{exp:ce_img:single src="{resource_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+			</a>
+			<figcaption>
+				<a href="{url_title_path='resources/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
+			</figcaption>
+		</figure>
 	</li>
 {/exp:channel:entries}
 </ul>
@@ -109,12 +113,14 @@ for ($i = 0; $i < 4; $i++ ) {
 <ul class="entry-grid four-wide clearfix">
 {exp:channel:entries channel="recipes" entry_id="<?php echo $recipeIDs; ?>" dynamic="no" disable="member_data|categories" limit="4"}
 	<li class="{switch='one|two|three|four'}">
-		<a href="{url_title_path='recipes/detail'}" class="image">
-			{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
-		</a>
-		<div class="title">
-			<a class="head" href="{url_title_path='recipes/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
-		</div>
+		<figure class="figure  figure__grid">
+			<a href="{url_title_path='recipes/detail'}">
+				{exp:ce_img:single src="{recipe_image}" max_width="100" max_height="75" crop="yes" attributes='alt="{title}" title="{title}"'}
+			</a>
+			<figcaption>
+				<a href="{url_title_path='recipes/detail'}">{exp:eehive_hacksaw chars="22" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
+			</figcaption>
+		</figure>
 	</li>
 {/exp:channel:entries}
 </ul>

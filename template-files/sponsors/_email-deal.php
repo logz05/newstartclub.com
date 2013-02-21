@@ -15,17 +15,20 @@ SELECT
 	exp_member_data.m_field_id_2 AS last_name,
 	exp_members.username
 	
-FROM exp_members
-	JOIN member_relations
-	ON exp_members.member_id = member_relations.member_id
+FROM exp_member_data
 	
-	JOIN exp_member_data
-	ON exp_members.member_id = exp_member_data.member_id
+	INNER JOIN exp_members
+	ON exp_member_data.member_id = exp_members.member_id
 	
-WHERE member_relations.related_id = {segment_4}
-AND member_relations.cat_id = {embed:sponsor_number}
-
-ORDER BY member_id DESC
+	INNER JOIN exp_channel_titles
+	ON exp_member_data.member_id = exp_channel_titles.author_id
+	
+	INNER JOIN exp_playa_relationships
+	ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+	
+WHERE exp_playa_relationships.child_entry_id = {segment_4}
+AND exp_channel_titles.channel_id = 10
+ORDER BY exp_member_data.member_id DESC
 			';
 
 $queryResultsDeal = $db->fetch($queryDeal);
