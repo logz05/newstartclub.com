@@ -20,9 +20,16 @@
 	<li><a href="{path='recipes'}">Recipes</a></li>
 </ul>
 {exp:channel:entries channel="recipes" limit="1" require_entry="yes"}
-{if no_results || segment_4 !=""}{redirect="404"}{/if}
+{if no_results}
+	{redirect="404"}
+{/if}
+
+{if segment_4}
+	{redirect="404"}
+{/if}
 <div class="heading clearfix">
 	<h1 itemprop="name">{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
+	<h2 class="post__permalink">{path='recipe/{entry_id}'}</h2>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
@@ -93,7 +100,7 @@
 			{categories show_group="not 22"}
 				{if category_group == "39"}<li><a href="{site_url}/recipes/type/{category_url_title}">{category_name}</a></li>{/if}
 				{if category_group == "42"}<li><a href="{site_url}/recipes/sensitivity/{category_url_title}">{category_name}</a></li>{/if}
-				{if category_group == "43"}<li><a href="{site_url}/recipes/ethnic/{category_url_title}">{category_name}</a></li>{/if}
+				{if category_group == "43"}<li><a href="{site_url}/recipes/ethnicity/{category_url_title}">{category_name}</a></li>{/if}
 			{/categories}
 			{categories show_group="21"}
 				<li><a href="{site_url}/recipes/partner/{category_url_title}/">{category_name}</a></li>
@@ -103,7 +110,7 @@
 		{exp:playa:children field="recipe_related"}
 			{if count == 1}
 			<div class="related-entries">
-				<h2>Related Entries</h2>
+				<h2>Related Recipes</h2>
 				<ul class="entry-grid four-wide clearfix">
 			{/if}
 					<li class="{switch='one|two|three|four'}">
@@ -134,7 +141,7 @@
 			{if count == 1}
 			<section class="section">
 			{/if}
-				<header class="bar"><a href="{url_title_path='services/detail'}">{title}</a></header>
+				<header class="bar"><a href="{url_title_path='services/detail'}">{title}{if service_credentials}, {service_credentials}{/if}</a></header>
 				<figure class="figure  figure--small  left">
 					<a href="{url_title_path='services/detail'}">{exp:ce_img:single src="{service_image}" max_width="64" max_height="64" crop="yes" attributes='alt="{title}" title="{title}"'}</a>
 				</figure>

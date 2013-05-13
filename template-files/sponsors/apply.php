@@ -77,14 +77,13 @@
 			
 					<div class="post">
 						<p>Please complete the following information for the sponsoring organization and the contact person who will serve as the local event coordinator. Once approved, a page will be created under the <a href="{path='locations'}">Locations</a> section of the NEWSTART&reg; Lifestyle Club website.</p>
+						<h2>Sponsor Information</h2>
 					</div>
-	
-					<h2>Sponsor Information</h2>
 		
 					<table>
 					
 						<tr>
-							<th scope="row" width="140"><label for="ff_sponsor_full_name" class="req"><span class="req">* </span>Sponsor Name</label></th>
+							<th scope="row" width="140"><label for="ff_sponsor_full_name" class="req">Sponsor Name</label></th>
 							<td>
 								<input type="text" class="input" name="ff_sponsor_full_name" id="ff_sponsor_full_name" value="" size="25" autocomplete="off" />
 								<p class="instructions">Usually the name of your organization or church.</p>
@@ -103,12 +102,7 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_address" class="req"><span class="req">* </span>Address</label></th>
-							<td><input type="text" class="input" id="ff_sponsor_address" name="ff_sponsor_address" value="" size="32" autocomplete="off" /></td>
-						</tr>
-						
-						<tr>
-							<th scope="row"><label for="ff_sponsor_country">Country</label></th>
+							<th scope="row"><label for="ff_sponsor_country" class="req">Country</label></th>
 							<td>
 								<select name="ff_sponsor_country" id="country_selector" class="input  ff_sponsor_country" autocorrect="off" autocomplete="off" onblur="addressLookUp(this.form);">
 									<option value="US" data-alternative-spellings="US USA United States of America" data-relevancy-booster="3.5">United States</option>
@@ -366,9 +360,9 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_zip_code" class="req"><span class="req">* </span>Zip Code</label></th>
+							<th scope="row"><label for="ff_sponsor_zip_code" class="req">Zip Code</label></th>
 							<td>
-								<input type="text" pattern="[0-9]*" class="input" id="ff_sponsor_zip_code" name="ff_sponsor_zip_code" value="" size="7" autocomplete="off" onblur="addressLookUp(this.form);" />
+								<input type="text" pattern="[0-9]*" class="input" id="ff_sponsor_zip_code" name="ff_sponsor_zip_code" value="" size="8" autocomplete="off" onblur="addressLookUp(this.form);" />
 								<p id="searching" class="searching"><i class="loading" id="search-loader"></i></p>
 								<p id="results" class="address-results">
 									<span id="results-city"></span>, <span id="results-state"></span> | <a href="javascript:void(0)" id="jq_edit-address-results">Edit City/State</a>
@@ -382,12 +376,17 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_phone" class="req"><span class="req">* </span>Phone</label></th>
+							<th scope="row"><label for="ff_sponsor_address" class="req">Street Address</label></th>
+							<td><input type="text" class="input" id="ff_sponsor_address" name="ff_sponsor_address" value="" size="32" autocomplete="off" /></td>
+						</tr>
+						
+						<tr>
+							<th scope="row"><label for="ff_sponsor_phone" class="req">Phone</label></th>
 							<td><input type="tel" class="input" id="ff_sponsor_phone" name="ff_sponsor_phone" value="" placeholder="(000) 000-0000" autocomplete="off" /></td>
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_email" class="req"><span class="req">* </span>Email</label></th>
+							<th scope="row"><label for="ff_sponsor_email" class="req">Email</label></th>
 							<td><input type="email" class="input" id="ff_sponsor_email" name="ff_sponsor_email" value="" placeholder="example@me.com" autocomplete="off" /></td>
 						</tr>
 						
@@ -397,12 +396,12 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_affiliation" class="req"><span class="req">* </span>Religious Affiliation</label></th>
+							<th scope="row"><label for="ff_affiliation" class="req">Religious Affiliation</label></th>
 							<td><input type="text" class="input" id="ff_affiliation" name="ff_affiliation" value="" size="32" autocomplete="off" /></td>
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_description" class="req"><span class="req">* </span>Description</label></th>
+							<th scope="row"><label for="ff_sponsor_description" class="req">Description</label></th>
 							<td>
 								<textarea class="input" id="ff_sponsor_description" name="ff_sponsor_description" rows="5" cols="32" autocomplete="off"></textarea>
 								<p class="instructions">Describe your organization and what health related events, products or services you offer. (50 words or less)</p>
@@ -410,20 +409,23 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_sponsor_help" class="req"><span class="req">* </span>Need Help?</label></th>
+							<th scope="row"><label for="ff_sponsor_help" class="req">Need Help?</label></th>
 							<td>
 								<select name="ff_sponsor_help" id="ff_sponsor_help" class="input">
 									<option value="--">--</option>
 									<option value="Yes">Yes</option>
 									<option value="No">No</option>
 								</select>
-								<p class="instructions"><a href="http://newstartglobal.com">NEWSTART&reg; Global</a> medical missionaries are available to help you with your health outreach.</p>
+								<p class="instructions"><a href="http://newstartglobal.com">NEWSTART&reg; Global</a> media missionaries are available to help you get started.</p>
 							</td>
 						</tr>
 						
 					</table>
 				
-					<h2>Contact Person</h2>
+					<div class="post">
+						<h2>Contact Person</h2>
+						<p>This information will be displayed in the sidebar of your location page.</p>
+					</div>
 				
 					<table>
 					
@@ -440,33 +442,6 @@
 							</tr>
 							
 							<tr>
-								<th scope="row"><label for="ff_address">Address</label></th>
-								<td><input type="text" class="input" id="ff_address" name="ff_address" value="{member_address}" size="32" /></td>
-							</tr>
-							
-							<tr>
-								<th scope="row"><label for="ff_city">City</label></th>
-								<td><input type="text" class="input" id="ff_city" name="ff_city" value="{member_city}" size="24" /></td>
-							</tr>
-							
-							<tr>
-								<th scope="row"><label for="ff_state">State</label></th>
-								<td><input type="text" class="input" id="ff_state" name="ff_state" value="{member_state}" size="10" /></td>
-							</tr>
-							
-							<tr>
-								<th scope="row"><label for="ff_zip_code">Zip Code</label></th>
-								<td><input type="text" class="input" id="ff_zip_code" name="ff_zip_code" value="{member_zip}" size="7" /></td>
-							</tr>
-							
-							<tr>
-								<th scope="row"><label for="ff_country">Country</label></th>
-								<td>
-									<input type="text" class="input" id="ff_country" name="ff_country" value="{member_country}" size="30" />
-								</td>
-							</tr>
-							
-							<tr>
 								<th scope="row"><label for="ff_phone">Phone</label></th>
 								<td><input type="text" class="input" id="ff_phone" name="ff_phone" value="{member_phone}" size="15" /></td>
 							</tr>
@@ -475,7 +450,6 @@
 								<th scope="row"><label for="username">Email</label></th>
 								<td>
 									<input class="input" type="text" name="ff_email" id="ff_email" value="{email}" size="25" />
-									<p class="instructions">This email address will be listed in the sidebar of your location page.</p>
 									<input type="hidden" class="hidden" id="ff_sender_email" name="ff_sender_email" value="{username}" size="32" />
 								</td>
 							</tr>
@@ -584,10 +558,15 @@ jQuery(document).ready(function($){
 		return false;
 	});
 	
+	
+	var sponsorCountry = $(".ff_sponsor_country.ui-autocomplete-input").val();
+	$("#ff_sponsor_country").val(sponsorCountry);
+	
 	$(".ff_sponsor_country.ui-autocomplete-input").blur(function() {
 		var sponsorCountry = $(this).val();
 		$("#ff_sponsor_country").val(sponsorCountry);
 	});
+	
 	
 	$("#ff_sponsor_city").keyup(function() {
 		var city = $(this).val();

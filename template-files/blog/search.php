@@ -1,6 +1,6 @@
 {embed="embeds/_doc-top" 
 	class="news"
-	title="News Feed"
+	title="News"
 }
 <?php
 $path = ini_get('include_path');
@@ -9,13 +9,16 @@ ini_set('include_path', $path . ':/home/newstartclub/www/www-newstartclub-com/co
 require_once 'member_relations.php';
 require_once ( 'utilities.php' );
 ?>
-{embed="embeds/_rss-feed" link="http://feeds.feedburner.com/newstartclub"}
+{embed="embeds/_rss-feed"}
 <div class="heading clearfix">
-	<h1 data-icon="h">News Feed</h1>
+	<h1>Search Results</h1>
+</div>
+<div class="post">
+	<p>Your search for <strong>&ldquo;{exp:search:keywords}&rdquo;</strong> found {exp:search:total_results}{total_results}{/exp:search:total_results} result{if "{exp:search:total_results}" != 1}s{/if}.</p>
 </div>
 <div class="grid23 clearfix">
 	<div class="main left">
-{exp:channel:entries channel="resources|events|services|locations|recipes|questions|deals" limit="20" orderby="date" sort="desc" paginate="bottom" dynamic="no" show_expired="yes"}
+{exp:search:search_results}
 	{if count == 1}
 		<ul class="listing">
 	{/if}
@@ -28,7 +31,9 @@ require_once ( 'utilities.php' );
 				{if channel_short_name == "questions"}<h2 data-icon="i">{/if}
 				{if channel_short_name == "deals"    }<h2 data-icon="n">{/if}
 					
-					{if channel_short_name == "questions"}
+					{if channel_short_name == "deals"}
+						<a href="{path='deals/detail/{categories show_group="24"}{category_url_title}{/categories}'}">{exp:eehive_hacksaw chars="48"}{title}{/exp:eehive_hacksaw}</a>
+					{if:elseif channel_short_name == "questions"}
 						<a href="{path='questions/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{question_question}{/exp:eehive_hacksaw}</a>
 					{if:else}
 						<a href="{path='{channel_short_name}/detail/{url_title}'}">{exp:eehive_hacksaw chars="48" append="&hellip;"}{title}{/exp:eehive_hacksaw}</a>
@@ -46,10 +51,10 @@ require_once ( 'utilities.php' );
 	{paginate}
 		<p class="pagination">{pagination_links}</p>
 	{/paginate}
-{/exp:channel:entries}
+{/exp:search:search_results}
 	</div>
 	<div class="sidebar right">
-		{embed="news/_sidebar"}
+		{embed="blog/_sidebar"}
 	</div>
 </div>
 {embed="embeds/_doc-bottom"}

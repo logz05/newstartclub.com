@@ -26,7 +26,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="entry_datepicker">* From</label></th>
+			<th scope="row"><label for="entry_datepicker" class="req">From</label></th>
 			<td>
 				<table>
 					<tr>
@@ -42,7 +42,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="expiration_datepicker">* To</label></th>
+			<th scope="row"><label for="expiration_datepicker" class="req">To</label></th>
 			<td>
 				<table>
 					<tr>
@@ -58,44 +58,46 @@
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_location_name">* Place</label></th>
+			<th scope="row"><label for="event_location_name" class="req">Place</label></th>
 			<td>
 				<input type="text" dir="ltr" id="event_location_name" class="input" name="event_location_name" value="{event_location_name}" maxlength="256" size="40" />
 <!-- 				<p class="instructions">Name of the event location.</p> -->
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_address">* Address</label></th>
+			<th scope="row"><label for="event_address" class="req">Address</label></th>
 			<td>
 				<textarea dir="ltr" id="event_address" class="input" name="event_address" rows="2">{event_address}</textarea>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_city">* City</label></th>
+			<th scope="row"><label for="event_city" class="req">City</label></th>
 			<td><input type="text" dir="ltr" id="event_city" class="input" name="event_city" value="{event_city}" maxlength="256" size="25" /><br></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_state">* State</label></th>
+			<th scope="row"><label for="event_state" class="req">State</label></th>
 			<td>
-				<select name="event_state" class="input">
-					{options:event_state}
-						<option value="{option_value}"{selected}>{option_name}</option>
-					{/options:event_state}
-				</select>
+				<input type="text" dir="ltr" id="event_state" class="input" name="event_state" value="{event_state}" maxlength="10" size="10" />
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_zip">*&nbsp;Zip Code</label></th>
+			<th scope="row"><label for="event_state" class="req">Country</label></th>
+			<td>
+				<input type="text" dir="ltr" id="event_state" class="input" name="event_state" value="{event_state}" maxlength="10" size="10" />
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"><label for="event_zip" class="req">Zip Code</label></th>
 			<td><input type="text" dir="ltr" id="event_zip" class="input" name="event_zip" value="{event_zip}" maxlength="9" size="5" /><br></td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_image">*&nbsp;Image</label></th>
+			<th scope="row"><label for="event_image">Image</label></th>
 			<td>
 				{field:event_image}
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><label for="event_description">*&nbsp;Details</label></th>
+			<th scope="row"><label for="event_description" class="req">Description</label></th>
 			<td>
 				{field:event_description}
 				<p class="instructions">Should include event description, contact information, registration instructions, etc.<br><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
@@ -103,7 +105,7 @@
 		</tr>
 		<tr>
 			<th scope="row">
-				<label>*&nbsp;Categories</label>
+				<label class="req">Categories</label>
 			</th>
 			<td>
 				<br>

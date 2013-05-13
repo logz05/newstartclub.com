@@ -1,4 +1,4 @@
-{exp:channel:entries channel="questions" limit="12" orderby="date" sort="desc" paginate="bottom" dynamic="no" {if embed:category}category="{segment_3_category_id}"{/if}}
+{exp:channel:entries channel="questions" limit="15" orderby="date" sort="desc" paginate="bottom" dynamic="no" {if embed:category}category="{segment_3_category_id}"{/if}}
 	{if count == 1}
 		<ul class="listing">
 	{/if}

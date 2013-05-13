@@ -10,7 +10,7 @@
 		<input type="hidden" name="expiration_date" value="{embed:expiration_date}" maxlength="23" size="25" readonly="readonly">
 		<input type="hidden" name="field_id_49[selections][]" value="{embed:entry_id}" readonly="readonly">
 		<input type="hidden" name="relation_type" value="event" readonly="readonly">
-		<button type="submit" id="rsvp-submit" class="super  small  secondary  button  rsvp-button"><span>RSVP</span></button>
+		<button type="submit" id="rsvp-submit" class="super  small  green  button  rsvp-button"><span>RSVP</span></button>
 	{/exp:safecracker}
 	</dd>
 {/if}
@@ -22,6 +22,6 @@
 <dt>Register:</dt>
 	<dd>
 		<p>RSVP to attend this event.</p>
-		<a href="{path='signin'}" class="super  small  secondary  button  rsvp-button" data-reveal-id="signin-modal-rsvp"><span>RSVP</span></a>
+		<a href="{path='signin'}" class="super  small  green  button  rsvp-button" data-reveal-id="signin-modal-rsvp"><span>RSVP</span></a>
 	</dd>
 {/if}

@@ -1,3 +1,4 @@
+<!-- test -->
 <?php 
 
 $path = ini_get('include_path');
@@ -42,7 +43,7 @@ $results = $db->fetch($sponsQuery);
 
 $sponsEntries = count($results);
 ?>
-
+<!-- end test -->
 
 <section class="section events">
 	<header class="bar" data-icon="e"><a href="{path='events'}">Upcoming Events</a></header>
@@ -51,10 +52,10 @@ $sponsEntries = count($results);
 	
 	if($zipEntries > 0){
 	 
-		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" search:event_zip="'.$zip.'" show_future_entries="yes" limit="2"}';
+		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="2" search:event_zip="'.$zip.'"}';
 	
 	} elseif($sponsEntries > 0){
-		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" category="'.$promo.'" show_future_entries="yes" limit="2"}';
+		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="2" category="'.$promo.'"}';
 	} else {
 		echo '{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="2"}';
 	}

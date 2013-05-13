@@ -68,7 +68,7 @@
 	</ul>
 	
 	<h2 class="ethnic filter-heading">Ethnicities<span class="arrow up"></span><span class="arrow down"></span></h2>
-	<ul class="filter-list ethnic">
+	<ul class="filter-list ethnicity">
 	{exp:channel:categories channel="recipes" style="linear" show_empty="no" category_group="43"}
 	{exp:query sql="
 		SELECT COUNT(cat_id) AS total FROM exp_category_posts

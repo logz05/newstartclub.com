@@ -1,20 +1,4 @@
 <section class="section">
-	<header class="bar">Health Questions</header>
-	
-	<a href="{path='questions/ask'}"{if logged_out} data-reveal-id="signin-modal-question"{/if}>
-		<img src="{site_url}/assets/images/questions/ask-doctor.jpg" width="190" />
-	</a>
-	
-	<h2>Have a health concern?</h2>
-	
-	<p>Ask one of our {site_name} <a href="{path='services'}">health professionals</a>.</p>
-	
-	<p class="button-wrap">
-		<a href="{path='questions/ask'}" class="super secondary button"{if logged_out} data-reveal-id="signin-modal-question"{/if}><span>Ask Now</span></a>
-	</p>
-</section>
-
-<section class="section">
 	<header class="bar">Search</header>
 	{exp:search:advanced_form result_page="questions/search" channel="questions" results="9"}
 	<input type="hidden" name="search_in" value="everywhere">
@@ -47,6 +31,22 @@
 		</table>
 	</div>
 	{/exp:search:advanced_form}
+</section>
+
+<section class="section">
+	<header class="bar">Health Questions</header>
+	
+	<a href="{path='questions/ask'}"{if logged_out} data-reveal-id="signin-modal-question"{/if}>
+		<img src="{site_url}/assets/images/questions/ask-doctor.jpg" width="190" />
+	</a>
+	
+	<h2>Have a health concern?</h2>
+	
+	<p>Ask one of our {site_name} <a href="{path='services'}">health professionals</a>.</p>
+	
+	<p class="button-wrap">
+		<a href="{path='questions/ask'}" class="super secondary button"{if logged_out} data-reveal-id="signin-modal-question"{/if}><span>Ask Now</span></a>
+	</p>
 </section>
 
 <section class="section filters">

@@ -56,7 +56,9 @@
 				directionsDisplay.setDirections(response);
 			}
 		});
-		setTimeout("location.href = '#get-directions';", 500);
+		$("#directions-panel").delay(500).slideDown('slow');
+		$("#get-directions").delay(500).fadeOut();
+/* 		setTimeout("location.href = '#get-directions';", 500); */
 	}
 	
 	function loadScript() {

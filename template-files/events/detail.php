@@ -19,7 +19,7 @@
 	map="yes"
 	title="
 		{exp:channel:entries channel="events" url_title="{segment_3}" show_future_entries="yes" show_expired="yes" limit=1}
-			&ldquo;{title}&rdquo; in {event_city}, {event_state}
+			&ldquo;{title}&rdquo; in {event_city}, {event_state}{if event_country}, {event_country:label}{/if}
 		{/exp:channel:entries}
 "}
 <ul class="trail">
@@ -44,23 +44,6 @@
 			
 			{if event_end_time != "0"} to {event_end_time format="%g:%i %a"},{/if}
 			{entry_date format="%F %j, %Y"}
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-			<script src="{site_url}/assets/js/moment.min.js"></script>
-			<script type="text/javascript">
-				
-				moment.calendar = {
-					lastDay : '[Yesterday from]',
-					sameDay : '[Today from]',
-					nextDay : '[Tomorrow from] LT',
-					lastWeek : '[Last] dddd [from] LT',
-					nextWeek : 'dddd [from] LT',
-					sameElse : 'LT, MMMM Do, YYYY'
-				};
-				
-				var time = moment.unix({gmt_entry_date format='%U'}).calendar();
-				$('.time').prepend(time);
-				
-			</script>
 			<!-- 1 -->
 		{/if}
 		
@@ -102,7 +85,7 @@
 			<span class="day">{expiration_date format="%j"}</span>,
 			<span class="year">{expiration_date format="%Y"}</span>
 			<!-- 5 -->
-		{/if}</time>in <?php echo '<a href="{path="events/location/' . strtolower("{event_state}/{event_city}") . '"}">{event_city}, {event_state}</a>'; ?>
+		{/if}</time>in <?php echo '<a href="{path="events/location/' . strtolower("{event_state}/{event_city}") . '"}">{event_city}, {event_state}</a>'; ?>{if logged_in_member_id == 1}, <a href="{path='events/country/{event_country}'}">{event_country:label}</a>{/if}
 	</h2>
 	<meta itemprop="startDate" content="{entry_date format="%Y-%m-%d"}{if event_start_time}T{exp:low_nice_date date='{event_start_time}' format='%H:%i'}{/if}">
 	<a href="http://newstartclub.com" rel="publisher"></a>
@@ -138,18 +121,19 @@
 				<dd itemprop="location" itemscope itemtype="http://schema.org/Place">
 					<p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">{if event_location_name}{event_location_name}<br />{/if}
 						<span itemprop="streetAddress">{event_address}</span><br />
-						<span itemprop="addressLocality">{event_city}</span>, <span itemprop="addressRegion">{event_state}</span> <span itemprop="postalCode">{event_zip}</span>
+						<span itemprop="addressLocality">{event_city}</span>, <span itemprop="addressRegion">{event_state}</span> <span itemprop="postalCode">{event_zip}</span>{if event_country}<br />
+						<span itemprop="addressCountry">{event_country:label}</span>{/if}
 					</p>
 				</dd>
 			</dl>
-			<div class="button-wrap clearfix">
+			<div class="button-wrap">
 				{if logged_out}
 					<a href="{path='signin'}" class="super secondary button" data-reveal-id="signin-modal-directions"><span>Get Directions</span></a>
 				{if:else}
 					<a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
 				{/if}
 			</div>
-			<p>Directions are based on your <a href="{path='settings'}">member profile</a>.</p>
+			<p class="directions-comment">Directions are based on your <a href="{path='settings'}">member profile</a>.</p>
 			
 		</div>
 	</div>

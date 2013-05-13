@@ -43,15 +43,15 @@ require_once('utilities.php');
 						
 						<table>
 							<tr>
-								<th scope="row"><label for="ff_first_name" class="req"><span class="req">* </span>First Name</label></th>
+								<th scope="row"><label for="ff_first_name" class="req">First Name</label></th>
 								<td><input type="text" class="input" id="ff_first_name" name="ff_first_name" size="32" autocomplete="off" /></td>
 							</tr>
 							<tr>
-								<th scope="row"><label for="ff_last_name" class="req"><span class="req">* </span>Last Name</label></th>
+								<th scope="row"><label for="ff_last_name" class="req">Last Name</label></th>
 								<td><input type="text" class="input" id="ff_last_name" name="ff_last_name" size="32" autocomplete="off" /></td>
 							</tr>
 							<tr>
-								<th scope="row"><label for="recipient_email_user" class="req"><span class="req">* </span>Email</label></th>
+								<th scope="row"><label for="recipient_email_user" class="req">Email</label></th>
 								<td><input type="text" class="input" id="to" id="recipient_email_user" name="recipient_email_user" value="" size="32" autocomplete="off" /></td>
 							</tr>
 							<tr>

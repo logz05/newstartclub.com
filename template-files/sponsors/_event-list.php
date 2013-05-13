@@ -9,7 +9,12 @@
 
 {exp:channel:entries channel="events" sort="desc" orderby="edit_date" paginate="bottom" limit="20" dynamic="no" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}"}
 
-{if no_results}<p>You don&rsquo;t have any active events. Click <a href="{path='sponsors/add-event'}">here</a> to add a new event.</p>{/if}
+{if no_results}
+	<p>You don&rsquo;t have any active events.</p>
+	<div class="button-wrap">
+		<a href="{path='sponsors/add-event'}" class="super green button"><span>Add New Event</span></a>
+	</div>
+{/if}
 
 {if count == 1}
 <ul class="listing entries">
@@ -17,6 +22,12 @@
 
 	<li>
 		<h2>{title}</h2>
+		{!-- 
+		
+		<a href="{path='sponsors/edit-event/{entry_id}'}" class="i  member--refer" data-icon="s" title="Edit &ldquo;{title}&rdquo;"></a>
+		<a href="{path='sponsors/edit-events/delete/{entry_id}'}" class="i  member--refer" data-icon="C" title="Delete&hellip;" onclick="javascript: if (!confirm('Are you sure you want to delete the event below? \n\n \u201C{title}\u201D \n\n You can\u2019t undo this action. Click OK to delete.')) return false;"></a>
+		
+		--}
 		<div class="edit-entry">
 			<a href="{path='sponsors/edit-event/{entry_id}'}" title="Edit &ldquo;{title}&rdquo;"><i class="icon after" data-icon="s"></i></a>
 			<a href="{path='sponsors/edit-events/delete/{entry_id}'}" title="Delete&hellip;" onclick="javascript: if (!confirm('Are you sure you want to delete the event below? \n\n \u201C{title}\u201D \n\n You can\u2019t undo this action. Click OK to delete.')) return false;"><i class="icon after" data-icon="C"></i></a>

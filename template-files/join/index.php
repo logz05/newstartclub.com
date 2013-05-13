@@ -46,22 +46,18 @@
 
 					<table>
 						<tr>
-							<th scope="row" width="140"><label for="member_first_name" class="req"><span class="req">* </span>First Name</label></th>
+							<th scope="row" width="140"><label for="member_first_name" class="req">First Name</label></th>
 							<td>
 								<input type="text" class="input" name="member_first_name" id="member_first_name" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
 								<input type="text" class="hidden" value="" name="jsFirstName" />
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="member_last_name" class="req"><span class="req">* </span>Last Name</label></th>
+							<th scope="row"><label for="member_last_name" class="req">Last Name</label></th>
 							<td>
 								<input type="text" class="input" name="member_last_name" id="member_last_name" value="" size="25" autocomplete="off" onblur="registration(this.form)" />
 								<input type="text" class="hidden" value="" name="jsLastName" />
 							</td>
-						</tr>
-						<tr>
-							<th scope="row"><label for="member_address">Address</label></th>
-							<td><input type="text" class="input" id="member_address" name="member_address" value="" size="32" autocomplete="off" /></td>
 						</tr>
 						<tr>
 							<th scope="row"><label for="member_country">Country</label></th>
@@ -321,7 +317,7 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="member_zip" class="req"><span class="req">* </span>Zip Code</label></th>
+							<th scope="row"><label for="member_zip" class="req">Zip Code</label></th>
 							<td class="zip-code-row">
 								<input type="text" pattern="[0-9]*" class="input" id="member_zip" name="member_zip" value="" size="7" autocomplete="off" onblur="addressLookUp(this.form);" />
 								<p id="searching" class="searching"><i class="loading" id="search-loader"></i></p>
@@ -336,11 +332,15 @@
 							</td>
 						</tr>
 						<tr>
+							<th scope="row"><label for="member_address">Street Address</label></th>
+							<td><input type="text" class="input" id="member_address" name="member_address" value="" size="32" autocomplete="off" /></td>
+						</tr>
+						<tr>
 							<th scope="row"><label for="member_phone">Phone</label></th>
 							<td><input type="tel" class="input" id="member_phone" name="member_phone" value="" size="25" placeholder="(000) 000-0000" autocomplete="off" /></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="username" class="req"><span class="req">* </span>Email</label></th>
+							<th scope="row"><label for="username" class="req">Email</label></th>
 							<td>
 								<input type="email" class="input" id="email" name="username" value="" size="32" placeholder="example@me.com" autocomplete="off" autocapitalize="off" onblur="registration(this.form)" />
 								<input type="text" class="hidden" name="jsEmail" />
@@ -348,11 +348,11 @@
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="password" class="req"><span class="req">* </span>Password</label></th>
+							<th scope="row"><label for="password" class="req">Password</label></th>
 							<td><input type="password" class="input" id="password" name="password" size="20" autocomplete="off" onblur="registration(this.form)" /></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="password_confirm" class="req"><span class="req">* </span>Password, Again</label></th>
+							<th scope="row"><label for="password_confirm" class="req">Password, Again</label></th>
 							<td>
 								<input type="password" class="input" id="password_confirm" name="password_confirm" size="20" autocomplete="off" />
 								<input type="hidden" class="hidden" id="member_welcome_email" name="member_welcome_email" value="0" />
@@ -512,6 +512,9 @@ jQuery(document).ready(function($){
 		$("#member_phone").focus();
 		return false;
 	});
+	
+	var memberCountry = $(".country-selector.ui-autocomplete-input").val();
+	$("#member_country").val(memberCountry);
 	
 	$(".country-selector.ui-autocomplete-input").blur(function() {
 		var memberCountry = $(this).val();

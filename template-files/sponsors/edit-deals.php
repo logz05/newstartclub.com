@@ -40,7 +40,7 @@
 
 	<div class="right sidebar">
 		<header class="bar" data-icon="n">Edit Deals</header>
-		<p>To see more about a deal click on the deal title.</p>
+		<p>Click on the deal title to view deal details.</p>
 		<ul class="bullets">
 			<li><a href="{path='sponsors/add-deal'}">Add a new deal</a></li>
 			<li>{exp:channel:categories show="{member_sponsor_id}" channel="locations" style="linear"}<a href="{site_url}/deals/sponsor/{category_url_title}">View my active deals</a>{/exp:channel:categories}</li>

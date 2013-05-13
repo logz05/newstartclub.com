@@ -38,7 +38,7 @@
 				{exp:ce_img:single src="{location_image}" max_width="200" attributes='alt="{title}" itemprop="image"'}
 			</figure>
 			
-			<span itemprop="description">{location_description}</span>
+			<div class="deal__description" itemprop="description">{location_description}</div>
 			{/deal_location}
 			
 			<dl class="post-details">
@@ -74,12 +74,12 @@
 					<a id="get-directions" class="super secondary button" onclick="calcRoute();"><span>Get Directions</span></a>
 				{/if}
 			</div>
-			<p>Directions are based on your <a href="/settings">member profile</a>.</p>
+			<p class="directions-comment">Directions are based on your <a href="/settings">member profile</a>.</p>
 		</div>
 	</div>
 	<div class="sidebar right">
 		{embed="deals/_more-deals" entry_id="{entry_id}" cat_id="{categories show_group='24'}{category_id}{/categories}"}
-		{embed="embeds/_share" channel="deals" image="{related_entries id='deal_location'}{location_image}{/related_entries}"}
+		{embed="embeds/_share" channel="deals" image="{deal_location}{deal_location:location_image}{/deal_location}"}
 	</div>
 </div>
 <div id="map-area">

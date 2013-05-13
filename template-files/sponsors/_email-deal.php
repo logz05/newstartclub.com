@@ -44,7 +44,7 @@ function send_emails($mailing_list, $subject, $custom_message, $deal)
 	// To send HTML mail, the Content-type header must be set
 	$headers	= 'MIME-Version: 1.0' . "\n";
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
-	$headers .= 'From: {exp:channel:categories show="{embed:sponsor_number}" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
+	$headers .= 'From: {exp:channel:categories show="{embed:sponsor_id}" channel="locations" style="linear"}{category_name}{/exp:channel:categories} <club@newstart.com>' . "\r\n";
 	$headers .= 'Reply-To: {exp:user:stats dynamic="off"}{member_first_name} {member_last_name} <{username}>{/exp:user:stats}' . "\r\n";
 	
 	//Add club@newstart.com so that we can see all e-mails sent out.
@@ -120,8 +120,8 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 											$message .= 'Dear '. $mailing_list[$i][1] .',<br />';
 											$message .= $custom_message;
 											$message .= '
-											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
-											<a href="http://newstartclub.com/location/{embed:sponsor_number}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_number}</a></p>
+											<p style="color:#010101;">{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}<br />{exp:channel:categories show="{embed:sponsor_id}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
+											<a href="http://newstartclub.com/location/{embed:sponsor_id}" style="color:#87A621;">newstartclub.com/location/{embed:sponsor_id}</a></p>
 											</td>
 										</tr>
 										<tr>
@@ -167,72 +167,109 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 
 function show_form($listTotal)
 {
-	print '<div class="heading clearfix">
-						<h1>{exp:channel:entries channel="deals" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}{title}{/exp:channel:entries} (&nbsp;'. $listTotal .'&nbsp;)</h1>
-				</div>
-				<div class="grid23 clearfix">
-					<div class="left">
-						<form method="post" action="">
-							<table>
-								<tr>
-									<th scope="row"><label for="email_subject">Subject</label></th>
-									<td><input type="text" name="email_subject" class="input" size="32" /></td>
-								</tr>
-								<tr>
-									<th scope="row"><label for="custom_message">Message</label></th>
-									<td>
-										<textarea class="input" cols="38" rows="10" name="custom_message" id="custom-message"></textarea>
-										<p class="instructions"><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
-									</td>
-								</tr>
-								<tr>
-									<th></th>
-									<td>
-										<textarea name="deal" class="hidden">You are receiving this e-mail because you are interested in the deal {exp:channel:entries channel="deals" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}/deals/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>&ldquo;{title}&rdquo;</a>.{/exp:channel:entries}</textarea>
-										<p class="button-wrap">
-											<button type="submit" class="super green button"><span>Send Email</span></button>
-										</p>
-									</td>
-								</tr>
-							</table>
-						</form>
-					</div>
-					<div class="sidebar right">
-						<header class="bar">Email Signature</header>
-						<p>The following digital signature will be added to your message:</p>
-						<p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
-						{exp:channel:categories show="{embed:sponsor_number}" weblog="locations" style="linear"}{category_name}{/exp:channel:categories}<br />
-						<a href="http://newstartclub.com/location/{embed:sponsor_number}">newstartclub.com/location/{embed:sponsor_number}</a></p>
-					</div>
-				</div>';
+	print '
+	<header class="heading">
+		<h1 class="post__title">Member List (&nbsp;'. $listTotal .'&nbsp;)</h1>
+	</header>
+
+	<div class="grid23  clearfix">
+	
+		<div class="main  left">
+		
+			{sn_no-script}
+			
+			<div class="loading-form" id="loading-form">
+				<span class="loading" id="js-load-form"></span>
+			</div>
+			
+			<form method="post" action="" id="send_email_form" class="js-load">
+			
+				<table>
+				
+					<tr>
+						<th scope="row"><label for="email_subject">Subject</label></th>
+						<td><input type="text" name="email_subject" class="input" size="32" /></td>
+					</tr>
+					
+					<tr>
+						<th scope="row"><label for="custom_message">Message</label></th>
+						<td>
+							<textarea class="input" cols="38" rows="10" name="custom_message" id="custom-message"></textarea>
+							<p class="instructions"><strong>Note:</strong> To preserve formatting click on the Paste from Word button.</p>
+						</td>
+					</tr>
+					
+					<tr>
+						<th></th>
+						<td>
+							<textarea name="deal" class="hidden">You are receiving this e-mail because you are interested in the deal {exp:channel:entries channel="deals" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}<a href=\'{site_url}/deals/detail/{url_title}\' style=\'font-size:10px;color:#204C74; text-decoration:underline;\'>&ldquo;{title}&rdquo;</a>.{/exp:channel:entries}</textarea>
+							<div class="button-wrap">
+								<button type="submit" class="super  green  button" onclick="sendemails();" id="send-email"><span>Send Email</span></button>
+								<span id="js-loader__sending-email" class="js-loader  js-loader__sending-email"><i class="loading" id="js-send-email"></i></span>
+							</div>
+						</td>
+					</tr>
+					
+				</table>
+				
+			</form>
+			
+		</div>
+		
+		<div class="sidebar  right">
+		
+			<header class="bar">Email Signature</header>
+			<p>The following digital signature will be added to your message:</p>
+			<p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
+			{exp:weblog:categories show="{embed:sponsor_id}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+			<a href="{path=\'location/{embed:sponsor_id}\'}">newstartclub.com/location/{embed:sponsor_id}</a></p>
+			
+		</div>
+		
+	</div>';
 }
 
 function show_done($listRecipients)
 {
 
-	print '<div class="heading clearfix">
-					<h1>Email sent</h1>
-				</div>
-				<div class="grid23 clearfix">
-					<div class="left">
-						<div class="post">
-						<p>Your email was sent to the following members:</p>
-						<ul id="sent-members-list">';
-						
-						for ($i = 0; $i < count($listRecipients); $i++)
-						{
-							print '<li><strong>'. $listRecipients[$i][1] .' '. $listRecipients[$i][2] .'</strong> ('. $listRecipients[$i][3] .')</li>';
-						}
-						
-			print '</ul>
-						<p class="button-wrap">
-							<a href="{path=\'sponsors/email-members\'}" class="super red button"><span>Back to Member List</span></a>
-						</p>
-					</div>
-				</div>
-					<div class="sidebar right">
-					</div>
-				</div>';
+	print '
+	<header class="heading">
+		<h1 class="post__title">Email Sent</h1>
+	</header>
+	
+	<div class="grid23  clearfix">
+	
+		<div class="main  left">
+		
+			<div class="post">
+			
+				<p>Your email was sent to the following members:</p>
+				<ul id="sent-members-list">';
+				
+				for ($i = 0; $i < count($listRecipients); $i++)
+				{
+					print '<li><strong>'. $listRecipients[$i][1] .' '. $listRecipients[$i][2] .'</strong> ('. $listRecipients[$i][3] .')</li>';
+				}
+			
+	print '</ul>
+				<p class="button-wrap">
+					<a href="{path=\'sponsors/email-members\'}" class="super  red  button"><span>Back to Member List</span></a>
+				</p>
+			</div>
+			
+		</div>
+	
+		<div class="sidebar right">
+		
+			<header class="bar">Email Signature</header>
+			<p>The following digital signature was added to your message:</p>
+			<p><strong>{exp:user:stats dynamic="off"}{member_first_name} {member_last_name}{/exp:user:stats}</strong><br />
+			{exp:weblog:categories show="{embed:sponsor_id}" weblog="locations" style="linear"}{category_name}{/exp:weblog:categories}<br />
+			<a href="{path=\'location/{embed:sponsor_id}\'}">newstartclub.com/location/{embed:sponsor_id}</a></p>
+		
+		</div>
+		
+	</div>';
 }
 
 if (isset($_POST['custom_message'])) { show_done($queryResultsDeal); } else { show_form($queryCountDeal); }

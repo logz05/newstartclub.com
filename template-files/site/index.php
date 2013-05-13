@@ -43,10 +43,58 @@ require_once ( 'utilities.php' );
 				{embed="site/featured-resources"}
 			</section>
 			
-			{embed="site/local-events" member_id="{exp:user:stats dynamic="no"}{member_id}{/exp:user:stats}"}
+			{if logged_in}
 			
-			<section class="section news">
-				<header class="bar" data-icon="h"><a href="{path='news'}">Latest Updates</a></header>
+				{embed="site/local-events" member_id="{exp:user:stats dynamic="no"}{member_id}{/exp:user:stats}"}
+			
+			{if:else}
+			
+				<section class="section events">
+					<header class="bar" data-icon="e"><a href="{path='events'}">Upcoming Events</a></header>
+					<ul class="listing">
+					
+					{exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="2"}
+				
+						<li class="event">
+							<h2>
+								<a href="{url_title_path='events/detail'}">{title}</a>
+								<span class="date">
+									<span class="day">{entry_date format="%d"}</span>
+									<span class="month">{entry_date format="%M"}</span>
+									<span class="year">{entry_date format="%Y"}</span>
+									<span class="time">
+										{!-- Check if event is only on one date and time is set --}
+										{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" != "0"}
+											{event_start_time format="%g:%i %a"}{if event_end_time != "0"} - {event_end_time format="%g:%i %a"}{/if}
+										{/if}
+										
+										{!-- Check if event is only on one date and time is NOT set --}
+										{if ('{entry_date format="%Y-%M-%d"}' == '{expiration_date format="%Y-%M-%d"}') && "{event_start_time}" == "0"}
+											All Day
+										{/if}
+										
+										{!-- Check to see if repeating event --}
+										{if '{entry_date format="%Y-%M-%d"}' != '{expiration_date format="%Y-%M-%d"}'}
+											{entry_date format="%M %j"} - {expiration_date format="%M %j"}
+										{/if}
+									</span>
+								</span>
+							</h2>
+							<h3><a href="{path='events/location/{event_state}/{event_city}'}">{event_city}, {event_state}</a></h3>
+							<p class="details">
+								{exp:eehive_hacksaw chars="150" append="&hellip; <a class='link-more' href='{url_title_path='events/detail'}'>more&raquo;</a>"}
+									{event_description}
+								{/exp:eehive_hacksaw}
+							</p>
+						</li>
+					{/exp:channel:entries}
+					</ul>
+				</section>
+			
+			{/if}
+			
+			<section class="section  news  icomoon">
+				<header class="bar" data-icon="&#x62;"><a href="{path='blog'}">Latest Updates</a></header>
 				<ul class="listing">
 					{exp:channel:entries channel="resources|events|services|locations|questions|recipes|deals" limit="5" orderby="date" sort="desc" dynamic="no" show_expired="yes"}
 					<li class="entry {channel_short_name}">
@@ -74,8 +122,47 @@ require_once ( 'utilities.php' );
 			</div>
 		</section>
 
-		<div class="right sidebar">
-			<section class="section my-health">
+		<div class="right  sidebar">
+		
+			<section class="section  news  icomoon">
+			
+				<header class="bar" data-icon="&#x62;"><a href="{path='blog'}">Search</a></header>
+				{exp:search:advanced_form result_page="blog/search" channel="resources|services|events|locations|recipes|questions" results="25" show_expired="yes"}
+				<input type="hidden" name="search_in" value="everywhere">
+				<input id="query" name="keywords" type="search" class="input" placeholder="Search Blog">
+				<p><a href="#" class="advanced-search">Advanced Search</a></p>
+				
+				<div id="advanced-search">
+					<table> 
+						<tr>
+							<th scope="row">Words:</th>
+							<td>
+								<input type="radio" name="where" class="input radio" value="all" checked="checked" />&nbsp;<span> All</span>
+								<input type="radio" name="where" class="input radio" value="any" />&nbsp;<span> Any</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Order by:</th>
+							<td>
+								<input type="radio" name="orderby" class="input radio" value="title" checked="checked" />&nbsp;<span> Title</span>
+								<input type="radio" name="orderby" class="input radio" value="date" />&nbsp;<span> Date</span>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Sort:</th>
+							<td>
+								<input type="radio" name="sort_order" class="input radio" value="asc" checked="checked" />&nbsp;<span> Up</span>
+								<input type="radio" name="sort_order" class="input radio" value="desc" />&nbsp;<span> Down</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				{/exp:search:advanced_form}
+				
+			</section>
+		
+			<section class="section  my-health">
 				{if logged_out}
 					<header class="bar" data-icon="c"><a href="{path='my-health'}">The HealthGauge<sup>&trade;</sup></a></header>
 					<a href="{path='my-health/calculator'}">

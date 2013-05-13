@@ -8,11 +8,11 @@
 	<ul class="rsvp-list">
 	{/if}
 	
-		{exp:playa:children field="related_entry" show_future_entries="yes"}
+		{exp:playa:children field="related_entry" show_future_entries="yes" var_prefix="rsvp"}
 			<li class="rsvp">
-				<a class="close" href="{path='events/remove-rsvp/{parent:entry_id}'}" title="Remove&hellip;">&times;</a>
-				<span class="date">{entry_date format="%F %j"}</span>
-				<span class="title"><a href="{url_title_path='events/detail'}">{title}</a></span>
+				<a class="close" href="{path='events/remove-rsvp/{entry_id}'}" title="Remove&hellip;">&times;</a>
+				<span class="date">{rsvp:entry_date format="%F %j"}</span>
+				<span class="title"><a href="{url_title_path='events/detail'}">{rsvp:title}</a></span>
 			</li>
 		{/exp:playa:children}
 		

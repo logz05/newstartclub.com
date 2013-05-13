@@ -32,27 +32,36 @@
 <body class="small">
 	<div class="body">
 		{if segment_1 == "resources" && segment_2 == "recipes"}
+		
 			<h1>Our recipes have moved!</h1>
 			<p>Please update your bookmark with the link below:<br><a href="/{segment_2}{if segment_3}/type/{segment_3}{/if}">{site_url}/{segment_2}{if segment_3}/type/{segment_3}{/if}</a></p>
-		{if:elseif segment_2 == "media" && segment_3 == "recipe"}
-			<h1>Our recipes have moved!</h1>
-			<p><strong>You can find all your recipes at this link:</strong><br><a href="{path='recipes'}">{site_url}recipes</a></p>
-		{if:elseif segment_1 == "resources" && segment_2 == "detail"}
-			<h1>Our recipes have moved!</h1>
-			<p>But no worries! <strong>You can find your recipe at this link:</strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}/recipes/detail/{segment_3}</a></p>
+			
 		{if:elseif segment_1 == "partners" && segment_2 == "detail"}
+		
 			<h1>Partners have moved!</h1>
 			<p>But no worries! <strong>Here&rsquo;s their new link under Services:</strong> <a href="{path='services/detail/{segment_3}'}">{site_url}/services/detail/{segment_3}</a></p>
+			
 		{if:elseif segment_1 == "partners"}
+		
 			<h1>Partners have moved!</h1>
 			<p>But no worries! <strong>You can now find them under Services:</strong> <a href="{path='services'}">{site_url}services</a></p>
+			
+		{if:elseif segment_2 == "detail" && segment_3 }
+		
+			<h1>Oops!</h1>
+			<p>We couldn&rsquo;t find that entry in our {exp:stringy:upperfirst}{segment_1}{/exp:stringy:upperfirst}! <a href="{path='{segment_1}'}">View all {segment_1}</a>.</p>
+			
 		{if:elseif segment_2 == "detail" && segment_4}
+		
 			<h1>Oops!</h1>
 			<p>Looks like you got the wrong link!</p>
 			<p><strong>Try this one instead:</strong><br><a href="{path='{segment_1}/detail/{segment_3}'}">{site_url}/{segment_1}/detail/{segment_3}</a></p>
+			
 		{if:else}
+		
 			<h1>404</h1>
 			<p>We could not find the page you requested.</p>
+			
 		{/if}
 	</div>
 </div>

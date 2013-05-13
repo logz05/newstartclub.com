@@ -4,8 +4,9 @@
 		<a href="{path='about/privacy-policy'}">Privacy Policy</a> |
 		<a href="{path='about/terms-of-use'}">Terms of Use</a> |
 		<a href="{path='locations'}">Locations</a> |
-		<a href="{path='news'}">Blog</a> |
-		<a href="http://newstart.com/store">Store</a>
+		<a href="{path='blog'}">Blog</a> |
+		<a href="{path='store-maintenance'}"><!-- http://newstart.com/store -->Store</a>
+		{if group_id == 1 || group_id == 6} | <a href="{path='stats'}">Stats</a>{/if}
 	</p>
 </footer>
 

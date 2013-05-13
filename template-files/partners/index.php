@@ -1,5 +1,7 @@
 {gv_doc-top}
 
+{if segment_2}{redirect="404"}{/if}
+
 <head>
 	{sn_default-metatags}
 	

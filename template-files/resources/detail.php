@@ -19,14 +19,11 @@
 	<li><a href="{path='resources'}">Resources</a></li>
 </ul>
 {exp:channel:entries channel="resources" limit="1" require_entry="yes"}
-{if segment_4 !="" || segment_2 == ""}{redirect="404"}{/if}
 {if no_results}
-<div class="heading  clearfix">
-	<h1>Our recipes have moved!</h1>
-</div>
-<div class="post  clearfix">
-	<p>It appears that this link is outdated. But no worries! <strong>You can find your recipe at this link:<br></strong> <a href="{path='recipes/detail/{segment_3}'}">{site_url}/recipes/detail/{segment_3}</a></p>
-</div>
+	{redirect="404"}
+{/if}
+{if segment_4}
+	{redirect="404"}
 {/if}
 <div class="heading  clearfix">
 	<h1>{embed="embeds/_edit-this" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}{title}</h1>
@@ -86,7 +83,7 @@
 		{exp:playa:children field="resource_related"}
 		{if count == 1}
 		<div class="related-entries">
-			<h2>Related Entries</h2>
+			<h2>Related Resources</h2>
 			<ul class="entry-grid  four-wide  clearfix">
 		{/if}
 				<li class="{switch='one|two|three|four'}">
@@ -114,7 +111,7 @@
 		{if count == 1}
 		<section class="section">
 		{/if}
-			<header class="bar"><a href="{url_title_path='services/detail'}">{title}</a></header>
+			<header class="bar"><a href="{url_title_path='services/detail'}">{title}{if service_credentials}, {service_credentials}{/if}</a></header>
 			<figure class="figure  figure--small  left">
 				<a href="{url_title_path='services/detail'}">{exp:ce_img:single src="{service_image}" max_width="64" max_height="64" crop="yes" attributes='alt="{title}" title="{title}"'}</a>
 			</figure>

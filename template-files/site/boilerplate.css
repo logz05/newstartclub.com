@@ -110,8 +110,8 @@ body.small {
 	width: 500px;
 }
 body.small .body {
-	background: url(/assets/css/images/site-offline.png) no-repeat 65px 40px white;
-	padding: 160px 40px 40px;
+	background: url('/assets/css/images/site-offline.png') no-repeat 40px 40px white;
+	padding: 140px 40px 40px;
 	text-align: center;
 }
 body.small h1 {
@@ -122,7 +122,10 @@ body.small h1 {
 body.small textarea {
 	width: 100%;
 }
-.ie7 body { margin: 0 auto; }
+.ie7 body,
+.lt-ie8 body {
+	margin: 0 auto;
+}
 /* Links
 ========================================================================== */
 a {
@@ -279,6 +282,10 @@ form table tbody span.req {
 	font-weight: bold;
 	color: #F00;
 }
+form label.req:before {
+	content: "\002A\0020";
+	color: #F00;
+}
 form table th, table td { padding: 0 5px; }
 form table th {
 	text-align: right;
@@ -325,14 +332,15 @@ p.button-wrap a:hover, div.button-wrap a:hover { text-decoration: none; }
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	line-height: 1;
 	text-decoration: none;
-	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	   -moz-border-radius: 5px;
+	        border-radius: 5px;
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
-	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+	       text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	-webkit-transition: background-color 0.15s ease-in-out;
-	-moz-transition: background-color 0.15s ease-in-out;
-	transition: background-color 0.15s ease-in-out;
+	   -moz-transition: background-color 0.15s ease-in-out;
+	        transition: background-color 0.15s ease-in-out;
 	border-bottom: 1px solid rgba(0,0,0,0.25);
 	position: relative;
 	cursor: pointer;
@@ -352,14 +360,25 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 	color: #fff;
 	cursor: pointer;
 	-webkit-transition: background-color 0.15s ease-in-out;
-	-moz-transition: background-color 0.15s ease-in-out;
-	transition: background-color 0.15s ease-in-out;
+	   -moz-transition: background-color 0.15s ease-in-out;
+	        transition: background-color 0.15s ease-in-out;
 	text-decoration: none;
 }
 .button:active,
 .button.active {
 	-webkit-transform: translateY(1px);
-	-moz-transform: translateY(1px);
+	   -moz-transform: translateY(1px);
+	        transform: translateY(1px);
+}
+.button.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.button.disabled:active,
+.button.disabled.active {
+	-webkit-transform: translateY(0);
+	   -moz-transform: translateY(0);
+	        transform: translateY(0)
 }
 .small.button { font-size: 11px }
 .large.button {
@@ -393,8 +412,8 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 	color: #555 !important;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.5);
 	border: 1px solid #bbb;
-	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .secondary.button:hover,
 .secondary.button.hover,
@@ -428,15 +447,15 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 .giant.super.button {
 	font-size: 18px;
 	-webkit-border-radius: 20px;
-	-moz-border-radius: 20px;
+	   -moz-border-radius: 20px;
 }
 .giant.super.button span {
 	padding: 4px 15px 6px;
 	-webkit-border-radius: 19px;
-	-moz-border-radius: 19px;
+	   -moz-border-radius: 19px;
 }
 @-moz-document url-prefix() {
-	.giant.super.button span { padding: 7px 15px 3px; } 
+	.giant.super.button span { padding: 4px 15px 7px; } 
 }
 .small.super.button {
 	font-size: 11px;
@@ -446,7 +465,7 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 .small.super.button span {
 	padding: 4px 12px 6px;
 	-webkit-border-radius: 11px;
-	-moz-border-radius: 11px;
+	   -moz-border-radius: 11px;
 }
 .small.white.super.button span { padding: 3px 12px 5px }
 @-moz-document url-prefix() {
@@ -455,11 +474,11 @@ button::-moz-focus-inner { border: 0; padding: 0; }
 .large.super.button {
 	background-position: left bottom;
 	-webkit-border-radius: 18px;
-	-moz-border-radius: 18px;
+	   -moz-border-radius: 18px;
 }
 .large.super.button span {
 	font-size: 14px;
 	padding: 7px 20px 9px;
 	-webkit-border-radius: 17px;
-	-moz-border-radius: 17px;
+	   -moz-border-radius: 17px;
 }

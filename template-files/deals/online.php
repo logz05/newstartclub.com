@@ -131,17 +131,17 @@ body {
 </style>
 </head>
 	<body>
-		{related_entries id="deal_location"}
+		{exp:playa:children field="deal_location"}
 		<header class="header-bar">
 			<div class="deal-instructions">
 				<a href="http://{location_website}" class="close" title="Remove frame">&times;</a>
-				<h1>Your coupon code has been copied to the clipboard. When you check out on the store's website, paste the code in the promo code field.</h1>
+				<h1>Your coupon code has been copied to the clipboard. When you check out on the store&rsquo;s website, paste the code in the promo code field.</h1>
 				<p>To paste, right click for the edit menu. For the PC keyboard shortcut, use Ctrl + V. On a Mac, use Cmd + V.</p>
 			</div>
 		</header>
 		<div id="loading"></div>
 		<iframe class="preview-frame" src="http://{location_website}" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
-		{/related_entries}
+		{/exp:playa:children}
 	{/exp:channel:entries}
 <script src="/assets/js/spin.min.js"></script>
 <script type="text/javascript">

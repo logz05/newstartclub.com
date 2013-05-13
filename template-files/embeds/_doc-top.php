@@ -8,6 +8,9 @@
 	<meta charset="UTF-8">
 <!-- 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
 	<title>{if embed:title}{embed:title} | {site_name}{if:else}{site_name}{/if}</title>
+	
+	<link rel="shortcut icon" type="image/png" href="{site_url}/favicon.ico" />
+	
 	<![if !IEMobile]>
 	<meta name="viewport" content="width=860" />
 	<![endif]>
@@ -16,12 +19,13 @@
 	{if embed:meta}{embed:meta}{/if}
 	<meta property="fb:admins" content="696875904" />
 	
-	{if segment_1 == "news"                              }<link rel="alternate" type="application/rss+xml" title="{site_name} News"      href="{path='news/rss'}" />{/if}
+	{if segment_1 == "news"                              }<link rel="alternate" type="application/rss+xml" title="{site_name} Blog"      href="{path='blog/rss'}" />{/if}
 	{if segment_1 == "faq" && segment_2 != "detail"      }<link rel="alternate" type="application/rss+xml" title="{site_name} FAQ"       href="{path='faq/rss' }" />{/if}
 	{if segment_1 == "resources" && segment_2 != "detail"}<link rel="alternate" type="application/rss+xml" title="{site_name} Resources" href="resources/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}" />{/if}
 	{if segment_1 == "events" && segment_2 != "detail"   }<link rel="alternate" type="application/rss+xml" title="{site_name} Events"    href="events/rss{if segment_2}/{segment_2}{/if}{if segment_3}/{segment_3}{/if}{if segment_4}/{segment_4}{/if}" />{/if}
 
 	<link rel="stylesheet" href="{stylesheet='site/default'    }" type="text/css" />
+	<link rel="stylesheet" href="{stylesheet='site/boilerplate'}" type="text/css" />
 	<link rel="stylesheet" href="{stylesheet='site/icons'      }" type="text/css" />
 {if embed:add}
 	<?php 

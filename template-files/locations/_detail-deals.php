@@ -3,6 +3,6 @@
 		<p><em>No active deals.</em></p>
 	{/if}
 	<p class="button-wrap">
-		<a href="/deals/sponsor/{segment_3}" class="super small secondary button"><span>View Deals</span></a>
+		<a href="/deals/sponsor/{segment_3}" class="super  small  green  button"><span>View Deals</span></a>
 	</p>
 {/exp:channel:entries}

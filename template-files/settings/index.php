@@ -49,6 +49,7 @@
 					<h2 class="first">Subjects you are interested in:</h2>
 					<div class="grid12-23 clearfix">
 						<div class="left">
+							<h3>Physical health:</h3>
 							<ul>
 							{categories group_id="14" orderby="category_order"}{category_selected} checked="checked"{/category_selected}
 							{category_body}<li><label><input type="checkbox" class="input checkbox" name="category[]" value="{category_id}"{selected} /><span>{category_description}</span></label></li>
@@ -165,7 +166,8 @@
 {sn_footer}
 {sn_scripts}
 
-<script src="{site_url}/assets/js/jquery.validate.min.js"></script>
+<!-- <script src="{site_url}/assets/js/jquery.validate.min.js"></script> -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script src="{site_url}/assets/js/member-settings.js"></script>
 
 <script src="{site_url}/assets/js/jquery-ui-autocomplete.js"></script>

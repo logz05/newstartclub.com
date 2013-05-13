@@ -53,9 +53,9 @@
 						<h2>Press Kit</h2>
 						
 						<ul>
-							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club-jpg.zip">{site_name} Logo (JPG)</a></li>
-							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club-ai.zip">{site_name} Logo (AI)</a></li>
-							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club-eps.zip">{site_name} Logo (EPS)</a></li>
+							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club_Color-jpg.zip">{site_name} Logo (JPG)</a> CMYK - For use with print</li>
+							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club_Color-png.zip">{site_name} Logo (PNG)</a> RGB - For use on screen</li>
+							<li><a href="{site_url}/downloads/sponsor-resources/logos/NS-Lifestyle-Club_Color-eps.zip">{site_name} Logo (EPS)</a></li>
 						</ul>
 						
 					</section>
@@ -68,14 +68,14 @@
 							<li><h3>Print</h3>
 							
 								<ul>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-brochures/">Club Brochure</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-brochures/ --><a href="{path='store-maintenance'}">Club Brochure</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/common-files/Door-Survey.pdf">Door Survey</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/common-files/Interest-Form-2UP.pdf">Interest Form</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-business-cards/">Business Cards</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-door-hangers/">Door Hangers</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-postcards/">Postcards</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-flyers/">Flyers</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-lifestyle-club-posters/">Posters</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-business-cards/ --><a href="{path='store-maintenance'}">Business Cards</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-door-hangers/ --><a href="{path='store-maintenance'}">Door Hangers</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-postcards/ --><a href="{path='store-maintenance'}">Postcards</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-flyers/ --><a href="{path='store-maintenance'}">Flyers</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-lifestyle-club-posters/ --><a href="{path='store-maintenance'}">Posters</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/common-files/t-shirt-mockup-white.jpg">T-shirt Template</a></li>
 									<li><a href="http://www.adventising.com/newstart/">Vehicle Window Decal (www.NEWSTARTClub.com)</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/common-files/BannerStand-M2.pdf">Banner (33.65&rdquo; x 94.88&rdquo;)</a></li>
@@ -149,21 +149,21 @@
 						
 							<li><h3>Promotion</h3>
 								<ul>
-									<li><a href="http://www.newstart.com/store/newstart-health-expo-invitation-flyers/">Invitation Flyer</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-health-expo-invitation-banner/">Invitation Banner</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-health-expo-invitation-flyers/ --><a href="{path='store-maintenance'}">Invitation Flyer</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-health-expo-invitation-banner/ --><a href="{path='store-maintenance'}">Invitation Banner</a></li>
 								</ul>
 							</li>
 							
 							<li><h3>Station Banners</h3>
 								<ul>
-									<li><a href="http://www.newstart.com/store/newstart-health-expo-banners-english/">English</a></li>
-									<li><a href="http://www.newstart.com/store/newstart-health-expo-banners-spanish/">Spanish</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-health-expo-banners-english/ --><a href="{path='store-maintenance'}">English</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-health-expo-banners-spanish/ --><a href="{path='store-maintenance'}">Spanish</a></li>
 								</ul>
 							</li>
 							
 							<li><h3>Station Forms, Instructions, Signs and Handouts</h3>
 								<ul>
-									<li><a href="http://www.newstart.com/store/newstart-health-expo-personal-health-records/">Personal Health Records</a></li>
+									<li><!-- http://www.newstart.com/store/newstart-health-expo-personal-health-records/ --><a href="{path='store-maintenance'}">Personal Health Records</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/expo-files/Childrens-Activities.zip">Children&rsquo;s Activities</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/expo-files/01-Welcome.zip">Welcome</a></li>
 									<li><a href="{site_url}/downloads/sponsor-resources/expo-files/02-Sunlight.zip">Sunlight</a></li>
@@ -195,7 +195,7 @@
 							</li>
 							<li><h3>Lectures</h3>
 								<ul>
-									<li><a href="http://www.newstart.com/store/category/reversing-disease/">Reversing Disease Seminars DVD Series</a></li>
+									<li><!-- http://www.newstart.com/store/category/reversing-disease/ --><a href="{path='store-maintenance'}">Reversing Disease Seminars DVD Series</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -215,7 +215,7 @@
 							</li>
 							<li><h3>Lectures</h3>
 								<ul>
-									<li><a href="http://www.newstart.com/store/the-newstart-lifestyle/">The NEWSTART Lifestyle DVD Series</a></li>
+									<li><!-- http://www.newstart.com/store/the-newstart-lifestyle/ --><a href="{path='store-maintenance'}">The NEWSTART Lifestyle DVD Series</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -368,6 +368,13 @@
 								<h3>
 									Resources</h3>
 								<ul>
+									<li>
+										Disciples Interest Tracking Software
+										<ul>
+											<li>
+												<a href="http://www.getdisciples.com">www.getdisciples.com</a></li>
+										</ul>
+									</li>
 									<li>
 										<span class="caps">NAD</span> Health Ministries
 										<ul>
@@ -526,10 +533,7 @@
 				
 				<header class="bar">Need Help?</header>
 				
-				<p>NEWSTART&reg; Global medical missionaries are available to help you with your health outreach.</p>
-				
-				<p>Phone: 530-422-7993<br>
-					Email: <a href="mailto:club@newstart.com"></a><a href="mailto:club@newstart.com">club@newstart.com</a></p>
+				<p>NEWSTART&reg; Global media missionaries are available to help you get started. Call 530-422-7993 or visit <a href="http://newstartglobal.com">newstartglobal.com</a> for more details.</p>
 				
 			</div>
 			

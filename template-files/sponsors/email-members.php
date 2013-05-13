@@ -13,7 +13,10 @@
 </head>
 
 {preload_replace:pr_sponsor_type="{exp:user:stats dynamic='off'}{exp:channel:entries channel='locations' category='{member_sponsor_id}'}{location_type}{/exp:channel:entries}{/exp:user:stats}"}
-{preload_replace:pr_sponsor_zip="{exp:user:stats dynamic='off'}{exp:channel:entries channel='locations' category='{member_sponsor_id}'}{location_zip}{/exp:channel:entries}{/exp:user:stats}"}
+
+{preload_replace:pr_sponsor_city="{exp:user:stats dynamic='off'}{exp:channel:entries channel='locations' category='{member_sponsor_id}'}{location_city}{/exp:channel:entries}{/exp:user:stats}"}
+{preload_replace:pr_sponsor_state="{exp:user:stats dynamic='off'}{exp:channel:entries channel='locations' category='{member_sponsor_id}'}{location_state}{/exp:channel:entries}{/exp:user:stats}"}
+
 {preload_replace:pr_sponsor_id="{exp:user:stats dynamic='off'}{member_sponsor_id}{/exp:user:stats}"}
 
 <body>
@@ -46,7 +49,7 @@
 			</ul>
 		{/if}
 
-	{embed="sponsors/_members-list" sponsor_number="{pr_sponsor_id}" sponsor_zipcode="{pr_sponsor_zip}"}
+	{embed="sponsors/_members-list" sponsor_id="{pr_sponsor_id}" sponsor_city="{pr_sponsor_city}" sponsor_state="{pr_sponsor_state}"}
 
 	</div><!-- /body -->
 

@@ -215,6 +215,7 @@ function member_ages($rangeLow, $rangeHigh)
 	class="stats"
 	title="Site Statistics"
 }
+<script src="{site_url}/assets/js/bootstrap-tab.js"></script>
 <div class="heading">
 	<h1 data-icon="w">Site Statistics</h1>
 </div>
@@ -226,15 +227,15 @@ function member_ages($rangeLow, $rangeHigh)
 			{/exp:query}
 		</span>
 		<div class="post">
-			<p>{exp:query sql="SELECT CONCAT(m_field_id_1, ' ', m_field_id_2) AS full_name, CONCAT(m_field_id_4, ', ', m_field_id_5) AS location FROM exp_member_data
+			<p>{exp:query sql="SELECT CONCAT(m_field_id_1, ' ', m_field_id_2) AS full_name, m_field_id_4, m_field_id_5, m_field_id_31 FROM exp_member_data
 						
 						INNER JOIN exp_members
 						ON exp_member_data.member_id = exp_members.member_id
 						
-						ORDER BY join_date DESC LIMIT 1"}Welcome our newest member, <strong>{full_name}</strong> from {location}!{/exp:query}</p>
+						ORDER BY join_date DESC LIMIT 1"}Welcome our newest member, <strong>{full_name}</strong> from {if m_field_id_4}{m_field_id_4}{/if}{if m_field_id_5}{if m_field_id_4}, {/if}{m_field_id_5}{/if}{if m_field_id_31}{if m_field_id_5}, {/if}{m_field_id_31}{/if}!{/exp:query}</p>
 			<ul>
 				<li>{exp:query sql="SELECT count(member_id) AS total FROM exp_members WHERE last_activity > (UNIX_TIMESTAMP()-2592000)"}In the last month <strong>{total} members have interacted with the site</strong>.{/exp:query}</li>
-				<li>The <strong>average health score</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_22),2) AS average_health_score FROM exp_member_data WHERE m_field_id_22 !='' AND m_field_id_22 > -1000"}<strong>{average_health_score}</strong>{/exp:query}.</li>
+				<li>The <strong>average health score</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_22),2) AS average_health_score FROM exp_member_data WHERE m_field_id_22 !='' AND m_field_id_22 > 0"}<strong>{average_health_score}</strong>{/exp:query}.</li>
 				<li>The <strong>average age</strong> of the members is {exp:query sql="SELECT ROUND(AVG(m_field_id_8)) AS average_age FROM exp_member_data WHERE m_field_id_8 !=''"}<strong>{average_age}</strong>{/exp:query} years old.</li>
 				<li>{exp:query sql="SELECT count(*) AS comments, (
 															SELECT count(DISTINCT email) AS total FROM exp_comments 
@@ -277,7 +278,7 @@ function member_ages($rangeLow, $rangeHigh)
 					GROUP BY location
 					ORDER BY total DESC, location ASC
 					LIMIT 100" backspace="1"}
-				["<?php echo ucwords(strtolower('{location}')); ?>", {total}],{/exp:query}
+				["{location}", {total}],{/exp:query}
 			]);
 	
 			var options = {
@@ -309,6 +310,8 @@ function member_ages($rangeLow, $rangeHigh)
 				SELECT m_field_id_5, COUNT(*) AS total FROM exp_member_data
 					WHERE m_field_id_5 != ''
 					AND m_field_id_5 != '--'
+					AND m_field_id_5 != 'n/a'
+					AND char_length(m_field_id_5) < 4 /* Using this to make sure we get only the state abbreivations and not the full names in the google chart */
 					
 					GROUP BY m_field_id_5
 					ORDER BY total DESC" backspace="1"}
@@ -319,11 +322,43 @@ function member_ages($rangeLow, $rangeHigh)
 				width: '530', height: '320',
 				region: 'US', 
 				resolution: 'provinces',
-				colorAxis: {colors: ['#EEEEEE', '#87a922', 'yellow', '#FF4B28']},
+				colorAxis: {colors: ['white', '#87a922', 'yellow', '#FF4B28']},
 				backgroundColor: 'transparent'
 			};
 	
 			var chart = new google.visualization.GeoChart(document.getElementById('member-map-states'));
+			chart.draw(data, options);
+		};
+		</script>
+		<script type="text/javascript">
+		 google.load('visualization', '1', {'packages': ['geochart']});
+		 google.setOnLoadCallback(drawMarkersMap);
+	
+			function drawMarkersMap() {
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'State');
+			data.addColumn('number', 'Members');
+			data.addRows([
+			{exp:query
+				sql="
+				SELECT m_field_id_31, COUNT(*) AS total FROM exp_member_data
+					WHERE m_field_id_31 != ''
+					AND m_field_id_31 != '--'
+					AND m_field_id_31 != 'USA'
+					
+					GROUP BY m_field_id_31
+					ORDER BY total DESC" backspace="1"}
+				["{m_field_id_31}", {total}],{/exp:query}
+			]);
+	
+			var options = {
+				width: '490', height: '320',
+				region: 'world',
+				colorAxis: {colors: ['white', '#87a922', 'yellow', '#FF4B28']},
+				backgroundColor: 'transparent'
+			};
+	
+			var chart = new google.visualization.GeoChart(document.getElementById('member-map-countries'));
 			chart.draw(data, options);
 		};
 		</script>
@@ -356,37 +391,54 @@ function member_ages($rangeLow, $rangeHigh)
 			]);
 	
 			var options = {
-				width: '530', height: '320',
-				region: 'US', 
-				resolution: 'provinces',
+				width: '490', height: '320',
+				region: 'world',
 				displayMode: 'markers', 
 				colorAxis: {colors: ['#87a922', 'yellow', '#FF4B28']},
 				backgroundColor: 'transparent',
 				magnifyingGlass: {enable: true, zoomFactor: 12},
-				sizeAxis: {minValue: 0,  maxSize: 18}
+				sizeAxis: {minValue: 0,  maxSize: 10}
 			};
 	
-			var chart = new google.visualization.GeoChart(document.getElementById('top-members'));
+			var chart = new google.visualization.GeoChart(document.getElementById('recent-members'));
 			chart.draw(data, options);
 		};
 		</script>
 		
-		<dl class="tabs">
-			<dd><a class="default" rel="current">Top Cities</a></dd>
-			<dd><a rel="states">Top States</a></dd>
-			<dd><a rel="members">Top Members</a></dd>
-		</dl>
-		<ul class="tabs-content">
-			<li id="current">
-				<div id="member-map-cities"></div>
+		
+		
+		<ul class="nav-tabs">
+			<li class="active">
+				<a href="#cities-pane" data-toggle="tab">Top Cities</a>
 			</li>
-			<li id="states">
-				<div id="member-map-states"></div>
+			<li>
+				<a href="#states-pane" data-toggle="tab">Top States</a>
 			</li>
-			<li id="members">
-				<div id="top-members"></div>
+			<li>
+				<a href="#countries-pane" data-toggle="tab">Top Countries</a>
+			</li>
+			<li>
+				<a href="#recent-pane" data-toggle="tab">Recent Members</a>
 			</li>
 		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" id="cities-pane">
+				<div id="member-map-cities"></div>
+			</div>
+			<div class="tab-pane" id="states-pane">
+				<div id="member-map-states"></div>
+			</div>
+			<div class="tab-pane" id="countries-pane">
+				<div id="member-map-countries"></div>
+			</div>
+			<div class="tab-pane" id="recent-pane">
+				<div id="recent-members"></div>
+			</div>
+		</div>
+		
+		
+		
+		
 		<h2>Monthly Activity</h2>
 		<div class="clearfix">
 			<div id="member-history" class="module left">
@@ -682,7 +734,7 @@ function member_ages($rangeLow, $rangeHigh)
 		</div>
 		
 		<div class="locations">
-			<h1>{exp:query sql="SELECT COUNT(*) AS total FROM exp_channel_titles WHERE exp_channel_titles.channel_id = 3"}{total}{/exp:query} Total Locations</h1>
+			<h1>{exp:query sql="SELECT COUNT(*) AS total FROM exp_channel_titles WHERE exp_channel_titles.channel_id = 3"}{total}{/exp:query} Total Sponsors</h1>
 			
 			<script type="text/javascript">
 			 google.load('visualization', '1', {'packages': ['geochart']});
@@ -691,41 +743,46 @@ function member_ages($rangeLow, $rangeHigh)
 				function drawMarkersMap() {
 				var data = google.visualization.arrayToDataTable([
 					['Sponsor Name',	'Location', 'Members'],
-				{exp:channel:entries channel="locations" sort="asc"}
+				{exp:channel:entries channel="locations" sort="asc" limit="200"}
 					{exp:query
 						sql="
-							SELECT count(member_id) AS total FROM (
-								SELECT exp_member_data.member_id AS member_id
+							SELECT count(member_id) AS total FROM (	
+	
+									SELECT 
+										exp_member_data.member_id
+										
 									FROM exp_member_data
+										
+										INNER JOIN exp_members
+										ON exp_member_data.member_id = exp_members.member_id
+										
+										INNER JOIN exp_channel_titles
+										ON exp_member_data.member_id = exp_channel_titles.author_id
+										
+										INNER JOIN exp_playa_relationships
+										ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+										
+										INNER JOIN exp_category_posts
+										ON exp_playa_relationships.child_entry_id = exp_category_posts.entry_id
+										
+									WHERE exp_channel_titles.channel_id = 10
+									AND exp_category_posts.cat_id = {categories}{category_id}{/categories}
+														
+								UNION DISTINCT
+														
+									SELECT 
+										exp_member_data.member_id
 								
-											INNER JOIN exp_category_posts
-											ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
-								
-										WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_relations.member_id AS member_id
-										FROM member_relations
-								
-												LEFT JOIN exp_category_posts
-												ON exp_category_posts.entry_id = member_relations.related_id
-								
-											WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_id
-										FROM exp_member_data
-											WHERE m_field_id_26 = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_id
-										FROM exp_member_data
-											WHERE m_field_id_7 = {location_zip}
+									FROM exp_member_data
+										
+										JOIN exp_members
+										ON exp_members.member_id = exp_member_data.member_id
+										
+									WHERE exp_member_data.m_field_id_26 = {categories}{category_id}{/categories}
+									OR (exp_member_data.m_field_id_4 = '{location_city}' AND exp_member_data.m_field_id_5 = '{location_state}')
+									
 							) a" limit="1"}
-						['{title}', '{location_city}, {location_state}', {total}],{/exp:query}{/exp:channel:entries}
+						['{location_city}, {location_state} {location_zip}', '{title}', {total}],{/exp:query}{/exp:channel:entries}
 				]);
 		
 				var options = {
@@ -733,10 +790,10 @@ function member_ages($rangeLow, $rangeHigh)
 					region: 'US', 
 					resolution: 'provinces',
 					displayMode: 'markers', 
-					colorAxis: {colors: ['#FF4B28', '#FF4B28']},
-					sizeAxis: {minValue: 0,  maxSize: 3},
+					colorAxis: {colors: ['#87a922', 'yellow', '#FF4B28']},
+					sizeAxis: {minSize: 5, maxSize: 12},
 					backgroundColor: 'transparent',
-					magnifyingGlass: {enable: true, zoomFactor: 12}
+					magnifyingGlass: {enable: true, zoomFactor: 8}
 				};
 		
 				var chart = new google.visualization.GeoChart(document.getElementById('location-map-cities'));
@@ -744,69 +801,136 @@ function member_ages($rangeLow, $rangeHigh)
 			};
 			</script>
 			
-			<dl class="tabs">
-				<dd><a class="default" rel="location-cities">Top Cities</a></dd>
-				<dd><a rel="location-states">Top States</a></dd>
-			</dl>
-			<ul class="tabs-content">
-				<li id="location-cities">
-					<div id="location-map-cities"></div>
+			<script type="text/javascript">
+			 google.load('visualization', '1', {'packages': ['geochart']});
+			 google.setOnLoadCallback(drawMarkersMap);
+		
+				function drawMarkersMap() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'State');
+				data.addColumn('number', 'Sponsors');
+				data.addRows([
+				{exp:query
+					sql="
+					SELECT field_id_17 AS location, COUNT(*) AS total 
+	
+					FROM `exp_channel_data`
+				
+					WHERE channel_id = 3
+					
+					GROUP BY location
+					ORDER BY total DESC" backspace="1"}
+					["{location}", {total}],{/exp:query}
+				]);
+		
+				var options = {
+					width: '530', height: '320',
+					region: 'US', 
+					resolution: 'provinces',
+					colorAxis: {colors: ['white', '#87a922', 'yellow', '#FF4B28']},
+					backgroundColor: 'transparent'
+				};
+		
+				var chart = new google.visualization.GeoChart(document.getElementById('location-map-states'));
+				chart.draw(data, options);
+			};
+			</script>
+			
+			
+			
+			<ul class="nav-tabs">
+				<li class="active">
+					<a href="#location-cities" data-toggle="tab">Top Cities</a>
 				</li>
-				<li id="location-states">
-					<div id="location-map-states"></div>
+				<li>
+					<a href="#location-states" data-toggle="tab">Top States</a>
 				</li>
 			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="location-cities">
+					<div id="location-map-cities"></div>
+				</div>
+				<div class="tab-pane" id="location-states">
+					<div id="location-map-states"></div>
+				</div>
+			</div>
 			
-			<table>
-				<thead>
-					<tr>
-						<td>Sponsor #</td>
-						<td>Location Name</td>
-						<td>Total Members</td>
-					</tr>
-				</thead>
-				{exp:channel:entries channel="locations" sort="asc"}
+			<script type="text/javascript">
+				google.load('visualization', '1', {packages: ['table']});
+				function drawVisualization() {
+					// Create and populate the data table.
+					var data = google.visualization.arrayToDataTable([
+						['#', 'Sponsor', 'Members'],
+						{exp:channel:entries channel="locations" sort="asc" limit="200" location_type="profit"}
 					{exp:query
 						sql="
-							SELECT count(member_id) AS total FROM (
-								SELECT exp_member_data.member_id AS member_id
+							SELECT count(member_id) AS total FROM (	
+	
+									SELECT 
+										exp_member_data.member_id
+										
 									FROM exp_member_data
+										
+										INNER JOIN exp_members
+										ON exp_member_data.member_id = exp_members.member_id
+										
+										INNER JOIN exp_channel_titles
+										ON exp_member_data.member_id = exp_channel_titles.author_id
+										
+										INNER JOIN exp_playa_relationships
+										ON exp_channel_titles.entry_id = exp_playa_relationships.parent_entry_id
+										
+										INNER JOIN exp_category_posts
+										ON exp_playa_relationships.child_entry_id = exp_category_posts.entry_id
+										
+									WHERE exp_channel_titles.channel_id = 10
+									AND exp_category_posts.cat_id = {categories show_group='24'}{category_id}{/categories}
+														
+								UNION DISTINCT
+														
+									SELECT 
+										exp_member_data.member_id
 								
-											INNER JOIN exp_category_posts
-											ON exp_category_posts.cat_id = exp_member_data.m_field_id_26
-								
-										WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_relations.member_id AS member_id
-										FROM member_relations
-								
-												LEFT JOIN exp_category_posts
-												ON exp_category_posts.entry_id = member_relations.related_id
-								
-											WHERE exp_category_posts.cat_id = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_id
-										FROM exp_member_data
-											WHERE m_field_id_26 = {categories}{category_id}{/categories}
-								
-									UNION DISTINCT
-								
-										SELECT member_id
-										FROM exp_member_data
-											WHERE m_field_id_7 = {location_zip}
-							) a" limit="1"}
-						<tr class="{switch='odd|even'}">
-							<td>{categories}{category_id}{/categories}</td>
-							<td><a href="{url_title_path='locations/detail'}">{title}</a></td>
-							<td class="total">{total}</td>
-						</tr>
+									FROM exp_member_data
+										
+										JOIN exp_members
+										ON exp_members.member_id = exp_member_data.member_id
+										
+									WHERE exp_member_data.m_field_id_26 = {categories show_group='24'}{category_id}{/categories}
+									OR (exp_member_data.m_field_id_4 = '{location_city}' AND exp_member_data.m_field_id_5 = '{location_state}')
+									
+							) a" limit="1" backspace="1"}['{categories show_group="24"}{category_id}{/categories}', '<a href="{url_title_path=locations/detail}" title="View {title}&rsquo;s detail page.">{title}</a>', {total}],
 					{/exp:query}
-				{/exp:channel:entries}
-			</table>
+					{/exp:channel:entries}
+					]);
+				
+					// Create and draw the visualization.
+					var table = new google.visualization.Table(document.getElementById('sponsors-data-table'));
+				
+					var formatter = new google.visualization.TableBarFormat({
+						width: 120,
+						colorPositive: 'red'
+					});
+					formatter.format(data, 2); // Apply formatter to second column
+					
+					var tableOpts = {
+						 allowHtml: true,
+						 showRowNumber: false,
+						 page: 'enable',
+						 pageSize: 10,
+						 pagingSymbols: {prev: 'prev', next: 'next'},
+						 sortColumn: 2,
+						 sortAscending: false
+					};
+				
+					table.draw(data, tableOpts);
+				}
+				
+				google.setOnLoadCallback(drawVisualization);
+			</script>
+			
+			<div id="sponsors-data-table"></div>
+			
 		</div>
 		
 	{exp:channel:entries channel="events" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
@@ -830,6 +954,28 @@ function member_ages($rangeLow, $rangeHigh)
 		</table>
 		{/if}
 	{/exp:channel:entries}
+	
+	{exp:channel:entries channel="deals" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
+		{if count == 1}
+		<h2>Deals</h2>
+		<table class="deals">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Deal Name</td>
+					<td>Clicks</td>
+				</tr>
+			</thead>
+		{/if}
+			<tr class="{switch='odd|even'}">
+				<td>{entry_id}</td>
+				<td><a href="{url_title_path='deals/detail'}">{title}</a></td>
+				<td class="total">{exp:playa:total_parents}</td>
+			</tr>
+		{if count == total_results}
+		</table>
+		{/if}
+	{/exp:channel:entries}
 		
 		
 		<h2>Pages Shared on Facebook</h2>
@@ -839,7 +985,7 @@ function member_ages($rangeLow, $rangeHigh)
 		
 	</div>
 	<div class="sidebar right">
-		<header class="bar">Super Admin</header>
+		<header class="bar">Site Statistics</header>
 			
 			<h2>Top 10 Cities</h2>
 			<ul>
@@ -870,6 +1016,21 @@ function member_ages($rangeLow, $rangeHigh)
 					LIMIT 10 
 				" limit="10"}
 					<li><a href="http://maps.google.com/maps?q={m_field_id_5}" title="Google map of {m_field_id_5}" target="_blank">{m_field_id_5} (&nbsp;{total}&nbsp;)</a></li>
+				{/exp:query}
+			</ul>
+			<h2>Top 10 Countries</h2>
+			<ul>
+				{exp:query sql="
+					SELECT m_field_id_31, COUNT(*) AS total FROM exp_member_data
+					WHERE m_field_id_31 != ''
+					AND m_field_id_31 != '--'
+					AND m_field_id_31 != 'USA'
+					
+					GROUP BY m_field_id_31
+					ORDER BY total DESC
+					
+					LIMIT 10"}
+					<li><a href="http://maps.google.com/maps?q={m_field_id_31}" title="Google map of {m_field_id_31}" target="_blank">{m_field_id_31} (&nbsp;{total}&nbsp;)</a></li>
 				{/exp:query}
 			</ul>
 			<h2>Newsletters</h2>

@@ -47,7 +47,10 @@
 				<section class="section">
 			{/if}
 			
-			<header class="bar"><a href="{url_title_path='services/detail'}">{title}</a></header>
+			<header class="bar"><a href="{url_title_path='services/detail'}">{title}{if service_credentials}, {service_credentials}{/if}</a></header>
+			<figure class="figure  figure--small  left">
+				<a href="{url_title_path='services/detail'}">{exp:ce_img:single src="{service_image}" max_width="64" max_height="64" crop="yes" attributes='alt="{title}" title="{title}"'}</a>
+			</figure>
 			{service_bio}
 			<p><a href="{url_title_path='questions/partner'}">View questions by {title}</a></p>
 			

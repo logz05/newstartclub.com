@@ -1,4 +1,4 @@
-{exp:channel:entries channel="recipes" limit="12" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="no" cache="yes" refresh="10" {if embed:category}category="{segment_3_category_id}"{/if}}
+{exp:channel:entries channel="recipes" limit="20" orderby="{embed:orderby}" sort="{embed:sort}" paginate="bottom" dynamic="no" cache="yes" refresh="10" {if embed:category}category="{segment_3_category_id}"{/if}}
 
 	{if no_results}
 		<p>We could not find any resources at <strong><code>{segment_2}/{segment_3}</code></strong>.</p>
@@ -6,10 +6,25 @@
 	{/if}
 	
 	{if count == 1}
-		<ul class="post-list">
+		<ul class="entry-grid  two-wide  clearfix">
 	{/if}
 	
-			<li class="clearfix">
+			<li class="media  {switch='one|two'}">
+				
+				<figure class="figure  figure__grid">
+				
+					<a href="{url_title_path='recipes/detail'}">
+						{exp:ce_img:single src="{recipe_image}" max_width="210" max_height="210" crop="yes" attributes='alt="View {title}" title="View {title}"'}
+					</a>
+					
+					<figcaption class="title">
+						{embed="embeds/_post-actions" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}
+						<a class="head" href="{url_title_path='recipes/detail'}" title="View Recipe">{title}</a>
+					</figcaption>
+					
+				</figure>
+				
+				{!--
 				
 				{embed="embeds/_post-actions" channel_id="{channel_id}" entry_id="{entry_id}" title="{title}"}
 				
@@ -17,7 +32,7 @@
 					<a href="{url_title_path='recipes/detail'}">{title}</a>
 				</h2>
 				
-				<figure class="post__figure  figure">
+				<figure class="figure  post__figure">
 					{if recipe_image}
 						<a href="{url_title_path='recipes/detail'}">
 							{if recipe_video}<span class="play"><i></i></span>{/if}
@@ -45,13 +60,15 @@
 						{categories show_group="not 22"}
 							{if category_group == "39"}<li><a href="{site_url}/recipes/type/{category_url_title}">{category_name}</a></li>{/if}
 							{if category_group == "42"}<li><a href="{site_url}/recipes/sensitivity/{category_url_title}">{category_name}</a></li>{/if}
-							{if category_group == "43"}<li><a href="{site_url}/recipes/ethnic/{category_url_title}">{category_name}</a></li>{/if}
+							{if category_group == "43"}<li><a href="{site_url}/recipes/ethnicity/{category_url_title}">{category_name}</a></li>{/if}
 						{/categories}
 						{categories show_group="21"}
 							<li><a href="{site_url}/recipes/partner/{category_url_title}/">{category_name}</a></li>
 						{/categories}
 					</ul>
 				</div>
+				
+				--}
 				
 			</li>
 			

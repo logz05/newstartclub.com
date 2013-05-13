@@ -1,6 +1,9 @@
 {exp:channel:entries channel="events" sort="asc" orderby="date" show_future_entries="yes" limit="9" paginate="bottom" dynamic="no" {embed:parameters}}
 {if no_results}
-	<p>There are currently no upcoming events.</p>
+	<p>{segment_3_category_name} has no upcoming events.</p>
+	<div class="button-wrap">
+		<a href="{path='events'}" class="super green button"><span>View All Events</span></a>
+	</div>
 {/if}
 {if count == 1}
 	<ul class="listing">

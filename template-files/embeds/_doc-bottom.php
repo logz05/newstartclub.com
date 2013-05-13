@@ -5,8 +5,9 @@
 		<a href="{path='about/privacy-policy'}">Privacy Policy</a> |
 		<a href="{path='about/terms-of-use'}">Terms of Use</a> |
 		<a href="{path='locations'}">Locations</a> |
-		<a href="{path='news'}">Blog</a> |
-		<a href="http://newstart.com/store">Store</a>
+		<a href="{path='blog'}">Blog</a> |
+		<a href="{path='store-maintenance'}"><!-- http://newstart.com/store -->Store</a>
+		{if group_id == 1 || group_id == 6} | <a href="{path='stats'}">Stats</a>{/if}
 	</p>
 </footer>
 {embed="embeds/_signin-mini"}
@@ -83,17 +84,11 @@
 		$(".sidebar h2").children(".arrow").toggle();
 		$(".sidebar ul.filter-list").not(".filter-list.{segment_3}").hide();
 		$(".sidebar h2.{segment_3}").children(".arrow").toggle();
-		
-		//Toggle lists
-		$(".sidebar h2").click(function(){
-			$(this).next("ul").slideToggle(400)
-			$(this).children(".arrow").toggle()
-			return false;
-		});
 	
 	});
 	</script>
-{if:elseif segment_1 != "sponsors" && segment_2}
+{/if}
+{if (segment_2 <= "P0" && segment_2 >= "P9999") || segment_3}
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
@@ -101,18 +96,10 @@
 		$(".sidebar h2").children(".arrow").toggle();
 		$(".sidebar ul.filter-list").not(".filter-list.{segment_2}").hide();
 		$(".sidebar h2.{segment_2}").children(".arrow").toggle();
-		
-		//Toggle lists
-		$(".sidebar h2").click(function(){
-			$(this).next("ul").slideToggle(400)
-			$(this).children(".arrow").toggle()
-			return false;
-		});
 	
 	});
 	</script>
 {/if}
-
 
 {if segment_2 == "send-email"}
 	<script src="/ckeditor/ckeditor.js"></script>

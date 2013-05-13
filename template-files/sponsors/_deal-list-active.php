@@ -8,7 +8,13 @@
 {/if}
 
 {exp:channel:entries channel="deals" sort="desc" orderby="edit_date" paginate="bottom" limit="20" show_future_entries="yes" show_expired="no" category="{embed:sponsor_number}" dynamic="no" status="{embed:status}"}
-{if no_results}<p>You don&rsquo;t have any active deals. Click <a href="{path='sponsors/add-deal'}">here</a> to add a new deal.</p>{/if}
+
+{if no_results}
+	<p>You don&rsquo;t have any active deals.</p>
+	<div class="button-wrap">
+		<a href="{path='sponsors/add-deal'}" class="super green button"><span>Add New Deal</span></a>
+	</div>
+{/if}
 
 {if count == 1}
 	<ul class="listing entries">

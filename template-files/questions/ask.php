@@ -17,7 +17,7 @@
 	{exp:user:stats dynamic="off"}
 	{exp:freeform:form
 		form_id="4"
-		required="ff_first_name|ff_last_name|ff_sender_email"
+		required="ff_first_name|ff_last_name|ff_sender_email|ff_message"
 		return="questions/sent/{segment_3}"
 		user_email_field="ff_sender_email"
 		recipient_user_input="yes"
@@ -25,7 +25,7 @@
 	}
 		<table>
 			<tr>
-				<th scope="row"><label for="ff_first_name">First Name</label></th>
+				<th scope="row"><label for="ff_first_name" class="req">First Name</label></th>
 				<td>
 					{exp:user:stats dynamic="off"}
 						<input type="text" class="input" name="ff_first_name" id="ff_first_name" value="{member_first_name}" size="20" />
@@ -33,7 +33,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="ff_last_name">Last Name</label></th>
+				<th scope="row"><label for="ff_last_name" class="req">Last Name</label></th>
 				<td>
 					{exp:user:stats dynamic="off"}
 						<input type="text" class="input" name="ff_last_name" id="ff_last_name" value="{member_last_name}" size="22" />
@@ -41,12 +41,12 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><label for="ff_sender_email">Email</label></th>
+				<th scope="row"><label for="ff_sender_email" class="req">Email</label></th>
 				<td>
 					{exp:user:stats dynamic="off"}
 						<input type="text" class="input" name="ff_sender_email" id="ff_sender_email" value="{email}" size="28" />
 					{/exp:user:stats}
-					<p class="instructions">The email that you would like to use for coorespondence.</p>
+					<p class="instructions">The email that you would like to use for correspondence.</p>
 				</td>
 			</tr>
 			<tr>

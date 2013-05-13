@@ -57,6 +57,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -70,44 +71,9 @@ function listMembers($name = "all") {
 					ON exp_members.member_id = exp_member_data.member_id
 					
 					WHERE exp_user_category_posts.cat_id = {segment_4}
-						AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
-				
-			UNION DISTINCT
-			
-				SELECT DISTINCT
-					exp_member_data.member_id,
-					exp_member_data.m_field_id_1 AS first_name,
-					exp_member_data.m_field_id_2 AS last_name,
-					exp_member_data.m_field_id_3 AS address,
-					exp_member_data.m_field_id_4 AS city,
-					exp_member_data.m_field_id_5 AS state,
-					exp_member_data.m_field_id_6 AS zip_code,
-					exp_member_data.m_field_id_7 AS phone_number,
-					exp_member_data.m_field_id_22 AS health_score,
-					exp_member_data.m_field_id_23 AS score_history,
-					exp_members.username,
-					exp_members.join_date
-					
-				FROM exp_members
-					INNER JOIN member_relations
-					ON exp_members.member_id = member_relations.member_id
-					
-					INNER JOIN exp_user_category_posts
-					ON exp_members.member_id = exp_user_category_posts.member_id
-					
-					INNER JOIN exp_channel_titles
-					ON member_relations.related_id = exp_channel_titles.entry_id
-					
-					INNER JOIN exp_category_posts
-					ON exp_channel_titles.entry_id = exp_category_posts.entry_id
-					
-					JOIN exp_member_data
-					ON exp_member_data.member_id = exp_members.member_id
+						AND ( exp_member_data.m_field_id_26 = {embed:sponsor_id} OR (exp_member_data.m_field_id_4 = "{embed:sponsor_city}" AND exp_member_data.m_field_id_5 = "{embed:sponsor_state}") )
 						
-					WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-					AND exp_user_category_posts.cat_id = {segment_4}
-					
-					ORDER BY member_id DESC';
+					ORDER BY exp_member_data.member_id DESC';
 		break;
 		
 		case "more-info":
@@ -120,6 +86,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -133,44 +100,9 @@ function listMembers($name = "all") {
 					ON exp_members.member_id = exp_member_data.member_id
 					
 					WHERE exp_user_category_posts.cat_id = {segment_4}
-						AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
-				
-			UNION DISTINCT
-			
-				SELECT DISTINCT
-					exp_member_data.member_id,
-					exp_member_data.m_field_id_1 AS first_name,
-					exp_member_data.m_field_id_2 AS last_name,
-					exp_member_data.m_field_id_3 AS address,
-					exp_member_data.m_field_id_4 AS city,
-					exp_member_data.m_field_id_5 AS state,
-					exp_member_data.m_field_id_6 AS zip_code,
-					exp_member_data.m_field_id_7 AS phone_number,
-					exp_member_data.m_field_id_22 AS health_score,
-					exp_member_data.m_field_id_23 AS score_history,
-					exp_members.username,
-					exp_members.join_date
-					
-				FROM exp_members
-					INNER JOIN member_relations
-					ON exp_members.member_id = member_relations.member_id
-					
-					INNER JOIN exp_user_category_posts
-					ON exp_members.member_id = exp_user_category_posts.member_id
-					
-					INNER JOIN exp_channel_titles
-					ON member_relations.related_id = exp_channel_titles.entry_id
-					
-					INNER JOIN exp_category_posts
-					ON exp_channel_titles.entry_id = exp_category_posts.entry_id
-					
-					JOIN exp_member_data
-					ON exp_member_data.member_id = exp_members.member_id
+						AND ( exp_member_data.m_field_id_26 = {embed:sponsor_id} OR (exp_member_data.m_field_id_4 = "{embed:sponsor_city}" AND exp_member_data.m_field_id_5 = "{embed:sponsor_state}") )
 						
-					WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-					AND exp_user_category_posts.cat_id = {segment_4}
-					
-					ORDER BY member_id DESC';
+					ORDER BY exp_member_data.member_id DESC';
 		break;
 		
 		case "event":
@@ -183,6 +115,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -215,6 +148,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -247,6 +181,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -268,7 +203,7 @@ function listMembers($name = "all") {
 					ON exp_playa_relationships.child_entry_id = exp_category_posts.entry_id
 					
 				WHERE exp_channel_titles.channel_id = 10
-				AND exp_category_posts.cat_id = {embed:sponsor_number}
+				AND exp_category_posts.cat_id = {embed:sponsor_id}
 									
 			UNION DISTINCT
 									
@@ -280,6 +215,7 @@ function listMembers($name = "all") {
 					exp_member_data.m_field_id_4 AS city,
 					exp_member_data.m_field_id_5 AS state,
 					exp_member_data.m_field_id_6 AS zip_code,
+					exp_member_data.m_field_id_31 AS country,
 					exp_member_data.m_field_id_7 AS phone_number,
 					exp_member_data.m_field_id_22 AS health_score,
 					exp_member_data.m_field_id_23 AS score_history,
@@ -290,8 +226,8 @@ function listMembers($name = "all") {
 					
 					JOIN exp_members
 					ON exp_members.member_id = exp_member_data.member_id
-					WHERE exp_member_data.m_field_id_6 = {embed:sponsor_zipcode}
-					OR exp_member_data.m_field_id_26 = {embed:sponsor_number}
+					WHERE exp_member_data.m_field_id_26 = {embed:sponsor_id}
+					OR (exp_member_data.m_field_id_4 = "{embed:sponsor_city}" AND exp_member_data.m_field_id_5 = "{embed:sponsor_state}")
 											
 			ORDER BY member_id DESC';	
 			
@@ -318,11 +254,12 @@ function listMembers($name = "all") {
 			<li class="member--data">
 				<h2 class="member--name">'. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'</h2>
 				<div class="date">
-					<span class="timeago">'. distanceOfTimeInWords( $results[$i][11] , {current_time}, true) .'</span>
-					<span class="join-date">'. date( "D, M j, Y	 g:ia T", ( $results[$i][11] - 21600 ) ) .'</span>
+					<span class="timeago">'. distanceOfTimeInWords( $results[$i][12] , {current_time}, true) .'</span>
+					<span class="join-date">'. date( "D, M j, Y	 g:ia T", ( $results[$i][12] - 21600 ) ) .'</span>
 				</div>
-				<a href="{site_url}/sponsors/refer/'. $results[$i][0] .'/{embed:sponsor_number}" class="i  member--refer" data-icon="u" title="Refer '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .' to NEWSTART"></a>
+				<a href="{site_url}/sponsors/refer/'. $results[$i][0] .'/{embed:sponsor_id}" class="i  member--refer" data-icon="u" title="Refer '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .' to NEWSTART"></a>
 				<div class="details">
+					{if member_id == 1}<!-- Hi -->{/if}
 					<p>';
 					//Street Address
 					if ($results[$i][3])
@@ -343,22 +280,25 @@ function listMembers($name = "all") {
 					}
 					
 					//Zip Code
-					$buffer .= $results[$i][6] . '</p>';
+					$buffer .= $results[$i][6] . '<br />';
 					
-					if ($results[$i][7])
+					//Country
+					$buffer .= $results[$i][7] . '</p>';
+					
+					if ($results[$i][8])
 					{ 
-						$buffer .= '<p><strong>Phone:</strong> '. $results[$i][7] .'</p>';
+						$buffer .= '<p><strong>Phone:</strong> '. $results[$i][8] .'</p>';
 					}
 					
 					//Email
-					if ($results[$i][10])
+					if ($results[$i][11])
 					{ 
-						$buffer .= '<p><strong>Email:</strong> <a href="mailto:'. $results[$i][10] .'" title="Email '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'">'. $results[$i][10] .'</a></p>';
+						$buffer .= '<p><strong>Email:</strong> <a href="mailto:'. $results[$i][11] .'" title="Email '. ucwords(strtolower( $results[$i][1] )) .' '. ucwords(strtolower( $results[$i][2] )) .'">'. $results[$i][11] .'</a></p>';
 					}
 					
-					if ($results[$i][8])
+					if ($results[$i][9])
 					{
-						if ($scoreHistory = unserialize($results[$i][9])) {
+						if ($scoreHistory = unserialize($results[$i][10])) {
 						
 							//ksort($scoreHistory);
 						
@@ -390,21 +330,21 @@ function listMembers($name = "all") {
 
 		{if (segment_3 == 'interest' || segment_3 == 'more-info')}
 			{exp:channel:categories channel='sponsors' style='linear' show='{segment_4}'}
-				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&catname={category_url_title}&cat={segment_4}" title="Export CSV file of {category_name}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+				<a href="/lib/csv-export.php?number={embed:sponsor_id}&city={embed:sponsor_city}&state={embed:sponsor_state}&catname={category_url_title}&cat={segment_4}" title="Export CSV file of {category_name}" class="link-icon csv-file" data-icon="m">Export CSV</a>
 			{/exp:channel:categories}
 			
 		{if:elseif segment_3 == "event"}
 			{exp:channel:entries channel='events' entry_id='{segment_4}' limit='1' show_future_entries='yes' dynamic='off' status='open|closed'}
-				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+				<a href="/lib/csv-export.php?number={embed:sponsor_id}&city={embed:sponsor_city}&state={embed:sponsor_state}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
 			{/exp:channel:entries}
 			
 		{if:elseif segment_3 == "deal"}
 			{exp:channel:entries channel='deals' entry_id='{segment_4}' limit='1' show_future_entries='yes' dynamic='off' status='open'}
-				<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
+				<a href="/lib/csv-export.php?number={embed:sponsor_id}&city={embed:sponsor_city}&state={embed:sponsor_state}&entry_id={entry_id}&entry_name={url_title}" title="Export CSV file of {title}" class="link-icon csv-file" data-icon="m">Export CSV</a>
 			{/exp:channel:entries}
 			
 		{if:else}
-			<a href="/lib/members-list-csv.php?number={embed:sponsor_number}&zip={embed:sponsor_zipcode}&all" title="Export CSV file of this list" class="link-icon csv-file" data-icon="m">Export CSV</a>
+			<a href="/lib/csv-export.php?number={embed:sponsor_id}&city={embed:sponsor_city}&state={embed:sponsor_state}&all" title="Export CSV file of this list" class="link-icon csv-file" data-icon="m">Export CSV</a>
 		{/if}
 		
 		
@@ -414,10 +354,10 @@ function listMembers($name = "all") {
 				<h1>{exp:channel:categories channel="sponsors" style="linear" show="{segment_4}"}{category_name}{/exp:channel:categories} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
 				
 			{if:elseif segment_3 == 'event' && segment_4}
-				<h1>{exp:channel:entries channel="events" category="{embed:sponsor_number}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}{title}{/exp:channel:entries} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
+				<h1>{exp:channel:entries channel="events" category="{embed:sponsor_id}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open|closed"}{title}{/exp:channel:entries} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
 				
 			{if:elseif segment_3 == 'deal' && segment_4}
-				<h1>{exp:channel:entries channel="deals" category="{embed:sponsor_number}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open"}{title}{/exp:channel:entries} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
+				<h1>{exp:channel:entries channel="deals" category="{embed:sponsor_id}" entry_id="{segment_4}" limit="1" show_future_entries="yes" dynamic="no" status="open"}{title}{/exp:channel:entries} (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
 				
 			{if:else}
 				<h1>Member List (&nbsp;<?php print $memberData["member-count"]; ?>&nbsp;)</h1>
@@ -447,7 +387,7 @@ function listMembers($name = "all") {
 			<section class="section">
 				<header class="bar">Filter Members</header>
 			
-				{exp:channel:entries channel="deals" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
+				{exp:channel:entries channel="deals" category="{embed:sponsor_id}" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
 					{if count == 1}
 					<h2 class="filter-heading deal">Deals<span class="arrow up"></span><span class="arrow down"></span></h2>
 					<ul class="filter-list deal">
@@ -458,7 +398,7 @@ function listMembers($name = "all") {
 					{/if}
 				{/exp:channel:entries}
 				
-				{exp:channel:entries channel="events" category="{embed:sponsor_number}" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
+				{exp:channel:entries channel="events" category="{embed:sponsor_id}" show_future_entries="yes" dynamic="no" orderby="date" sort="asc" status="open"}
 					{if count == 1}
 					<h2 class="filter-heading event">Events<span class="arrow up"></span><span class="arrow down"></span></h2>
 					<ul class="filter-list event">
@@ -474,36 +414,19 @@ function listMembers($name = "all") {
 				{exp:channel:categories channel="sponsors" style="linear" category_group="14|15"}
 				{exp:query 
 				sql="SELECT count(member_id) AS total FROM (
-							SELECT exp_members.member_id
-									FROM exp_members
-										INNER JOIN exp_user_category_posts
-										ON exp_members.member_id = exp_user_category_posts.member_id
-										
-										INNER JOIN exp_member_data
-										ON exp_members.member_id = exp_member_data.member_id
-										
-										WHERE exp_user_category_posts.cat_id = {category_id}
-											AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} 
-											OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
-								
-							UNION DISTINCT
 							
-								SELECT exp_members.member_id
-									FROM exp_members
-										JOIN member_relations
-										ON exp_members.member_id = member_relations.member_id
-										
-										JOIN exp_user_category_posts
-										ON exp_members.member_id = exp_user_category_posts.member_id
-										
-										JOIN exp_channel_titles
-										ON member_relations.related_id = exp_channel_titles.entry_id
-										
-										JOIN exp_category_posts
-										ON exp_channel_titles.entry_id = exp_category_posts.entry_id
-										
-									WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-									AND exp_user_category_posts.cat_id = {category_id}
+							SELECT exp_members.member_id
+							
+							FROM exp_members
+								INNER JOIN exp_user_category_posts
+								ON exp_members.member_id = exp_user_category_posts.member_id
+								
+								INNER JOIN exp_member_data
+								ON exp_members.member_id = exp_member_data.member_id
+								
+							WHERE exp_user_category_posts.cat_id = {category_id}
+								AND ( exp_member_data.m_field_id_26 = {embed:sponsor_id} OR (exp_member_data.m_field_id_4 = '{embed:sponsor_city}' AND exp_member_data.m_field_id_5 = '{embed:sponsor_state}') )
+								
 						) a"}
 				<?php if ("{total}" != "0") { $interests[] = new Interest('{if segment_4 == category_id} class="active"{/if}', '{path=\'sponsors/email-members/interest/{category_id}\'}', '{category_name}', '{total}'); } ?>
 				{/exp:query}
@@ -524,36 +447,19 @@ function listMembers($name = "all") {
 				{exp:channel:categories channel="sponsors" style="linear" category_group="16"}
 				{exp:query 
 				sql="SELECT count(member_id) AS total FROM (
-							SELECT exp_members.member_id
-									FROM exp_members
-										INNER JOIN exp_user_category_posts
-										ON exp_members.member_id = exp_user_category_posts.member_id
-										
-										INNER JOIN exp_member_data
-										ON exp_members.member_id = exp_member_data.member_id
-										
-										WHERE exp_user_category_posts.cat_id = {category_id}
-											AND ( exp_member_data.m_field_id_26 = {embed:sponsor_number} 
-											OR exp_member_data.m_field_id_6 = {embed:sponsor_zipcode} )
-								
-							UNION DISTINCT
 							
-								SELECT exp_members.member_id
-									FROM exp_members
-										INNER JOIN member_relations
-										ON exp_members.member_id = member_relations.member_id
-										
-										INNER JOIN exp_user_category_posts
-										ON exp_members.member_id = exp_user_category_posts.member_id
-										
-										INNER JOIN exp_channel_titles
-										ON member_relations.related_id = exp_channel_titles.entry_id
-										
-										INNER JOIN exp_category_posts
-										ON exp_channel_titles.entry_id = exp_category_posts.entry_id
-										
-									WHERE exp_category_posts.cat_id = {embed:sponsor_number}
-									AND exp_user_category_posts.cat_id = {category_id}
+							SELECT exp_members.member_id
+							
+							FROM exp_members
+								INNER JOIN exp_user_category_posts
+								ON exp_members.member_id = exp_user_category_posts.member_id
+								
+								INNER JOIN exp_member_data
+								ON exp_members.member_id = exp_member_data.member_id
+								
+							WHERE exp_user_category_posts.cat_id = {category_id}
+								AND ( exp_member_data.m_field_id_26 = {embed:sponsor_id} OR (exp_member_data.m_field_id_4 = '{embed:sponsor_city}' AND exp_member_data.m_field_id_5 = '{embed:sponsor_state}') )
+								
 						) a"}
 						<?php if ("{total}" != "0") { $more_info[] = new Interest('{if segment_4 == category_id} class="active"{/if}', '{path=\'sponsors/email-members/more-info/{category_id}\'}', '{category_name}', '{total}'); } ?>
 					{/exp:query}

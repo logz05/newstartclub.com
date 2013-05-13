@@ -49,24 +49,31 @@
 
 				{exp:freeform:form
 					form_name="partner_application"
-					required="ff_first_name|ff_last_name"
+					required="ff_first_name|ff_last_name|partner_credentials|partner_specialty|ff_message|ff_affiliation|ff_image_upload|ff_country|ff_zip_code|ff_address|ff_phone"
 					return="partners/application-submitted"
 					form:class="js-load"
 					form:id="partner_register"
 				}
+					
+					<div class="post">
+						<p>Please complete the following information for the partnering individual and the business where the person practices. Once approved, a page will be created under the <a href="{path='services'}">Services</a> section of the NEWSTART&reg; Lifestyle Club website.</p>
+					</div>
+				
+					<h2>Partner Information</h2>
+				
 					<table>
 						{exp:user:stats dynamic="off"}
 						<tr>
-							<th scope="row" width="110"><label for="ff_first_name">First Name</label></th>
+							<th scope="row" width="110"><label for="ff_first_name" class="req">First Name</label></th>
 							<td><input type="text" class="input" name="ff_first_name" id="ff_first_name" value="{member_first_name}" size="20" /></td>
 						</tr>
 						<tr>
-							<th scope="row"><label for="ff_last_name">Last Name</label></th>
+							<th scope="row"><label for="ff_last_name" class="req">Last Name</label></th>
 							<td><input type="text" class="input" name="ff_last_name" id="ff_last_name" value="{member_last_name}" size="22" /></td>
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="partner_credentials">Credentials</label>
+								<label for="partner_credentials" class="req">Credentials</label>
 							</th>
 							<td>
 								<input type="text" name="partner_credentials" class="input" id="partner_credentials" size="8" value="" />
@@ -75,7 +82,7 @@
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="partner_specialty">Specialty</label>
+								<label for="partner_specialty" class="req">Specialty</label>
 							</th>
 							<td>
 								<input type="text" name="partner_specialty" class="input" id="partner_specialty" value="" size="23" value="" />
@@ -83,33 +90,41 @@
 						</tr>
 						<tr>
 							<th scope="row">
-								<label for="ff_message">Biography</label>
+								<label for="ff_message" class="req">Biography</label>
 							</th>
 							<td>
 								<textarea class="input" id="ff_message" name="ff_message" rows="5" cols="28" autocomplete="off"></textarea>
 							</td>
 						</tr>
+						
 						<tr>
 							<th scope="row">
-								<label for="ff_image_upload">Picture</label>
-								<div></div>
+								<label for="ff_affiliation" class="req">Local Church Affiliation</label>
 							</th>
 							<td>
-								{freeform:field:ff_image_upload} 
-								<p class="instructions">Accepted file types: .jpg, .png, .gif</p>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">
-								<label for="ff_address">Business Address</label>
-							</th>
-							<td>
-								<input type="text" name="ff_address" class="input" id="ff_address" size="32" value="" />
+								<input type="text" name="ff_affiliation" class="input" id="ff_affiliation" size="20" value="" />
 							</td>
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_country">Country</label></th>
+							<th scope="row">
+								<label for="ff_image_upload" class="req">Picture</label>
+								<div></div>
+							</th>
+							<td>
+								{freeform:field:ff_image_upload} 
+								<p class="instructions">Please provide a portrait image of yourself. Accepted file types: .jpg, .png, .gif</p>
+							</td>
+						</tr>
+						
+					</table>
+					
+					<h2>Contact Business</h2>
+					
+					<table>
+						
+						<tr>
+							<th scope="row" width="110"><label for="ff_country" class="req">Country</label></th>
 							<td>
 								<select name="ff_country" id="country_selector" class="input  ff_country" autocorrect="off" autocomplete="off" onblur="addressLookUp(this.form);">
 									<option value="US" data-alternative-spellings="US USA United States of America" data-relevancy-booster="3.5">United States</option>
@@ -367,7 +382,7 @@
 						</tr>
 						
 						<tr>
-							<th scope="row"><label for="ff_zip_code" class="req"><span class="req">* </span>Zip Code</label></th>
+							<th scope="row"><label for="ff_zip_code" class="req">Zip Code</label></th>
 							<td>
 								<input type="text" pattern="[0-9]*" class="input" id="ff_zip_code" name="ff_zip_code" value="" size="7" autocomplete="off" onblur="addressLookUp(this.form);" />
 								<p id="searching" class="searching"><i class="loading" id="search-loader"></i></p>
@@ -384,20 +399,22 @@
 						
 						<tr>
 							<th scope="row">
-								<label for="ff_phone">Business Phone</label>
+								<label for="ff_address" class="req">Business Address</label>
+							</th>
+							<td>
+								<input type="text" name="ff_address" class="input" id="ff_address" size="32" value="" />
+							</td>
+						</tr>
+						
+						<tr>
+							<th scope="row">
+								<label for="ff_phone" class="req">Business Phone</label>
 							</th>
 							<td>
 								<input type="text" name="ff_phone" class="input" id="ff_phone" value="" size="15" value="" placeholder="(000) 000-0000" />
 							</td>
 						</tr>
-						<tr>
-							<th scope="row">
-								<label for="ff_affiliation">Local Church Affiliation</label>
-							</th>
-							<td>
-								<input type="text" name="ff_affiliation" class="input" id="ff_affiliation" size="20" value="" />
-							</td>
-						</tr>
+						
 						<tr>
 							<th scope="row">
 							</th>
@@ -464,6 +481,10 @@
 // End Spin.js parameters
 </script>
 
+<!-- <script src="{site_url}/assets/js/jquery.validate.min.js"></script> -->
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="{site_url}/assets/js/partner-register.js"></script>
+
 <script src="{site_url}/assets/js/jquery-ui-autocomplete.js"></script>
 <script src="{site_url}/assets/js/jquery.select-to-autocomplete.min.js"></script>
 
@@ -494,10 +515,15 @@ jQuery(document).ready(function($){
 		return false;
 	});
 	
-	$(".ff_sponsor_country.ui-autocomplete-input").blur(function() {
-		var sponsorCountry = $(this).val();
-		$("#ff_country").val(sponsorCountry);
+	
+	var partnerCountry = $(".ff_country.ui-autocomplete-input").val();
+	$("#ff_country").val(partnerCountry);
+	
+	$(".ff_country.ui-autocomplete-input").blur(function() {
+		var partnerCountry = $(this).val();
+		$("#ff_country").val(partnerCountry);
 	});
+	
 	
 	$("#ff_city").keyup(function() {
 		var city = $(this).val();

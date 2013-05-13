@@ -24,10 +24,9 @@
 					
 					<ul class="tags">
 						<li data-icon="r">Tags:</li>
-						{categories show_group="40"}
+						{categories show_group="40|46"}
 							<li><a href="{site_url}/services/specialty/{category_url_title}">{category_name}</a></li>
 						{/categories}
-							<li><a href="{site_url}/services/state/{service_state}">{service_state:label}</a></li>
 					</ul>
 				</div>
 				

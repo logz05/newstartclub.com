@@ -27,11 +27,11 @@
 				<p>The NEWSTART&reg; Lifestyle Club sponsorship program is designed to equip schools, churches, and health care organizations to do health evangelism simply and effectively. It&rsquo;s based on the world famous <a href="http://www.newstart.com/newstart/what-is-newstart/">NEWSTART&reg;</a> principles that have helped millions live well naturally without the use of drugs.</p>
 				<h2>As a sponsor, you&rsquo;ll get:</h2>
 				<h3>Health seminar service and support</h3>
-				<p><img class="left" src="{site_url}/assets/images/sponsor-tour/tour_newstart.png" style="margin-right:10px;" width="120">Whether you decide to sponsor a <a href="http://www.reversingdisease.org/">Reversing Disease seminar</a> from Weimar Center of Health and Education, a <span class="caps">CHIP</span> program, Depression Recovery program, or even a <a href="http://newstartexpo.com/">NEWSTART&reg; Health Expo</a>, you&rsquo;ll have a wide selection of events to choose from. You will also have full permission to use the NEWSTART&reg; acronym in your presentations and advertising. And should you need help, you can call on one of our <a href="http://newstartglobal.com/">NEWSTART&reg; Global</a> medical missionary teams to help you get started. In addition, NEWSTART&reg; Lifestyle Club health experts will be available to answer seminar participants&rsquo; questions through the club website.</p>
+				<p><img class="left" src="{site_url}/assets/images/sponsor-tour/tour_newstart.png" style="margin-right:10px;" width="120">Whether you decide to sponsor a <a href="http://www.reversingdisease.org/">Reversing Disease seminar</a> from Weimar Center of Health and Education, a <span class="caps">CHIP</span> program, Depression Recovery program, or even a <a href="http://newstartexpo.com/">NEWSTART&reg; Health Expo</a>, you&rsquo;ll have a wide selection of events to choose from. You will also have full permission to use the NEWSTART&reg; acronym in your presentations and advertising. And should you need help, you can call on one of our <a href="http://newstartglobal.com/">NEWSTART&reg; Global</a> media missionaries to help you get started. In addition, NEWSTART&reg; Lifestyle Club health experts will be available to answer seminar participants&rsquo; questions through the club website.</p>
 				<h3>Health survey and event promotional tools</h3>
 				<p><img class="right" src="{site_url}/assets/images/sponsor-tour/tour-promo-tools.jpg" style="margin-left:10px; margin-right:-19px" width="280">With 80% of U.S. patients seeking health information online, having your health events and seminars on the NEWSTART&reg; Lifestyle Club website will mean higher attendance. For more demanding advertising campaigns, you&rsquo;ll have our field tested community health survey, event flyers, and club cards to use at health Expos and door-to-door. They&rsquo;ve been specifically designed to be fun, easy to use, and yield results. Best of all, you&rsquo;ll have full control over posting to the club website where browsers can find specific details about your events along with contact information including Google&reg; mapped directions.</p>
 				<h3>Online contact management system</h3>
-				<p>Being a club sponsor means having direct contact with club members in your area. You&rsquo;ll be able to easily view contact information and send email through a set of powerful online communication tools. As new members are added via your sponsor promo code, event <span class="caps">RSVP</span> list, or area zip code, you&rsquo;ll be able to know exactly how many are interested in a specific event or health topic. Not only that, it integrates seamlessly with popular <span class="caps">CRM</span> software such as <a href="http://getdisciples.com/">Disciples</a> or <a href="http://www.nchsoftware.com/crm/index.html"><span class="caps">NHC</span> Reflect</a>.</p>
+				<p>Being a club sponsor means having direct contact with club members in your area. You&rsquo;ll be able to easily view contact information and send email through a set of powerful online communication tools. As new members are added via your sponsor promo code, event RSVP list, or matching city, you&rsquo;ll be able to know exactly how many are interested in a specific event or health topic. Not only that, it integrates seamlessly with popular <span class="caps">CRM</span> software such as <a href="http://getdisciples.com/">Disciples</a> or <a href="http://www.nchsoftware.com/crm/index.html"><span class="caps">NHC</span> Reflect</a>.</p>
 				<p><img src="{site_url}/assets/images/sponsor-tour/tour-contacts.jpg" style="margin-left: -40px;" width="549"></p>
 				<h3>Additional services</h3>
 				<figure class="figure  figure--main  right">
@@ -50,21 +50,33 @@
 			<p>Phone: 530-422-7993<br>
 				Email: <a href="mailto:club@newstart.com"></a><a href="mailto:club@newstart.com">club@newstart.com</a></p>
 			<p>$175 sponsorship. $50 annual renewal. FREE to qualifying churches.</p>
+			
 			<p><strong>IMPORTANT:</strong> You must sign in as a NEWSTART Lifestyle Club member to apply for sponsorship.</p>
+			
 			<p class="button-wrap">
 				<a href="{path='sponsors/apply'}" class="super  giant  green  button" {if logged_out}data-reveal-id="signin-modal-sponsor-apply"{/if}><span>Get Started</span></a>
 			</p>
+			
 			<div class="quotes">
+			
 				<blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has made a huge difference in my health outreach.&rdquo;</blockquote>
 				<cite>&mdash;Todd D. Armstrong<br><a href="http://www.fhes.net/" target="_blank">Speaker/Director, Family Health &amp; Education Services</a></cite>
+				
 				<blockquote>&ldquo;This is the best thing I&rsquo;ve seen in a long, long time.&rdquo;</blockquote>
 				<cite>&mdash;James Redfield<br><a href="http://colfaxcares.org" target="_blank">Pastor, Colfax SDA Church</a></cite>
+				
 				<blockquote>&ldquo;This is JUST what we have needed to make it easy to network with the people who come to our health programs and to easily get others to join.&rdquo;</blockquote>
 				<cite>&mdash;Debbie Cox<br><a href="{path='locations/detail/buskirk-newstart-club'}" target="_blank">Health Ministries Leader, Buskirk SDA Church</a></cite>
+				
 				<blockquote>&ldquo;The NEWSTART&reg; Lifestyle Club has added a whole new dimension to our approach in regards to outreach. Utilizing the club will be a permanent addition to our ministry.&rdquo;</blockquote>
 				<cite>&mdash;Mike Mudd<br><a href="http://yfj.netasi.org/" target="_blank">Evangelism Coordinator, ASI Youth For Jesus</a></cite>
+				
 				<blockquote>&ldquo;I highly recommend this resource.&rdquo;</blockquote>
 				<cite>&mdash;Katia Reinert<br><a href="http://www.nadhealthministries.org" target="_blank">Director, NAD Adventist Health Ministries</a></cite>
+				
+				<blockquote>&ldquo;Every member a medical missionary. How easy you have made it for us to be that!&rdquo;</blockquote>
+				<cite>&mdash;Debbie Cox<br><a href="http://newstartclub.com/locations/detail/brighter-day-lifestyle-center">President, Brighter Day Lifestyle Center</a></cite>
+				
 			</div>
 		</div>
 	</div>
@@ -92,7 +104,7 @@
 				<li><a href="{path='sponsors/resources'}">Get resources <span class="arrow">&rarr;</span></a></li>
 			</ul>
 			<div class="button-wrap">
-				<a href="{site_url}/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super secondary button"><span>Quick Start Guide &raquo;</span></a>
+				<a href="{site_url}/downloads/sponsor-resources/common-files/Quick-Start-Guide.pdf" class="super green button"><span>Quick Start Guide &raquo;</span></a>
 			</div>
 			{exp:user:edit form:name="sponsor-id-switch" form:id="sponsor-id-switch" return="sponsors" password_required="n" dynamic="no"}
 				{if member_sponsor_ids || group_id == 1}
@@ -123,7 +135,7 @@
 					{/categories}
 				{/if}
 				<div class="button-wrap">
-					<a href="{path='sponsors/apply'}" class="super green button"><span>Add Sponsor</span></a>
+					<a href="{path='sponsors/apply'}" class="super secondary button"><span>Add Sponsor</span></a>
 				</div>
 			{/exp:user:edit}
 		</div>

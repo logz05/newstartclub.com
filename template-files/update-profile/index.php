@@ -210,6 +210,7 @@ table,td,div,p {font-family:\'Helvetica Neue\', Arial, Helvetica, Lucida Sans, L
 			<input type="hidden" class="hidden" name="member_first_name" id="member_first_name" value="{member_first_name}" size="25" autocomplete="off" />
 			<input type="hidden" class="hidden" name="member_last_name" id="member_last_name" value="{member_last_name}" size="25" autocomplete="off" />
 			<input type="hidden" pattern="[0-9]*" class="hidden" id="member_zip" name="member_zip" value="{member_zip}" size="7" autocomplete="off" />
+			<input type="hidden" class="hidden" id="member_welcome_email" name="member_welcome_email" value="1" size="7" autocomplete="off" />
 			
 			<p><button type="submit" class="super green button"><span>Save</span></button></p>
 			{/exp:user:edit}
